@@ -10,9 +10,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="My blog,列表渲染1.首先得到一个列表（v-for）    &amp;lt;ul&amp;gt;
+    <meta name="description" content="My blog,列表渲染
+
+1.首先得到一个列表（v-for）    &amp;lt;ul&amp;gt;
         &amp;lt;h2&amp;gt;人员列表&amp;lt;/h2&amp;gt;
-        &amp;lt;!-- v-for实现循环 在使用,"> 
+        &amp;lt;!-- v-for实现循环 在,"> 
     <meta name="author" content="Tspigeon"> 
     <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -21,9 +23,11 @@
     
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="列表渲染 - Tspigeon &#39;s blog"/>
-    <meta name="twitter:description" content="My blog,列表渲染1.首先得到一个列表（v-for）    &amp;lt;ul&amp;gt;
+    <meta name="twitter:description" content="My blog,列表渲染
+
+1.首先得到一个列表（v-for）    &amp;lt;ul&amp;gt;
         &amp;lt;h2&amp;gt;人员列表&amp;lt;/h2&amp;gt;
-        &amp;lt;!-- v-for实现循环 在使用,"/>
+        &amp;lt;!-- v-for实现循环 在,"/>
     
     
     
@@ -31,9 +35,11 @@
     <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content="列表渲染 - Tspigeon &#39;s blog"/>
-    <meta property="og:description" content="My blog,列表渲染1.首先得到一个列表（v-for）    &amp;lt;ul&amp;gt;
+    <meta property="og:description" content="My blog,列表渲染
+
+1.首先得到一个列表（v-for）    &amp;lt;ul&amp;gt;
         &amp;lt;h2&amp;gt;人员列表&amp;lt;/h2&amp;gt;
-        &amp;lt;!-- v-for实现循环 在使用,"/>
+        &amp;lt;!-- v-for实现循环 在,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -71,7 +77,9 @@
 
         </div>
         <div class="content markdown">
-            <h1 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h1><h2 id="1-首先得到一个列表（v-for）"><a href="#1-首先得到一个列表（v-for）" class="headerlink" title="1.首先得到一个列表（v-for）"></a>1.首先得到一个列表（v-for）</h2><pre><code>    &lt;ul&gt;
+            <h1 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h1><span id="more"></span>
+
+<h2 id="1-首先得到一个列表（v-for）"><a href="#1-首先得到一个列表（v-for）" class="headerlink" title="1.首先得到一个列表（v-for）"></a>1.首先得到一个列表（v-for）</h2><pre><code>    &lt;ul&gt;
         &lt;h2&gt;人员列表&lt;/h2&gt;
         &lt;!-- v-for实现循环 在使用插值语法进行显示--&gt;
         &lt;li v-for=&quot;p in persons&quot;&gt;&#123;&#123;p.name&#125;&#125;-&#123;&#123;p.age&#125;&#125; &lt;/li&gt;
@@ -101,7 +109,7 @@
     &lt;/ul&gt;
 </code></pre>
 <p>在加入index和:key之后便是一个真正完整的v-for循环 得到如下效果：</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\v-for.png" alt="v-for"></p>
+<p><img src="https://s2.loli.net/2022/03/06/PToBhGiDf7vwyAs.png" alt="v-for.png"></p>
 <h3 id="同时v-for也可以遍历对象"><a href="#同时v-for也可以遍历对象" class="headerlink" title="同时v-for也可以遍历对象"></a>同时v-for也可以遍历对象</h3><pre><code>    &lt;ul&gt;
         &lt;li v-for=&quot;(value,key) in car&quot; :key=&quot;key&quot;&gt;&#123;&#123;key&#125;&#125;--&#123;&#123;value&#125;&#125;&lt;/li&gt;
         &lt;!-- 这里的key是car中的属性名 --&gt;
@@ -114,21 +122,21 @@
 </code></pre>
 <p>  与数组类似 </p>
 <h2 id="2-key的作用"><a href="#2-key的作用" class="headerlink" title="2.key的作用"></a>2.<code>key</code>的作用</h2><p>在探讨key的作用之前，先用一个案例引出问题</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\key的作用2.png" alt="key的作用2"></p>
+<p><img src="https://s2.loli.net/2022/03/06/uo3fmylnQEkH7TI.png" alt="key的作用2.png"></p>
 <p>在一个v-for实现的遍历列表下在每个节点后加入一个input框，并写下各自对应的内容。现在我们首部插入一个新的节点，得到的dom页面变成了这样：</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\key的作用1.png" alt="key的作用1"></p>
+<p><img src="https://s2.loli.net/2022/03/06/7xPe31kRXS2CAWc.png" alt="key的作用1.png"></p>
 <p>不难发现，input框与li内容之间出现了错乱，而这种错乱出现的原因就是——vue虚拟dom的对比机制——说白了就是那个:key 后面的值是index引起的</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\为什么index不能作为key.png" alt="为什么index不能作为key"></p>
+<p><img src="https://s2.loli.net/2022/03/06/AO7fzWIjJ1FHU8Y.png" alt="为什么index不能作为key.png"></p>
 <p>虚拟dom的对比算法要<strong>根据key</strong>对比改变前的每一个节点，li中的文本内容很明显不同，于是<strong>生成新的节点，替代原来的节点，并赋上新值</strong> ，但是当对比input框时，由于<strong>填写的信息在虚拟dom中不可见</strong>，于是<strong>虚拟dom会把这两个当做一样的节点，不覆盖，直接使用</strong> 便导致了信息的错乱。</p>
 <p>此外将key设置成index还有效率问题，<strong>因为对比失败会生成一个新的节点并插入，导致dom的节点被频繁操作</strong>，效率严重下降。</p>
 <p>所以：</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\key的内部原理总结.png" alt="key的内部原理总结"></p>
+<p><img src="https://s2.loli.net/2022/03/06/m4ZQeS6uX5GhdTv.png" alt="key的内部原理总结.png"></p>
 <p>在key的选择上面：<strong>选择每条数据的唯一标识作为你的key</strong>，减少出错，提高效率。</p>
-<h2 id="3-列表过滤"><a href="#3-列表过滤" class="headerlink" title="3.列表过滤"></a>3.列表过滤</h2><p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\列表过滤.png" alt="列表过滤"></p>
+<h2 id="3-列表过滤"><a href="#3-列表过滤" class="headerlink" title="3.列表过滤"></a>3.列表过滤</h2><p><img src="https://s2.loli.net/2022/03/06/1xasWgFovytX2Si.png" alt="列表过滤.png"></p>
 <p>列表过滤的两个需要注意的点便是：</p>
 <p>1.需要设置一个filpersons，以免直接修改persons，保留persons的模板</p>
 <p>2.需要immediate的配置项，而且keyword设置成空字符串，这样子便可以在加载时触发空字符串搜索，实现一开始显示全部搜索内容</p>
-<h2 id="4-列表排序"><a href="#4-列表排序" class="headerlink" title="4.列表排序"></a>4.列表排序</h2><p><img src="D:\新建文件夹\文件\GitHub\pic\vue\列表渲染\列表排序.png" alt="列表排序"></p>
+<h2 id="4-列表排序"><a href="#4-列表排序" class="headerlink" title="4.列表排序"></a>4.列表排序</h2><p><img src="https://s2.loli.net/2022/03/06/RA19c8TBg5YEn7P.png" alt="列表排序.png"></p>
 <p>列表排序中的重点：</p>
 <p>1.需要用一个定义的arr去接过滤出的数组</p>
 <p>2.进行排序类型的判断</p>
