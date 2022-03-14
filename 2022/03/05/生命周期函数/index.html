@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>生命周期函数 - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,生命周期函数一 . 引入实现页面文字的闪动效果，需要改变文字透明度 =》设置一个interval 然后改变透明度。因为是自动闪动所以我们不能使用点击按钮等等
+
+现在我们看到的是用method里面的c,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="生命周期函数 - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,生命周期函数一 . 引入实现页面文字的闪动效果，需要改变文字透明度 =》设置一个interval 然后改变透明度。因为是自动闪动所以我们不能使用点击按钮等等
+
+现在我们看到的是用method里面的c,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="生命周期函数 - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,生命周期函数一 . 引入实现页面文字的闪动效果，需要改变文字透明度 =》设置一个interval 然后改变透明度。因为是自动闪动所以我们不能使用点击按钮等等
+
+现在我们看到的是用method里面的c,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">生命周期函数</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">生命周期函数</h1>
+        <div class="stuff">
+            <span>三月 05, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Vue/" rel="tag">Vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h1><h2 id="一-引入"><a href="#一-引入" class="headerlink" title="一 . 引入"></a>一 . 引入</h2><p>实现页面文字的闪动效果，需要改变文字透明度 =》设置一个interval 然后改变透明度。<em>因为是自动闪动所以我们不能使用点击按钮等等</em></p>
+<p><img src="https://s2.loli.net/2022/03/14/2yYDwu6KeJMSvnq.png" alt="method写闪动.png"></p>
+<p>现在我们看到的是用method里面的change写出的闪动，有明显的调用问题，因为修改<code>opacity</code>便会引起重新解析模板那么又会触发change函数,于是我们的interval将会爆炸式的增加</p>
+<p>所以我们需要的是一个执行一次的回调函数</p>
+<p>也就是我们的生命周期函数</p>
+<p><img src="https://s2.loli.net/2022/03/14/26AjRvK3xPBTidz.png" alt="mounted写闪动.png"></p>
+<p>生命周期函数有许多个，在不同的时期，Vue会调用不同的生命周期函数，mounted是挂载完成时调用（<em>也就是Vue加载完成时</em>），调用后修改模板不会引起再次调用，因为挂载时期已经过去</p>
+<h2 id="分析各个函数的执行时期"><a href="#分析各个函数的执行时期" class="headerlink" title="分析各个函数的执行时期"></a>分析各个函数的执行时期</h2><h6 id="原图查看-https-cn-vuejs-org-images-lifecycle-png"><a href="#原图查看-https-cn-vuejs-org-images-lifecycle-png" class="headerlink" title="原图查看   https://cn.vuejs.org/images/lifecycle.png"></a>原图查看   <a target="_blank" rel="noopener" href="https://cn.vuejs.org/images/lifecycle.png">https://cn.vuejs.org/images/lifecycle.png</a></h6><h3 id="create阶段（创建数据检测和数据代理）"><a href="#create阶段（创建数据检测和数据代理）" class="headerlink" title="create阶段（创建数据检测和数据代理）"></a>create阶段（创建数据检测和数据代理）</h3><p><img src="https://s2.loli.net/2022/03/14/lsKYhQuLbX5zeqv.png" alt="生命周期函数图示1.png"></p>
+<p><code>beforeCreate</code>:此时Vue只有Event和Lifecycle，在此时输出Vue，会发现没有data数据也没有函数等等的引入，也就是你Vue中的数据都没有引入</p>
+<p><code>created</code>:此时加入了数据检测和数据代理，你的方法和data中的数据已经加载进了Vue</p>
+<p>判断框：<strong>此时开始解析模板，生成虚拟dom，但是还没有转换成真实dom插入页面</strong>。其中有一个template配置项，没有便会把整个包括写了el对应的标签都当做模板，有的话便只是把里面的代码当做模板</p>
+<h3 id="mount阶段"><a href="#mount阶段" class="headerlink" title="mount阶段"></a>mount阶段</h3><p><img src="https://s2.loli.net/2022/03/14/U3JR5y2dLcp67Ah.png" alt="生命周期函数图示2.png"></p>
+<p><code>beforeMount</code>:此时你可以拿到已经生成虚拟dom但是因为没有转成真实dom，页面也还没有经过编译，所以此时你对dom修改也不会有效</p>
+<p><code>mounted</code>：在beforemount和mounted之间便是mount也就是 虚拟dom转换成了真实dom(还在vm.$el里面存了节点)，页面中呈现的也是经过Vue编译的dom，此时可以修改dom但是尽可能避免</p>
+<h3 id="update阶段"><a href="#update阶段" class="headerlink" title="update阶段"></a>update阶段</h3><p><img src="https://s2.loli.net/2022/03/14/MUj3eGHgaFvuYRA.png" alt="生命周期函数更新.png"></p>
+<p><code>beforeUpdate</code>:此时数据已经更新但是还没有转换到页面上，特点是数据与页面的不统一</p>
+<p><code>updated</code>：更新完成，数据与页面统一显示</p>
+<h3 id="destroy阶段"><a href="#destroy阶段" class="headerlink" title="destroy阶段"></a>destroy阶段</h3><p>最后便是Vue的销毁阶段，而要触发Vue的销毁，我们需要一个函数=&gt;<code>vm.$destroy()</code></p>
+<p>它的作用是：1.完全销毁一个实例。清理它与其它实例的连接（与其他组件之间的链接），解绑它的全部指令及事件监听器（<strong>注意是自定                     义事件，原生dom事件是不会解除的</strong>）。</p>
+<p>​                      2.触发 <code>beforeDestroy</code> 和 <code>destroyed</code> 的钩子。</p>
+<p><img src="https://s2.loli.net/2022/03/14/WbiLAUxhj94dXaD.png" alt="生命周期函数销毁.png"></p>
+<p><code>beforeDestroy</code>:在$destroy触发后进行，数据修改执行但是不显示在页面，所以通常用于关闭定时器等等收尾操作</p>
+<p><code>destroyed</code>:注意绿框，在关闭监视器，事件监听器，子组件等后执行</p>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><p>四对函数，代表了vm的四个时期，除了这四个函数本身，我们更需要注意的是，这四个函数之间的联系，每一对函数之间的联系即在他们中间发生了什么事。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

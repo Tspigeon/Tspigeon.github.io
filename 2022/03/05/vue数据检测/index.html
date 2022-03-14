@@ -10,10 +10,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Fechin,"> 
-    <meta name="description" content="My blog,vue 的数据检测
+    <meta name="description" content="My blog,vue 的数据检测是vue中数据处理模式重要的一环，学习加深对于vue数据处理API的理解
 
 
-vue数据检测1.检测问题一.在click button时method加入这个语句persons.[0]=&amp;#123; id: &amp;#39;001&amp;#39;, name: &amp;#,"> 
+vue数据检测1.Vue.set() or vm.$set()这是一个关于数据检测的问题
+
+需求：在点,"> 
     <meta name="author" content="Tspigeon"> 
     <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -22,10 +24,12 @@ vue数据检测1.检测问题一.在click button时method加入这个语句perso
     
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content="vue数据检测 - Tspigeon &#39;s blog"/>
-    <meta name="twitter:description" content="My blog,vue 的数据检测
+    <meta name="twitter:description" content="My blog,vue 的数据检测是vue中数据处理模式重要的一环，学习加深对于vue数据处理API的理解
 
 
-vue数据检测1.检测问题一.在click button时method加入这个语句persons.[0]=&amp;#123; id: &amp;#39;001&amp;#39;, name: &amp;#,"/>
+vue数据检测1.Vue.set() or vm.$set()这是一个关于数据检测的问题
+
+需求：在点,"/>
     
     
     
@@ -33,10 +37,12 @@ vue数据检测1.检测问题一.在click button时method加入这个语句perso
     <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content="vue数据检测 - Tspigeon &#39;s blog"/>
-    <meta property="og:description" content="My blog,vue 的数据检测
+    <meta property="og:description" content="My blog,vue 的数据检测是vue中数据处理模式重要的一环，学习加深对于vue数据处理API的理解
 
 
-vue数据检测1.检测问题一.在click button时method加入这个语句persons.[0]=&amp;#123; id: &amp;#39;001&amp;#39;, name: &amp;#,"/>
+vue数据检测1.Vue.set() or vm.$set()这是一个关于数据检测的问题
+
+需求：在点,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -74,15 +80,40 @@ vue数据检测1.检测问题一.在click button时method加入这个语句perso
 
         </div>
         <div class="content markdown">
-            <p>vue 的数据检测</p>
+            <p>vue 的数据检测是vue中数据处理模式重要的一环，学习加深对于vue数据处理API的理解</p>
 <span id="more"></span>
 
-<h1 id="vue数据检测"><a href="#vue数据检测" class="headerlink" title="vue数据检测"></a>vue数据检测</h1><h2 id="1-检测问题"><a href="#1-检测问题" class="headerlink" title="1.检测问题"></a>1.检测问题</h2><p>一.在click button时method加入这个语句<code>persons.[0]=&#123; id: &#39;001&#39;, name: &#39;马老师&#39;, age: 50 &#125;</code> 效果如图</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue数据检测\question.png" alt="question"></p>
+<h1 id="vue数据检测"><a href="#vue数据检测" class="headerlink" title="vue数据检测"></a>vue数据检测</h1><h2 id="1-Vue-set-or-vm-set"><a href="#1-Vue-set-or-vm-set" class="headerlink" title="1.Vue.set() or vm.$set()"></a>1.Vue.set() or vm.$set()</h2><p>这是一个关于数据检测的问题</p>
+<p><img src="https://s2.loli.net/2022/03/14/RTVcury1m2jHPZn.png" alt="vue.set__页面1.png"></p>
+<p>需求：在点击添加学生性别后加入学生性别这一行并显示为男</p>
+<p>引入：Vue.set()函数，传入三个参数set(target,key,val)=&gt;target:传入数据的目标位置（不能是vm/vue和data）,key:属性名称,val:属性值` </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var vm = new Vue(&#123;</span><br><span class="line">           el: &#x27;#app&#x27;,</span><br><span class="line">           data: &#123;</span><br><span class="line">               sname: &#x27;swpu&#x27;,</span><br><span class="line">               students: &#123;</span><br><span class="line">                   name: &#x27;tom&#x27;</span><br><span class="line">               &#125;,</span><br><span class="line">               friends: [</span><br><span class="line">                   &#123; name: &#x27;jerry&#x27;, age: 18 &#125;,</span><br><span class="line">                   &#123; name: &quot;sherlock&quot;, age: 19 &#125;</span><br><span class="line">               ]</span><br><span class="line"></span><br><span class="line">           &#125;,</span><br><span class="line">           methods: &#123;</span><br><span class="line">               addsex() &#123;//在data中加入数据set(target,key,val)</span><br><span class="line">                   Vue.set(this.students, &#x27;sex&#x27;, &#x27;male&#x27;)//大写V</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>解决：设置一个student对象，在点击button时触发addsex()方法，加入Vue.set()函数，这时便可以在页面上显示学生性别</p>
+<p>局限：由于目标位置不能是vm/vue和data，所以不能在data中直接加入数据，需要设置一个对象在对象下加入</p>
+<h3 id="etc："><a href="#etc：" class="headerlink" title="etc："></a>etc：</h3><p>用一个vm去接Vue实例那么 ：Vue.set()=vm.$set()</p>
+<h2 id="2-检测问题"><a href="#2-检测问题" class="headerlink" title="2.检测问题"></a>2.检测问题</h2><p>一.在click button时method加入这个语句<code>persons[0]=&#123; id: &#39;001&#39;, name: &#39;马老师&#39;, age: 50 &#125;</code> 效果如图</p>
+<p><img src="https://s2.loli.net/2022/03/14/hLl2pETNGi9Cwfy.png" alt="question.png"></p>
 <p>接到的vm中数据已经改变，但是vue中的数据还是原数据</p>
 <p>二.在click之后先打开console查看vm，之后进入vue查看发现数据已经改变</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue数据检测\q2.png" alt="q2"></p>
+<p><img src="https://s2.loli.net/2022/03/14/hYlGcxFur4fKWJd.png" alt="q2.png"></p>
 <p>但是页面显示还是原数据</p>
+<h2 id="3-数据检测"><a href="#3-数据检测" class="headerlink" title="3.数据检测"></a>3.数据检测</h2><p>那么为什么会发生上面的情况呢？其实是因为Vue，不承认你的<code>persons[0]=&#123; id: &#39;001&#39;, name: &#39;马老师&#39;, age: 50 &#125;</code> 语句，这个语句实际上的调用 person[0]中的setter方法，但是我们看看person[0]</p>
+<p><img src="https://s2.loli.net/2022/03/14/Iwy7hAgi5O2nKbE.png" alt="数组检测reason.png"></p>
+<p>在这个数组hobby中没有为数组中元素设置的getter和setter方法，所以我们的语句无效</p>
+<p>其实Vue承认数组改变的条件便是数组调用了这7个函数(push,pop,sort,shift(头删),unshift(头插),splice(替换),revrse(倒序),)</p>
+<p>我们在使用这些函数的时候，Vue中的这个数据便会触发响应式，引起页面的变化</p>
+<p><img src="https://s2.loli.net/2022/03/14/zinPvOaSy7eQFBV.png" alt="数组响应式.png"></p>
+<h3 id="所以"><a href="#所以" class="headerlink" title="所以"></a>所以</h3><p>我们上面问题的代码应该是<code>person.splice(0,1,&#123; id: &#39;001&#39;, name: &#39;马老师&#39;, age: 50 &#125;)</code>或者使用<code>Vue.set(vm.person,0,&#123;id: &#39;001&#39;, name: &#39;马老师&#39;, age: 50 &#125;)</code>都可以实现数据的更新</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://s2.loli.net/2022/03/14/bgIKv4dZaTYwki1.png" alt="vue监测总结.png"></p>
+<p>需要注意的两个点：</p>
+<p>1.在数组是对象数组的情况下，单个数组元素里面的对象属性是自带get和set方法的</p>
+<p>2.因为修改数组的响应式方法没有filter()，所以，如果想要实现过滤便要如下图进行操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">filsmoke()&#123;</span><br><span class="line"></span><br><span class="line">​          //因为数组操作没有filter，所以实现响应式就需要用原来的数据去接</span><br><span class="line"></span><br><span class="line">​          this.students.hobby=this.students.hobby.filter((h)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">​            return h!==&#x27;抽烟&#x27;</span><br><span class="line"></span><br><span class="line">​          &#125;)</span><br><span class="line"></span><br><span class="line">​        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>filter()方法会形成一个新的数组，我们需要把这个数组赋值给原数组，这样才能改变原数组，另外根据需求需要把原来的数组进行备份</p>
+<h2 id="Ending"><a href="#Ending" class="headerlink" title="Ending"></a>Ending</h2><p>最后解释我们常说的数据劫持：</p>
+<p>数据劫持，便是将写入data的数据增加get和set方法，数据就拥有了自己的响应式，在读取数据（get）和修改数据（set）的时候都需要调用get和set方法“劫持”，根据get和set方法进行修改和读取并解析模板。生成虚拟dom…等vue内含的一切操作。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
