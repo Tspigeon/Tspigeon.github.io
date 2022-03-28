@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vue组件 - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,为了提高编程的复用性和降低编程的冗杂度，我们创造了组件
+
+
+组件Q：1.什么是组件
+​    组件是实现应用中局部功能的代码和资源的集合
+2.组件的作用
+​    组件的不冗杂，复用性高，而且可以嵌,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Vue组件 - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,为了提高编程的复用性和降低编程的冗杂度，我们创造了组件
+
+
+组件Q：1.什么是组件
+​    组件是实现应用中局部功能的代码和资源的集合
+2.组件的作用
+​    组件的不冗杂，复用性高，而且可以嵌,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Vue组件 - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,为了提高编程的复用性和降低编程的冗杂度，我们创造了组件
+
+
+组件Q：1.什么是组件
+​    组件是实现应用中局部功能的代码和资源的集合
+2.组件的作用
+​    组件的不冗杂，复用性高，而且可以嵌,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Vue组件</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Vue组件</h1>
+        <div class="stuff">
+            <span>三月 22, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>为了提高编程的复用性和降低编程的冗杂度，我们创造了组件</p>
+<span id="more"></span>
+
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><h3 id="Q："><a href="#Q：" class="headerlink" title="Q："></a>Q：</h3><p>1.什么是组件</p>
+<p>​    组件是实现应用中局部功能的代码和资源的集合</p>
+<p>2.组件的作用</p>
+<p>​    组件的不冗杂，复用性高，而且可以嵌套</p>
+<p>模块化就是简单的拆分，而组件化是将代码封装以实现功能点</p>
+<h2 id="一-组件的引入"><a href="#一-组件的引入" class="headerlink" title="一 . 组件的引入"></a>一 . 组件的引入</h2><p>在Vue中使用组件包括三步 </p>
+<ol>
+<li>定义组件</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const student = Vue.extend(&#123;</span><br><span class="line">            template: `</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;学生姓名：&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;h2&gt;学生性别：&#123;&#123;sex&#125;&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">​            `,//用template写html格式，注意需要有根标签</span><br><span class="line">​            data()&#123;</span><br><span class="line">​                return&#123;</span><br><span class="line">​                name:&#x27;张三&#x27;,</span><br><span class="line">​                sex:&#x27;male&#x27;</span><br><span class="line">​                &#125;</span><br><span class="line">​            &#125;//data写成函数形式</span><br><span class="line">​        &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>其中使用template配置项创建组件的html部分，data()部分写成函数形式，其他的监听器和计算属性等等都可以照写。<strong>注意data（要写return）</strong></p>
+<p>2.注册组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var vm = new Vue(&#123;</span><br><span class="line"></span><br><span class="line">​      el: &#x27;#app&#x27;,</span><br><span class="line"></span><br><span class="line">​      //注册组件</span><br><span class="line"></span><br><span class="line">​      components:&#123;</span><br><span class="line"></span><br><span class="line">​        school,//简写形式</span><br><span class="line"></span><br><span class="line">​        zhangsan:student</span><br><span class="line"></span><br><span class="line">​      &#125;</span><br><span class="line"></span><br><span class="line">​    &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>在vm当中注册组件，在components配置项中以 key : value形式注册组件，可以简写</p>
+<p>还有一种全局注册形式</p>
+<p><code>Vue.component(&#123;&#39;组件使用名&#39;,组件变量名&#125;)</code></p>
+<p>3.使用组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&#x27;app&#x27;&gt;</span><br><span class="line">        &lt;!-- 标签形式引入组件 --&gt;</span><br><span class="line">        &lt;school&gt;&lt;/school&gt;</span><br><span class="line">       &lt;hr&gt; </span><br><span class="line">       &lt;zhangsan&gt;&lt;/zhangsan&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在Vue所管理的元素下插入标签，叫做组件标签，便可以显示组件中的信息</p>
+<p>在组件书写的时候需要注意的几个点：</p>
+<p><img src="https://s2.loli.net/2022/03/28/JiFr73HIZNnRtCO.png" alt="组件书写注意事项.png"></p>
+<p>1.name配置项可以修改组件在开发者工具中的名字，但其他地方的名字是不会改变的</p>
+<p>2.简写形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 简写形式</span><br><span class="line">        const student = &#123;</span><br><span class="line">            template: `</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;学生姓名：&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;h2&gt;学生性别：&#123;&#123;sex&#125;&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">            `,//用template写html格式，注意需要有根标签</span><br><span class="line">            data()&#123;</span><br><span class="line">                return&#123;</span><br><span class="line">                name:&#x27;张三&#x27;,</span><br><span class="line">                sex:&#x27;male&#x27;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;//data写成函数形式</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结</strong></p>
+<p><img src="https://s2.loli.net/2022/03/28/bRc2UiwLEYk7sPn.png" alt="非单文件组件总结1.png"></p>
+<h2 id="二-组件的嵌套"><a href="#二-组件的嵌套" class="headerlink" title="二  . 组件的嵌套"></a>二  . 组件的嵌套</h2><p>因为组件中有data属性，所以也可以有components属性，用这个完成我们的套娃</p>
+<p>我们在school中嵌套student属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">const school = Vue.extend(&#123;</span><br><span class="line">            template: `</span><br><span class="line"></span><br><span class="line">            &lt;div&gt;</span><br><span class="line">            &lt;h2&gt;学校名称：&#123;&#123;name&#125;&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;h2&gt;学校地址：&#123;&#123;address&#125;&#125;&lt;/h2&gt;</span><br><span class="line">            &lt;zhangsan&gt;&lt;/zhangsan&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">​            `,</span><br><span class="line">​            data() &#123;</span><br><span class="line">​                return &#123;</span><br><span class="line">​                    name: &#x27;swpu&#x27;,</span><br><span class="line">​                    address: &#x27;新都&#x27;</span><br><span class="line">​                &#125;</span><br><span class="line">​            &#125;,</span><br><span class="line">​            //嵌套components</span><br><span class="line">​            components: &#123;</span><br><span class="line">​                zhangsan: student</span><br><span class="line">​            &#125;</span><br><span class="line">​        &#125;)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>将student注册在school中,并在template配置下加入student所对应的标签</p>
+<p>此外我们还可以设置一个更大的组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const app = Vue.extend(&#123;</span><br><span class="line">           template: `</span><br><span class="line">           &lt;div&gt;</span><br><span class="line">           &lt;hello&gt;&lt;/hello&gt;</span><br><span class="line">           &lt;school&gt;&lt;/school&gt;</span><br><span class="line">           &lt;/div&gt; </span><br><span class="line">           `,</span><br><span class="line">           components:&#123;</span><br><span class="line">               school,</span><br><span class="line">               hello,</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;)</span><br><span class="line">       var vm = new Vue(&#123;</span><br><span class="line">           el: &#x27;#app&#x27;,</span><br><span class="line">           data: &#123;</span><br><span class="line">           &#125;,</span><br><span class="line">           components: &#123;</span><br><span class="line">               app</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>app组件用于定义一个全局的总组件,将其他的组件嵌套进入app，再在vm中注册app=》即可以使用一个<app>标签实现几个组件的功能了</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>组件书写需要有顺序，<strong>子组件需要先写，父组件后写</strong>，不然会出现未定义使用的情况</p>
+<h2 id="三-VueCompoent"><a href="#三-VueCompoent" class="headerlink" title="三 . VueCompoent"></a>三 . VueCompoent</h2><p>当我们使用Vue.extend时，Vue会帮我们调用一个构造函数VueComponent()，这个构造函数是我们组件十分重要的知识点</p>
+<p>我们看Vue.extend的源码</p>
+<p><img src="https://s2.loli.net/2022/03/28/BVfb4sYkUadNoRh.png" alt="Vue.extend源码.png"></p>
+<p>每次调用Vue.extend()，便会生成一个sub，sub是一个vuecomponent构造函数，这个sub在最后会被return。这说明了非常重要的一点：<strong>Vue.extend()每次调用都是生成的一个新的VueComponent</strong>，学过java的应该可以很好理解，即形成了<strong>统一构造函数下的不同实例对象</strong></p>
+<p>其二，在Vue中我们使用this，指向的是vm，<strong>而在组件当中使用this，指向的便是VueComponent</strong>，简称vc，而在vc中 和vm一样，有自己的数据代理和数据检测</p>
+<p><strong>但是vc是归vm管的，在vm管理的vc下也会有子vc</strong>,vm vc是非常相似的，但是vc中没有el，也就是说，vc交于vm再指定为哪一个el工作 </p>
+<h2 id="四-一个重要的内置关系"><a href="#四-一个重要的内置关系" class="headerlink" title="四 . 一个重要的内置关系"></a>四 . 一个重要的内置关系</h2><p>关于Vue和VueComponent的原型对象</p>
+<p><img src="https://s2.loli.net/2022/03/28/9ebiBQltNqsoIjH.png" alt="Vue与VueComponent的内置关系.png"></p>
+<p>原型对象的关系有点类似于java中的继承，函数中找原型对象是prototype而实例对象中是<code>_ _proto_ _</code>,此时Vue干了这么一件事情，将VueComponent的原型对象的<code>_ _proto_ _</code>属性指向了Vue的原型对象</p>
+<p>这样子做有什么效果呢？其实是起到了一个保底的效果，比如Vue原型对象中有一个x，改变了x的值，我们需要的是vc也收到这个改变，如果vc的原型对象指向的是其他地方，vc就无法和vm的原型对象产生一个关联。<strong>以后vc查找需要的东西时，就会在vue的原型对象上多查找一下</strong></p>
+<h2 id="五-单文件组件"><a href="#五-单文件组件" class="headerlink" title="五 . 单文件组件"></a>五 . 单文件组件</h2><p>我们先看看单文件组件的内容结构，这里推荐Vscode上面的一个插件（Vetur），方便我们.vue文件的书写</p>
+<p><img src="https://s2.loli.net/2022/03/28/vKpaZ7AOjINPGqM.png" alt="单文件组件组成.png"></p>
+<p>我们用到了Vue类型的后缀，（但是浏览器是无法直接识别.vue文件的，所以我们之后会学脚手架）School和Student都是其中的单文件组件，完成对应的功能，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    name=&#x27;School&#x27;,</span><br><span class="line">    data()&#123;</span><br><span class="line">                return&#123;</span><br><span class="line">                name:&#x27;swpu&#x27;,</span><br><span class="line">                address:&#x27;新都&#x27;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而App.vue则是管理School和Student的组件，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;School&gt;&lt;/School&gt;</span><br><span class="line">    &lt;Student&gt;&lt;/Student&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import School from &#x27;./School.vue&#x27;</span><br><span class="line">import Student from &#x27;./student.vue&#x27;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">    name=&#x27;App&#x27;,</span><br><span class="line">    components: &#123; School, Student &#125;,</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在main中new vue 然后再把app组件写入，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import App from &#x27;./App.vue&#x27;;</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el: &quot;#root&quot;,</span><br><span class="line">    //写入模板，在html文件中就可以不用再在div中加app了</span><br><span class="line">    template:`</span><br><span class="line">    &lt;App&gt;&lt;/App&gt;</span><br><span class="line">    `,</span><br><span class="line">    data: &#123;</span><br><span class="line">        components: &#123; App &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>最后在html文件中加入完成script引入等工作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=&quot;root&quot;&gt;</span><br><span class="line">        &lt;App&gt;&lt;/App&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;!-- 一定在模板之后加入文件引入 --&gt;</span><br><span class="line">    &lt;script src=&#x27;../js/vue.min.js&#x27;&gt;  &lt;/script&gt;</span><br><span class="line">    &lt;script src=&#x27;../js/main.js&#x27;&gt;  &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可是这样子的文件是没有办法运行的</p>
+<p><code>import App from &#39;./App.vue&#39;;</code>因为浏览器不认识这个语句，.vue文件那里是浏览器认识的类型呢？</p>
+<p>所以我们马上进入强大的脚手架</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
