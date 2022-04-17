@@ -120,16 +120,14 @@ vue脚手架一 . 脚手架的安装
 <p>添加在标签处添加ref属性</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">showDom()&#123;</span><br><span class="line">         console.log(this.$refs.title)//拿到的是真实的DOM</span><br><span class="line">         console.log(this.$refs.School)//拿到的是vc</span><br><span class="line">         console.log(document.getElementById(&#x27;School&#x27;))//获取的是School组件的template标签下的内容</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 
-<p>通过this.$ref拿到元素</p>
+<p>通过this.$refs拿到元素</p>
 <h2 id="六-props配置"><a href="#六-props配置" class="headerlink" title="六 . props配置"></a>六 . props配置</h2><p>这里补充一个小坑</p>
 <p>在更新src中的文件时</p>
 <p><img src="https://s2.loli.net/2022/03/28/B2q5UAZHbEivryK.png" alt="小坑.png"></p>
-<p>比如我将之前的School.vue 改成了Student.vue，需要删除之前的文件然后创建新的文件，不能直接更改文件名然后进行别的修改，不然可能会出现<strong>未跟踪</strong>的情况。</p>
+<p>可能会出现组件写了但是不显示的情况，这个情况是因为：1.我们没有在App中引入 2.我们没有在template标签里面加入 3.我们的name写错了。</p>
 <p>下面我们讲props配置：让组件接收外部传进来的数据</p>
 <p>我们在使用props之前，需要在对应的组件标签中加入我们需要的参数</p>
-<!-- 必须写成字符串类型 写成其他类型(包括表达式)需要加:-->
-
-  <Student name="张三" :age=18 sex="男"/>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 必须写成字符串类型 写成其他类型(包括表达式)需要加冒号:--&gt;</span><br><span class="line"></span><br><span class="line">  &lt;Student name=&quot;张三&quot; :age=18 sex=&quot;男&quot;/&gt;</span><br></pre></td></tr></table></figure>
 
 <p>这里有三种情况：1.传字符串如name，那么记得加” “</p>
 <p>​                             2.传数字，那么像age，需要加：表示v-bind</p>
