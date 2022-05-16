@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>深入浅出Vue.js 学习心得 - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,《深入浅出Vue.js》学习心得简介：CSDN和知乎上搜索学习资料的时候被推荐的这本书，里面主要是关于Vue源码的介绍，很细，富有引导性的一步一步解释Vue的源码和特殊之处。
+Chapter 1–变,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="深入浅出Vue.js 学习心得 - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,《深入浅出Vue.js》学习心得简介：CSDN和知乎上搜索学习资料的时候被推荐的这本书，里面主要是关于Vue源码的介绍，很细，富有引导性的一步一步解释Vue的源码和特殊之处。
+Chapter 1–变,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="深入浅出Vue.js 学习心得 - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,《深入浅出Vue.js》学习心得简介：CSDN和知乎上搜索学习资料的时候被推荐的这本书，里面主要是关于Vue源码的介绍，很细，富有引导性的一步一步解释Vue的源码和特殊之处。
+Chapter 1–变,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">深入浅出Vue.js 学习心得</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">深入浅出Vue.js 学习心得</h1>
+        <div class="stuff">
+            <span>五月 12, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="《深入浅出Vue-js》学习心得"><a href="#《深入浅出Vue-js》学习心得" class="headerlink" title="《深入浅出Vue.js》学习心得"></a>《深入浅出Vue.js》学习心得</h1><p>简介：CSDN和知乎上搜索学习资料的时候被推荐的这本书，里面主要是关于Vue源码的介绍，很细，富有引导性的一步一步解释Vue的源码和特殊之处。</p>
+<h2 id="Chapter-1–变化侦测"><a href="#Chapter-1–变化侦测" class="headerlink" title="Chapter 1–变化侦测"></a>Chapter 1–变化侦测</h2><p>首先我们说说变化侦测是什么，简单来说变化侦测就是确定我们的应用发生了什么变化，而Vue的变化侦测的粒度属于中粒度-组件层面大小。变化侦测到之后我们进行虚拟DOM的比对，来重新渲染页面等等。</p>
+<p>其实这个部分是分为了两节讲解的，分别是object和array，变化侦测在这两个对象上有所不同</p>
+<h3 id="1-object变化侦测"><a href="#1-object变化侦测" class="headerlink" title="1. object变化侦测"></a>1. object变化侦测</h3><p>js所提供的object变化侦测的方法有两种，一种是<code>Object.defineProperty</code>，一种是ES6提供的<code>proxy</code>。而我们的Vue所使用的的便是<code>Object.defineProperty</code>。如果我们是Vue的开发者，我们现在就需要对这个函数进行加工封装，从而实现我们需要的响应式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function defineReactive (data, key, val) &#123;//封装函数</span><br><span class="line">    Object.defineProperty(data, key, &#123;//配置defineProperty</span><br><span class="line">        enumerable: true,//自带配置，是否能通过for遍历循环</span><br><span class="line">        configurable: true,//自带配置，是否可以更改属性</span><br><span class="line">        get: function () &#123;</span><br><span class="line">            return val</span><br><span class="line">        &#125;,</span><br><span class="line">        set: function (newVal) &#123;</span><br><span class="line">            if(val === newVal)&#123;</span><br><span class="line">                return</span><br><span class="line">            &#125;</span><br><span class="line">            val = newVal</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意这里的set函数，首先判断了新值和旧值是否一样，不一样的情况下才进行重新赋值操作。</p>
+<h4 id="收集依赖"><a href="#收集依赖" class="headerlink" title="收集依赖"></a>收集依赖</h4><p>现在我们要做的是添砖加瓦，第一件事情是 收集依赖 ，我们在get中收集依赖，在set中触发依赖。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;&#123;&#123;name&#125;&#125;&lt;/h1&gt;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">data:&#123;</span><br><span class="line">name:&#x27;&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如这样的代码，程序中可能有很多地方使用到了name，<strong>收集依赖便是确定那些地方用法到了name</strong>。如果name改变我们需要通知所有用到name的地方name发生了改变，<strong>触发依赖便是将值的改变进行通知</strong></p>
+<p>我们使用一个dep数组进行收集</p>
+<p>我们需要在get中增加收集=&gt;<code>dep.push(window.target)</code>这里的<code>window.target</code>便是触发get的对象，也就是使用到name的地方</p>
+<p>然后在set中触发收集到的依赖=&gt;使用一个遍历将dep中的value全部变化为newValue，这样我们便完成了触发依赖</p>
+<p>我们还应该将我们的dep写成一个类，解耦而且可以更好的帮我们管理依赖。</p>
+<h4 id="Watcher"><a href="#Watcher" class="headerlink" title="Watcher"></a>Watcher</h4><p>现在为了加快我们依赖触发的效率和通用性，我们将所有收集到的<code>window.target</code>转化成一个Watcher类，当我们需要通知变化的时候就可以给Watcher发送消息。Watcher就类似于一个中介。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Watch &#123;</span><br><span class="line">    constructor (expOrFn, cb) &#123;</span><br><span class="line">        // 执行 this.getter() 就可以拿到 data.a.b.c</span><br><span class="line">        this.getter = parsePath(expOrFn)//触发getter读取数据，将this加入dep</span><br><span class="line">        this.cb = cb</span><br><span class="line">        this.value = this.get()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    get () &#123;</span><br><span class="line">        Dep.target = this//将this也就是Watcher赋给当前的target实现一个转换</span><br><span class="line">        value = this.getter.call(vm, vm)</span><br><span class="line">        Dep.target = undefined</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    update () &#123;//data.a.b.c的值发生变化后触发，更新数据</span><br><span class="line">        const oldValue = this.value</span><br><span class="line">        this.value = this.get()</span><br><span class="line">        this.cb.call(this.vm, this.value, oldValue)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="深入侦测"><a href="#深入侦测" class="headerlink" title="深入侦测"></a>深入侦测</h4><p>现在我们需要侦测这个属性的子属性（有点类似于深度监视）。我们加入一个递归侦测</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function walk (obj: Object) &#123;</span><br><span class="line">  const keys = Object.keys(obj)</span><br><span class="line">  for (let i = 0; i &lt; keys.length; i++) &#123;</span><br><span class="line">    defineReactive(obj, keys[i], obj[keys[i]])</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们使用walk将这个对象的下一级转换为响应式的数据，在触发<code>defineReactive</code>的时候，再调用一次walk，如果此时的数据的object，那么就会再把下一级进行转换。就这样套娃直到下一次不再是对象，代表我们已经将所有子数据转换成响应式了。</p>
+<h4 id="more"><a href="#more" class="headerlink" title="more"></a>more</h4><p>但是我们的代码依然有漏洞，在新增数据或者删除数据的时候，我们依然无法收到通知，但是这一部分我们在后面章节细说。</p>
+<h3 id="鸽子已死，有事烧纸"><a href="#鸽子已死，有事烧纸" class="headerlink" title="鸽子已死，有事烧纸"></a>鸽子已死，有事烧纸</h3>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

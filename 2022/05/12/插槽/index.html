@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>插槽 - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,插槽我们现在需求三个列表，包含三部分内容
+
+构造Category组件，但是由于我们页面是对Category组件的复用，所以我们难以得到三个很大区别的列表，我们需要列表自己选择准备填入的数据。
+tip,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="插槽 - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,插槽我们现在需求三个列表，包含三部分内容
+
+构造Category组件，但是由于我们页面是对Category组件的复用，所以我们难以得到三个很大区别的列表，我们需要列表自己选择准备填入的数据。
+tip,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="插槽 - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,插槽我们现在需求三个列表，包含三部分内容
+
+构造Category组件，但是由于我们页面是对Category组件的复用，所以我们难以得到三个很大区别的列表，我们需要列表自己选择准备填入的数据。
+tip,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">插槽</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">插槽</h1>
+        <div class="stuff">
+            <span>五月 12, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h1><p>我们现在需求三个列表，包含三部分内容</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\插槽\产品样例.png" alt="产品样例"></p>
+<p>构造Category组件，但是由于我们页面是对Category组件的复用，所以我们难以得到三个很大区别的列表，我们需要列表自己选择准备填入的数据。</p>
+<p>tips：可以说插槽就是组件间通信的一种</p>
+<h2 id="1-默认插槽"><a href="#1-默认插槽" class="headerlink" title="1.默认插槽"></a>1.默认插槽</h2><p>最简单的插槽</p>
+<p>使用插槽的第一步：将组件标签改写为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Category title=&quot;美食&quot;&gt;</span><br><span class="line">      &lt;!-- 加入准备填入的内容 --&gt;</span><br><span class="line">      &lt;img src=&quot;https://s3.ax1x.com/2021/01/16/srJlq0.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;/Category&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在组价标签中加入准备传入的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;category&quot;&gt;</span><br><span class="line">      &lt;h3&gt;&#123;&#123;title&#125;&#125;分类&lt;/h3&gt;</span><br><span class="line">      &lt;!-- 默认插槽 --&gt;</span><br><span class="line">      &lt;slot&gt;没有数据传入的时候显示我&lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>slot会根据上一段代码中，组件标签中的数据，将其放入列表中的对应位置</p>
+<p>但是，这种方式的缺点便是，只能将填入的数据一股脑的放入到一个slot中，不够灵活。</p>
+<h2 id="2-具名插槽"><a href="#2-具名插槽" class="headerlink" title="2.具名插槽"></a>2.具名插槽</h2><p>顾名思义，具名插槽就是有name属性的插槽</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;category&quot;&gt;</span><br><span class="line">      &lt;h3&gt;&#123;&#123;title&#125;&#125;分类&lt;/h3&gt;</span><br><span class="line">      &lt;!-- 默认插槽 --&gt;</span><br><span class="line">      &lt;slot name=&quot;center&quot;&gt;没有数据传入的时候显示我&lt;/slot&gt;</span><br><span class="line">      &lt;slot name=&quot;footer&quot;&gt;没有数据传入的时候显示我&lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在slot属性中加入name属性以区分不同的插槽</p>
+<p>而我们的数据部分也应该署名自己属于那个插槽</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Category title=&quot;美食&quot;&gt;</span><br><span class="line">      &lt;!-- 加入准备填入的内容 --&gt;</span><br><span class="line">      &lt;img slot=&#x27;center&#x27; src=&quot;https://s3.ax1x.com/2021/01/16/srJlq0.jpg&quot; alt=&quot;&quot;&gt;</span><br><span class="line">      &lt;a slot=&#x27;footer&#x27; href=&quot;https://tspigeon.github.io&quot;&gt;更多美食&lt;/a&gt;</span><br><span class="line">&lt;/Category&gt;</span><br></pre></td></tr></table></figure>
+
+<p>特别的如果我们的数据包含多个标签，可以使用div或者template包裹起来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div slot=&quot;footer&quot;&gt;//如果使用&lt;template&gt;那么我们可以把slot写成&lt;template v-slot:footer&gt;</span><br><span class="line">      &lt;a href=&quot;https://tspigeon.github.io&quot;&gt;单机游戏&lt;/a&gt;</span><br><span class="line">      &lt;a href=&quot;https://tspigeon.github.io&quot;&gt;网页游戏&lt;/a&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-作用域插槽"><a href="#3-作用域插槽" class="headerlink" title="3.作用域插槽"></a>3.作用域插槽</h2><p>作用域插槽适用于数据和结构分离的插槽</p>
+<p>因为数据和结构不再一个组件当中–（数据在Category中，结构在app中），所以我们使用作用域插槽</p>
+<p>首先使用作用域插槽传输数据：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//Category组件中包含数据和插槽</span><br><span class="line">&lt;div class=&quot;category&quot;&gt;</span><br><span class="line">    &lt;h3&gt;&#123;&#123;title&#125;&#125;分类&lt;/h3&gt;</span><br><span class="line">    &lt;slot :games=&#x27;games&#x27;&gt;没有数据传入的时候显示我&lt;/slot&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在app组件中接收数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Category title=&quot;游戏&quot;&gt;</span><br><span class="line">  &lt;!-- 这里必须使用template包裹并写上scope或者slot-scope --&gt;</span><br><span class="line">  &lt;template slot-scope=&quot;item&quot;&gt;</span><br><span class="line">  &lt;ul&gt;</span><br><span class="line">  &lt;li v-for=&quot;(g,index) in item.games&quot; :key=&#x27;index&#x27;&gt;&#123;&#123;g&#125;&#125;&lt;/li&gt;</span><br><span class="line">  &lt;/ul&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/Category&gt;</span><br></pre></td></tr></table></figure>
+
+<p>scope接收的名字可以与发送的名字不一样=&gt;（比如这里发送的时候是game，接收是Item，有点类似于函数的变量接收）</p>
+<p>这样插槽形式适用于:根据数据生成的结构是由使用者（这里是我们的app）决定的</p>
+<p>同时作用域插槽也可以有名字，加入一个name属性和slot属性即可</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
