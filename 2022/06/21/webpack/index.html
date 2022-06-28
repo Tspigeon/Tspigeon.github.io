@@ -135,7 +135,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;npx run dev&quot;,</span><br><span class="line">  &quot;dev&quot;: &quot;npx webpack --config .\\config\\webpack.dev.js&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;npx webpack --config .\\config\\webpack.prod.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
 <p>以后我们生产模式下打包文件就只需要：<code>npm run build</code></p>
-<h3 id="8-2-mini-css"><a href="#8-2-mini-css" class="headerlink" title="8.2 mini-css"></a>8.2 mini-css</h3><p>我们现在的css代码是打包到js文件中的，也就是解析js的时候才会生成<style>标签，然后在解析css样式</p>
+<h3 id="8-2-mini-css"><a href="#8-2-mini-css" class="headerlink" title="8.2 mini-css"></a>8.2 mini-css</h3><p>我们现在的css代码是打包到js文件中的，也就是解析js的时候才会生成<code>&lt;style&gt;</code>标签，然后在解析css样式</p>
 <p>这样子就会出现<strong>闪屏</strong>现象，也就是css模块最后被加载导致页面闪一下，为了杜绝这种现象我们使用mini-css打包css文件</p>
 <p>安装mini-css:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev mini-css-extract-plugin</span><br></pre></td></tr></table></figure>
