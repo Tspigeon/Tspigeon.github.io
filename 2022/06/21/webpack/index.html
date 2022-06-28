@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>webpack - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,webpack基础1.webpack的基本使用webpack是一个静态资源的打包工具，将一个或者多个文件作为入口文件，然后组合编译成一个或者多个文件输出出去
+现在大多数的打包都是使用的webpack,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="webpack - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,webpack基础1.webpack的基本使用webpack是一个静态资源的打包工具，将一个或者多个文件作为入口文件，然后组合编译成一个或者多个文件输出出去
+现在大多数的打包都是使用的webpack,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="webpack - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,webpack基础1.webpack的基本使用webpack是一个静态资源的打包工具，将一个或者多个文件作为入口文件，然后组合编译成一个或者多个文件输出出去
+现在大多数的打包都是使用的webpack,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">webpack</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">webpack</h1>
+        <div class="stuff">
+            <span>六月 21, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="webpack基础"><a href="#webpack基础" class="headerlink" title="webpack基础"></a>webpack基础</h1><h2 id="1-webpack的基本使用"><a href="#1-webpack的基本使用" class="headerlink" title="1.webpack的基本使用"></a>1.webpack的基本使用</h2><p>webpack是一个静态资源的打包工具，将一个或者多个文件作为入口文件，然后组合编译成一个或者多个文件输出出去</p>
+<p>现在大多数的打包都是使用的webpack，当然在vue3之后，vue团队还推出了vite作为新型的打包工具</p>
+<p>在打包过程中我们将main.js作为入口文件，在main.js中引入count.js和reduce.js文件</p>
+<p><img src="https://s2.loli.net/2022/06/28/Khl3Z85LxmVsvuH.png" alt="webpack基本使用.png"></p>
+<p>1.第一件事情是初始化webpack——<code>npm init -y</code> 得到一个package.json的文件，需要将里面的name字段改为<code>webpack_code</code></p>
+<p>2.然后安装webpack和相关指令——<code>npm i webpack webpack-cli -D</code></p>
+<p>3.使用<code>npx webpack ./src/main.js --mode=development</code>开始打包（main.js是我们的入口文件，–mode=development代表打包模式为开发模式也可以使用production代表生产模式）</p>
+<p>打包完成后我们会得到一个dist文件夹，dist文件夹下是我们的入口函数main.js，通过在index.html中引入<code>./dist/main.js</code>使用main.js</p>
+<h2 id="2-webpack的基本配置"><a href="#2-webpack的基本配置" class="headerlink" title="2.webpack的基本配置"></a>2.webpack的基本配置</h2><p>webpack有五大核心概念——entry(入口)，output(输出),loader(加载器-解析其他资源)，piugins(插件),mode(模式-生产模式和开发模式)</p>
+<p>而webpack的配置文件都是建立在项目根目录下，叫做webpack.config.js的文件，里面就需要包含我们的五大核心概念</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&#x27;path&#x27;)//获取node.js的path模块</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    //入口</span><br><span class="line">    entry: &quot;./src/main.js&quot;,//相对路径</span><br><span class="line">    //输出</span><br><span class="line">    output: &#123;</span><br><span class="line">        //输出路径</span><br><span class="line">        //__dirname代表当前文件的文件夹目录的绝对路径</span><br><span class="line">        path: path.resolve(__dirname, &quot;dist&quot;),//当前目录下的dist文件夹</span><br><span class="line">        //文件名</span><br><span class="line">        filename: &quot;main.js&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    //加载器</span><br><span class="line">    module: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            //loader的配置</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">    //插件</span><br><span class="line">    plugins: [</span><br><span class="line">        //piugins的配置</span><br><span class="line">    ],</span><br><span class="line">    //模式</span><br><span class="line">    mode: &quot;development&quot;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在，运行我们的webpack只需要<code>npx webpack</code>就可以运行我们的webpack了</p>
+<h2 id="3-识别样式资源"><a href="#3-识别样式资源" class="headerlink" title="3.识别样式资源"></a>3.识别样式资源</h2><p>webpack本身只能识别js和json文件，那么如果想对样式资源进行打包，我们就需要下载各式各样的loader</p>
+<h3 id="3-1识别css资源"><a href="#3-1识别css资源" class="headerlink" title="3.1识别css资源"></a>3.1识别css资源</h3><p>我们先看看官方文档中的做法</p>
+<p><img src="https://s2.loli.net/2022/06/28/ONWuR5ftivQjDZH.png" alt="打包css.png"></p>
+<p>我们首先建立一个.css文件，将css文件引入main.js中，按照官方文档的提示进行打包，需要注意的是：官方文档只安装了css-loader，但是实际上我们还需要安装style-loader</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//加载器</span><br><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">        //loader的配置</span><br><span class="line">        &#123;</span><br><span class="line">            test: /\.css$/i,//匹配.css文件</span><br><span class="line">            //执行顺序从右到左</span><br><span class="line">            use: [&quot;style-loader&quot;, &quot;css-loader&quot;],//css是将css转换为commonjs放入js，style是将js中的css转换为style标签中的内容</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-识别less，sass，styl资源"><a href="#3-2-识别less，sass，styl资源" class="headerlink" title="3.2 识别less，sass，styl资源"></a>3.2 识别less，sass，styl资源</h3><p>这四个资源和css资源类似，也需要下载loader，具体参考官方文档，loader的作用是将对应文件转换为css文件</p>
+<p>下载完成后在config.js中的rules中加入新的对象即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//loader的配置</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.css$/i,//匹配.css文件</span><br><span class="line">    //执行顺序从右到左</span><br><span class="line">    use: [&quot;style-loader&quot;, &quot;css-loader&quot;],//css是将css转换为commonjs放入js，style是将js中的css转换为style标签中的内容</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.less$/i,//匹配.less文件</span><br><span class="line">    //执行顺序从右到左</span><br><span class="line">    use: [&quot;style-loader&quot;, &quot;css-loader&quot;,&quot;less-loader&quot;], </span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.s[ac]ss$/i,//匹配.sass和.scss文件</span><br><span class="line">    //执行顺序从右到左</span><br><span class="line">    use: [&quot;style-loader&quot;, &quot;css-loader&quot;,&quot;sass-loader&quot;],</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.styl$/i,//匹配.styl文件</span><br><span class="line">    //执行顺序从右到左</span><br><span class="line">    use: [&quot;style-loader&quot;, &quot;css-loader&quot;,&quot;stylus-loader&quot;],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-处理图片"><a href="#4-处理图片" class="headerlink" title="4.处理图片"></a>4.处理图片</h2><p>webpack自带有处理图片的loader，所以我们不用下载</p>
+<p>但是我们可以优化——（小于某个大小的图片可以转换为base64编码）</p>
+<p>我们在rules中加入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(png|jpe?g|gif|webp|svg)$/,</span><br><span class="line">    type: &#x27;asset&#x27;,</span><br><span class="line">   parser: &#123;</span><br><span class="line">     dataUrlCondition: &#123;</span><br><span class="line">        //小于10kb的图片会转base64</span><br><span class="line">       maxSize: 10 * 1024 // 10kb</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>代表小于10kb的图片会被打包成base64的编码，这样虽然图片的体积会变大，但是不用向服务器发送请求，减小了服务器的负担</p>
+<h3 id="4-1修改文件输出目录"><a href="#4-1修改文件输出目录" class="headerlink" title="4.1修改文件输出目录"></a>4.1修改文件输出目录</h3><p>我们可以通过filename选项修改我们的输出文件的文件地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//文件名</span><br><span class="line">filename: &quot;static/js/main.js&quot;,</span><br></pre></td></tr></table></figure>
+
+<p>这就是将main.js输出到了<code>dist/ststic/js/main.js</code></p>
+<p>然后我们也可以通过添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">generator: &#123;</span><br><span class="line">    //输出图片地址名称</span><br><span class="line">    //hash值可以只取前十位</span><br><span class="line">    filename: &#x27;static/image/[hash:10][ext][query]&#x27;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改图片的输出路径</p>
+<h2 id="5-处理字体图标文件"><a href="#5-处理字体图标文件" class="headerlink" title="5.处理字体图标文件"></a>5.处理字体图标文件</h2><p>webpack同样可以处理字体图标文件，并存放在指定目录下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: /\.(ttf|wff2?)$/,</span><br><span class="line">    //指定图片打包格式</span><br><span class="line">    type: &#x27;asset/resource&#x27;,</span><br><span class="line">    generator: &#123;</span><br><span class="line">        //输出图片地址名称</span><br><span class="line">        //hash值可以只取前十位</span><br><span class="line">        filename: &#x27;static/media/[hash:10][ext][query]&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>书写格式与图片类似</p>
+<h2 id="6-处理HTML资源"><a href="#6-处理HTML资源" class="headerlink" title="6.处理HTML资源"></a>6.处理HTML资源</h2><p>处理html文件需要配置插件</p>
+<p>使用<code>npm install --save-dev html-webpack-plugin </code>下载处理html的插件</p>
+<p>在plugins中加入配置项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//引入html模块插件</span><br><span class="line">const HtmlWebpackPlugin = require(&#x27;html-webpack-plugin&#x27;);</span><br><span class="line"></span><br><span class="line">    //插件</span><br><span class="line">    plugins: [</span><br><span class="line">        //piugins的配置</span><br><span class="line">        new ESLintPlugin(&#123;</span><br><span class="line">            context: path.resolve(__dirname, &#x27;src&#x27;)</span><br><span class="line">        &#125;),</span><br><span class="line">        new HtmlWebpackPlugin(&#123;</span><br><span class="line">            //将/index.html加载到新的html文件中</span><br><span class="line">            //特点 1.有和原来文件一样的html结构 2.自动引入打包的文件</span><br><span class="line">            template: path.resolve(__dirname, &#x27;public/index.html&#x27;)</span><br><span class="line">        &#125;)</span><br><span class="line">    ],</span><br></pre></td></tr></table></figure>
+
+<p>加入后进行编译，得到我们的dist目录下的html文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;webpack&lt;/title&gt;</span><br><span class="line">&lt;script defer src=&quot;static/js/main.js&quot;&gt;&lt;/script&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;hello webpack&lt;/h1&gt;</span><br><span class="line">    &lt;div class=&quot;box1&quot;&gt;&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;box2&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们发现不用引入script标签也可以出现相应的效果</p>
+<h2 id="7-自动化"><a href="#7-自动化" class="headerlink" title="7.自动化"></a>7.自动化</h2><p>开发服务器帮助我们更改代码后，自动执行<code>npx webpack</code></p>
+<p>首先安装这个开发服务器：<code>npm i webpack-dev-server -D</code></p>
+<p>使用开发服务器是：<code>npx webpack serve</code></p>
+<p>然后在config.js中加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//开发服务器</span><br><span class="line">devServer: &#123;</span><br><span class="line">    host: &#x27;localhost&#x27;,//域名</span><br><span class="line">    port: &#x27;3000&#x27;,//端口号</span><br><span class="line">    open: true//是否打开服务器</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>之后我们更改代码只需要Ctrl+s保存就可以了</p>
+<p>需要注意的是：我们的开发服务器不会把打包文件保存在dist目录下，而是保存在内存中。</p>
+<h2 id="8-生产模式"><a href="#8-生产模式" class="headerlink" title="8.生产模式"></a>8.生产模式</h2><p>生产模式是用于将我们的代码打包部署上线的模式，生产模式的配置代码也需要一个文件保存</p>
+<p>所以我们新建一个文件夹<code>config</code>用于存放配置文件，然后将两个配置文件放入<code>webpack.dev.js</code>和<code>webpack.prod.js</code></p>
+<p>需要注意因为更改了文件目录，所以用到绝对路径的地方（有dirname）的地方需要改动，添加<code>../</code></p>
+<p>而且webpack.prod.js中改为<code>mode:production</code></p>
+<h3 id="8-1快捷方式"><a href="#8-1快捷方式" class="headerlink" title="8.1快捷方式"></a>8.1快捷方式</h3><p>我们使用生产模式下的webpack文件现在需要输入：<code>npx webpack --config .\config\webpack.prod.js</code></p>
+<p>每次都需要输入这个十分麻烦，所以我们在package.json中修改生成快捷方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;npx run dev&quot;,</span><br><span class="line">  &quot;dev&quot;: &quot;npx webpack --config .\\config\\webpack.dev.js&quot;,</span><br><span class="line">  &quot;build&quot;: &quot;npx webpack --config .\\config\\webpack.prod.js&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>以后我们生产模式下打包文件就只需要：<code>npm run build</code></p>
+<h3 id="8-2-mini-css"><a href="#8-2-mini-css" class="headerlink" title="8.2 mini-css"></a>8.2 mini-css</h3><p>我们现在的css代码是打包到js文件中的，也就是解析js的时候才会生成<style>标签，然后在解析css样式</p>
+<p>这样子就会出现<strong>闪屏</strong>现象，也就是css模块最后被加载导致页面闪一下，为了杜绝这种现象我们使用mini-css打包css文件</p>
+<p>安装mini-css:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev mini-css-extract-plugin</span><br></pre></td></tr></table></figure>
+
+<p>在prod.js中加入mini-css:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//引入mini-css模块</span><br><span class="line">const MiniCssExtractPlugin = require(&quot;mini-css-extract-plugin&quot;);</span><br><span class="line"></span><br><span class="line">//rules中loader的配置中将&quot;style.loader&quot;改为MiniCssExtractPlugin.loader</span><br><span class="line">&#123;</span><br><span class="line">    test: /\.css$/i,//匹配.css文件</span><br><span class="line">    //执行顺序从右到左</span><br><span class="line">    use: [MiniCssExtractPlugin.loader, &quot;css-loader&quot;],//css是将css转换为commonjs放入js，style是将js中的css转换为style标签中的内容</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">//在plugins中加入mini-css 并设置文件目录</span><br><span class="line">new MiniCssExtractPlugin(&#123;</span><br><span class="line">   filename:&#x27;static/css/main.css&#x27;</span><br><span class="line">&#125;)   </span><br></pre></td></tr></table></figure>
+
+<p>最后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p>然后得到<code>dist/static/css</code>目录下的<code>main.css</code>文件</p>
+<p><img src="https://s2.loli.net/2022/06/28/IBYRcLjmp65bha3.png" alt="mini-css.png"></p>
+<p>现在加载css的时候就是通过link标签引入css了，就没有了闪屏现象</p>
+<h3 id="8-3-打包loader"><a href="#8-3-打包loader" class="headerlink" title="8.3  打包loader"></a>8.3  打包loader</h3><p>loader中有大量重复的代码，我们打包loader成函数提高复用性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//pre就是我们less-loder等loader</span><br><span class="line">function getStyleLoader(pre) &#123;</span><br><span class="line">    return [MiniCssExtractPlugin.loader, &quot;css-loader&quot;,</span><br><span class="line">    &#123;</span><br><span class="line">        loader: &quot;postcss-loader&quot;,</span><br><span class="line">        options: &#123;</span><br><span class="line">            postcssOptions: &#123;</span><br><span class="line">                plugins: [</span><br><span class="line">                    &quot;postcss-preset-env&quot;//能解决大多数兼容性问题</span><br><span class="line">                ]</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    pre,</span><br><span class="line">    ].filter(Boolean)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//less-loader中的演示</span><br><span class="line">&#123;</span><br><span class="line">   test: /\.less$/i,//匹配.less文件</span><br><span class="line">   //执行顺序从右到左</span><br><span class="line">   use: getStyleLoader(&quot;less-loader&quot;),</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-4-css压缩"><a href="#8-4-css压缩" class="headerlink" title="8.4 css压缩"></a>8.4 css压缩</h3><p>我们下载：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install css-minimizer-webpack-plugin --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>然后在配置文件中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//压缩css</span><br><span class="line">const CssMinimizerPlugin = require(&quot;css-minimizer-webpack-plugin&quot;);</span><br><span class="line"></span><br><span class="line">//plugins中加入</span><br><span class="line">new CssMinimizerPlugin(),</span><br></pre></td></tr></table></figure>
+
+<p>再重新打包，得到的main.css文件就是被压缩过的了</p>
+<p>webpack的基本配置就是以上这些了！</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
