@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>学校收发系统开发日志 - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,收发系统开发日志相信每个学校都有一个收发室，而收发室每天要处理大量的信件和杂志，为了处理这些书信的收发功能，我们开发了收发系统。
+实现：1.对收到书籍的统计    2.对于用户的管理    3.对于,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="学校收发系统开发日志 - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,收发系统开发日志相信每个学校都有一个收发室，而收发室每天要处理大量的信件和杂志，为了处理这些书信的收发功能，我们开发了收发系统。
+实现：1.对收到书籍的统计    2.对于用户的管理    3.对于,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="学校收发系统开发日志 - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,收发系统开发日志相信每个学校都有一个收发室，而收发室每天要处理大量的信件和杂志，为了处理这些书信的收发功能，我们开发了收发系统。
+实现：1.对收到书籍的统计    2.对于用户的管理    3.对于,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">学校收发系统开发日志</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">学校收发系统开发日志</h1>
+        <div class="stuff">
+            <span>七月 14, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="收发系统开发日志"><a href="#收发系统开发日志" class="headerlink" title="收发系统开发日志"></a>收发系统开发日志</h1><p>相信每个学校都有一个收发室，而收发室每天要处理大量的信件和杂志，为了处理这些书信的收发功能，我们开发了收发系统。</p>
+<p>实现：1.对收到书籍的统计    2.对于用户的管理    3.对于分发书籍的管理</p>
+<h2 id="1-用户管理页面"><a href="#1-用户管理页面" class="headerlink" title="1.用户管理页面"></a>1.用户管理页面</h2><p>页面的大致结构是这样：:bow: 主要是实现为用户的改删查</p>
+<p><img src="https://s2.loli.net/2022/07/14/A7dS58YPlZwzckv.png" alt="用户管理页面.png"></p>
+<h3 id="1-1查询功能"><a href="#1-1查询功能" class="headerlink" title="1.1查询功能"></a>1.1查询功能</h3><p>还有一堆堆样式就不贴过来惹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 筛选框 --&gt;</span><br><span class="line">&lt;div id=&quot;u39&quot; class=&quot;ax_default box_1&quot;&gt;</span><br><span class="line">  &lt;div id=&quot;u39_div&quot;&gt;</span><br><span class="line">    &lt;span id=&quot;u41&quot;&gt;姓&amp;nbsp; 名：&lt;/span&gt;</span><br><span class="line">    &lt;el-input v-model=&quot;name&quot; placeholder=&quot;姓名&quot; id=&quot;u43&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">    &lt;span id=&quot;u102&quot;&gt;学工号：&lt;/span&gt;</span><br><span class="line">    &lt;el-input</span><br><span class="line">      v-model=&quot;sid&quot;</span><br><span class="line">      placeholder=&quot;学 工 号&quot;</span><br><span class="line">      id=&quot;u44&quot;</span><br><span class="line">      style=&quot;width: 200&quot;</span><br><span class="line">    &gt;&lt;/el-input&gt;</span><br><span class="line">    &lt;!-- 添加点击事件 --&gt;</span><br><span class="line">    &lt;el-button type=&quot;primary&quot; round id=&quot;u45&quot; @click=&quot;search&quot;</span><br><span class="line">      &gt;查找&lt;/el-button</span><br><span class="line">    &gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>主要是使用<code>&amp;nbsp;</code>控制了一下空格间距，然后使用了element的input框</p>
+<p>然后用户页面使用了element的table做了一个可以滚动的用户列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 结果表单，操作页面插入span --&gt;</span><br><span class="line">&lt;el-table :data=&quot;tableData&quot; height=&quot;500&quot; style=&quot;width: 100%&quot; id=&quot;u46&quot; &gt;</span><br><span class="line">&lt;!-- 序号列 --&gt;</span><br><span class="line">  &lt;el-table-column prop=&quot;num&quot; label=&quot;序号&quot; width=&quot;167&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">  ......</span><br><span class="line">&lt;/el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个部分最关键的还是search函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">search() &#123;</span><br><span class="line">  // console.log(this.name + &quot; &quot; + this.sid);</span><br><span class="line">  //过滤器</span><br><span class="line">  this.tableData = this.subarr.filter((item) =&gt; &#123;</span><br><span class="line">    // 每次搜索重置数组</span><br><span class="line">    // console.log(this.sid);</span><br><span class="line">    if (this.name == &quot;&quot;) &#123;</span><br><span class="line">      console.log(&quot;逻辑1&quot;);</span><br><span class="line">      return item.sid == this.sid;</span><br><span class="line">    &#125; else if (this.sid == &quot;&quot;) &#123;</span><br><span class="line">      console.log(&quot;逻辑2&quot;);</span><br><span class="line">      return item.name == this.name;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log();</span><br><span class="line">      return item.sid == this.sid &amp;&amp; item.name == this.name;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要是对数组的一个过滤，但是过滤并不改变原数组，所以要<code>this.tableData = this.subarr.filter</code></p>
+<p>而这个subarr是tableData的一个副本数组，这个数组放在那里是一个问题（也就是在哪里写<code>this.subarr = this.tableData;</code>）</p>
+<p>计算属性？会导致subarr一直跟着tableData变化（计算属性的扩写形式应该可以实现）</p>
+<p>函数中？每次触发函数都会执行这句话，还是不对</p>
+<p>我们需要的是只触发这个语句一次，以后subarr就不改变了，作为我们数据的副本</p>
+<p>于是我将它放在了钩子中，实现了我们的需求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  this.subarr = this.tableData;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-编辑功能"><a href="#1-2-编辑功能" class="headerlink" title="1.2  编辑功能"></a>1.2  编辑功能</h3><p>编辑功能其实是实现了<code>el-table</code>的编辑功能</p>
+<p>这里是用插槽解决的，scope有一个属性row（ElementUI文档）,scope.row可以拿到对应行的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 学院列 --&gt;</span><br><span class="line">  &lt;el-table-column prop=&quot;academe&quot; label=&quot;学院&quot; width=&quot;167&quot;&gt;</span><br><span class="line">    &lt;!-- 插槽实现编辑 学院，姓名，学号，联系电话 可以更改 --&gt;</span><br><span class="line">    &lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;scope.row.academe&quot; v-show=&quot;scope.row.iseditor&quot; class=&quot;inBtn&quot;/&gt;</span><br><span class="line">      &lt;span v-show=&quot;!scope.row.iseditor&quot;&gt;&#123;&#123; scope.row.academe &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在列中加入了一个input框，动态绑定input框中的数据实现保存</p>
+<p>而这个input框靠v-show控制，<code>scope.row.iseditor</code>作为表格元素的属性放入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//data</span><br><span class="line">&#123;</span><br><span class="line">   num: &quot;1&quot;,</span><br><span class="line">   academe: &quot;计算机科学学院&quot;,</span><br><span class="line">   account: &quot;123456789012&quot;,</span><br><span class="line">   pwd: &quot;**********&quot;,</span><br><span class="line">   name: &quot;葉良辰&quot;,</span><br><span class="line">   sid: &quot;123456789012&quot;,</span><br><span class="line">   phone: &quot;18181947511&quot;,</span><br><span class="line">   iseditor: false,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后就是保存按钮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop=&quot;oprate&quot; label=&quot;操作&quot; width=&quot;240&quot;&gt;</span><br><span class="line">  &lt;!-- scope类似一个当前行的定位 --&gt;</span><br><span class="line">  &lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">    &lt;!-- 点击事件 --&gt;</span><br><span class="line">    &lt;button class=&quot;opbtn&quot; @click=&quot;edit(scope.row, scope)&quot;&gt;&#123;&#123;scope.row.iseditor ? &quot;保存&quot;:&quot;编辑&quot;&#125;&#125;&lt;/button&gt;</span><br><span class="line">    &lt;!-- 点击事件-待定 --&gt;</span><br><span class="line">    &lt;button class=&quot;opbtn&quot; @click=&quot;reset&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;重置密码&lt;/button&gt;</span><br><span class="line">    &lt;!-- 点击事件 --&gt;</span><br><span class="line">    &lt;button class=&quot;opbtn&quot; @click=&quot;del(scope.row)&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;删除&lt;/button&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>保存按钮使用三元表达式判断是保存还是编辑，判断的依据就是<code>iseditor</code>，所以我们click方法中也需要改变<code>iseditor</code>的值</p>
+<h3 id="1-3-删除功能"><a href="#1-3-删除功能" class="headerlink" title="1.3 删除功能"></a>1.3 删除功能</h3><p>删除其实也是一个数组的过滤，只是这个过滤要改变原数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">del(row) &#123;</span><br><span class="line">  let isdel = confirm(&quot;是否确认删除该用户？&quot;);</span><br><span class="line">  if(isdel)&#123;</span><br><span class="line">    console.log(row);</span><br><span class="line">    this.tableData = this.tableData.filter((item) =&gt; &#123;</span><br><span class="line">      return item.sid!=row.sid</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p><code>sid</code>是学号，作为唯一标识符，主键，所以可以依靠<code>sid</code>判断删除</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JDBC - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,JDBC1.简介概念：使用java语言操作关系型数据库的一套API
+本质：一套操作所有关系型数据库的规则，即接口
+好处：各数据厂商使用相同接口，java不需要针对不同数据库分别开发
+2.数据库配置2,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="JDBC - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,JDBC1.简介概念：使用java语言操作关系型数据库的一套API
+本质：一套操作所有关系型数据库的规则，即接口
+好处：各数据厂商使用相同接口，java不需要针对不同数据库分别开发
+2.数据库配置2,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="JDBC - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,JDBC1.简介概念：使用java语言操作关系型数据库的一套API
+本质：一套操作所有关系型数据库的规则，即接口
+好处：各数据厂商使用相同接口，java不需要针对不同数据库分别开发
+2.数据库配置2,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">JDBC</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">JDBC</h1>
+        <div class="stuff">
+            <span>七月 04, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/java-web/" rel="tag">java web</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1.简介"></a>1.简介</h2><p>概念：使用java语言操作关系型数据库的一套API</p>
+<p>本质：一套操作所有关系型数据库的规则，即接口</p>
+<p>好处：各数据厂商使用相同接口，java不需要针对不同数据库分别开发</p>
+<h2 id="2-数据库配置"><a href="#2-数据库配置" class="headerlink" title="2.数据库配置"></a>2.数据库配置</h2><h3 id="2-1-navicat链接数据库"><a href="#2-1-navicat链接数据库" class="headerlink" title="2.1 navicat链接数据库"></a>2.1 navicat链接数据库</h3><p>我们首先下载mysql数据库和navicat</p>
+<p>在管理员cmd下进入mysql的bin目录然后通过<code>net start mysql</code>启动数据库</p>
+<p>启动数据库之后打开navicat，点击左上角的链接，进入链接页面</p>
+<p><img src="https://s2.loli.net/2022/07/14/KeAjbqy6GJlt7Bn.png" alt="navicat链接数据库.png"></p>
+<p>链接名可以自己取，端口是mysql的端口，然后输入mysql的root密码就可以登录</p>
+<p>进入之后就可以看到我们数据库的可视化页面</p>
+<h3 id="2-2-idea链接数据库"><a href="#2-2-idea链接数据库" class="headerlink" title="2.2 idea链接数据库"></a>2.2 idea链接数据库</h3><p>然后进入我们的idea，点击右上角的database和加号选择数据库（mysql）</p>
+<p><img src="https://s2.loli.net/2022/07/14/HPRoAYqXjdkBliu.png" alt="创建数据库.png"></p>
+<p>填写好后点击Test Connection测试</p>
+<p>测试成功后点击左上角file中的project structure之后进入加入jar，jar需要在mysql官网上下载</p>
+<p><img src="https://s2.loli.net/2022/07/14/oVCcmGAgIUe8qOl.png" alt="添加jar.png"></p>
+<p>接下来，我们需要建立一个lib文件夹，我们将链接java和mysql的jar文件放入进去，然后将这个文件<code>add as library</code>然后level选择<code>module library</code></p>
+<p>然后我们的数据库操作就算完成了</p>
+<h2 id="3-快速入门"><a href="#3-快速入门" class="headerlink" title="3.快速入门"></a>3.快速入门</h2><p>我们现在使用JDBC查询我们的数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">package com.itheima.JDBC;</span><br><span class="line"></span><br><span class="line">import java.sql.Connection;</span><br><span class="line">import java.sql.DriverManager;</span><br><span class="line">import java.sql.ResultSet;</span><br><span class="line">import java.sql.Statement;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class demo &#123;</span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        //1.注册驱动</span><br><span class="line">        String driver = &quot;com.mysql.cj.jdbc.Driver&quot;;</span><br><span class="line">        Class.forName(driver);</span><br><span class="line"></span><br><span class="line">        //2.获取链接</span><br><span class="line">        String url = &quot;jdbc:mysql://127.0.0.1:3306/db1&quot;;</span><br><span class="line">        String username = &quot;root&quot;;</span><br><span class="line">        String password = &quot;ztdgz947&quot;;</span><br><span class="line">        Connection conn = DriverManager.getConnection(url,username,password);</span><br><span class="line"></span><br><span class="line">        //3.定义sql语句</span><br><span class="line">        String sql = &quot;select * from school&quot;;</span><br><span class="line"></span><br><span class="line">        //4.获取sql对象</span><br><span class="line">        Statement stmt = conn.createStatement();</span><br><span class="line"></span><br><span class="line">        //5.执行sql</span><br><span class="line">        ResultSet result = stmt.executeQuery(sql);</span><br><span class="line"></span><br><span class="line">        //6.处理结果</span><br><span class="line">        while (result.next())&#123;</span><br><span class="line">            System.out.println(result.getString(1)+&quot;\t&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //7.释放资源</span><br><span class="line">        stmt.close();</span><br><span class="line">        conn.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>主要步骤是7步，最后我们执行可能会出现</p>
+<p>1.driver驱动的问题：我们就修改驱动</p>
+<p>2.中文乱码问题，我们进入file-&gt;setting-&gt;file encodings中把规范改为GBK</p>
+<h2 id="4-API详解"><a href="#4-API详解" class="headerlink" title="4.API详解"></a>4.API详解</h2><h3 id="1-DriverManager"><a href="#1-DriverManager" class="headerlink" title="1.DriverManager"></a>1.DriverManager</h3><p>DriverManager用于注册我们的Driver驱动，在上面的forname源码中，其实就用到了我们的DriverManager方法</p>
+<h3 id="2-Connection"><a href="#2-Connection" class="headerlink" title="2.Connection"></a>2.Connection</h3><p>作用：</p>
+<p>1.获取执行sql的对象</p>
+<p>普通执行对象：<code>Statement createStatement()</code></p>
+<p>预编译sql的执行sql对象：防止sql注入：<code>PreparedStatement(sql)</code></p>
+<p>执行存储过程对象：<code>CallableStatement prepareCall(sql)</code></p>
+<p>2.事务管理</p>
+<p>mysql的事务管理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">开启事务：BEGIN;/START TRANSACTION;</span><br><span class="line">提交事务：COMMIT;</span><br><span class="line">回滚事务：ROLLBACK;</span><br><span class="line"></span><br><span class="line">MySQL默认自动提交事务</span><br></pre></td></tr></table></figure>
+
+<p>JDBC事务管理：Connection接口中定义了三个对应的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">开启事务：setAutoCommit(boolean autoCommit):true为自动提交事务；false为手动提交</span><br><span class="line">提交事务：commit()</span><br><span class="line">回滚事务：rollback()</span><br></pre></td></tr></table></figure>
+
+<p>对应到我们的代码中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    //开启事务</span><br><span class="line">    conn.setAutoCommit(false);</span><br><span class="line">    //5.执行sql</span><br><span class="line">    ResultSet result1 = stmt.executeQuery(sql1);</span><br><span class="line"></span><br><span class="line">    //6.处理结果</span><br><span class="line">    while (result1.next())&#123;</span><br><span class="line">        System.out.println(result1.getString(1)+&quot;\t&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //执行第二个sql语句需要放在第一个sql语句执行完成之后</span><br><span class="line">    int count = stmt.executeUpdate(sql2);</span><br><span class="line">    //处理结果</span><br><span class="line">    System.out.println(count);</span><br><span class="line">    //提交事务</span><br><span class="line">    conn.commit();</span><br><span class="line">&#125; catch (Exception throwables) &#123;</span><br><span class="line">    //失败则回滚事务</span><br><span class="line">    conn.rollback();</span><br><span class="line">    throwables.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们使用try-catch包裹代码，在try的开始加入开启事务代码，在最后加入提交事务代码</p>
+<p>在失败后回滚事务</p>
+<h3 id="5-Statement"><a href="#5-Statement" class="headerlink" title="5.Statement"></a>5.Statement</h3><p>Statement只有一个作用——那就是执行sql语句</p>
+<h4 id="1-executeUpdate"><a href="#1-executeUpdate" class="headerlink" title="1. executeUpdate"></a>1. executeUpdate</h4><p>这个语句可以实现数据库的增删改查工作，也可以实现新建数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//3.定义sql语句</span><br><span class="line">String sql = &quot;update school set sex = &#x27;female&#x27;&quot;;</span><br><span class="line"></span><br><span class="line">//4.获取sql对象</span><br><span class="line">Statement stmt = conn.createStatement();</span><br><span class="line"></span><br><span class="line">//5.执行sql</span><br><span class="line">int count = stmt.executeUpdate(sql);</span><br></pre></td></tr></table></figure>
+
+<p>count是数据库中被影响数据的个数</p>
+<h4 id="2-executeQuery"><a href="#2-executeQuery" class="headerlink" title="2.executeQuery"></a>2.executeQuery</h4><p>查询语句就需要使用executeQuery</p>
+<p>但是它执行结果处理不一样，首先执行结果是使用ResultSet类型接收</p>
+<p>如果下一行有效，就打印出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//5.执行sql</span><br><span class="line">ResultSet result = stmt.executeQuery(sql);</span><br><span class="line"></span><br><span class="line">//6.处理结果</span><br><span class="line">while (result.next())&#123;</span><br><span class="line">    System.out.println(result.getString(1)+&quot;\t&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-PreparedStatement"><a href="#6-PreparedStatement" class="headerlink" title="6.PreparedStatement"></a>6.PreparedStatement</h3><p><code>PreparedStatement</code>用于防止我们的sql注入</p>
+<p>比如我们的登录模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String name = &quot;whr&quot;;</span><br><span class="line">String pwd = &quot;&#x27; or &#x27;1&#x27; = &#x27;1&quot;;</span><br><span class="line"></span><br><span class="line">//3.定义sql语句</span><br><span class="line">String sql = &quot;select * from school where name= &#x27;&quot;+name+&quot;&#x27; and pwd= &#x27;&quot;+pwd+&quot;&#x27;&quot;;</span><br><span class="line">System.out.println(sql);</span><br></pre></td></tr></table></figure>
+
+<p>如果sql查询成功，我们就登入成功</p>
+<p>而此时的sql语句是这个样子的，where会得到一个永真的结果，从而查询所有数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from school where name= &#x27;shdfoi&#x27; and pwd= &#x27;&#x27; or &#x27;1&#x27; = &#x27;1&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们需要使用我们的<code>PreparedStatement</code>，<strong>参数使用占位符进行替代</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//用户登录</span><br><span class="line">String name = &quot;whr&quot;;</span><br><span class="line">String pwd = &quot;1230&quot;;</span><br><span class="line"></span><br><span class="line">//3.定义sql语句</span><br><span class="line">String sql = &quot;select * from school where name= ? and pwd= ?&quot;;</span><br><span class="line"></span><br><span class="line">//获取sql对象</span><br><span class="line">PreparedStatement pstmt = conn.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line">//设置？的值</span><br><span class="line">pstmt.setString(1,name);</span><br><span class="line">pstmt.setString(2,pwd);</span><br><span class="line"></span><br><span class="line">//5.执行sql</span><br><span class="line">ResultSet rs = pstmt.executeQuery();</span><br><span class="line"></span><br><span class="line">//6.处理结果</span><br><span class="line">if (rs.next())&#123;</span><br><span class="line">    System.out.println(&quot;login success&quot;);</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    System.out.println(&quot;login defeat&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就让我们的sql注入失败了，原理其实是对我们语句中的引号和关键字进行了转义，转义之后的语句便不能匹配所有数据了。</p>
+<p>我们还可以开启预编译sql，使得我们的代码性能更高，使用方法是在url后面加入参数</p>
+<p><code>String url = &quot;jdbc:mysql:///db1?useServerPrepStmts=true&quot;;</code></p>
+<h3 id="7-数据库连接池"><a href="#7-数据库连接池" class="headerlink" title="7.数据库连接池"></a>7.数据库连接池</h3><p><img src="https://s2.loli.net/2022/07/14/oGzSLQm71uMYsvJ.png" alt="数据库连接池.png"></p>
+<p>数据库连接池的接口dataSource</p>
+<p>我们使用的数据库连接池是Druid（德鲁伊）</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
