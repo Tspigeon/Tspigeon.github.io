@@ -74,7 +74,66 @@
 <p>typescript是JavaScript的超集，合格的JavaScript程序也是合格的typescript程序。但是typescript代码不能直接运行，它需要预先编译为JavaScript代码然后才能运行</p>
 <h3 id="1-2-why"><a href="#1-2-why" class="headerlink" title="1.2 why"></a>1.2 why</h3><p>2014年的typescript发行以来，typescript使用者保持高数增长。</p>
 <p>typescript吸引人的地方有：</p>
-<p>1.</p>
+<p>1.能更早地发现代码中的错误</p>
+<p>2.能够帮助提高生产力</p>
+<p>3.支持js的最新特性并使用了js语言相同的语法和语义</p>
+<h2 id="2-安装typescript"><a href="#2-安装typescript" class="headerlink" title="2.安装typescript"></a>2.安装typescript</h2><h3 id="1-安装npm"><a href="#1-安装npm" class="headerlink" title="1.安装npm"></a>1.安装npm</h3><p>在安装typescript之前我们需要安装npm工具，也就是node.js</p>
+<p>安装成功之后 输入 <code>node -v</code>就可以参看版本</p>
+<h3 id="2-安装typescript-1"><a href="#2-安装typescript-1" class="headerlink" title="2.安装typescript"></a>2.安装typescript</h3><p>在vscode中打开控制台，输入<code>npm install -g typescript</code> 安装typescript</p>
+<p>安装成功后输入<code>tsc --version</code>查看版本</p>
+<h2 id="3-hello-world"><a href="#3-hello-world" class="headerlink" title="3.hello-world"></a>3.hello-world</h2><p>接下来我们创建一个ts程序</p>
+<p>打开vscode新建一个写ts代码的文件夹</p>
+<h3 id="1-新建tsconfig-json文件"><a href="#1-新建tsconfig-json文件" class="headerlink" title="1.新建tsconfig.json文件"></a>1.新建tsconfig.json文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;compilerOptions&quot;: &#123;</span><br><span class="line">        //启用严格的类型检查</span><br><span class="line">        &quot;strict&quot;: true,</span><br><span class="line">        //js的输出版本</span><br><span class="line">        &quot;target&quot;: &quot;es5&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-新建hello-world-ts文件"><a href="#2-新建hello-world-ts文件" class="headerlink" title="2.新建hello-world.ts文件"></a>2.新建hello-world.ts文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const greeting = &#x27;hello world&#x27;</span><br><span class="line"></span><br><span class="line">console.log(greeting);</span><br></pre></td></tr></table></figure>
+
+<p>然后使用 “Ctrl + Shift + B”或者菜单栏选择 “Terminal -&gt; Run Build Task”打开构建任务面板</p>
+<p>选择”tsc: build - tsconfig.json”来编译ts程序</p>
+<p>编译完成后会出现一个hello-world.js的文件，输入<code>node hello-world.js</code>执行js文件</p>
+<h3 id="3-设置默认值构建任务"><a href="#3-设置默认值构建任务" class="headerlink" title="3.设置默认值构建任务"></a>3.设置默认值构建任务</h3><p>使用 “Ctrl + Shift + B”打开面板，点击齿轮，会出现一个task.json文件</p>
+<p>修改该文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;2.0.0&quot;,</span><br><span class="line">	&quot;tasks&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;type&quot;: &quot;typescript&quot;,</span><br><span class="line">			&quot;tsconfig&quot;: &quot;tsconfig.json&quot;,</span><br><span class="line">			&quot;problemMatcher&quot;: [</span><br><span class="line">				&quot;$tsc&quot;</span><br><span class="line">			],</span><br><span class="line">			&quot;group&quot;: &#123;</span><br><span class="line">				&quot;kind&quot;: &quot;build&quot;,</span><br><span class="line">				&quot;isDefault&quot;: true</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;label&quot;: &quot;tsc: 构建 - tsconfig.json&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们使用 “Ctrl + Shift + B”就会默认编译</p>
+<h2 id="4-语言基础"><a href="#4-语言基础" class="headerlink" title="4.语言基础"></a>4.语言基础</h2><p>因为ts是js的超集，所以ts支持var，let，const进行变量定义。这三种声明的使用方法与js一样</p>
+<p>数据类型有8种：（7种原始数据类型）</p>
+<p>undefined，Null，Boolean，String，Number，Symbol，Object，BigInt</p>
+<p>这里特别说明一下Symbol和BigInt</p>
+<p>Symbol是es6新引入的原始类型，Symbol值唯一而且不可改变，通过Symbol()这个函数创建</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const sym = Symbol();</span><br><span class="line">const obj = &#123; [sym]: &#x27;some value&#x27; &#125;;</span><br><span class="line">obj[sym];//some value</span><br></pre></td></tr></table></figure>
+
+<p>js中内置了Well-Known Symbol常量，一共11个</p>
+<p>BigInt类型能够表示任意精度的整数，尤其是大于<code>2^53 - 1</code>的整数</p>
+<p>BigInt要求在创建整数后加入一个n</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const unit = 1n;</span><br><span class="line">//或者</span><br><span class="line">const unit = BigInt(1)</span><br></pre></td></tr></table></figure>
+
+<p>BIgInt不能和Number混合运算但是可以比较，但是严格相等比较情况下BigInt和Number永远不相等</p>
+<h3 id="1-类型注解"><a href="#1-类型注解" class="headerlink" title="1.类型注解"></a>1.类型注解</h3><p>用于明确标识的类型，<strong>可选项</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const greeting: string = &#x27;Hello, World!&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>而函数的类型注解也是类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(message: string): void &#123;</span><br><span class="line">	console.log(message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-枚举类型"><a href="#2-枚举类型" class="headerlink" title="2.枚举类型"></a>2.枚举类型</h3><p>一种原始类型，使用enum来定义，使用enum定义Season枚举类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Season &#123;</span><br><span class="line">	Spring,</span><br><span class="line">	Summer,</span><br><span class="line">	Fall,</span><br><span class="line">	Winter,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数值型枚举</p>
+<p>像上面的代码其实默认为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Season &#123;</span><br><span class="line">	Spring = 0,//枚举值默认从0开始</span><br><span class="line">	Summer = 1,</span><br><span class="line">	Fall = 2,</span><br><span class="line">	Winter = 3,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>未标注枚举成员的枚举值等于上一个成员的枚举值+1</p>
+<p>我们可以通过访问对象的方式访问</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const season: Season = Season.Summer</span><br><span class="line">const season: number = Season.Summer//1 </span><br></pre></td></tr></table></figure>
+
+<p>字符串枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Season &#123;</span><br><span class="line">	Spring = &#x27;spring&#x27;,</span><br><span class="line">	Summer = &#x27;summber&#x27;,</span><br><span class="line">	Fall = &#x27;fall&#x27;,</span><br><span class="line">	Winter = &#x27;winter&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以使用枚举类型赋值给字符串变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const dir: string = Season.summer//dir = &#x27;summer&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>异构枚举类</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">	Black = 0,</span><br><span class="line">	White = &#x27;White&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
