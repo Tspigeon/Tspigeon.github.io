@@ -24,7 +24,7 @@
 <meta property="og:description" content="express是node开发的简单框架">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T09:08:44.185Z">
+<meta property="article:modified_time" content="2022-11-07T09:50:54.495Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="node.js">
 <meta name="twitter:card" content="summary_large_image">
@@ -275,17 +275,17 @@
                 
                 <h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h1><p>express是基于http封装出来的，极大提升了我们服务端的开发进度</p>
 <p>使用： 安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express@版本号</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">npm install <span class="hljs-symbol">express@</span>版本号<br></code></pre></td></tr></table></figure>
 
 <p>然后新建一个index.js文件</p>
 <p>进行监听get请求：</p>
 <p>请求之后使用send发送信息给客户端</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&#x27;express&#x27;)</span><br><span class="line"></span><br><span class="line">const app = new express()</span><br><span class="line"></span><br><span class="line">const port = 3000</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, (req, res)=&gt;&#123;</span><br><span class="line">    res.send(&#x27;hello world!&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, ()=&gt;&#123;</span><br><span class="line">    console.log(&#x27;listen port 3000&#x27;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript">const express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)<br><br>const app = <span class="hljs-keyword">new</span> express()<br><br>const port = <span class="hljs-number">3000</span><br><br>app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function"><span class="hljs-params">(req, res)</span>=&gt;</span>&#123;<br>    res.send(<span class="hljs-string">&#x27;hello world!&#x27;</span>)<br>&#125;)<br><br>app.listen(port, <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;listen port 3000&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <p>我们发现这些方法的使用和原生的http模块其实很类似</p>
 <p>send方法响应一个字符串，也可以响应一个json对象</p>
 <h2 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h2><h3 id="1-1-static"><a href="#1-1-static" class="headerlink" title="1.1 static"></a>1.1 static</h3><p>将静态资源向外展示，现在将public中的资源向外开放</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 向外展示静态资源</span><br><span class="line">// static中的便是需要展示的文件夹</span><br><span class="line">app.use(express.static(&#x27;public&#x27;))</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 向外展示静态资源<br><span class="hljs-regexp">//</span> static中的便是需要展示的文件夹<br>app.use(express.static(<span class="hljs-string">&#x27;public&#x27;</span>))<br></code></pre></td></tr></table></figure>
 
 <p>但是我们访问public下的资源时不需要加<code>/public</code></p>
 <p>而是直接使用public下的相对路径就可以了</p>
@@ -300,6 +300,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/node-js/" class="category-chain-item">node.js</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

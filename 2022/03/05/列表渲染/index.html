@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://s2.loli.net/2022/03/06/1xasWgFovytX2Si.png">
 <meta property="og:image" content="https://s2.loli.net/2022/03/06/RA19c8TBg5YEn7P.png">
 <meta property="article:published_time" content="2022-03-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-06T01:34:08.420Z">
+<meta property="article:modified_time" content="2022-11-07T09:47:45.223Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -283,7 +283,7 @@
                 
                 <h1 id="列表渲染"><a href="#列表渲染" class="headerlink" title="列表渲染"></a>列表渲染</h1><span id="more"></span>
 
-<h2 id="1-首先得到一个列表（v-for）"><a href="#1-首先得到一个列表（v-for）" class="headerlink" title="1.首先得到一个列表（v-for）"></a>1.首先得到一个列表（v-for）</h2><pre><code>    &lt;ul&gt;
+<h2 id="1-首先得到一个列表（v-for）"><a href="#1-首先得到一个列表（v-for）" class="headerlink" title="1.首先得到一个列表（v-for）"></a>1.首先得到一个列表（v-for）</h2><pre><code class="hljs">    &lt;ul&gt;
         &lt;h2&gt;人员列表&lt;/h2&gt;
         &lt;!-- v-for实现循环 在使用插值语法进行显示--&gt;
         &lt;li v-for=&quot;p in persons&quot;&gt;&#123;&#123;p.name&#125;&#125;-&#123;&#123;p.age&#125;&#125; &lt;/li&gt;
@@ -305,7 +305,7 @@
     &#125;);
 </code></pre>
 <p>v-for类似于一个for循环，而其中的in就是类似于for循环中的in 其中persons就是循环池子，而p就是循环的单个元素</p>
-<pre><code>    &lt;ul&gt;
+<pre><code class="hljs">    &lt;ul&gt;
         &lt;h2&gt;人员列表&lt;/h2&gt;
         &lt;!-- v-for实现循环 在使用插值语法进行显示--&gt;
         &lt;li v-for=&quot;(p,index) in persons&quot; :key=&quot;p.id&quot;&gt;&#123;&#123;p.name&#125;&#125;-&#123;&#123;p.age&#125;&#125;--&#123;&#123;index&#125;&#125; &lt;/li&gt;
@@ -314,13 +314,13 @@
 </code></pre>
 <p>在加入index和:key之后便是一个真正完整的v-for循环 得到如下效果：</p>
 <p><img src="https://s2.loli.net/2022/03/06/PToBhGiDf7vwyAs.png" srcset="/img/loading.gif" lazyload alt="v-for.png"></p>
-<h3 id="同时v-for也可以遍历对象"><a href="#同时v-for也可以遍历对象" class="headerlink" title="同时v-for也可以遍历对象"></a>同时v-for也可以遍历对象</h3><pre><code>    &lt;ul&gt;
+<h3 id="同时v-for也可以遍历对象"><a href="#同时v-for也可以遍历对象" class="headerlink" title="同时v-for也可以遍历对象"></a>同时v-for也可以遍历对象</h3><pre><code class="hljs">    &lt;ul&gt;
         &lt;li v-for=&quot;(value,key) in car&quot; :key=&quot;key&quot;&gt;&#123;&#123;key&#125;&#125;--&#123;&#123;value&#125;&#125;&lt;/li&gt;
         &lt;!-- 这里的key是car中的属性名 --&gt;
     &lt;/ul&gt;
 </code></pre>
 <p>此时的第二个属性和前面不同，其中的key是对象中的属性名</p>
-<h3 id="遍历字符串"><a href="#遍历字符串" class="headerlink" title="遍历字符串"></a>遍历字符串</h3><pre><code>    &lt;ul&gt;
+<h3 id="遍历字符串"><a href="#遍历字符串" class="headerlink" title="遍历字符串"></a>遍历字符串</h3><pre><code class="hljs">    &lt;ul&gt;
         &lt;li v-for=&quot;(char,index) in str&quot; :key=&quot;index&quot;&gt;&#123;&#123;char&#125;&#125;--&#123;&#123;index&#125;&#125;&lt;/li&gt;
     &lt;/ul&gt;
 </code></pre>
@@ -354,6 +354,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

@@ -24,7 +24,7 @@
 <meta property="og:description" content="TypeScript1.什么是typescript1.1 whattypescript的标语是—始于JavaScript，终于JavaScript 因为js一开始是作为脚本语言开发的，所以没有大规模应用程序的编写能力，也没有开发者工具的支持 为了克服这些不足，微软公司发明了typescript—一门专为开发大规模JavaScript应用程序而设计的编程语言。 typescript是JavaScri">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-22T07:48:06.768Z">
+<meta property="article:modified_time" content="2022-11-07T09:52:53.811Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -288,16 +288,16 @@
 <p>安装成功后输入<code>tsc --version</code>查看版本</p>
 <h2 id="3-hello-world"><a href="#3-hello-world" class="headerlink" title="3.hello-world"></a>3.hello-world</h2><p>接下来我们创建一个ts程序</p>
 <p>打开vscode新建一个写ts代码的文件夹</p>
-<h3 id="1-新建tsconfig-json文件"><a href="#1-新建tsconfig-json文件" class="headerlink" title="1.新建tsconfig.json文件"></a>1.新建tsconfig.json文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;compilerOptions&quot;: &#123;</span><br><span class="line">        //启用严格的类型检查</span><br><span class="line">        &quot;strict&quot;: true,</span><br><span class="line">        //js的输出版本</span><br><span class="line">        &quot;target&quot;: &quot;es5&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="1-新建tsconfig-json文件"><a href="#1-新建tsconfig-json文件" class="headerlink" title="1.新建tsconfig.json文件"></a>1.新建tsconfig.json文件</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;compilerOptions&quot;</span>: &#123;<br>        <span class="hljs-comment">//启用严格的类型检查</span><br>        <span class="hljs-attr">&quot;strict&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-comment">//js的输出版本</span><br>        <span class="hljs-attr">&quot;target&quot;</span>: <span class="hljs-string">&quot;es5&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="2-新建hello-world-ts文件"><a href="#2-新建hello-world-ts文件" class="headerlink" title="2.新建hello-world.ts文件"></a>2.新建hello-world.ts文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const greeting = &#x27;hello world&#x27;</span><br><span class="line"></span><br><span class="line">console.log(greeting);</span><br></pre></td></tr></table></figure>
+<h3 id="2-新建hello-world-ts文件"><a href="#2-新建hello-world-ts文件" class="headerlink" title="2.新建hello-world.ts文件"></a>2.新建hello-world.ts文件</h3><figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">const</span> greeting = <span class="hljs-string">&#x27;hello world&#x27;</span><br><br>console.<span class="hljs-built_in">log</span>(greeting)<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <p>然后使用 “Ctrl + Shift + B”或者菜单栏选择 “Terminal -&gt; Run Build Task”打开构建任务面板</p>
 <p>选择”tsc: build - tsconfig.json”来编译ts程序</p>
 <p>编译完成后会出现一个hello-world.js的文件，输入<code>node hello-world.js</code>执行js文件</p>
 <h3 id="3-设置默认值构建任务"><a href="#3-设置默认值构建任务" class="headerlink" title="3.设置默认值构建任务"></a>3.设置默认值构建任务</h3><p>使用 “Ctrl + Shift + B”打开面板，点击齿轮，会出现一个task.json文件</p>
 <p>修改该文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	&quot;version&quot;: &quot;2.0.0&quot;,</span><br><span class="line">	&quot;tasks&quot;: [</span><br><span class="line">		&#123;</span><br><span class="line">			&quot;type&quot;: &quot;typescript&quot;,</span><br><span class="line">			&quot;tsconfig&quot;: &quot;tsconfig.json&quot;,</span><br><span class="line">			&quot;problemMatcher&quot;: [</span><br><span class="line">				&quot;$tsc&quot;</span><br><span class="line">			],</span><br><span class="line">			&quot;group&quot;: &#123;</span><br><span class="line">				&quot;kind&quot;: &quot;build&quot;,</span><br><span class="line">				&quot;isDefault&quot;: true</span><br><span class="line">			&#125;,</span><br><span class="line">			&quot;label&quot;: &quot;tsc: 构建 - tsconfig.json&quot;</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>	<span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span>,<br>	<span class="hljs-attr">&quot;tasks&quot;</span>: [<br>		&#123;<br>			<span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;typescript&quot;</span>,<br>			<span class="hljs-attr">&quot;tsconfig&quot;</span>: <span class="hljs-string">&quot;tsconfig.json&quot;</span>,<br>			<span class="hljs-attr">&quot;problemMatcher&quot;</span>: [<br>				<span class="hljs-string">&quot;$tsc&quot;</span><br>			],<br>			<span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>				<span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>				<span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>			&#125;,<br>			<span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;tsc: 构建 - tsconfig.json&quot;</span><br>		&#125;<br>	]<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这样我们使用 “Ctrl + Shift + B”就会默认编译</p>
 <h2 id="4-语言基础"><a href="#4-语言基础" class="headerlink" title="4.语言基础"></a>4.语言基础</h2><p>因为ts是js的超集，所以ts支持var，let，const进行变量定义。这三种声明的使用方法与js一样</p>
@@ -305,39 +305,39 @@
 <p>undefined，Null，Boolean，String，Number，Symbol，Object，BigInt</p>
 <p>这里特别说明一下Symbol和BigInt</p>
 <p>Symbol是es6新引入的原始类型，Symbol值唯一而且不可改变，通过Symbol()这个函数创建</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const sym = Symbol();</span><br><span class="line">const obj = &#123; [sym]: &#x27;some value&#x27; &#125;;</span><br><span class="line">obj[sym];//some value</span><br></pre></td></tr></table></figure>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> sym = <span class="hljs-built_in">Symbol</span>();<br><span class="hljs-keyword">const</span> obj = &#123; [sym]: <span class="hljs-string">&#x27;some value&#x27;</span> &#125;;<br>obj[sym];<span class="hljs-comment">//some value</span><br></code></pre></td></tr></table></figure>
 
 <p>js中内置了Well-Known Symbol常量，一共11个</p>
 <p>BigInt类型能够表示任意精度的整数，尤其是大于<code>2^53 - 1</code>的整数</p>
 <p>BigInt要求在创建整数后加入一个n</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const unit = 1n;</span><br><span class="line">//或者</span><br><span class="line">const unit = BigInt(1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">unit</span> = <span class="hljs-number">1</span>n;<br><span class="hljs-comment">//或者</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">unit</span> = BigInt(<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
 
 <p>BIgInt不能和Number混合运算但是可以比较，但是严格相等比较情况下BigInt和Number永远不相等</p>
 <h3 id="1-类型注解"><a href="#1-类型注解" class="headerlink" title="1.类型注解"></a>1.类型注解</h3><p>用于明确标识的类型，<strong>可选项</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const greeting: string = &#x27;Hello, World!&#x27;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">const</span> greeting: <span class="hljs-built_in">string</span> = <span class="hljs-string">&#x27;Hello, World!&#x27;</span><span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
 
 <p>而函数的类型注解也是类似</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function foo(message: string): void &#123;</span><br><span class="line">	console.log(message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-function">function <span class="hljs-title">foo</span><span class="hljs-params">(message: string)</span>: void &#123;</span><br>	console.<span class="hljs-built_in">log</span>(message);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="2-枚举类型"><a href="#2-枚举类型" class="headerlink" title="2.枚举类型"></a>2.枚举类型</h3><p>一种原始类型，使用enum来定义，使用enum定义Season枚举类型</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Season &#123;</span><br><span class="line">	Spring,</span><br><span class="line">	Summer,</span><br><span class="line">	Fall,</span><br><span class="line">	Winter,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">enum Season &#123;<br><span class="hljs-built_in">	Spring,</span><br><span class="hljs-built_in">	Summer,</span><br><span class="hljs-built_in">	Fall,</span><br><span class="hljs-built_in">	Winter,</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>数值型枚举</p>
 <p>像上面的代码其实默认为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Season &#123;</span><br><span class="line">	Spring = 0,//枚举值默认从0开始</span><br><span class="line">	Summer = 1,</span><br><span class="line">	Fall = 2,</span><br><span class="line">	Winter = 3,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs nix">enum Season &#123;<br>	<span class="hljs-attr">Spring</span> = <span class="hljs-number">0</span>,//枚举值默认从<span class="hljs-number">0</span>开始<br>	<span class="hljs-attr">Summer</span> = <span class="hljs-number">1</span>,<br>	<span class="hljs-attr">Fall</span> = <span class="hljs-number">2</span>,<br>	<span class="hljs-attr">Winter</span> = <span class="hljs-number">3</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>未标注枚举成员的枚举值等于上一个成员的枚举值+1</p>
 <p>我们可以通过访问对象的方式访问</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const season: Season = Season.Summer</span><br><span class="line">const season: number = Season.Summer//1 </span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">const</span> season: Season = Season.Summer<br><span class="hljs-keyword">const</span> season: <span class="hljs-built_in">number</span> = Season.Summer<span class="hljs-comment">//1 </span><br></code></pre></td></tr></table></figure>
 
 <p>字符串枚举</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum Season &#123;</span><br><span class="line">	Spring = &#x27;spring&#x27;,</span><br><span class="line">	Summer = &#x27;summber&#x27;,</span><br><span class="line">	Fall = &#x27;fall&#x27;,</span><br><span class="line">	Winter = &#x27;winter&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Season</span> </span>&#123;<br>	Spring = <span class="hljs-string">&#x27;spring&#x27;</span>,<br>	Summer = <span class="hljs-string">&#x27;summber&#x27;</span>,<br>	Fall = <span class="hljs-string">&#x27;fall&#x27;</span>,<br>	Winter = <span class="hljs-string">&#x27;winter&#x27;</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>可以使用枚举类型赋值给字符串变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const dir: string = Season.summer//dir = &#x27;summer&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">const dir: <span class="hljs-built_in">string</span> = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Season</span>.</span></span>summer<span class="hljs-comment">//dir = &#x27;summer&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>异构枚举类</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Color &#123;</span><br><span class="line">	Black = 0,</span><br><span class="line">	White = &#x27;White&#x27;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">Color</span> </span>&#123;<br>	Black = <span class="hljs-number">0</span>,<br>	White = <span class="hljs-string">&#x27;White&#x27;</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
                 
@@ -346,6 +346,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/TyprScript/" class="category-chain-item">TyprScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">
