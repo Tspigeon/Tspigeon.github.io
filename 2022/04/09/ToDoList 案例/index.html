@@ -1,0 +1,714 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="我们现在使用脚手架写一个简单的todolist案例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ToDoList案例">
+<meta property="og:url" content="http://yoursite.com/2022/04/09/ToDoList%20%E6%A1%88%E4%BE%8B/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="我们现在使用脚手架写一个简单的todolist案例">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/09/BfNzG8mHwxLYsrj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/09/CRky95aDzstZVY7.png">
+<meta property="og:image" content="https://s2.loli.net/2022/04/09/Bbc7TeFWnkzs18I.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/09/ToDoList%20%E6%A1%88%E4%BE%8B/!%5B%E5%85%84%E5%BC%9F%E4%BC%A0%E5%80%BC%E9%97%B4%E6%8E%A5%E5%AE%9E%E7%8E%B0.png%5D(https://s2.loli.net/2022/04/09/He3O2BnwJjzrYTE.png">
+<meta property="article:published_time" content="2022-04-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-12T08:58:41.678Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="vue脚手架">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/09/BfNzG8mHwxLYsrj.png">
+  
+  
+  
+  <title>ToDoList案例 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ToDoList案例"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-09 00:00" pubdate>
+          2022年4月9日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ToDoList案例</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ToDoList-案例"><a href="#ToDoList-案例" class="headerlink" title="ToDoList 案例"></a><code>ToDoList</code> 案例</h1><p>我们在编码前端工程的时候，需要按照一定的顺序</p>
+<p><img src="https://s2.loli.net/2022/04/09/BfNzG8mHwxLYsrj.png" srcset="/img/loading.gif" lazyload alt="案例分析.png"></p>
+<p>对于我们的<code>todolist</code>案例，我们首先第一步是根据功能和构造拆分组件（根据图中所示，不再赘述），然后实现静态组件</p>
+<h2 id="part-one-静态组件"><a href="#part-one-静态组件" class="headerlink" title="part one . 静态组件"></a>part one . 静态组件</h2><p>我们拆分完组件之后就在脚手架中建立我们的components下的组件，然后父组件引入子组件，<code>App</code>组件再引入非子组件</p>
+<p>我们得到的结构应该是这样的：</p>
+<p><img src="https://s2.loli.net/2022/04/09/CRky95aDzstZVY7.png" srcset="/img/loading.gif" lazyload alt="组件结构.png"></p>
+<p>其中<code>MyItem</code>组件是<code>MyList</code>组件的子组件，所以需要在<code>MyList</code>组件中引入和注册我们的<code>MyItem</code>组件</p>
+<p>写上HTML和CSS代码后，我们得到了静态页面和我们的Vue结构</p>
+<p><img src="https://s2.loli.net/2022/04/09/Bbc7TeFWnkzs18I.png" srcset="/img/loading.gif" lazyload alt="静态页面和Vue结构.png"></p>
+<h2 id="part-two-展示动态数据"><a href="#part-two-展示动态数据" class="headerlink" title="part two.展示动态数据"></a>part two.展示动态数据</h2><h3 id="我们需要关注的第一个问题是，数据类型是什么？"><a href="#我们需要关注的第一个问题是，数据类型是什么？" class="headerlink" title="我们需要关注的第一个问题是，数据类型是什么？"></a><em><strong>我们需要关注的第一个问题是，数据类型是什么？</strong></em></h3><p>首先我们可以确定这个数据是要放在<code>mylist</code>文件中的，这里我们使用的是一个对象数组，因为数组可以方便遍历，而对象又可以体现数据的各个特征</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">return &#123;</span><br><span class="line">      todos:[//返回一个对象数组</span><br><span class="line">      &#123;id:&#x27;001&#x27;,title:&#x27;吃饭&#x27;,done:true&#125;,//对象中的key使用字符串最好，因为number有界限</span><br><span class="line">      &#123;id:&#x27;002&#x27;,title:&#x27;睡觉&#x27;,done:false&#125;,</span><br><span class="line">      &#123;id:&#x27;003&#x27;,title:&#x27;打代码&#x27;,done:true&#125;,</span><br><span class="line">    ]&#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后在上面的组件标签中循环</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyItem v-for=&quot;todoobj in todos&quot; :key=&quot;todoobj.id&quot; :todo=&#x27;todoobj&#x27;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同时我们也应该想到需要与<code>MyItem</code>文件进行交互，所以放入一个props</p>
+<p>在<code>MyItem</code>进行props的接收，并使用这些数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- :checked綁定小技巧，使用数据绑定进行勾选的判断 --&gt;</span><br><span class="line">&lt;input type=&quot;checkbox&quot; :checked=&#x27;todo.done&#x27;/&gt;</span><br><span class="line">&lt;span&gt;&#123;&#123;todo.title&#125;&#125;&lt;/span&gt;</span><br><span class="line">//</span><br><span class="line">props:[&#x27;todo&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p>这样我们在list部分的数据展示就完成了一部分了</p>
+<h3 id="然后是我们的第二个问题：如何完成todos的添加"><a href="#然后是我们的第二个问题：如何完成todos的添加" class="headerlink" title="然后是我们的第二个问题：如何完成todos的添加"></a><em><strong>然后是我们的第二个问题：如何完成<code>todos</code>的添加</strong></em></h3><p>我们的输入框在<code>Myheader</code>中，但是我们的<code>todos</code>数组在<code>Mylist</code>中，这就需要我们的兄弟组件间传值，但是我们如果还没有学习：消息订阅，全局事件总线等</p>
+<p>我们使用一个绕一点的方式实现：（如图），将数据交给父组件，让父组件实现中介的功能</p>
+<p><img src="!%5B%E5%85%84%E5%BC%9F%E4%BC%A0%E5%80%BC%E9%97%B4%E6%8E%A5%E5%AE%9E%E7%8E%B0.png%5D(https://s2.loli.net/2022/04/09/He3O2BnwJjzrYTE.png" srcset="/img/loading.gif" lazyload alt="兄弟传值间接实现"></p>
+<p>第一件事情：先把<code>todos</code>放在<code>App</code>中，通过props再传给list</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;MyList :todos=&#x27;todos&#x27;/&gt;</span><br><span class="line">//</span><br><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      todos: [</span><br><span class="line">        &#123; id: &quot;001&quot;, title: &quot;吃饭&quot;, done: true &#125;, //对象中的key使用字符串最好，因为number有界限</span><br><span class="line">        &#123; id: &quot;002&quot;, title: &quot;睡觉&quot;, done: false &#125;,</span><br><span class="line">        &#123; id: &quot;003&quot;, title: &quot;打代码&quot;, done: true &#125;,</span><br><span class="line">      ],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>第二件事情：在<code>App</code>中创建一个给<code>todos</code>添加对象的函数，传给<code>Myheader</code>，然后<code>Myheader</code>使用<code>App</code>传过来的函数，实现input与<code>todos</code>之间的传值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">//input框</span><br><span class="line">&lt;input</span><br><span class="line">      type=&quot;text&quot;</span><br><span class="line">      placeholder=&quot;请输入你的任务名称，按回车键确认&quot;</span><br><span class="line">      v-model=&quot;title&quot;</span><br><span class="line">      @keyup.enter=&quot;addtodos&quot;</span><br><span class="line">    /&gt;</span><br><span class="line"></span><br><span class="line">//script部分</span><br><span class="line">    data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      title: &quot;&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  //添加todo的函数</span><br><span class="line">  methods: &#123;</span><br><span class="line">    addtodos() &#123;</span><br><span class="line">      // 判断输入格式，trim消除空格</span><br><span class="line">      if (!this.title.trim()) return alert(&quot;请输入事项&quot;);</span><br><span class="line">      const t = &#123; id: nanoid(), title: this.title, done: false &#125;;//nanoid()是一个库，生成唯一的id</span><br><span class="line">      this.receive(t);</span><br><span class="line">      this.title = &quot;&quot;; //输入完成后清空</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  props: [&quot;receive&quot;],</span><br></pre></td></tr></table></figure>
+
+<p>第三件事情：<code>App</code>接收到<code>MyHeader</code>传入的数据，并传给<code>todos</code>数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//App组件中的receive</span><br><span class="line">methods: &#123;</span><br><span class="line">   receive(todoobj)&#123;</span><br><span class="line">     this.todos.unshift(todoobj);//拿到todoobj并传入todos数组</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就实现了兄弟组件之间的传值。</p>
+<p><em><strong>第三个需求，我们实现勾选和取消勾选</strong></em></p>
+<p>首先在<code>MyItem</code>的勾选框当中绑定点击或者改变(change)事件，通过该事件拿到该todo的id</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//MyItem组件</span><br><span class="line">@change=&quot;handler(todo.id)&quot;</span><br><span class="line">//</span><br><span class="line"> methods: &#123;</span><br><span class="line">    handler(id)&#123;</span><br><span class="line">      this.checktodo(id);//传回checktodo也就是返回上级</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>但是我们的<code>todos</code>对象在<code>App</code>组件当中,所以我们如果要操作todos需要回到App组件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//App组件</span><br><span class="line">checktodo(id)&#123;</span><br><span class="line">      this.todos.forEach(todo =&gt; &#123;//循环遍历todos</span><br><span class="line">        if(todo.id==id)&#123;</span><br><span class="line">          todo.done=!todo.done;实现取反</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过props将<code>checktodo</code>传给<code>MyList</code>然后<code>MyList</code>再传给<code>MyItem</code>实现<code>checktodo</code>的传参</p>
+<p>tips:第二种方法：但是不建议</p>
+<p>我们只在<code>MyItem</code>的input里面修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot; v-model=&#x27;todo.done&#x27;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>双向绑定<code>todo.done</code>,这样我们便是改变了props中的数据，但是有深度的改变的（参考深度监视）,所以不会报错。</p>
+<h3 id="第四个需求，删除效果"><a href="#第四个需求，删除效果" class="headerlink" title="第四个需求，删除效果"></a><em><strong>第四个需求，删除效果</strong></em></h3><p>这个需求完成起来比较简单 =&gt; 思路就是 </p>
+<p>1.在MyItem中拿到id</p>
+<p>2.在App中拿到todos并设置过滤器，重新赋值todos</p>
+<p>3.将App中拿到的函数传给MyList再传给MyItem，然后MyItem传参</p>
+<p>关键代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//App中</span><br><span class="line">deletetodo(id)&#123;//重新赋值</span><br><span class="line">      this.todos = this.todos.filter(todo =&gt; todo.id!==id)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//MyItem中</span><br><span class="line">handleDelete(id)&#123;</span><br><span class="line">      if(confirm(&#x27;确定删除吗？&#x27;))&#123;</span><br><span class="line">        //通知App删除</span><br><span class="line">        this.deletetodo(id);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="第五个需求，计算完成事项个数"><a href="#第五个需求，计算完成事项个数" class="headerlink" title="第五个需求，计算完成事项个数"></a><em><strong>第五个需求，计算完成事项个数</strong></em></h3><p>我们需要使用计算属性计算 done为true的 todo有多少个</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span&gt;已完成&#123;&#123; doneTotal &#125;&#125;&lt;/span&gt; / 全部&#123;&#123; todos.length &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里主要介绍一个数组里面常用的reduce方法，过滤返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//计算属性中的函数</span><br><span class="line">return this.todos.reduce((pre, current) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">​    //第一次调用pre为0，第二次pre为第一次的返回值，current是每一次todo项</span><br><span class="line"></span><br><span class="line">​    return pre + (current.done ? 1 : 0); //最后一次的返回值是reduce的返回值，之前的都是返回作为pre的值</span><br><span class="line"></span><br><span class="line">   &#125;, 0)</span><br></pre></td></tr></table></figure>
+
+<p>或者也可以使用filter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">return this.todos.filter((todo)=&gt; todo.done===true).length//改变原数组报错</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="第六个需求，实现全部完成打钩和清空"><a href="#第六个需求，实现全部完成打钩和清空" class="headerlink" title="第六个需求，实现全部完成打钩和清空"></a><em>第六个需求，实现全部完成打钩</em>和清空</h3><p>一 . 打钩这里有两个方法</p>
+<p>第一个方法：</p>
+<p>在最后的勾选框里面绑定点击事件，获取他的checked值，然后回到App用一个函数操作todos，函数的值通过MyFooter里面传参得到。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">//MyFooter</span><br><span class="line">&lt;input type=&quot;checkbox&quot; :checked=&quot;isAll&quot; @change=&quot;checkAll&quot; /&gt; </span><br><span class="line">//计算属性</span><br><span class="line">isAll()&#123;</span><br><span class="line">      return this.doneTotal === this.total &amp;&amp; this.total&gt;0</span><br><span class="line">    &#125;</span><br><span class="line"> //方法</span><br><span class="line">    methods: &#123;</span><br><span class="line">    checkAll(e) &#123;</span><br><span class="line">      // 这里的e.target拿到最后的勾选框</span><br><span class="line">       console.log(e.target.checked);</span><br><span class="line">       this.checkAllTodo(e.target.checked);</span><br><span class="line">     &#125;,</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//App组件</span><br><span class="line">checkAllTodo(done) &#123;</span><br><span class="line">      //全选函数</span><br><span class="line">      this.todos.forEach((todo) =&gt; &#123;</span><br><span class="line">        todo.done = done;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>第二种方法：</p>
+<p>通过v-model双向绑定，计算属性的拓展形式，set修改时，就可以调用<code>checkAlltodo</code>，而且传参就是value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;checkbox&quot; v-model=&quot;isAll&quot; /&gt;</span><br><span class="line">//</span><br><span class="line">isAll: &#123;</span><br><span class="line">      get() &#123;</span><br><span class="line">        return this.doneTotal === this.total &amp;&amp; this.total &gt; 0;</span><br><span class="line">      &#125;,</span><br><span class="line">      set(value) &#123;</span><br><span class="line">        this.checkAllTodo(value);//checked被修改了调用，这里因为是isAll的计算属性，所以直接拿到value</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>二 . 全部清空</p>
+<p>实现全部清空，就给全部清空按钮绑定click事件，同理操作todos数组的方法交给App，MyFooter只负责传参</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//App中的方法</span><br><span class="line">clearAllTodo() &#123;</span><br><span class="line">      this.todos = this.todos.filter((todo) =&gt; &#123;//进行遍历，如果return 结果为true则留下来</span><br><span class="line">         return !todo.done;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">//props转到MyFooter中调用</span><br><span class="line"> clear()&#123;//clear为绑定的点击事件</span><br><span class="line">      this.clearAllTodo();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="part-three-总结"><a href="#part-three-总结" class="headerlink" title="part three . 总结"></a>part three . 总结</h2><p>1.我们首先接触的便是组件化的编码流程，将组件根据功能点拆分，</p>
+<p>2.实现动态组件：考虑好数据存放的位置，比如todos这个数组因为很多组件都会用到，那么我们就放在我们的最大组件App当中<strong>（状态提升）</strong>，如果对于一些只有单个组价在使用的数据，那么放在这个组件当中就可以了。</p>
+<p>3.props在我们这个案例中实现了组件间交流的作用，但是对于子组件给父组件传值，我们需要父组件先给子组件一个函数，子组件通过函数传参。</p>
+<p>4.使用v-model时，注意双向绑定的含义，绑定的值可以是计算属性，函数中会用到的值（总的来说就是你需要获取他的变化和他的变化要影响你的数据展示）。最好绑定的值不是props中 的，因为props中会有浅层次的数据监视。</p>
+<p>5.几个数组方法，reduce，filter，unshift，简写形式，如何简化代码，我们需要思考，不能一上来就是一堆代码，很不好看，也很麻烦。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue%E8%84%9A%E6%89%8B%E6%9E%B6/">#vue脚手架</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ToDoList案例</div>
+      <div>http://yoursite.com/2022/04/09/ToDoList 案例/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则表达式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/03/28/vue%E8%84%9A%E6%89%8B%E6%9E%B6/" title="vue脚手架">
+                        <span class="hidden-mobile">vue脚手架</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,857 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="js的重大变革，es6的加入">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EAMCScript6">
+<meta property="og:url" content="http://yoursite.com/2022/09/06/EAMC6/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="js的重大变革，es6的加入">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7ca82e1a8c28468f94628ede278934c1.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c22b8b9650b7464ab6941e7ffdd5e230.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0dc0adff76474559aa77e08df6327150.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d19ae367c4514b70a116d011752200ae.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a76afbb4713545259c49baa1489ff80c.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/30554d7e76824899b75a6f57f0426ce3.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4ba41433b7c74b659e71f0894d29ab77.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4635eb8b43f94b9fa28760afc4863e3a.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/85974e0875744dfc8f0d72763da2539b.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3ac0df5eea384c418d536c5019fcc753.png">
+<meta property="article:published_time" content="2022-09-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-07T09:18:57.339Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/7ca82e1a8c28468f94628ede278934c1.png">
+  
+  
+  
+  <title>EAMCScript6 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="EAMCScript6"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-06 00:00" pubdate>
+          2022年9月6日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">EAMCScript6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="EAMCScript-6-11"><a href="#EAMCScript-6-11" class="headerlink" title="EAMCScript 6 - 11"></a>EAMCScript 6 - 11</h1><h2 id="C1-let"><a href="#C1-let" class="headerlink" title="C1.let"></a>C1.let</h2><p>let有几大特性</p>
+<p>1.变量不能重复声明</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//var 可以重复声明</span><br><span class="line">var star = &quot;海王星&quot;</span><br><span class="line">var star = &quot;天王星&quot;</span><br><span class="line"></span><br><span class="line">//let 不能重复声明</span><br><span class="line">let star = &quot;海王&quot;</span><br><span class="line">let star = &quot; &quot;//报错</span><br></pre></td></tr></table></figure>
+
+<p>2.块级作用域</p>
+<p>es6引入了块级作用域，也就是 {} 括起来的作用域，局部变量</p>
+<p>let定义的变量就有块级作用域</p>
+<p>3.变量提升</p>
+<p>面试题常考</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(star);</span><br><span class="line">var star = &quot;海王星&quot;</span><br></pre></td></tr></table></figure>
+
+<p>打印结果 undefined，因为代码顺序是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var star</span><br><span class="line">log</span><br><span class="line">star = &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果是let</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(star);</span><br><span class="line">let star = &quot;海王星&quot;</span><br></pre></td></tr></table></figure>
+
+<p>结果报错，因为没有变量提升</p>
+<h2 id="C2-const"><a href="#C2-const" class="headerlink" title="C2.const"></a>C2.const</h2><p>const赋值常量也有几大特性</p>
+<p>1.常量的值不能修改，也就是configureable为false</p>
+<p>2.一般使用大写作为常量名</p>
+<p>3.一定要赋予初始值</p>
+<p>4.没有深度遍历</p>
+<p>​    也就是说你可以修改一个数组和对象里面的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const ig = [&#x27;jacky&#x27;,&#x27;baolan&#x27;,&#x27;rookie&#x27;,&#x27;ning&#x27;,&#x27;shy&#x27;]</span><br><span class="line">ig[0] = &#x27;wxz&#x27;</span><br><span class="line"></span><br><span class="line">//但是这样就会报错</span><br><span class="line">ig = &#x27;fpx&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>5.块级作用域</p>
+<h2 id="C3-数组解构"><a href="#C3-数组解构" class="headerlink" title="C3.数组解构"></a>C3.数组解构</h2><p>1.数组结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const ig = [&#x27;ad&#x27;,&#x27;top&#x27;,&#x27;mid&#x27;]</span><br><span class="line">let [j,t,r] = ig</span><br><span class="line">console.log(t);</span><br></pre></td></tr></table></figure>
+
+<p>2.对象解构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const fushan = &#123;</span><br><span class="line">    top1: &#x27;shy&#x27;,</span><br><span class="line">    get: function()&#123;</span><br><span class="line">            console.log(&quot;剑姬&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">let &#123;top1, get&#125; = fushan</span><br><span class="line">console.log(top1);</span><br><span class="line">get();</span><br></pre></td></tr></table></figure>
+
+<p>这里最常用的就是解构对象的方法，直接使用方法名调用</p>
+<h2 id="C4-模板字符串"><a href="#C4-模板字符串" class="headerlink" title="C4.模板字符串"></a>C4.模板字符串</h2><p>主要用于字符串的拼接和简化换行显示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let str = `i </span><br><span class="line">           am a </span><br><span class="line">           string`;</span><br><span class="line">console.log(str);</span><br><span class="line">let lovest = &#x27;卡莎&#x27;</span><br><span class="line">let out = `$&#123;lovest&#125; is best`</span><br><span class="line">console.log(out);</span><br></pre></td></tr></table></figure>
+
+<h2 id="C5-对象简化"><a href="#C5-对象简化" class="headerlink" title="C5.对象简化"></a>C5.对象简化</h2><p>支持简化书写对象</p>
+<p>本来<code>godv</code>对象中需要写成</p>
+<p><code>god：god，</code></p>
+<p><code>oppsite：oppsite</code></p>
+<p>现在省去多余的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let god = &#x27;v&#x27;;</span><br><span class="line">let oppsite = function()&#123;</span><br><span class="line">    console.log(`r`);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const godv = &#123;</span><br><span class="line">    god,</span><br><span class="line">    oppsite,</span><br><span class="line">    improve()&#123;</span><br><span class="line">        console.log(&quot;简化&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="C6-箭头函数"><a href="#C6-箭头函数" class="headerlink" title="C6.箭头函数"></a>C6.箭头函数</h2><p>允许使用箭头定义函数</p>
+<p>函数体基本一致</p>
+<p>主要是声明不一样</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let great = (a, b) =&gt; &#123;</span><br><span class="line">    console.log(a+b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且函数的this不一样，是静态的</p>
+<p>this永远留在函数声明时候的this</p>
+<p>主要是使用call方法调用的时候</p>
+<p><code>call(obj, p, p)</code>，第一个参数是this的指向，其他参数是传入的实参</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">window.name = &#x27;ztdgz&#x27;</span><br><span class="line">let school = &#123;</span><br><span class="line">    name :&quot;swpu&quot;</span><br><span class="line">&#125;</span><br><span class="line">let great = (a, b) =&gt; &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line">let great2= function()&#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">great.call(school);//ztdgz</span><br><span class="line">great2.call(school);//swpu</span><br></pre></td></tr></table></figure>
+
+
+
+<p>箭头函数不能作为构造函数创建实例化对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let person = (name, age) =&gt; &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.age = age</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let me = new person()</span><br></pre></td></tr></table></figure>
+
+<p>这样子的代码会报错，显示<code>person is not  a constructor</code></p>
+<p> 而且不能使用<code>arguments</code>变量</p>
+<p><code>arguements</code>对象是对象中用于获取实参类数组的一个对象</p>
+<p>下面代码本来应该获得一个 伪数组 <strong>0号元素是name，1号元素是age</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     let person = (name, age) =&gt; &#123;</span><br><span class="line">console.log(arguments)</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，这样子打印会报错</p>
+<p>还可以省略小括号（当形参有且只有一个的时候）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">     let person = age =&gt; &#123;</span><br><span class="line">console.log(age)</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<p>省略花括号，（函数体之后一条语句）同时也不能写return语句，return的内容就是后面语句的执行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let pow = n =&gt; n*n;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这里再介绍一下：<code>_proto_</code></p>
+<h3 id="more：-proto"><a href="#more：-proto" class="headerlink" title="more：_proto_"></a>more：<code>_proto_</code></h3><p><code>_proto_</code>是对象中的一个属性，这个属性指向这个对象的原型也就是prototype</p>
+<p><strong>如果你设置了__proto，就是修改了当前对象的原型链</strong>。</p>
+<ol>
+<li>构造a对象的构造函数是A，那么a.<strong>proto</strong>：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.__proto__ === A.prototype</span><br></pre></td></tr></table></figure>
+
+<p>2.A.prototype.__proto呢？可能会有人回答是Function.prototype，A的构造函数不是Function嘛，那可以明确告诉你，A.prototype.__proto__不是指向Function.prototype，而是指向Object.prototype，为啥呢，因为A.prototype，而不是A，A的构造函数是Function，但是A.prototype可不是，它是一个对象，那它的构造函数是Object，所以：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A.prototype.__proto__ === Object.prototype</span><br></pre></td></tr></table></figure>
+
+<p>3.然后是一切的尽头，<code>object.prototype._proto_</code></p>
+<p>这个最终指向的是null</p>
+<h2 id="C7-函数参数默认值"><a href="#C7-函数参数默认值" class="headerlink" title="C7.函数参数默认值"></a>C7.函数参数默认值</h2><p>1.函数在形参写入时放入初始值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let oppsite = function(a,b=10 )&#123;</span><br><span class="line">    console.log(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是调用时实参会将默认值顶掉，所以一般默认值放在形参的最后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">oppsite(10,12)</span><br><span class="line">//此時b=12</span><br></pre></td></tr></table></figure>
+
+<p>2.写入形参可以结构赋值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let fun = function (&#123;name, age, sex&#125;) &#123;</span><br><span class="line">    console.log(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun(&#123;</span><br><span class="line">    name: &quot;tony&quot;,</span><br><span class="line">    age: &quot;18&quot;,</span><br><span class="line">    sex: &quot;male&quot;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>还有es6加入的rest参数，也就是我们熟悉的<code>...args</code></p>
+<p><img src="https://img-blog.csdnimg.cn/7ca82e1a8c28468f94628ede278934c1.png" srcset="/img/loading.gif" lazyload alt="rest参数"></p>
+<p>和rest很像的还有一个扩展运算符</p>
+<h3 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h3><p><img src="https://img-blog.csdnimg.cn/c22b8b9650b7464ab6941e7ffdd5e230.png" srcset="/img/loading.gif" lazyload alt="扩展运算符"></p>
+<p>不使用<code>...</code>得到的arguments中只有一个参数是一个数组（tfboys）</p>
+<p>使用之后arguments分别得到了数组中的三个元素</p>
+<p>可以实现数组合并</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let a = [&#x27;a&#x27;,&#x27;b&#x27;]</span><br><span class="line">let b = [&#x27;c&#x27;,&#x27;d&#x27;]</span><br><span class="line">let ab = [...a, ...b]</span><br><span class="line">console.log(ab);//得到 a,b,c,d</span><br></pre></td></tr></table></figure>
+
+<p>还可以复制数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let d = [...a]</span><br></pre></td></tr></table></figure>
+
+<p>和伪数组转化为真实数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let divs = document.querySelectorAll(&quot;div&quot;)//querySelector获取到的是伪数组，原型上是object</span><br><span class="line">let divArr = [...divs]</span><br></pre></td></tr></table></figure>
+
+<h2 id="C8-symbol数据类型"><a href="#C8-symbol数据类型" class="headerlink" title="C8.symbol数据类型"></a>C8.symbol数据类型</h2><p>此中</p>
+<p>s2和s3不相等</p>
+<p>但是Symbol.for得到的两个对象相等（s4 === s5）</p>
+<p><img src="https://img-blog.csdnimg.cn/0dc0adff76474559aa77e08df6327150.png" srcset="/img/loading.gif" lazyload alt="symbol数据类型"></p>
+<p>Symbol还可以用于给对象添加特定的元素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let game = &#123;</span><br><span class="line">    a: 10,</span><br><span class="line">    b: 2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let methods = &#123;</span><br><span class="line">    a: Symbol(),</span><br><span class="line">    b: Symbol()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">game[methods.a] = 2</span><br><span class="line">game[methods.b] = 3</span><br></pre></td></tr></table></figure>
+
+<p>这样子做不会覆盖原先a，b的值，会创建两个新的symbol变量</p>
+<p>或者使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let game = &#123;</span><br><span class="line">    a: 10,</span><br><span class="line">    b: 2，</span><br><span class="line">    [Symbol(&#x27;a&#x27;)]: 2,</span><br><span class="line">    [Symbol(&#x27;b&#x27;)]: 3,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>es6通过<code>Symbol.iterator</code>支持<code>for...of</code>循环</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let game = [&#x27;dota&#x27;,&#x27;lol&#x27;,&#x27;cs&#x27;]</span><br><span class="line"></span><br><span class="line">for(let v in game)&#123;</span><br><span class="line">    console.log(v);</span><br><span class="line">&#125;</span><br><span class="line">//结果 dota lol cs</span><br></pre></td></tr></table></figure>
+
+<p>和<code>for...in</code>很像，但是得到的<strong>是值，不是键</strong></p>
+<p>迭代器的作用远不止于此</p>
+<p>有关生成器函数（异步编程的解决方案）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   // 生成器函数 使用*作为前缀</span><br><span class="line">   function * gen() &#123;</span><br><span class="line">       console.log(111);</span><br><span class="line">       yield &#x27;一只没有耳朵&#x27;</span><br><span class="line">       console.log(222);</span><br><span class="line">       yield &#x27;一只没有尾巴&#x27;</span><br><span class="line">       console.log(333);</span><br><span class="line">       yield &#x27;真奇怪&#x27;</span><br><span class="line">       console.log(444);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">//gen()其实是一个迭代器对象</span><br><span class="line">   let iterator = gen()</span><br><span class="line">   //使用next()方法执行到下一个代码块</span><br><span class="line">   iterator.next()</span><br><span class="line">   iterator.next()</span><br><span class="line">   iterator.next()</span><br><span class="line">   iterator.next()</span><br></pre></td></tr></table></figure>
+
+<p>其中yield将函数体分割成了四个部分</p>
+<p>第一次调用next()，执行           </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(111);</span><br><span class="line">yield &#x27;一只没有耳朵&#x27;</span><br><span class="line">//只会得到 111</span><br></pre></td></tr></table></figure>
+
+<p>或者使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">for(v of iterator)&#123;</span><br><span class="line">    console.log(v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//会得到 111 一只没有耳朵</span><br></pre></td></tr></table></figure>
+
+<p>next函数可以放入参数，next()函数的参数作为上一个yield语句的返回结果（本来是undefined），加了参数之后就是aaa</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 生成器函数</span><br><span class="line">function * gen() &#123;</span><br><span class="line">    console.log(111);</span><br><span class="line">    let a = yield &#x27;一只没有耳朵&#x27;</span><br><span class="line">    console.log(a);</span><br><span class="line">    yield &#x27;一只没有尾巴&#x27;</span><br><span class="line">    console.log(333);</span><br><span class="line">    yield &#x27;真奇怪&#x27;</span><br><span class="line">    console.log(444);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let iterator = gen()</span><br><span class="line">iterator.next()</span><br><span class="line">iterator.next(&#x27;aaa&#x27;)</span><br><span class="line">//此时gen()函数中a的值是aaa</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="C9-Set集合"><a href="#C9-Set集合" class="headerlink" title="C9.Set集合"></a>C9.Set集合</h2><p><img src="https://img-blog.csdnimg.cn/d19ae367c4514b70a116d011752200ae.png" srcset="/img/loading.gif" lazyload alt="集合"></p>
+<p>主要是对于集合的操作和集合的成员唯一性</p>
+<p>集合操作</p>
+<p>主要就是用到了我们上面介绍的方法</p>
+<p><code>has()</code>是其中比较重要的方法</p>
+<p><img src="https://img-blog.csdnimg.cn/a76afbb4713545259c49baa1489ff80c.png" srcset="/img/loading.gif" lazyload alt="集合操作"></p>
+<p><img src="https://img-blog.csdnimg.cn/30554d7e76824899b75a6f57f0426ce3.png" srcset="/img/loading.gif" lazyload alt="差集"></p>
+<h2 id="C10-Map"><a href="#C10-Map" class="headerlink" title="C10.Map"></a>C10.Map</h2><p>Map和Set一样，也是es6提出的一种数据结构</p>
+<p><img src="https://img-blog.csdnimg.cn/4ba41433b7c74b659e71f0894d29ab77.png" srcset="/img/loading.gif" lazyload alt="Map"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//创建新Map</span><br><span class="line">let m = new Map()</span><br><span class="line"></span><br><span class="line">//键为字符串</span><br><span class="line">m.set(&#x27;name&#x27;,&#x27;swpu&#x27;)</span><br><span class="line"></span><br><span class="line">//键也可以为对象</span><br><span class="line">let key = &#123;</span><br><span class="line">    name:&#x27;swpu&#x27;</span><br><span class="line">&#125;</span><br><span class="line">m.set(key,[&#x27;chengdu&#x27;,&#x27;nanchong&#x27;])</span><br></pre></td></tr></table></figure>
+
+<p>遍历m的时候会得到一个个的数组，每个数组的第一个元素是键，第二个元素是值</p>
+<h2 id="C11-数值转换"><a href="#C11-数值转换" class="headerlink" title="C11.数值转换"></a>C11.数值转换</h2><h3 id="1-Number-EPSILON"><a href="#1-Number-EPSILON" class="headerlink" title="1.Number.EPSILON"></a>1.Number.EPSILON</h3><p>是js中最小的精度</p>
+<p>比如计算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = 0.1 + 0.2</span><br><span class="line">let b = 0.3</span><br><span class="line">console.log(a == b);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果是false，因为a的结果是0.3000…4</p>
+<p>所以我们为了完善这部分，使用一个函数进行判断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let eql = function(a,b)&#123;</span><br><span class="line">    if(a-b&lt;Number.EPSILON)&#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Number-isFinit"><a href="#2-Number-isFinit" class="headerlink" title="2.Number.isFinit"></a>2.Number.isFinit</h3><p>判断一个数字是否为有限数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(Number.isFinite(100));</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Number-isNaN"><a href="#3-Number-isNaN" class="headerlink" title="3.Number.isNaN"></a>3.Number.isNaN</h3><p>判断一个数字是否为NaN</p>
+<h3 id="4-Number-parseInt-Number-parseFloat，Number-isInteger"><a href="#4-Number-parseInt-Number-parseFloat，Number-isInteger" class="headerlink" title="4.Number.parseInt , Number.parseFloat，Number.isInteger"></a>4.Number.parseInt , Number.parseFloat，Number.isInteger</h3><p>用于字符串转换为int和float类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let love = Number.parseInt(&#x27;5211314love&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>转换出来的结果是：5211314</p>
+<p><code>Number.isInteger</code>用于判断数值是否为整数</p>
+<h3 id="5-Math-trunc"><a href="#5-Math-trunc" class="headerlink" title="5.Math.trunc"></a>5.Math.trunc</h3><p>用于抹除小数部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let tr = Math.trunc(3.6)</span><br><span class="line">console.log(tr);</span><br></pre></td></tr></table></figure>
+
+<p>结果为3</p>
+<h3 id="6-Math-sign"><a href="#6-Math-sign" class="headerlink" title="6.Math.sign"></a>6.Math.sign</h3><p>判断一个数值是正数还是负数还是0</p>
+<p>正数输出为1</p>
+<p>0输出为0</p>
+<p>负数输出为-1</p>
+<h2 id="C12-对象方法的扩展"><a href="#C12-对象方法的扩展" class="headerlink" title="C12.对象方法的扩展"></a>C12.对象方法的扩展</h2><p>1.is</p>
+<p><code>Object.is()</code>用于比较两个值相等</p>
+<p>和<code>===</code>不同在于NaN的处理上</p>
+<p>is可以实现<code>Object.is(NaN,NaN) ==&gt; true</code></p>
+<p>2.assign</p>
+<p>两个对象使用assign方法</p>
+<p>相同的属性名称会覆盖</p>
+<p>不同的属性名称会照常显示</p>
+<p><img src="https://img-blog.csdnimg.cn/4635eb8b43f94b9fa28760afc4863e3a.png" srcset="/img/loading.gif" lazyload alt="对象方法的扩展"></p>
+<p>3.get/setPrototypeOf</p>
+<p>用于设置原型类型和获取原型类型</p>
+<p>如下在使用setPrototypeOf之后：</p>
+<p>school的原型对象变成了cities</p>
+<p>再往上的原型对象才是object</p>
+<p><img src="https://img-blog.csdnimg.cn/85974e0875744dfc8f0d72763da2539b.png" srcset="/img/loading.gif" lazyload alt="对象扩展2"></p>
+<h2 id="C13-模块化"><a href="#C13-模块化" class="headerlink" title="C13.模块化"></a>C13.模块化</h2><p>模块化使用与将大文件拆分为小文件</p>
+<p>使用export和import进行链接</p>
+<p>需要暴露的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export let school = &quot;swpu&quot;</span><br><span class="line"></span><br><span class="line">export function teach() &#123;</span><br><span class="line">    console.log(&quot;learning&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>外部引入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Export&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;script type=&quot;module&quot;&gt;</span><br><span class="line">        import * as m1 from &quot;./m1.js&quot;</span><br><span class="line">        console.log(m1);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可能会存在跨域问题，可以使用live Server打开</p>
+<p>得到：module模块下的这些参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Module</span><br><span class="line">school: &quot;swpu&quot;</span><br><span class="line">teach: ƒ teach()</span><br><span class="line">Symbol(Symbol.toStringTag): &quot;Module&quot;</span><br><span class="line">get school: ƒ ()</span><br><span class="line">set school: ƒ ()</span><br><span class="line">get teach: ƒ ()</span><br><span class="line">set teach: ƒ ()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>或者使用统一暴露</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> let school = &quot;swpu&quot;</span><br><span class="line"></span><br><span class="line"> function teach() &#123;</span><br><span class="line">    console.log(&quot;learning&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export&#123;school, teach&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有默认暴露，但是默认暴露的数据是封装在module下default对象（Object）下的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    school : &quot;swpu&quot;,</span><br><span class="line">    teach: function () &#123;</span><br><span class="line">        console.log(&quot;learning&quot;);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>还有引入的方式</p>
+<p><img src="https://img-blog.csdnimg.cn/3ac0df5eea384c418d536c5019fcc753.png" srcset="/img/loading.gif" lazyload alt="import的方式"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript/">#JavaScript</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>EAMCScript6</div>
+      <div>http://yoursite.com/2022/09/06/EAMC6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/13/Spring/" title="Spring">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/21/JavaWeb/" title="JavaWeb">
+                        <span class="hidden-mobile">JavaWeb</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

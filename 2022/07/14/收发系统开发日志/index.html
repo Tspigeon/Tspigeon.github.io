@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="背景是学校收发室的一个项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学校收发系统开发日志">
+<meta property="og:url" content="http://yoursite.com/2022/07/14/%E6%94%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="背景是学校收发室的一个项目">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/14/A7dS58YPlZwzckv.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/MBSXZ8damDrPWsu.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/ytu8cqa6SKQfodj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/eSYkHIhXjlKc87d.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/8YNkPDO3Gt7M9TL.png">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/收发系统开发日志/vuex模块化.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/31/hrb7zGi5uXTCKWA.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/LcKYtuNykilQ3Ad.png">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/收发系统开发日志/抖动代码.png">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/收发系统开发日志/抖动原因.png">
+<meta property="article:published_time" content="2022-07-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-26T02:16:10.010Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/14/A7dS58YPlZwzckv.png">
+  
+  
+  
+  <title>学校收发系统开发日志 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="学校收发系统开发日志"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-07-14 00:00" pubdate>
+          2022年7月14日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          131 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">学校收发系统开发日志</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="收发系统开发日志"><a href="#收发系统开发日志" class="headerlink" title="收发系统开发日志"></a>收发系统开发日志</h1><p>相信每个学校都有一个收发室，而收发室每天要处理大量的信件和杂志，为了处理这些书信的收发功能，我们开发了收发系统。</p>
+<p>实现：1.对收到书籍的统计    2.对于用户的管理    3.对于分发书籍的管理</p>
+<h2 id="1-用户管理页面"><a href="#1-用户管理页面" class="headerlink" title="1.用户管理页面"></a>1.用户管理页面</h2><p>页面的大致结构是这样：:bow: 主要是实现为用户的改删查</p>
+<p><img src="https://s2.loli.net/2022/07/14/A7dS58YPlZwzckv.png" srcset="/img/loading.gif" lazyload alt="用户管理页面.png"></p>
+<h3 id="1-1-查询功能"><a href="#1-1-查询功能" class="headerlink" title="1.1 查询功能"></a>1.1 查询功能</h3><p>还有一堆堆样式就不贴过来惹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 筛选框 --&gt;</span><br><span class="line">&lt;div id=&quot;u39&quot; class=&quot;ax_default box_1&quot;&gt;</span><br><span class="line">  &lt;div id=&quot;u39_div&quot;&gt;</span><br><span class="line">    &lt;span id=&quot;u41&quot;&gt;姓&amp;nbsp; 名：&lt;/span&gt;</span><br><span class="line">    &lt;el-input v-model=&quot;name&quot; placeholder=&quot;姓名&quot; id=&quot;u43&quot;&gt;&lt;/el-input&gt;</span><br><span class="line">    &lt;span id=&quot;u102&quot;&gt;学工号：&lt;/span&gt;</span><br><span class="line">    &lt;el-input</span><br><span class="line">      v-model=&quot;sid&quot;</span><br><span class="line">      placeholder=&quot;学 工 号&quot;</span><br><span class="line">      id=&quot;u44&quot;</span><br><span class="line">      style=&quot;width: 200&quot;</span><br><span class="line">    &gt;&lt;/el-input&gt;</span><br><span class="line">    &lt;!-- 添加点击事件 --&gt;</span><br><span class="line">    &lt;el-button type=&quot;primary&quot; round id=&quot;u45&quot; @click=&quot;search&quot;</span><br><span class="line">      &gt;查找&lt;/el-button</span><br><span class="line">    &gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>主要是使用<code>&amp;nbsp;</code>控制了一下空格间距，然后使用了element的input框</p>
+<p>还有就是注意一下<code>el-input</code>的间距问题，因为input框是块级元素，所以的top样式值不同，第二个会比第一个低21px，所以第二个的top值需要比第一个少21px（因为top是相距顶部的距离）</p>
+<p>然后用户页面使用了element的table做了一个可以滚动的用户列表</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 结果表单，操作页面插入span --&gt;</span><br><span class="line">&lt;el-table :data=&quot;tableData&quot; height=&quot;500&quot; style=&quot;width: 100%&quot; id=&quot;u46&quot; &gt;</span><br><span class="line">&lt;!-- 序号列 --&gt;</span><br><span class="line">  &lt;el-table-column prop=&quot;num&quot; label=&quot;序号&quot; width=&quot;167&quot;&gt;&lt;/el-table-column&gt;</span><br><span class="line">  ......</span><br><span class="line">&lt;/el-table&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这个部分最关键的还是search函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">search() &#123;</span><br><span class="line">  // console.log(this.name + &quot; &quot; + this.sid);</span><br><span class="line">  //过滤器</span><br><span class="line">  this.tableData = this.subarr.filter((item) =&gt; &#123;</span><br><span class="line">    // 每次搜索重置数组</span><br><span class="line">    // console.log(this.sid);</span><br><span class="line">    if (this.name == &quot;&quot;) &#123;</span><br><span class="line">      console.log(&quot;逻辑1&quot;);</span><br><span class="line">      return item.sid == this.sid;</span><br><span class="line">    &#125; else if (this.sid == &quot;&quot;) &#123;</span><br><span class="line">      console.log(&quot;逻辑2&quot;);</span><br><span class="line">      return item.name == this.name;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log();</span><br><span class="line">      return item.sid == this.sid &amp;&amp; item.name == this.name;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要是对数组的一个过滤，但是过滤并不改变原数组，所以要<code>this.tableData = this.subarr.filter</code></p>
+<p>而这个subarr是tableData的一个副本数组，这个数组放在那里是一个问题（也就是在哪里写<code>this.subarr = this.tableData;</code>）</p>
+<p>计算属性？会导致subarr一直跟着tableData变化（计算属性的扩写形式应该可以实现）</p>
+<p>函数中？每次触发函数都会执行这句话，还是不对</p>
+<p>我们需要的是只触发这个语句一次，以后subarr就不改变了，作为我们数据的副本</p>
+<p>于是我将它放在了钩子中，实现了我们的需求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">  this.subarr = this.tableData;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-编辑功能"><a href="#1-2-编辑功能" class="headerlink" title="1.2  编辑功能"></a>1.2  编辑功能</h3><p>编辑功能其实是实现了<code>el-table</code>的编辑功能</p>
+<p>这里是用插槽解决的，scope有一个属性row（ElementUI文档）,scope.row可以拿到对应行的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 学院列 --&gt;</span><br><span class="line">  &lt;el-table-column prop=&quot;academe&quot; label=&quot;学院&quot; width=&quot;167&quot;&gt;</span><br><span class="line">    &lt;!-- 插槽实现编辑 学院，姓名，学号，联系电话 可以更改 --&gt;</span><br><span class="line">    &lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">      &lt;input type=&quot;text&quot; v-model=&quot;scope.row.academe&quot; v-show=&quot;scope.row.iseditor&quot; class=&quot;inBtn&quot;/&gt;</span><br><span class="line">      &lt;span v-show=&quot;!scope.row.iseditor&quot;&gt;&#123;&#123; scope.row.academe &#125;&#125;&lt;/span&gt;</span><br><span class="line">    &lt;/template&gt;</span><br><span class="line">  &lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在列中加入了一个input框，动态绑定input框中的数据实现保存</p>
+<p>而这个input框靠v-show控制，<code>scope.row.iseditor</code>作为表格元素的属性放入</p>
+<p>而这个span则是起到了显示更改后数据的作用，点击保存了之后显示的就是span，如果去掉span那么就什么都不会显示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//data</span><br><span class="line">&#123;</span><br><span class="line">   num: &quot;1&quot;,</span><br><span class="line">   academe: &quot;计算机科学学院&quot;,</span><br><span class="line">   account: &quot;123456789012&quot;,</span><br><span class="line">   pwd: &quot;**********&quot;,</span><br><span class="line">   name: &quot;葉良辰&quot;,</span><br><span class="line">   sid: &quot;123456789012&quot;,</span><br><span class="line">   phone: &quot;18181947511&quot;,</span><br><span class="line">   iseditor: false,</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后就是保存按钮</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop=&quot;oprate&quot; label=&quot;操作&quot; width=&quot;240&quot;&gt;</span><br><span class="line">  &lt;!-- scope类似一个当前行的定位 --&gt;</span><br><span class="line">  &lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">    &lt;!-- 点击事件 --&gt;</span><br><span class="line">    &lt;button class=&quot;opbtn&quot; @click=&quot;edit(scope.row, scope)&quot;&gt;&#123;&#123;scope.row.iseditor ? &quot;保存&quot;:&quot;编辑&quot;&#125;&#125;&lt;/button&gt;</span><br><span class="line">    &lt;!-- 点击事件-待定 --&gt;</span><br><span class="line">    &lt;button class=&quot;opbtn&quot; @click=&quot;reset&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;重置密码&lt;/button&gt;</span><br><span class="line">    &lt;!-- 点击事件 --&gt;</span><br><span class="line">    &lt;button class=&quot;opbtn&quot; @click=&quot;del(scope.row)&quot;&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;删除&lt;/button&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>保存按钮使用三元表达式判断是保存还是编辑，判断的依据就是<code>iseditor</code>，所以我们click方法中也需要改变<code>iseditor</code>的值</p>
+<h3 id="1-3-删除功能"><a href="#1-3-删除功能" class="headerlink" title="1.3 删除功能"></a>1.3 删除功能</h3><p>删除其实也是一个数组的过滤，只是这个过滤要改变原数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">del(row) &#123;</span><br><span class="line">  let isdel = confirm(&quot;是否确认删除该用户？&quot;);</span><br><span class="line">  if(isdel)&#123;</span><br><span class="line">    console.log(row);</span><br><span class="line">    this.tableData = this.tableData.filter((item) =&gt; &#123;</span><br><span class="line">      return item.sid!=row.sid</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p><code>sid</code>是学号，作为唯一标识符，主键，所以可以依靠<code>sid</code>判断删除</p>
+<h2 id="2-仓库管理页面"><a href="#2-仓库管理页面" class="headerlink" title="2.仓库管理页面"></a>2.仓库管理页面</h2><p>仓库管理页面与用户管理页面类似</p>
+<p><img src="https://s2.loli.net/2022/07/31/MBSXZ8damDrPWsu.png" srcset="/img/loading.gif" lazyload alt="仓库管理页面.png"></p>
+<p>主要是筛选条件更多，取件状态的编辑是一个select框</p>
+<h3 id="2-1查询功能"><a href="#2-1查询功能" class="headerlink" title="2.1查询功能"></a>2.1查询功能</h3><p>首先还是需要一个副本数组，还是叫<code>subarr</code></p>
+<p>这个的查询功能涉及到多条件的查询，而且空查询需要返回全部数据</p>
+<p>所以第一件事是封装一个数组，然后我使用的是数组的<code>foreach</code>方法遍历数据</p>
+<p><code>num == 0 &amp;&amp; item != &quot;&quot;</code>代表该条件是name而且不为空</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">search() &#123;</span><br><span class="line">  this.bookData = this.subarr;</span><br><span class="line">  // console.log(this.name + &quot; &quot; + this.sid);</span><br><span class="line">  //过滤器数组</span><br><span class="line">  let filarr = [this.name, this.bookName, this.period, this.statment];</span><br><span class="line">  // 过滤，过滤条件为空则返回全部数据</span><br><span class="line">  filarr.forEach((item, num) =&gt; &#123;</span><br><span class="line">    if (num == 0 &amp;&amp; item != &quot;&quot;) &#123;</span><br><span class="line">      this.bookData = this.bookData.filter((book) =&gt; &#123;</span><br><span class="line">        return book.name == this.name;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; else if (num == 1 &amp;&amp; item != &quot;&quot;) &#123;</span><br><span class="line">      this.bookData = this.bookData.filter((book) =&gt; &#123;</span><br><span class="line">        return book.bookName == this.bookName;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; else if (num == 2 &amp;&amp; item != &quot;&quot;) &#123;</span><br><span class="line">      this.bookData = this.bookData.filter((book) =&gt; &#123;</span><br><span class="line">        return book.period == this.period;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125; else if (num == 3 &amp;&amp; item != &quot;&quot;) &#123;</span><br><span class="line">      this.bookData = this.bookData.filter((book) =&gt; &#123;</span><br><span class="line">        return book.statment == this.statment;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-1-1-关于el-input框的clearable属性"><a href="#2-1-1-关于el-input框的clearable属性" class="headerlink" title="2.1.1 关于el-input框的clearable属性"></a>2.1.1 关于el-input框的clearable属性</h4><p>我们这里的input输入是使用的element的el-input，而el-input有一个可清除选项，也就是加入一个clearable属性</p>
+<p>但是直接加入clearable属性会出现 清除按钮样式错误的问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//直接加入clearable选项</span><br><span class="line">        &lt;el-input</span><br><span class="line">          v-model=&quot;statment&quot;</span><br><span class="line">          placeholder=&quot;取件状态&quot;</span><br><span class="line">          id=&quot;u44-2&quot;</span><br><span class="line">          clearable</span><br><span class="line">        &gt;</span><br><span class="line">        &lt;/el-input&gt;</span><br></pre></td></tr></table></figure>
+
+<p>为了解决这个问题，我们需要将left，top，width，height有关的属性使用<strong>style属性写在标签中</strong>，同时还需要将原来写在css文件中的有关样式删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//修改后的写法</span><br><span class="line">        &lt;el-input</span><br><span class="line">          v-model=&quot;statment&quot;</span><br><span class="line">          placeholder=&quot;取件状态&quot;</span><br><span class="line">          id=&quot;u44-2&quot;</span><br><span class="line">          style=&quot;top: -1px; width: 200px;left: 556px&quot;</span><br><span class="line">          clearable</span><br><span class="line">        &gt;</span><br><span class="line">        &lt;/el-input&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们的clear按钮就不会乱窜了</p>
+<h4 id="2-1-2-模糊查找"><a href="#2-1-2-模糊查找" class="headerlink" title="2.1.2 模糊查找"></a>2.1.2 模糊查找</h4><p>我这里的模糊查找需求比较简单，如果想搜索 中国戏剧，那我们就只用搜索<code>中国</code>，<code>中国戏</code>之类的就可以了</p>
+<p>这里主要是用到了一个函数<code>include(parmas)</code>，parmas就是我们输入的搜索字段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">else if (num == 1 &amp;&amp; item != &quot;&quot;) &#123;</span><br><span class="line">	storeManage.state.bookData = storeManage.state.bookData.filter((book) =&gt; &#123;</span><br><span class="line">	return book.bookName.includes(state.bookName)</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2修改功能"><a href="#2-2修改功能" class="headerlink" title="2.2修改功能"></a>2.2修改功能</h3><p>这里的修改是修改书籍的状态，因为书籍状态只有固定的两种，所以我就使用的select下拉框</p>
+<p>同样通过插槽写入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop=&quot;statment&quot; label=&quot;状态&quot; width=&quot;75&quot;&gt;</span><br><span class="line">   &lt;!-- 插槽处理状态下拉栏 --&gt;</span><br><span class="line">   &lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">     &lt;select name= &quot;取件状态&quot; type=&quot;text&quot; v-show=&quot;scope.row.iseditor&quot; v-model=&quot;scope.row.statment&quot;&gt;</span><br><span class="line">       &lt;option value=&quot;已取&quot;&gt;已取&lt;/option&gt;</span><br><span class="line">       &lt;option value=&quot;未取&quot;&gt;未取&lt;/option&gt;</span><br><span class="line">     &lt;/select&gt;</span><br><span class="line">     &lt;span v-show=&quot;!scope.row.iseditor&quot;&gt;&#123;&#123; scope.row.statment &#125;&#125;&lt;/span&gt;</span><br><span class="line">   &lt;/template&gt;</span><br><span class="line"> &lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>主要是后面的<code>button</code>，肯定不能安装插槽来写（会因为template显示不出来），但是csdn的时候发现使用 <code>#default = &quot;scope&quot;</code>可以显示该模板而且获取到了scope，得到了scope也就是得到了每一行的值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column&gt;</span><br><span class="line">  &lt;template #default=&quot;scope&quot;&gt;</span><br><span class="line">  &lt;button @click=&quot;change(scope.row)&quot;&gt;&#123;&#123;scope.row.iseditor ? &quot;保存&quot;:&quot;更改&quot;&#125;&#125;&lt;/button&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-2-1-关于scope自定义列表格"><a href="#2-2-1-关于scope自定义列表格" class="headerlink" title="2.2.1 关于scope自定义列表格"></a>2.2.1 关于scope自定义列表格</h4><p>这里的<code>#default = &quot;scope&quot;</code>其实是<code>v-slot = &quot;scope&quot;</code>的简写，而这个是element-plus中自定义列表格的用法</p>
+<p>其实这种用法上一个页面就使用过</p>
+<p>element中自定义类表格的便是使用的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>而这个scope我们打印一下</p>
+<p><img src="https://s2.loli.net/2022/07/31/ytu8cqa6SKQfodj.png" srcset="/img/loading.gif" lazyload alt="scope.png"></p>
+<p>其实就是我们的vc，下面有我们的row属性，可以拿到每一行的数据</p>
+<p>而在element-plus中我们的自定义列表格写成 <code>#defalut = &quot;scope&quot;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template #default=&quot;scope&quot;&gt;</span><br><span class="line">  </span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这两个就是一个版本的区别，在我的实际开发中都可以得到相同的效果</p>
+<h2 id="3-查看订阅系统页面"><a href="#3-查看订阅系统页面" class="headerlink" title="3.查看订阅系统页面"></a>3.查看订阅系统页面</h2><p>这个页面和仓库管理页面非常相似</p>
+<p><img src="https://s2.loli.net/2022/07/31/eSYkHIhXjlKc87d.png" srcset="/img/loading.gif" lazyload alt="订阅系统页面.png"></p>
+<p>也就代表我们可以复用的组件有很多</p>
+<p>这里我主要是复用了筛选框组件，但是虽然说是复用 其实还是有一点差别的</p>
+<h3 id="1-第一就是筛选条件"><a href="#1-第一就是筛选条件" class="headerlink" title="1.第一就是筛选条件"></a>1.第一就是筛选条件</h3><p>仓库页面的筛选条件有4条，这个页面的筛选条件是3条</p>
+<p>使用我们需要判断，这个组件究竟是用在了仓库页面还是订阅系统页面，判断条件交由<code>v-show</code></p>
+<p>进行这个判断我们第一个想到的就是父组件向子组件传值—<code>props</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">  //订阅系统组件</span><br><span class="line">  &lt;filterMid :flag=&quot;flag&quot;&gt;&lt;/filterMid&gt;</span><br><span class="line">  </span><br><span class="line">  // 数据 </span><br><span class="line"> data() &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    //其他数据已放入vuex</span><br><span class="line">    flag: 0,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后使用v-show进行一个简单的显示与隐藏</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//取件状态栏</span><br><span class="line">&lt;span id=&quot;u102-2&quot; v-show=&quot;flag&quot;&gt;取件状态：&lt;/span&gt;</span><br><span class="line">&lt;el-input</span><br><span class="line">  v-show=&quot;flag&quot;</span><br><span class="line">  v-model=&quot;$store.state.statment&quot;</span><br><span class="line">  placeholder=&quot;取件状态&quot;</span><br><span class="line">  id=&quot;u44-2&quot;</span><br><span class="line">  style=&quot;top: -1px; width: 200px; left: 536px&quot;</span><br><span class="line">  clearable</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-第二就是用于筛选的数据"><a href="#2-第二就是用于筛选的数据" class="headerlink" title="2.第二就是用于筛选的数据"></a>2.第二就是用于筛选的数据</h3><p>因为数据放在vuex中，因为我们需要考虑能不能筛选框在两个组件中都使用同一组数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v-model=&quot;$store.state.name&quot;</span><br><span class="line">v-model=&quot;$store.state.bookName&quot;</span><br><span class="line">v-model=&quot;$store.state.period&quot;</span><br></pre></td></tr></table></figure>
+
+<p>但是这个就必然会有一定的问题，首先是异步性</p>
+<p>仓库页面写入的筛选条件会显示在订阅系统的页面上</p>
+<p>为了避免异步我们可以不使用同一组数据</p>
+<p>但是面临的问题就是数据绑定怎么做</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">v-model=&quot;name&quot;</span><br><span class="line"></span><br><span class="line">data()&#123;</span><br><span class="line">	return&#123;</span><br><span class="line">		name:&#x27;&#x27;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">watch:&#123;</span><br><span class="line">	//name需要随flag的变化在name（仓库的筛选）和sub_name（订阅系统的筛选）中切换</span><br><span class="line">	//还需要做出一个双向绑定，解决数据交互的问题，this.name改变需要通知state.name || state.sub_name</span><br><span class="line">	  state.name || state.sub_name 改变也需要通知 this.name</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样虽然更改准确，但是代码量大大增加</p>
+<p>于是我偷了一个小懒，实际上这里的异步并不会让客户知道，因为客户在一个时间只会看一个页面</p>
+<p>所以，在订阅或者仓库页面切换的时候，我们只需要清空筛选条件就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//仓库组件</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    //页面切换数据置空</span><br><span class="line">    this.$store.state.name = &quot;&quot;;</span><br><span class="line">    this.$store.state.bookName = &quot;&quot;;</span><br><span class="line">    this.$store.state.period = &quot;&quot;;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">//订阅组件同理</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-第三是用于筛选的数据"><a href="#3-第三是用于筛选的数据" class="headerlink" title="3.第三是用于筛选的数据"></a>3.第三是用于筛选的数据</h3><p>因为过滤器的原因我们组件需要一个副本数组<code>subarr</code>，但是在组件复用之后我们需要对<code>subarr</code>中的内容进行切换</p>
+<p>在仓库组件中<code>subarr</code>是仓库数据<code>bookData</code>的副本</p>
+<p>在订阅组件中<code>subarr</code>是订阅数据<code>bookList</code>的副本</p>
+<p>所以这里使用watch进行一个监视</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  Flag: &#123;</span><br><span class="line">    immediate: true,</span><br><span class="line">    handler() &#123;</span><br><span class="line">      //监视Flag，Flag改变时改变subarr数组,name,bookName,period</span><br><span class="line">      this.subarr = this.Flag</span><br><span class="line">        ? this.$store.state.bookData</span><br><span class="line">        : this.$store.state.bookList;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>及时的切换我们的数据</p>
+<h2 id="4-密码申诉页面"><a href="#4-密码申诉页面" class="headerlink" title="4.密码申诉页面"></a>4.密码申诉页面</h2><p>这个页面主要用于处理用户提交的密码申诉</p>
+<p><img src="https://s2.loli.net/2022/07/31/8YNkPDO3Gt7M9TL.png" srcset="/img/loading.gif" lazyload alt="密码申诉页面.png"></p>
+<p>一如既往的查找，同意or拒绝，还有全选同意和拒绝</p>
+<p>首先我们需要控制凭证图片的大小，通过<code>:src</code>拿到每一行的图片地址，再通过<code>style</code>属性修改图片的高宽，通过<code>:preview-src-list</code>设置点击图片后的展示效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-table-column prop=&quot;img&quot; label=&quot;凭证&quot; width=&quot;450&quot;&gt;</span><br><span class="line">  &lt;template slot-scope=&quot;scope&quot;&gt;</span><br><span class="line">    &lt;el-image</span><br><span class="line">      style=&quot;width: 50%; height: 150px&quot;</span><br><span class="line">      :src=&quot;scope.row.img&quot;</span><br><span class="line">      :preview-src-list=&quot;[scope.row.img]&quot;</span><br><span class="line">      :key=&quot;scope.row.num&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &lt;div slot=&quot;error&quot; class=&quot;image-slot&quot;&gt;</span><br><span class="line">        &lt;i class=&quot;el-icon-picture-outline&quot;&gt;&lt;/i&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/el-image&gt;</span><br><span class="line">  &lt;/template&gt;</span><br><span class="line">&lt;/el-table-column&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同意和拒绝绑定改变条目的审核状态</p>
+<p>点击全选时，隐藏同意和拒绝两个按钮，待处理条目出现一个checkbox代表被勾选</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sleAll() &#123;</span><br><span class="line">  if (this.checked == true) &#123;</span><br><span class="line">    //点击开启全选</span><br><span class="line">    this.$store.state.pwdList.forEach((item) =&gt; &#123;</span><br><span class="line">      item.checked = true;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    //点击关闭全选</span><br><span class="line">    this.$store.state.pwdList.forEach((item) =&gt; &#123;</span><br><span class="line">      item.checked = false;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>所以这里的<code>v-show</code>的隐藏条件就需要考虑一下，按钮需要在待取件状态和没有打开全选的状态下才显示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button</span><br><span class="line">  @click=&quot;agree(scope.row)&quot;</span><br><span class="line">  v-show=&quot;scope.row.pwd_Statement == &#x27;待处理&#x27; &amp;&amp; !scope.row.checked&quot;</span><br><span class="line">  &gt;同意&lt;/el-button&gt;</span><br></pre></td></tr></table></figure>
+
+<p>同样，勾选框就需要在打开全选和状态为待处理的情况下显示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">v-show=&quot;scope.row.checked &amp;&amp; scope.row.pwd_Statement == &#x27;待处理&#x27;&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-vuex的模块化"><a href="#5-vuex的模块化" class="headerlink" title="5.vuex的模块化"></a>5.vuex的模块化</h2><p>到现在为止我们vuex的数据都是放在一块的，这样子显得数据十分冗杂，所以我们现在将vuex的数据按照组件进行分类</p>
+<p> 将对应的函数和数据放入store中新建的文件中</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\收发系统开发日志\vuex模块化.png" srcset="/img/loading.gif" lazyload alt="vuex模块化"></p>
+<p>然后在<code>index.js</code>中引入各个vuex模块并暴露出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import userManage from &#x27;./userManage&#x27;</span><br><span class="line">import storeManage from &#x27;./storeManage&#x27;</span><br><span class="line"></span><br><span class="line">export default new Vuex.Store(&#123;</span><br><span class="line">    actions,</span><br><span class="line">    mutations,</span><br><span class="line">    state,</span><br><span class="line">    getters,</span><br><span class="line">    modules: &#123; userManage, storeManage &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>此时如果要引用各个vuex模块中的数据，就需要加上<code>modules</code>的名字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:data=&quot;$store.state.storeManage.bookData&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-模块数据的署名问题"><a href="#1-模块数据的署名问题" class="headerlink" title="1.模块数据的署名问题"></a>1.模块数据的署名问题</h3><p>这里在组件中原来绑定的<code>state.bookData</code>现在就需要改为<code>state.storeManage.bookData</code></p>
+<p>而在store中的index.js中如果需要使用bookData，我们就需要改为<code>storeManage.bookData</code></p>
+<p>因为vuex模块化在组件使用的时候是帮我们做了一个集成的操作，此时所有模块的数据都放在了state下，依靠模块名进行分类</p>
+<p>而在index.js中还没有集成，获取数据是依靠引入的模块，所以需要先写下是什么模块下的数据</p>
+<h2 id="6-request"><a href="#6-request" class="headerlink" title="6.request"></a>6.request</h2><h3 id="1-配置文件"><a href="#1-配置文件" class="headerlink" title="1.配置文件"></a>1.配置文件</h3><p>我们向后端发送请求可以通过request进行</p>
+<p>在src下新建一个api文件夹</p>
+<p><img src="https://s2.loli.net/2022/07/31/hrb7zGi5uXTCKWA.png" srcset="/img/loading.gif" lazyload alt="request.png"></p>
+<p>在index.js文件夹中写入，主要是用于发送请求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//当前模块对所有接口进行统一管理</span><br><span class="line">import requests from &quot;./request&quot;;</span><br><span class="line"></span><br><span class="line">//管理员登录接口</span><br><span class="line">///admin/login post admin</span><br><span class="line"></span><br><span class="line">//post请求</span><br><span class="line">export const reqUserLogin = (data) =&gt; requests(&#123;url:&#x27; /user/findAllUser&#x27;,method:&#x27;post&#x27;,data&#125;)</span><br><span class="line">//get请求，传递params参数</span><br><span class="line">export const getUserList = (params) =&gt; requests(&#123;url:&#x27;/user/findAllUser&#x27;,method:&#x27;get&#x27;,params&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>在request.js文件中写入，用于封装axios，添加拦截器，修改请求头（添加token），token存在了store和cookie中，这里从cookie中拿token，之前在store拿有问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import Cookies from &quot;js-cookie&quot;;</span><br><span class="line">import axios from &quot;axios&quot;;</span><br><span class="line">//axios的封装</span><br><span class="line">const requests = axios.create(&#123;</span><br><span class="line">    baseURL:&#x27;&#x27;,</span><br><span class="line">    timeout:5000</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">requests.interceptors.request.use((config)=&gt;&#123;</span><br><span class="line">    if(Cookies.get(&#x27;token&#x27;))&#123;</span><br><span class="line">        //请求头添加字段</span><br><span class="line">        config.headers.Token = Cookies.get(&#x27;token&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">    return config;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">requests.interceptors.response.use((res)=&gt;&#123;</span><br><span class="line">    return res.data;</span><br><span class="line">&#125;,(error)=&gt;&#123;</span><br><span class="line">    return Promise.reject(new Error(&#x27;failed&#x27;))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default requests;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后我们需要在<code>vue.config.js</code>中配置跨域问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//vue.config.js</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    //关闭eslint校验工具</span><br><span class="line">    lintOnSave: false,</span><br><span class="line">    publicPath: &quot;/&quot;,</span><br><span class="line">    devServer: &#123;</span><br><span class="line">        proxy: &#123;</span><br><span class="line">            //配置跨域           </span><br><span class="line">            &#x27;&#x27;: &#123;</span><br><span class="line">                target: &#x27;服务器地址&#x27;, //这里后台的地址模拟的;应该填写你们真实的后台接口            </span><br><span class="line">                changOrigin: true, //允许跨域            </span><br><span class="line">                pathRewrite: &#123;</span><br><span class="line">                    /* 重写路径，当我们在浏览器中看到请求的地址   为：          http://localhost:8080/api/core/getData/userInfo 时           </span><br><span class="line">                    实际上访问的地址是：</span><br><span class="line">                    http://121.121.67.254:8185/core/getData/userInfo,因为重写了 /api           */</span><br><span class="line">                    &#x27;&#x27;: &#x27;&#x27;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-请求函数"><a href="#2-请求函数" class="headerlink" title="2.请求函数"></a>2.请求函数</h3><p>那么我们需要发送请求时需要在函数前面添加<code>async</code>进行一个<code>promise</code>封装</p>
+<p>发送请求的四种类型：<code>put</code>,<code>delete</code>,<code>post</code>,<code>get</code>对应了<strong>增删改查</strong>四个操作</p>
+<p><code>let result = await reqUserLogin(data)</code> 主要是得到返回的数据</p>
+<p>在有返回成功后code==200，再进行commit</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">async userLogin(&#123;commit&#125;,data)&#123;</span><br><span class="line">    let result = await reqUserLogin(data)//data是需要上传的参数</span><br><span class="line">    //服务器下发token</span><br><span class="line">    if(result.code == 200)&#123;</span><br><span class="line">        commit(&quot;USERLOGIN&quot;,result.data.token);</span><br><span class="line">        Cookie.set(&#x27;token&#x27;, result.data.token) // 第一个是cookie的名称，第二个是传入的值。然后再Cookie中生成了一条数据。</span><br><span class="line">        return &#x27;ok&#x27;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return Promise.reject(new Error(&#x27;failed&#x27;))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-登录页面"><a href="#3-登录页面" class="headerlink" title="3.登录页面"></a>3.登录页面</h3><p>比如运用以上内容我们可以做一个登录页面，在await之后<code>router.push</code>跳转至下一个页面</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//登录的回调函数</span><br><span class="line">async userLogin()&#123;</span><br><span class="line">    try&#123;</span><br><span class="line">        const &#123;form&#125; = this</span><br><span class="line">        form &amp;&amp; await this.$store.dispatch(&#x27;userLogin&#x27;,form)</span><br><span class="line">        this.$router.push(&#123;</span><br><span class="line">            name:&#x27;home&#x27;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;catch(error)&#123;</span><br><span class="line">        alert(error.message)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-token"><a href="#7-token" class="headerlink" title="7.token"></a>7.token</h2><p> 关于前后端交互的一个内容，众所周知，当我们的需要数据或者提交数据的时候，需要发送一个请求，而token就是请求中需要添加的一个字段</p>
+<h3 id="1-什么是token"><a href="#1-什么是token" class="headerlink" title="1.什么是token"></a>1.什么是token</h3><p>token的意思是“令牌”，是服务端生成的一串字符串，作为客户端进行请求的一个标识。</p>
+<p>当用户第一次登录后，服务器生成一个token并将此token返回给客户端，以后客户端只需带上这个token前来请求数据即可，无需再次带上用户名和密码。</p>
+<p>简单token的组成；uid(用户唯一的身份标识)、time(当前时间的时间戳)、sign（签名，token的前几位以哈希算法压缩成的一定长度的十六进制字符串。为防止token泄露）。</p>
+<h3 id="2-如何使用token"><a href="#2-如何使用token" class="headerlink" title="2.如何使用token"></a>2.如何使用token</h3><p>我这里将token放在了vuex中，如何将vuex中的token放入Cookie，Cookie中的数据会随请求发个服务器</p>
+<p>操作cookie中的数据就依靠<code>cookie.get/remove/set</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">//接口文件中的请求</span><br><span class="line">export const reqUserLogin = (data) =&gt; requests(&#123;url:&#x27;/user/findAllUser&#x27;,method:&#x27;post&#x27;,data&#125;)</span><br><span class="line"></span><br><span class="line">// 引入下载的第三方库</span><br><span class="line">import Cookie from &quot;js-cookie&quot;</span><br><span class="line"></span><br><span class="line">    state:&#123;</span><br><span class="line">        token:&#x27;&#x27;,</span><br><span class="line">    &#125;,</span><br><span class="line">    mutations:&#123;</span><br><span class="line">        //设置token</span><br><span class="line">        USERLOGIN(state,token)&#123;</span><br><span class="line">            state.token = token</span><br><span class="line">        &#125;,</span><br><span class="line">        //清除token</span><br><span class="line">        clearToken(state) &#123;</span><br><span class="line">            state.token = &#x27;&#x27;</span><br><span class="line">            Cookie.remove(&#x27;token&#x27;) // 通过传入token的名称进行一个清空</span><br><span class="line">        &#125;,</span><br><span class="line">        // 获取当前的token</span><br><span class="line">        getToken(state) &#123;</span><br><span class="line">            // 如果当前的缓存中有token，那就直接获取；如果没有就从state中获取，下面进行容错处理</span><br><span class="line">            state.token = state.token || Cookie.get(&#x27;token&#x27;)</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    actions : &#123;</span><br><span class="line">        //登录,设置token</span><br><span class="line">        async userLogin(&#123;commit&#125;,data)&#123;</span><br><span class="line">            let result = await reqUserLogin(data)//返回的data中就有token</span><br><span class="line">            //服务器下发token</span><br><span class="line">            if(result.code == 200)&#123;</span><br><span class="line">                commit(&quot;USERLOGIN&quot;,result.data.token);</span><br><span class="line">                Cookie.set(&#x27;token&#x27;, result.data.token) // 第一个是cookie的名称，第二个是传入的值。然后再Cookie中生成了一条数据。</span><br><span class="line">                return &#x27;ok&#x27;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return Promise.reject(new Error(&#x27;failed&#x27;))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        //用户注册</span><br><span class="line">        async reqUserAdd(&#123;commit&#125;,user)&#123;</span><br><span class="line">            let result = await reqUserAdd(user)</span><br><span class="line">            if(result.code == 200)&#123;</span><br><span class="line">                return &#x27;ok&#x27;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                return Promise.reject(new Error(&#x27;failed&#x27;))</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        //用户登出</span><br><span class="line">        async userLoginOut(&#123;commit&#125;)&#123;</span><br><span class="line">            commit(&#x27;clearToken&#x27;);</span><br><span class="line">            return &#x27;ok&#x27;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+<p>之后我们的请求都需要添加首次登录拿到的token，而且需要在退出登录后清除token保证安全</p>
+<h3 id="3-查看token"><a href="#3-查看token" class="headerlink" title="3.查看token"></a>3.查看token</h3><p>我们在浏览器的network选项卡里面找到发送的请求</p>
+<p><img src="https://s2.loli.net/2022/09/04/LcKYtuNykilQ3Ad.png" srcset="/img/loading.gif" lazyload alt="token.png"></p>
+<p>这个Authorization中就是我们的token，对于拦截器代码是：<code>config.headers.common[&#39;Authorization&#39;] = Cookies.get(&#39;token&#39;) </code></p>
+<p>但是如果后端是直接在request headers中找token，拦截器代码就是：<code>config.headers.Token = Cookies.get(&#39;token&#39;)</code></p>
+<p>我们的头部会多出一个Token字段，里面就是我们的token</p>
+<h2 id="8-请求"><a href="#8-请求" class="headerlink" title="8.请求"></a>8.请求</h2><p>其实我们常用的请求分为了四类：post，del，put，get对应了增删改查四种操作</p>
+<p>除了get的数据在header中，其他四个的数据都在body里面</p>
+<p>主要注意和后端协商请求方式，注意接口调试</p>
+<h2 id="9-测试"><a href="#9-测试" class="headerlink" title="9.测试"></a>9.测试</h2><h3 id="1-页面抖动"><a href="#1-页面抖动" class="headerlink" title="1.页面抖动"></a>1.页面抖动</h3><p>测试的时候需要一个很诡异的页面抖动：</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\收发系统开发日志\抖动代码.png" srcset="/img/loading.gif" lazyload alt="抖动代码"></p>
+<p>原本的width是100%，但是100%会出现页面右侧滑动栏一直抖动的问题</p>
+<p>在百度一下之后发现可能是这个原因</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\收发系统开发日志\抖动原因.png" srcset="/img/loading.gif" lazyload alt="抖动原因"></p>
+<p>也就是说刚刚好盒子大小和电脑屏幕一样大小，右侧的滚动条不知道改不改出现，产生了出现和不出现的叠加态（bushi）</p>
+<p>总的来说，这个时候把盒子的大小调小一点就可以了。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>学校收发系统开发日志</div>
+      <div>http://yoursite.com/2022/07/14/收发系统开发日志/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年7月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/08/21/JavaWeb/" title="JavaWeb">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">JavaWeb</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/13/TypeScript/" title="TypeScript">
+                        <span class="hidden-mobile">TypeScript</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

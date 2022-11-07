@@ -1,0 +1,711 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ToDoList案例拓展一.添加localstoragelocalstorage是我们学习的用于在浏览器上永久储存数据的一个方法，他有六个常用API setItem，getItem ，key，removeItem，length，clear 我们添加本地存储的时候需要用到监视属性 12345678watch: &amp;#123;    todos: &amp;#123;      deep: true, &#x2F;&#x2F;需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="todolist案例拓展">
+<meta property="og:url" content="http://yoursite.com/2022/04/10/ToDoList%E6%A1%88%E4%BE%8B%E6%8B%93%E5%B1%95/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="ToDoList案例拓展一.添加localstoragelocalstorage是我们学习的用于在浏览器上永久储存数据的一个方法，他有六个常用API setItem，getItem ，key，removeItem，length，clear 我们添加本地存储的时候需要用到监视属性 12345678watch: &amp;#123;    todos: &amp;#123;      deep: true, &#x2F;&#x2F;需要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/04/17/rxIdPbR2EcmBO1o.png">
+<meta property="article:published_time" content="2022-04-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-04-17T08:57:21.604Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="脚手架">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/04/17/rxIdPbR2EcmBO1o.png">
+  
+  
+  
+  <title>todolist案例拓展 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="todolist案例拓展"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-10 00:00" pubdate>
+          2022年4月10日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">todolist案例拓展</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="ToDoList案例拓展"><a href="#ToDoList案例拓展" class="headerlink" title="ToDoList案例拓展"></a>ToDoList案例拓展</h1><h2 id="一-添加localstorage"><a href="#一-添加localstorage" class="headerlink" title="一.添加localstorage"></a>一.添加localstorage</h2><p>localstorage是我们学习的用于在浏览器上永久储存数据的一个方法，他有六个常用API</p>
+<p>setItem，getItem ，key，removeItem，length，clear</p>
+<p>我们添加本地存储的时候需要用到监视属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">    todos: &#123;</span><br><span class="line">      deep: true, //需要监视todos数组的详细属性，需要打开深度监视</span><br><span class="line">      handler(value) &#123;</span><br><span class="line">        localStorage.setItem(&quot;todos&quot;, JSON.stringify(value)); //存到本地需要使用字符串的形式，通过JSON完成</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后是读取问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      todos: JSON.parse(localStorage.getItem(&#x27;todos&#x27;)) || [], //第一次返回null会报错，需要返回一个空数组</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>tips：</p>
+<p>1.第一次写完读取代码之后一直报错，说todos没有定义，结果是getItem里面的todos没有加 ‘ ‘ ，小伙伴们一定注意。</p>
+<p>2.我们发现整个逻辑没有用到removeItem，是因为我们监视的是todos整个数组，<strong>每次改变就会把todos在本地存储中的值替换。</strong></p>
+<h2 id="二-组件自定义事件"><a href="#二-组件自定义事件" class="headerlink" title="二.组件自定义事件"></a>二.组件自定义事件</h2><p>我们子传父的时候也可以通过自定义事件实现</p>
+<p>总的来说，自定义事件就是通过在vc中添加函数，实现了子向父传值。</p>
+<h3 id="1-添加自定义事件"><a href="#1-添加自定义事件" class="headerlink" title="1.添加自定义事件"></a>1.添加自定义事件</h3><p>第一种类型：</p>
+<p>我们先在一个标签下加入一个vc没有的事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;School @swpu=&#x27;getSchoolName&#x27;/&gt;</span><br><span class="line">//对应方法</span><br><span class="line">getSchoolName(name) &#123;</span><br><span class="line">      //通过swpu事件获得了this.name</span><br><span class="line">      console.log(&quot;学校的名字是: &quot;, name);</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后在该组件下，创造这个事件的触发条件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;button @click=&#x27;sendSchoolName&#x27;&gt;传递学校名字&lt;/button&gt;</span><br><span class="line">//在sendSchoolName的条件下触发事件</span><br><span class="line">methods: &#123;</span><br><span class="line">    sendSchoolName()&#123;</span><br><span class="line">      this.$emit(&#x27;swpu&#x27;,this.name)//替代了props，成为信息传递的媒介</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>$emit函数包括了自定义事件的名字和它所携带的参数，通过这个参数我们就可以实现子向父传参。</p>
+<p>第二种类型：</p>
+<p>我们可以通过ref直接拿到School的原型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;School ref=&quot;school&quot; /&gt;</span><br><span class="line">&lt;!-- 储存School的vc为school --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后就可以在一些情况下自由调用getStudentName方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">    this.$refs.school.$on(&quot;swpu&quot;, this.getSchoolName)</span><br><span class="line">    //通过refs拿到School的vc，然后在触发swpu事件的条件下，调用getSchoolName方法,而且可以实现延时发送</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-解绑自定义事件"><a href="#2-解绑自定义事件" class="headerlink" title="2.解绑自定义事件"></a>2.解绑自定义事件</h3><p>我们就用到$off()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">this.$off(&#x27;swpu&#x27;)</span><br><span class="line">this.$off([&#x27;swpu1&#x27;,&#x27;swpu2&#x27;])//解绑多个以数组形式</span><br><span class="line">this.$off()//解绑全部</span><br></pre></td></tr></table></figure>
+
+<p>或者使用$destory()销毁vc（组件实例对象）也可以实现解绑</p>
+<h3 id="3-自定义事件给data数据传值"><a href="#3-自定义事件给data数据传值" class="headerlink" title="3.自定义事件给data数据传值"></a>3.自定义事件给data数据传值</h3><p>在我们上面的第二种形式下：通过this传值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getSchoolName(name) &#123;</span><br><span class="line">      //通过swpu事件获得了this.name</span><br><span class="line">      console.log(&quot;学校的名字是: &quot;, name);</span><br><span class="line">      this.schoolName = name;</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>但是在下面，mounted钩子中需要用到箭头函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">this.$refs.school.$on(&quot;swpu&quot;, (name) =&gt; &#123;</span><br><span class="line">     //里面的this是触发事件的对象=》student,所以使用箭头函数</span><br><span class="line">     this.schoolName = name;</span><br><span class="line">   &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>因为箭头函数没有自己的this，向外找到了mounted，而像method中的this都是当前组件的vc</p>
+<h3 id="4-修改todolist案例"><a href="#4-修改todolist案例" class="headerlink" title="4.修改todolist案例"></a>4.修改todolist案例</h3><p>于是我们就可以将我们原案例中的子传父，全部改成自定义事件了</p>
+<p>举个例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//将MyHeader中的receive改成自定义事件</span><br><span class="line">&lt;MyHeader @receive=&quot;receive&quot; /&gt;</span><br><span class="line">//原来有receive的地方就改成</span><br><span class="line">this.$emit(&#x27;receive&#x27;,t)</span><br></pre></td></tr></table></figure>
+
+<p>十分好用！</p>
+<h2 id="三-全局事件总线"><a href="#三-全局事件总线" class="headerlink" title="三 . 全局事件总线"></a>三 . 全局事件总线</h2><p>帮助我们的组件通信，实现任意组件间的通信，而实现这样的通信的这个线也就是 X ，需要几个特点</p>
+<p><img src="https://s2.loli.net/2022/04/17/rxIdPbR2EcmBO1o.png" srcset="/img/loading.gif" lazyload alt="全局事件总线.png"></p>
+<p>而我们之前学习vc原型对象的时候说过，vc的原型对象是和vue的原型对象有联系的，也就是我们这个vue原型对象很符合我们 X 的要求。</p>
+<p>所以我们回到main.js 文件</p>
+<h3 id="1-定义事件总线"><a href="#1-定义事件总线" class="headerlink" title="1.定义事件总线"></a>1.定义事件总线</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    el: &#x27;#app&#x27;,</span><br><span class="line">    render: h =&gt; h(App),</span><br><span class="line">    // 在载入前安装全局事件总线</span><br><span class="line">    beforeCreate() &#123;</span><br><span class="line">        Vue.prototype.$bus=this//这里的this就是new的vue</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>然后我们在两个组件中使用自定义事件</p>
+<h3 id="2-传输数据："><a href="#2-传输数据：" class="headerlink" title="2.传输数据："></a>2.传输数据：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//一号组件</span><br><span class="line">methods: &#123;</span><br><span class="line">   sendStudentName()&#123;</span><br><span class="line">     this.$bus.$emit(&#x27;hello&#x27;,666)//触发事件，传输数据</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-接收数据："><a href="#3-接收数据：" class="headerlink" title="3.接收数据："></a>3.接收数据：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//二号组件</span><br><span class="line">mounted() &#123;</span><br><span class="line">    this.$bus.$on(&#x27;hello&#x27;,(x)=&gt;&#123;</span><br><span class="line">      console.log(&quot;我是School收到了 &quot;+x);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后在我们使用完这个事件之后最好解绑一下，免得$bus身上的太多了</p>
+<h3 id="4-解绑数据"><a href="#4-解绑数据" class="headerlink" title="4.解绑数据"></a>4.解绑数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 使用完之后销毁,解绑,在school销毁后也销毁hello</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    this.$bus.$off(&#x27;hello&#x27;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-修改todolist案例"><a href="#5-修改todolist案例" class="headerlink" title="5.修改todolist案例"></a>5.修改todolist案例</h3><p>在我们案例中可不是所有的通信都是最好使用全局事件总线，父子通信可以使用props和自定义方法</p>
+<p>在我们的案例中App和MyItem这两个是爷孙关系的组件就很适合我们的$bus</p>
+<p>我们不再需要使用MyList作为中介，所以在删掉相关代码之后</p>
+<p>1.在main.js 中加入事件总线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeCreate() &#123;</span><br><span class="line">        Vue.prototype.$bus=this//这里的this就是new的vue</span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>2.给数据传输方，也就是我们的MyItem加入自定义事件的$emit</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">   handler(id)&#123;</span><br><span class="line">     this.$bus.$emit(&#x27;checkTodo&#x27;,id)    </span><br><span class="line">   &#125;,</span><br><span class="line">   handleDelete(id)&#123;</span><br><span class="line">     if(confirm(&#x27;确定删除吗？&#x27;))&#123;</span><br><span class="line">       //通知App删除</span><br><span class="line">       this.$bus.$emit(&#x27;deleteTodo&#x27;,id)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>3.给数据的接收方，也就是我们的App组件加入$on</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">    this.$bus.$on(&#x27;checkTodo&#x27;,this.checktodo)</span><br><span class="line">    this.$bus.$on(&#x27;deleteTodo&#x27;,this.deletetodo)</span><br><span class="line">  &#125;,</span><br><span class="line">  // 解绑</span><br><span class="line">  beforeDestroy()&#123;</span><br><span class="line">    this.$bus.$off(&#x27;checkTodo&#x27;)</span><br><span class="line">    this.$bus.$off(&#x27;deleteTodo&#x27;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样我们的非亲组件通信就完成了！</p>
+<h2 id="四-消息订阅与发布"><a href="#四-消息订阅与发布" class="headerlink" title="四. 消息订阅与发布"></a>四. 消息订阅与发布</h2><p>消息订阅与发布需要一个库 =》pubsub</p>
+<p>我们使用 <code>npm i pubsub-js</code>实现库的安装</p>
+<h3 id="1-发布消息："><a href="#1-发布消息：" class="headerlink" title="1.发布消息："></a>1.发布消息：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//发布消息</span><br><span class="line">import pubsub from &#x27;pubsub-js&#x27; //引入pubsub库</span><br><span class="line">//pubsub.publish实现消息的发布</span><br><span class="line">methods: &#123;</span><br><span class="line">    sendStudentName()&#123;</span><br><span class="line">      pubsub.publish(&#x27;hello&#x27;,666)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-接收消息："><a href="#2-接收消息：" class="headerlink" title="2.接收消息："></a>2.接收消息：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//引入库</span><br><span class="line">import pubsub from &#x27;pubsub-js&#x27;</span><br><span class="line">//先写方法</span><br><span class="line">methods: &#123;</span><br><span class="line">    demo(msgName,data)&#123;</span><br><span class="line">      console.log(&#x27;hello消息收到了&#x27;+data,this);//这样子写的this就是vc</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">//调用实现方法</span><br><span class="line">mounted() &#123;</span><br><span class="line">   this.pubid = pubsub.subscribe(&#x27;hello&#x27;,(msgname,data)=&gt;&#123;//a是消息名=》hello,b是传过来的参数</span><br><span class="line">      // 这里函数里面的this是undefined，所以需要使用箭头函数</span><br><span class="line">      this.pubid = pubsub.subscribe(&#x27;hello&#x27;,this.demo)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">//取消订阅</span><br><span class="line"> beforeDestroy() &#123;</span><br><span class="line">    // this.$bus.$off(&#x27;hello&#x27;)</span><br><span class="line">    pubsub.unsubscribe(this.pubid)//this.pubid拿到id，取消订阅</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-修改todolist案例"><a href="#3-修改todolist案例" class="headerlink" title="3.修改todolist案例"></a>3.修改todolist案例</h3><p>这里与事件总线的写法有类似之处，就不赘述了</p>
+<p>发布消息：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    handler(id)&#123;</span><br><span class="line">      pubsub.publish(&#x27;checkTodo&#x27;,id)</span><br><span class="line">    &#125;,</span><br><span class="line">    handleDelete(id)&#123;</span><br><span class="line">      if(confirm(&#x27;确定删除吗？&#x27;))&#123;</span><br><span class="line">        //通知App删除</span><br><span class="line">        pubsub.publish(&#x27;deleteTodo&#x27;,id)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接收消息和取消订阅：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mounted() &#123;</span><br><span class="line">    this.pubid1 = pubsub.subscribe(&quot;deleteTodo&quot;, this.deletetodo);</span><br><span class="line">    this.pubid2 = pubsub.subscribe(&quot;checkTodo&quot;, this.checktodo);</span><br><span class="line">  &#125;,</span><br><span class="line">  beforeDestroy() &#123;</span><br><span class="line">    pubsub.unsubscribe(&quot;pubid1&quot;);</span><br><span class="line">    PubSub.unsubscribe(&quot;pubid2&quot;);</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E8%84%9A%E6%89%8B%E6%9E%B6/">#脚手架</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>todolist案例拓展</div>
+      <div>http://yoursite.com/2022/04/10/ToDoList案例拓展/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/17/%E5%8A%A8%E7%94%BB%E5%92%8C%E8%BF%87%E6%B8%A1/" title="动画与过渡">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">动画与过渡</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/10/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式">
+                        <span class="hidden-mobile">正则表达式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

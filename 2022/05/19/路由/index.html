@@ -1,0 +1,773 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SPA应用是否会成为以后的主流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Route">
+<meta property="og:url" content="http://yoursite.com/2022/05/19/%E8%B7%AF%E7%94%B1/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="SPA应用是否会成为以后的主流">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/XIyfN5ovzVMTPgb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/Mf14mLnbv9lD8Ez.png">
+<meta property="og:image" content="https://s2.loli.net/2022/06/20/qKtY8lSCFvjfz4V.png">
+<meta property="article:published_time" content="2022-05-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-15T13:45:01.112Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/20/XIyfN5ovzVMTPgb.png">
+  
+  
+  
+  <title>Route - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Route"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-05-19 00:00" pubdate>
+          2022年5月19日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Route</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h1><h2 id="1-什么是路由"><a href="#1-什么是路由" class="headerlink" title="1. 什么是路由"></a>1. 什么是路由</h2><p>简单定义：1.route（路由）是<strong>一组key-value的对应关系</strong>（key是组件，value是组件或者函数《后端路由-node.js》）</p>
+<p>​                  2.多个路由<strong>需要经过router（路由器）的管理</strong></p>
+<p>路由就是为了实现SPA（single page web application）应用—单页面应用</p>
+<p>我们转换页面时，<strong>只进行局部的更新，不刷新，同时改变路径</strong></p>
+<p> <strong>vue-router是vue的一个插件库，通过Vue.use()使用</strong></p>
+<p><img src="https://s2.loli.net/2022/06/20/XIyfN5ovzVMTPgb.png" srcset="/img/loading.gif" lazyload alt="路由图示.png"></p>
+<p>我们的路由就是一组组的对应关系，不同的路径，路由规则，展示不同的组件</p>
+<h2 id="2-路由的基本使用"><a href="#2-路由的基本使用" class="headerlink" title="2.路由的基本使用"></a>2.路由的基本使用</h2><p>路由所实现的就是一个单页面应用的组件切换效果，那在使用前我们需要先安装router</p>
+<h3 id="1-router的安装和基本配置"><a href="#1-router的安装和基本配置" class="headerlink" title="1.router的安装和基本配置"></a>1.router的安装和基本配置</h3><p>在控制台中输入：<code>npm i vue-router</code>(如果你是vue3，那么安装默认的4版本就好了)</p>
+<p>如果你是vue2 就需要安装3版本 :<code>npm i vue-router@3</code></p>
+<p>然后和其他插件一样，我们在main.js中引入，并使用–Vue.use()，然后加入vm配置项中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &#x27;vue&#x27;</span><br><span class="line">import App from &#x27;./App.vue&#x27;</span><br><span class="line">//引入路由</span><br><span class="line">import VueRouter from &quot;vue-router&quot;;</span><br><span class="line">//引入路由器</span><br><span class="line">import router from &#x27;./router&#x27;</span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = false</span><br><span class="line">Vue.use(VueRouter)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    el: &#x27;#app&#x27;,</span><br><span class="line">    render: h =&gt; h(App),</span><br><span class="line">    router:  router</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>和vuex一样，router也需要一个js文件来写逻辑，我们在src下新建一个文件夹（router）写入文件（index.js）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//引入组件和路由</span><br><span class="line">import About from &#x27;../components/About&#x27;</span><br><span class="line">import Home from &#x27;../components/Home&#x27;</span><br><span class="line">import vueRouter from &#x27;vue-router&#x27;</span><br><span class="line"></span><br><span class="line">export default new vueRouter(&#123;</span><br><span class="line">    routes: [//配置我们一组组的key-value关系</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#x27;/about&#x27;,//切换的路径</span><br><span class="line">            component: About//对应的组件</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#x27;/home&#x27;,</span><br><span class="line">            component: Home</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-router的使用"><a href="#2-router的使用" class="headerlink" title="2.router的使用"></a>2.router的使用</h3><p>我们准备两个组件Home和About，展示的内容便是需要切换的部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;h2&gt;我是About的内容&lt;/h2&gt;//Home中就是 我是Home中的内容</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后回到app组件，我们介绍路由对应的两个新标签</p>
+<p>1.当我们需要切换页面时，按照以往的操作，应该配置一个<code>a</code>标签，而在路由中我们使用<code>router-link</code>和<code>to</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 现在我们使用router-link 和 to 实现路由的切换--&gt;</span><br><span class="line">&lt;router-link class=&quot;list-group-item&quot; active-class=&quot;active&quot; to=&quot;about&quot;&gt;About&lt;/router-link&gt;</span><br><span class="line">&lt;!-- 由路由实现高亮active效果 active-class --&gt;</span><br><span class="line">&lt;router-link class=&quot;list-group-item&quot; active-class=&quot;active&quot; to=&quot;home&quot;&gt;Home&lt;/router-link&gt;</span><br></pre></td></tr></table></figure>
+
+<p>2.我们需要展示的内容就使用<code>router-view</code> 替代占位</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;panel-body&quot;&gt;</span><br><span class="line">  &lt;!-- 展示组件看用户的导航项 --&gt;</span><br><span class="line">  &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>OK！基本效果完成</p>
+<h3 id="3-几个注意点"><a href="#3-几个注意点" class="headerlink" title="3.几个注意点"></a>3.几个注意点</h3><p>1.路由组件通常存放在pages文件夹，一般组件通常存放在components文件夹</p>
+<p>2.通过切换，隐藏了的路由组件，默认是被销毁（destroy）的，需要的时候再去挂载。</p>
+<p>3.每个组件都有自己的<code>$route</code>属性，里面存储着自己的路由信息。</p>
+<p>4.整个应用只有一个router，可以通过组件的<code>$router</code>属性获取到</p>
+<h2 id="3-嵌套（多级）路由"><a href="#3-嵌套（多级）路由" class="headerlink" title="3.嵌套（多级）路由"></a>3.嵌套（多级）路由</h2><p>但是我们在工程中的时候，常常是一个组件切换后还有一个组件切换——所以我们拥有了多级路由</p>
+<p>有什么不一样？</p>
+<p>多级路由无非就是一个路径的问题，例如我们这里home下还有一个路由</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &#x27;/home&#x27;,</span><br><span class="line">    component: Home,</span><br><span class="line">    children: [//配置children属性，实现多级路由</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#x27;news&#x27;,</span><br><span class="line">            component: News,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            path: &#x27;message&#x27;,</span><br><span class="line">            component: Message,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后就是home下<code>router-link</code>的路径——也需要写出完整路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//home 组件中写入</span><br><span class="line">&lt;ul class=&quot;nav nav-tabs&quot;&gt;</span><br><span class="line">   &lt;li&gt;</span><br><span class="line">     &lt;router-link class=&quot;list-group-item&quot; active-class=&quot;active&quot; to=&quot;/home/news&quot;&gt;News&lt;/router-link&gt;</span><br><span class="line">   &lt;/li&gt;</span><br><span class="line">   &lt;li&gt;</span><br><span class="line">     &lt;router-link class=&quot;list-group-item&quot; active-class=&quot;active&quot; to=&quot;/home/message&quot;&gt;Message&lt;/router-link&gt;</span><br><span class="line">   &lt;/li&gt;</span><br><span class="line"> &lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最后在需要展示的位置<code>router-view</code>就好了！</p>
+<h2 id="4-路由的query参数"><a href="#4-路由的query参数" class="headerlink" title="4.路由的query参数"></a>4.路由的query参数</h2><p>我们的父路由也可以给子路由传递参数，达到影响子路由数据的效果。而我们传递参数所使用的便是<strong>query参数</strong></p>
+<p>query参数的位置和我们ajax发送请求加参数的位置一样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">      &lt;!-- :to后面解析为js语句，使用了es6模板语法 ``直接传递字符串，$&#123;&#125;传递表达式--字符串写法--&gt;</span><br><span class="line">&lt;li v-for=&quot;m in messageList&quot; :key=&quot;m.id&quot;&gt;&lt;router-link :to=&quot;`/home/message/detail?id=$&#123;m.id&#125;&amp;title=$&#123;m.title&#125;`&quot;&gt;&#123;&#123;m.title&#125;&#125;&lt;/router-link&gt;&amp;nbsp;&amp;nbsp;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样子写参数多了会不美观，所以我们写成对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 推荐-对象写法 --&gt;</span><br><span class="line">&lt;li v-for=&quot;m in messageList&quot; :key=&quot;m.id&quot;&gt;</span><br><span class="line">  &lt;router-link</span><br><span class="line">    :to=&quot;&#123;</span><br><span class="line">      path: &#x27;/home/message/detail&#x27;,</span><br><span class="line">      query: &#123; id: m.id, title: m.title &#125;,</span><br><span class="line">    &#125;&quot;</span><br><span class="line">    &gt;&#123;&#123; m.title &#125;&#125;&lt;/router-link</span><br><span class="line">  &gt;&amp;nbsp;&amp;nbsp;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将:to中的内容写成对象，数据展示更加直观</p>
+<p>第二个问题：子路由如何收集这些数据呢？</p>
+<p>我们先来查看我们传递了参数之后的<code>$route</code>：<img src="https://s2.loli.net/2022/06/20/Mf14mLnbv9lD8Ez.png" srcset="/img/loading.gif" lazyload alt="query后的route.png"></p>
+<p>新增了query属性，query属性里面就是我们传递的数据！</p>
+<p>那我们直接使用它：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;消息编号：&#123;&#123;$route.query.id&#125;&#125;&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;消息标题：&#123;&#123;$route.query.title&#125;&#125;&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样数据传输就大功告成了</p>
+<h2 id="5-路由的命名"><a href="#5-路由的命名" class="headerlink" title="5.路由的命名"></a>5.路由的命名</h2><p>大家有没有觉得，当我们的路由嵌套变多，路径越写越长十分麻烦</p>
+<p>那么现在，我们就使用名字来表示一个路由：添加<code>name</code>参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">children: [</span><br><span class="line">    &#123;</span><br><span class="line">        name: &#x27;xiaodi&#x27;,</span><br><span class="line">        path: &#x27;detail&#x27;,</span><br><span class="line">        component: Detail,</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>但是我们的name参数在使用时，需要将to写成对象形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for=&quot;m in messageList&quot; :key=&quot;m.id&quot;&gt;</span><br><span class="line">  &lt;router-link</span><br><span class="line">    :to=&quot;&#123;</span><br><span class="line">      // path: &#x27;/home/message/detail&#x27;,</span><br><span class="line">      name : &#x27;xiaoxi&#x27;,//不用写冗长的路径名</span><br><span class="line">      query: &#123; id: m.id, title: m.title &#125;,</span><br><span class="line">    &#125;&quot;</span><br><span class="line">    &gt;&#123;&#123; m.title &#125;&#125;&lt;/router-link</span><br><span class="line">  &gt;&amp;nbsp;&amp;nbsp;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>十分好用</p>
+<h2 id="6-params参数"><a href="#6-params参数" class="headerlink" title="6.params参数"></a>6.params参数</h2><p>我们也可以使用params参数传递参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for=&quot;m in messageList&quot; :key=&quot;m.id&quot;&gt;&lt;router-link :to=&quot;`/home/message/detail/$&#123;m.id&#125;/$&#123;m.title&#125;`&quot;&gt;&#123;&#123;m.title&#125;&#125;&lt;/router-link&gt;&lt;/li&gt;</span><br><span class="line">//后两个代表参数</span><br></pre></td></tr></table></figure>
+
+<p>或者对象写法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;li v-for=&quot;m in messageList&quot; :key=&quot;m.id&quot;&gt;</span><br><span class="line">  &lt;router-link</span><br><span class="line">    :to=&quot;&#123;</span><br><span class="line">      // path: &#x27;/home/message/detail&#x27;,</span><br><span class="line">      name : &#x27;xiaoxi&#x27;,//不用写冗长的路径名</span><br><span class="line">      params: &#123; id: m.id, title: m.title &#125;,</span><br><span class="line">    &#125;&quot;</span><br><span class="line">    &gt;&#123;&#123; m.title &#125;&#125;&lt;/router-link</span><br><span class="line">  &gt;&amp;nbsp;&amp;nbsp;</span><br><span class="line">&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，在对象写法中params不能和path一起搭配使用</p>
+<p>然后我们需要在路由中修改path：添加占位符区分路径和参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">children: [</span><br><span class="line">    &#123;</span><br><span class="line">        name: &#x27;xiaoxi&#x27;,</span><br><span class="line">        path: &#x27;detail/:id/:title&#x27;,//使用占位符接收params参数</span><br><span class="line">        component: Detail,</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>读取数据的时候使用<code>$route.params.xxx</code>就可以了</p>
+<h2 id="7-props参数"><a href="#7-props参数" class="headerlink" title="7.props参数"></a>7.props参数</h2><p>但是当我们传递的参数过多的时候，每一个参数前加上<code>$route.params.xxx</code>十分不方便，那么我们可以使用props参数</p>
+<p>props写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">name: &#x27;xiaoxi&#x27;,</span><br><span class="line">path: &#x27;detail/:id/:title&#x27;,//使用占位符接收params参数</span><br><span class="line">component: Detail,</span><br><span class="line">//第一种写法，对象写法-一般不使用</span><br><span class="line">// props:&#123;id:&#x27;001&#x27;,title:&#x27;hello&#x27;&#125;</span><br><span class="line">//第二种写法，布尔值写法，将params参数转换为props传给detail</span><br><span class="line">// props:true</span><br><span class="line">//第三种写法，函数写法，顾及到了query参数</span><br><span class="line">props($route) &#123;</span><br><span class="line">    return &#123; id: $route.query.id, title: $route.query.title &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之后在detail组件中申明接收：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">props: [&quot;id&quot;, &quot;title&quot;],</span><br><span class="line">//正常使用</span><br><span class="line">&lt;li&gt;消息编号：&#123;&#123; id &#125;&#125;&lt;/li&gt;</span><br><span class="line">&lt;li&gt;消息标题：&#123;&#123; title &#125;&#125;&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-replace模式"><a href="#8-replace模式" class="headerlink" title="8.replace模式"></a>8.replace模式</h2><p>1.作用：控制路由跳转时操作浏览器历史记录的模式</p>
+<p>2.浏览器的历史记录有两种写入方式：分别为<code>push</code>和<code>replace</code>，<code>push</code>是追加历史记录，<code>replace</code>是替换当前记录。路由跳转时候默认为<code>push</code></p>
+<p>3.如何开启<code>replace</code>模式：<code>&lt;router-link replace :to=&quot;</code>/home/message/detail/${m.id}/${m.title}<code>&quot;&gt;&#123;&#123;m.title&#125;&#125;&lt;/router-link&gt;</code></p>
+<h2 id="9-编程式路由跳转"><a href="#9-编程式路由跳转" class="headerlink" title="9.编程式路由跳转"></a>9.编程式路由跳转</h2><p>不借助<code>router-link</code>实现路由跳转</p>
+<p>我们通过<code>$router</code>中的方法实现路由的跳转</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pushShow(m)&#123;</span><br><span class="line">  this.$router.push(&#123;//内部和router-link，to的内部一样</span><br><span class="line">      name : &#x27;xiaoxi&#x27;,//不用写冗长的路径名</span><br><span class="line">      query: &#123; id: m.id, title: m.title &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line">replaceShow(m)&#123;</span><br><span class="line">    this.$router.replace(&#123;</span><br><span class="line">      name : &#x27;xiaoxi&#x27;,//不用写冗长的路径名</span><br><span class="line">      query: &#123; id: m.id, title: m.title &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同样可以是实现路由的前进和后退</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">back()&#123;</span><br><span class="line">  this.$router.back()</span><br><span class="line">&#125;,</span><br><span class="line">forward()&#123;</span><br><span class="line">  this.$router.forward()</span><br><span class="line">&#125;,</span><br><span class="line">go()&#123;</span><br><span class="line">  this.$router.go(+2)//代表前进两次，-2代表后退两次</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="10-缓存路由组件"><a href="#10-缓存路由组件" class="headerlink" title="10.缓存路由组件"></a>10.缓存路由组件</h2><p>让不展示的路由组件保持挂载，不被销毁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;keep-alive include=&quot;News&quot;&gt;</span><br><span class="line">  &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">&lt;/keep-alive&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 如果不写include属性，则是默认缓存所有在这里展示的组件，include中填写的是<strong>组件名</strong></p>
+<p>或者写成数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:include=[&#x27;News&#x27;,&#x27;Message&#x27;]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="11-生命周期钩子"><a href="#11-生命周期钩子" class="headerlink" title="11.生命周期钩子"></a>11.生命周期钩子</h2><p>路由组件的两个独有的生命周期钩子，用于捕获路由组件的激活状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">activated()&#123;</span><br><span class="line">  console.log(&#x27;News组件被激活了&#x27;);</span><br><span class="line">&#125;,</span><br><span class="line">deactivated()&#123;</span><br><span class="line">  console.log(&#x27;News组件失活了&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="12-路由守卫"><a href="#12-路由守卫" class="headerlink" title="12.路由守卫"></a>12.路由守卫</h2><p>为了保护我们的路由安全而设置</p>
+<h3 id="1-前置路由守卫"><a href="#1-前置路由守卫" class="headerlink" title="1.前置路由守卫"></a>1.前置路由守卫</h3><p>在初始化和路由切换的时候执行一个函数（注意这里先用route去接VueRouter,在最后才暴露）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; &#123;</span><br><span class="line">    if (to.fullPath === &#x27;/home/news&#x27; || to.fullPath === &#x27;/home/message&#x27;) &#123;//去这两个路由加判断</span><br><span class="line">        console.log(to,from);</span><br><span class="line">        if (localStorage.getItem(&#x27;school&#x27;)===&#x27;swpu&#x27;)&#123;</span><br><span class="line">            next()</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            alert(&#x27;权限不够&#x27;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如上面代码所示，我们在这个函数中可以拿到三个参数，next是用于跳转的，to和from如下图</p>
+<p><img src="https://s2.loli.net/2022/06/20/qKtY8lSCFvjfz4V.png" srcset="/img/loading.gif" lazyload alt="从home跳转到xxx.png"></p>
+<p>其中有各种各样的属性，我们可以读取属性如：path，name，进行判断</p>
+<h3 id="2-后置路由守卫"><a href="#2-后置路由守卫" class="headerlink" title="2.后置路由守卫"></a>2.后置路由守卫</h3><p>补充：meta（路由元信息）-在路由元信息中加入isAuth参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">path: &#x27;news&#x27;,</span><br><span class="line">component: News,</span><br><span class="line">meta:&#123;isAuth:true&#125;//权限校验配置</span><br></pre></td></tr></table></figure>
+
+<p>可以简化我们路由的判断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if (to.meta.isAuth) &#123;//去这两个路由加判断</span><br><span class="line">    console.log(to,from);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>后置路由守卫，顾名思义，就是在跳转之后执行的函数–<code>afterEach</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//后置路由守卫</span><br><span class="line">router.afterEach((to,from)=&gt;&#123;</span><br><span class="line">    document.title = to.meta.title || &#x27;欢迎&#x27;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>里面进行我们跳转之后为网页标签的一个修改</p>
+<h3 id="3-独享路由守卫"><a href="#3-独享路由守卫" class="headerlink" title="3.独享路由守卫"></a>3.独享路由守卫</h3><p>独享路由守卫写在我们路由的配置项当中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">path: &#x27;news&#x27;,</span><br><span class="line">component: News,</span><br><span class="line">meta:&#123;isAuth:true,title:&#x27;新闻&#x27;&#125;,//权限校验配置</span><br><span class="line">//独享路由守卫</span><br><span class="line">beforeEnter: (to, from, next) =&gt; &#123;</span><br><span class="line">    if (to.meta.isAuth) &#123;//去这两个路由加判断</span><br><span class="line">        console.log(to,from);</span><br><span class="line">        if (localStorage.getItem(&#x27;school&#x27;)===&#x27;swpu&#x27;)&#123;</span><br><span class="line">            next()</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            alert(&#x27;权限不够&#x27;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        next()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而且独享路由守卫只有前置守卫（beforeEnter）没有后置</p>
+<p>后置路由守卫统一写到afterEach当中</p>
+<h3 id="4-组件内路由守卫"><a href="#4-组件内路由守卫" class="headerlink" title="4.组件内路由守卫"></a>4.组件内路由守卫</h3><p>我们组件内部也可以加入路由守卫——分别是<code>beforeRouteEnter</code>和<code>beforeRouteLeave</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//使用路由规则，进入组件前</span><br><span class="line">beforeRouteEnter(to, from, next) &#123;</span><br><span class="line">  if (to.meta.isAuth) &#123;</span><br><span class="line">    //去这两个路由加判断</span><br><span class="line">    console.log(to, from);</span><br><span class="line">    if (localStorage.getItem(&quot;school&quot;) === &quot;swpu&quot;) &#123;</span><br><span class="line">      next();</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      alert(&quot;权限不够&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    next();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">beforeRouteLeave (to, from, next) &#123;</span><br><span class="line">  //在离开组件前执行--保存数据。。。</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="13-路由器的两种工作模式"><a href="#13-路由器的两种工作模式" class="headerlink" title="13.路由器的两种工作模式"></a>13.路由器的两种工作模式</h2><p>1.对于一个url来说，什么是hash值？——#及其以后的内容就是hash值</p>
+<p>2.hash值不会包含在http请求中，即hash值不会带给服务器</p>
+<p>3.hash模式：</p>
+<p>​        1.地址中永远带着#号</p>
+<p>​        2.若以后将地址通过第三方手机app分享，有可能会被标记不合法</p>
+<p>​        3.兼容性较好</p>
+<p>4.history模式：</p>
+<p>​        1.地址干净</p>
+<p>​        2.兼容性和hash模式相比略差</p>
+<p>​        3.应用部署上线时需要后端人员支持，解决刷新页面报404的问题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const router = new vueRouter(&#123;</span><br><span class="line">    mode:&#x27;hash&#x27;,//这里设置模式</span><br><span class="line">    routes: </span><br><span class="line">    ......</span><br></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Vue/">#Vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Route</div>
+      <div>http://yoursite.com/2022/05/19/路由/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年5月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/06/04/Promise/" title="Promise">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Promise</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/05/16/Git/" title="Git">
+                        <span class="hidden-mobile">Git</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

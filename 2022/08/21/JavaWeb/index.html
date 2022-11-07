@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="javaweb业务层的操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb">
+<meta property="og:url" content="http://yoursite.com/2022/08/21/JavaWeb/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="javaweb业务层的操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/WycgwUYSbGOfEzk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/IJjv4fVehPNTXFu.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/yr98fed5gJ7EFWk.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/6EgNOZnM45zTmKB.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/NmEvZifcIBDr3Mb.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/8nK3lEHZGeOUN9s.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/cqhP5gwxFstI3Nz.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/orKT48evUYl6XZO.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/InaLCDdqG4TVtX8.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/37nhHRgweNsXdko.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/fPR9nMxGieF1JOh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/zFvolEhmIegxb2C.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/oI9lKJ7MysVk8gh.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/aJoEIAzYR62HVCj.png">
+<meta property="og:image" content="https://s2.loli.net/2022/09/04/1rAOgdpHS2LcsMi.png">
+<meta property="article:published_time" content="2022-08-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-04T03:47:45.302Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="JavaWeb">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/09/04/WycgwUYSbGOfEzk.png">
+  
+  
+  
+  <title>JavaWeb - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaWeb"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-21 00:00" pubdate>
+          2022年8月21日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaWeb</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>Tomcat用于搭建我们本机的服务器，我们可以部署javaweb项目到Tomcat中，然后其他用于就可以在浏览器中浏览</p>
+<h2 id="1-下载，安装"><a href="#1-下载，安装" class="headerlink" title="1.下载，安装"></a>1.下载，安装</h2><p>我们到Tomcat的官网中下载就可以了 &lt;<a target="_blank" rel="noopener" href="https://tomcat.apache.org/">Apache Tomcat® - Welcome!</a>&gt;</p>
+<p>我选择的是8版本，下载压缩包，然后解压就完成了下载和安装</p>
+<p>然后点击<code>bin</code>目录下的<code>startup.bat</code>就可以开始运行，在浏览器中进入本地8080端口就可以看到页面</p>
+<p>如果出现中文乱码，那就在conf文件夹下找到<code>logging.properties</code>这个文件</p>
+<p>更改编码格式：（原为UTF-8）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.util.logging.ConsoleHandler.encoding = GBK</span><br></pre></td></tr></table></figure>
+
+<p>打开后可以使用Ctrl+C关闭</p>
+<h2 id="2-基本使用"><a href="#2-基本使用" class="headerlink" title="2.基本使用"></a>2.基本使用</h2><p><img src="https://s2.loli.net/2022/09/04/WycgwUYSbGOfEzk.png" srcset="/img/loading.gif" lazyload alt="端口.png"></p>
+<p>项目部署的时候直接放在webapps这个目录下就算部署成功，在端口号下输入路径就可以看到</p>
+<p>我们部署项目一般会将文件夹打包成<code>war</code>包的格式，<code>war</code>包放入部署文件夹之后会自动解压缩</p>
+<h2 id="3-项目结构"><a href="#3-项目结构" class="headerlink" title="3.项目结构"></a>3.项目结构</h2><p>web项目结构中主要是增加了webapp这个目录，然后就是WEB-INF中的配置文件。</p>
+<p>然后在pom.xml中需要配置使用war方式打包</p>
+<p><img src="https://s2.loli.net/2022/09/04/IJjv4fVehPNTXFu.png" srcset="/img/loading.gif" lazyload alt="web项目结构.png"></p>
+<h2 id="4-创建maven项目"><a href="#4-创建maven项目" class="headerlink" title="4.创建maven项目"></a>4.创建maven项目</h2><p>有两种方式</p>
+<p>1.使用骨架</p>
+<p><img src="https://s2.loli.net/2022/09/04/yr98fed5gJ7EFWk.png" srcset="/img/loading.gif" lazyload alt="骨架创建.png"></p>
+<p>但是会有很多杂项配置，所以不建议使用</p>
+<p>2.不使用骨架</p>
+<p><img src="https://s2.loli.net/2022/09/04/6EgNOZnM45zTmKB.png" srcset="/img/loading.gif" lazyload alt="非骨架创建.png"></p>
+<p>这样我们的pom.xml文件中的内容就比较清爽，但是需要使用<code>Ctrl+Shift+Alt+s</code>打开facets补齐</p>
+<p>运行时我们也有两种方式</p>
+<p>1.是集成本地的Tomcat，但是较为繁琐</p>
+<p>2.idea为我们提供了插件，我们可以使用插件快捷集成，但是只支持到Tomcat7版本</p>
+<p><img src="https://s2.loli.net/2022/09/04/NmEvZifcIBDr3Mb.png" srcset="/img/loading.gif" lazyload alt="maven中加入Tomcat.png"></p>
+<h1 id="Servelet"><a href="#Servelet" class="headerlink" title="Servelet"></a>Servelet</h1><p>servelet用于实现对动态资源的管理和响应</p>
+<p>比如我们登录携带的参数，servelet就适用于对于不同的参数进行响应</p>
+<p>serverlet是javaee的规范之一，也就是一个接口</p>
+<h2 id="1-简单使用"><a href="#1-简单使用" class="headerlink" title="1.简单使用"></a>1.简单使用</h2><p><img src="https://s2.loli.net/2022/09/04/8nK3lEHZGeOUN9s.png" srcset="/img/loading.gif" lazyload alt="简单使用.png"></p>
+<p>首先在<code>pom.xml</code>中加入Tomcat和servelet</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--    servlet依赖--&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;javax.servlet&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.1.0&lt;/version&gt;</span><br><span class="line">            &lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--    tomcat 插件--&gt;</span><br><span class="line">    &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">                &lt;version&gt;2.2&lt;/version&gt;</span><br><span class="line">            &lt;/plugin&gt;</span><br><span class="line">        &lt;/plugins&gt;</span><br><span class="line">    &lt;/build&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后实现servelet接口，记得在service的方法处配置访问路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">package com.Servlet;</span><br><span class="line"></span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.annotation.WebServlet;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">@WebServlet(&quot;/demo1&quot;)</span><br><span class="line">public class demo1 implements Servlet &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void init(ServletConfig servletConfig) throws ServletException &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public ServletConfig getServletConfig() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">//    servlet 被访问时触发</span><br><span class="line">    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;servlet hello world&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getServletInfo() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void destroy() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>然后我们进去8080端口下<code>servelet/demo1</code></p>
+<p>访问这个页面我们虽然看不到任何东西，但是我们idea的控制台就会输出<code>servelet hello world</code></p>
+<h2 id="2-生命周期"><a href="#2-生命周期" class="headerlink" title="2.生命周期"></a>2.生命周期</h2><p><img src="https://s2.loli.net/2022/09/04/cqhP5gwxFstI3Nz.png" srcset="/img/loading.gif" lazyload alt="生命周期.png"></p>
+<p>首先第一个是init，初始化方法</p>
+<p>调用时机是servelet第一次被访问时，调用次数就只有一次</p>
+<p>可以在<code>@webServlet</code>中修改触发时间，如果<code>loadOnStartup = -1</code>（默认值）就是访问时才触发，如果<code>loadOnStartup = 1（正整数）</code>就是服务器开启就触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@WebServlet(urlPatterns = &quot;/demo1&quot; ,loadOnStartup = 1)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>还有<code>service</code>周期，就是浏览器每一次访问时调用，调用次数是多次</p>
+<p>然后是<code>destroy</code>方法，在释放资源和服务器关闭的时候，也就是销毁servelet对象的时候触发</p>
+<p>一般是打开控制台使用<code>Ctrl+C</code></p>
+<p>还有一个<code>getServletInfo</code>这个是获取一些版权信息的，一般<code>return null</code></p>
+<p>然后就是<code>getServletConfig</code>用于获取配置对象，配置对象在init方法中作为参数传入，所以我们这里要使用init方法中的局部变量</p>
+<p>于是这样做：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    ServletConfig config;</span><br><span class="line">    @Override</span><br><span class="line">    public void init(ServletConfig servletConfig) throws ServletException &#123;</span><br><span class="line">        //设置了loadOnStartup，服务器开启就传递数据</span><br><span class="line">        //成员变量赋值</span><br><span class="line">        this.config = servletConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//    返回配置对象</span><br><span class="line">    @Override</span><br><span class="line">    public ServletConfig getServletConfig() &#123;</span><br><span class="line">        return this.config;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://s2.loli.net/2022/09/04/orKT48evUYl6XZO.png" srcset="/img/loading.gif" lazyload alt="servelet生命周期函数.png"></p>
+<h2 id="3-体系结构"><a href="#3-体系结构" class="headerlink" title="3.体系结构"></a>3.体系结构</h2><p>Serverlet作为接口有很多的实现类，提供更强大的功能</p>
+<p><img src="https://s2.loli.net/2022/09/04/InaLCDdqG4TVtX8.png" srcset="/img/loading.gif" lazyload alt="servelet体系结构.png"></p>
+<p>我们使用<code>HttpServlet</code>对于我们的get和post请求进行response</p>
+<p>get请求直接就是在url后面跟参数</p>
+<p>post请求则是需要添加到body中，比如使用form表单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class demo2 extends HttpServlet &#123;</span><br><span class="line">    @Override</span><br><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;get ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;post ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-URL配置"><a href="#4-URL配置" class="headerlink" title="4.URL配置"></a>4.URL配置</h2><p>首先我们的一个servelet可以配置多个URLpattern使用逗号间隔</p>
+<p><code>@WebServlet(urlPatterns = &quot;/demo1,/demo2&quot; ,loadOnStartup = 1)</code></p>
+<p>还有一些配置规则，我们现在使用的就是精确匹配</p>
+<p>还有三种配置规则实现多url的归一问题</p>
+<p>而且越精确的匹配规则，优先级越高，同时满足目录匹配和精确匹配就使用精确匹配的url</p>
+<p><img src="https://s2.loli.net/2022/09/04/37nhHRgweNsXdko.png" srcset="/img/loading.gif" lazyload alt="servelet url配置.png"></p>
+<h2 id="5-response和request对象"><a href="#5-response和request对象" class="headerlink" title="5.response和request对象"></a>5.response和request对象</h2><p>在service函数中有两个参数res和resp，分别作为获取请求的对象和设置返回数据的对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;</span><br><span class="line">        System.out.println(&quot;get ...&quot;);</span><br><span class="line">//  获取name参数中的数据</span><br><span class="line">        String name = req.getParameter(&quot;name&quot;);</span><br><span class="line">//  使用response对象</span><br><span class="line">        resp.setHeader(&quot;content-type&quot;,&quot;text/html;charset=utf-8&quot;);</span><br><span class="line">        resp.getWriter().write(&quot;&lt;h1&gt;&quot;+name+&quot;欢迎你! &lt;/h1&gt;&quot;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-request"><a href="#5-1-request" class="headerlink" title="5.1 request"></a>5.1 request</h3><p>request处理浏览器发给服务器的报文</p>
+<p>获取请求行的数据，有以下几个常用的方法</p>
+<p><img src="https://s2.loli.net/2022/09/04/fPR9nMxGieF1JOh.png" srcset="/img/loading.gif" lazyload alt="request方法.png"></p>
+<p>还有此处使用的根据参数的名字获取里面的数据的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String name = req.getParameter(&quot;name&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>还有请求头和请求体</p>
+<p><img src="https://s2.loli.net/2022/09/04/zFvolEhmIegxb2C.png" srcset="/img/loading.gif" lazyload alt="request可以获取的数据.png"></p>
+<p>请求体代表使用的是post请求</p>
+<p>获取了之后是字符输入流（如果是图片是字节输入流），进行readline</p>
+<p><img src="https://s2.loli.net/2022/09/04/oI9lKJ7MysVk8gh.png" srcset="/img/loading.gif" lazyload alt="req获取请求体.png"></p>
+<p>获取请求参数时，原本获取的是字符串<code>javaweb = 1&amp;...</code></p>
+<p>get使用：</p>
+<p><code>String getQueryString()</code></p>
+<p>post使用：</p>
+<p><code>BufferedReader getReader()</code></p>
+<p>但是如果我们post和get请求有大量重复的代码，我们就可以在doPost中调用doGet方法，然而这种实现的前提就是要统一请求参数的函数</p>
+<p>在request中我们就使用泛型的Map，键值对的方式，当一个键有多个值的时候就会形成一个<code>String[]</code>数组。</p>
+<p>servelet为我们封装了三个方法获取参数:</p>
+<p><img src="https://s2.loli.net/2022/09/04/aJoEIAzYR62HVCj.png" srcset="/img/loading.gif" lazyload alt="request获取请求参数.png"></p>
+<p>因为是通用的获取参数的方法，<strong>所以现在就可以在doPost中调用doGet了</strong></p>
+<p>idea中就给我们准备了servelet的模板，点击新建，选择new一个servelet就可以了</p>
+<p>如果有中文乱码问题</p>
+<p>1.post请求</p>
+<p>要先使用<code>req.setCharacterEncoding(&quot;UTF-8&quot;);</code>，设置字符输入流的编码格式</p>
+<p>然后再获取参数</p>
+<p>2.get请求</p>
+<p>get请求的中文编码字符集是utf-8，但是Tomcat的解码字符集是iso，所以为出现乱码</p>
+<p>先编码再解码：</p>
+<p>使用<code>new String(username.getBytes(&quot;ISO-8859-1&quot;),&quot;UTF-8&quot;);</code></p>
+<p>请求转发问题</p>
+<p>当我们得到一个需要在服务器内进行转发的请求时（既需要在服务器内部再发一次请求）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//  请求转发</span><br><span class="line">        req.getRequestDispatcher(&quot;/demo1&quot;).forward(req,resp);</span><br></pre></td></tr></table></figure>
+
+<p>此时这个请求就被转发到了demo1中又进行一遍处理</p>
+<p>通过这个我们还可以做到共享资源</p>
+<p>在demo2的servelet中设置资源，需要注意这里资源的类型是object</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//  设置资源</span><br><span class="line">//        增加新资源，hello是object类型</span><br><span class="line">        req.setAttribute(&quot;msg&quot;,&quot;hello&quot;);</span><br><span class="line">//  请求转发</span><br><span class="line">        req.getRequestDispatcher(&quot;/demo3&quot;).forward(req,resp);</span><br></pre></td></tr></table></figure>
+
+<p>转发给demo3，在demo3中获取资源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object message = request.getAttribute(&quot;msg&quot;);</span><br><span class="line">System.out.println(message);</span><br></pre></td></tr></table></figure>
+
+<p>还可以删除资源</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//        删除资源</span><br><span class="line">        req.removeAttribute(&quot;msg&quot;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5-2-response对象"><a href="#5-2-response对象" class="headerlink" title="5.2 response对象"></a>5.2 response对象</h3><p><img src="https://s2.loli.net/2022/09/04/1rAOgdpHS2LcsMi.png" srcset="/img/loading.gif" lazyload alt="response对象方法.png"></p>
+<p>字符输出用于html页面等，字节输出用于图片等字节文件</p>
+<h4 id="1-重定向"><a href="#1-重定向" class="headerlink" title="1.重定向"></a>1.重定向</h4><p>也是转发请求的方式，实现两个资源的跳转</p>
+<p>302的状态码就是代表重定向</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resp.setStatus(302);</span><br><span class="line">resp.setHeader(&quot;location&quot;,&quot;资源B的路径&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>还有简化方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.sendRedirect(&quot;路径&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>重定向有点类似于页面跳转，在触发重定向之后会导致页面跳转</p>
+<p>而且会触发两次请求</p>
+<p>而且重定向需要添加虚拟目录</p>
+<p>关于虚拟目录是否需要添加有一个简单的判断标准</p>
+<p>1.如果是在服务器内部使用—forword跳转转发</p>
+<p>​    就不需要虚拟目录</p>
+<p>2.如果是在浏览器中使用—重定向</p>
+<p>​    就需要添加虚拟目录</p>
+<p>我们还可以动态获取虚拟目录</p>
+<p>使用<code>request.getContextPath()</code>就可以动态获取虚拟目录</p>
+<h4 id="2-响应字符字节"><a href="#2-响应字符字节" class="headerlink" title="2.响应字符字节"></a>2.响应字符字节</h4><p>我们使用writer获取写入对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//        设置识别html页面</span><br><span class="line">        response.setHeader(&quot;Content&quot;,&quot;text/html&quot;);</span><br><span class="line">        PrintWriter writer = response.getWriter();</span><br><span class="line">        writer.write(&quot;&lt;h1&gt;abc&lt;/h1&gt;&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>如果输出html页面有问题就可以加上这段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//        设置识别html页面</span><br><span class="line">        response.setHeader(&quot;Content&quot;,&quot;text/html&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>如果出现中文乱码就使用<code>setContentType</code>设置字符集</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">        response.setContentType(&quot;text/html;charset=utf-8&quot;);</span><br><span class="line">//        设置识别html页面</span><br><span class="line">//        response.setHeader(&quot;Content&quot;,&quot;text/html&quot;);</span><br><span class="line">        PrintWriter writer = response.getWriter();</span><br><span class="line">        writer.write(&quot;你好&quot;);</span><br><span class="line">        writer.write(&quot;&lt;h1&gt;abc&lt;/h1&gt;&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>字符流不需要关闭</p>
+<p>响应字节流</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//        设置字节数据</span><br><span class="line"></span><br><span class="line">//        读取文件</span><br><span class="line">        FileInputStream fls = new FileInputStream(&quot;D:\\新建文件夹\\文件\\GitHub\\pic\\ajax\\http请求报文.png&quot;);</span><br><span class="line">//        获取response的输出流</span><br><span class="line">        ServletOutputStream os =response.getOutputStream();</span><br><span class="line">//        完成流的copy</span><br><span class="line">        byte[] buff = new byte[1024];</span><br><span class="line">        int len = 0;</span><br><span class="line">        while((len = fls.read(buff)) != -1)&#123;</span><br><span class="line">            os.write(buff,0,len);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">//        关闭流</span><br><span class="line">        fls.close();</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以获取图片等资源</p>
+<p>关于字节流的复制</p>
+<p>我们可以使用 <code>commons-io</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;commons-io&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;commons-io&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.6&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后使用<code>IOUtils</code>的<code>copy</code>方法放入输入流和输出流</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOUtils.copy(fls,os);</span><br></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaWeb/">#JavaWeb</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaWeb</div>
+      <div>http://yoursite.com/2022/08/21/JavaWeb/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/06/EAMC6/" title="EAMCScript6">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">EAMCScript6</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/07/14/%E6%94%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/" title="学校收发系统开发日志">
+                        <span class="hidden-mobile">学校收发系统开发日志</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

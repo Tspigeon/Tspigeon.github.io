@@ -1,0 +1,769 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="ajax 是我们前后端交互中很重要的一环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajax">
+<meta property="og:url" content="http://yoursite.com/2022/04/30/Ajax/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="ajax 是我们前后端交互中很重要的一环">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/WQxFRuGhKTngSvp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/4aLxr5AUydKk8bi.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/jXSI68hposJFv7V.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/AePl9E8Z6XGz74J.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/czu13ligoVNLURv.png">
+<meta property="og:image" content="https://s2.loli.net/2022/05/03/auoGSPJXMkTF1bx.png">
+<meta property="article:published_time" content="2022-04-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-03T01:59:57.211Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="Ajax">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://s2.loli.net/2022/05/03/WQxFRuGhKTngSvp.png">
+  
+  
+  
+  <title>Ajax - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Ajax"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-04-30 00:00" pubdate>
+          2022年4月30日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          90 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Ajax</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h1><h2 id="1-Ajax简介"><a href="#1-Ajax简介" class="headerlink" title="1.Ajax简介"></a>1.Ajax简介</h2><p>Ajax实现的是我们网页在不刷新时，发送http请求，也就是<strong>有用则加载，不用就不加载</strong></p>
+<p>它的优点是：1.不刷新实现请求，2.更新部分页面内容</p>
+<p>​        缺点是：1.没有浏览历史，不能回退，2.有跨域问题，3.对于SEO（搜索引擎优化）不友好，比如爬虫</p>
+<p>而它在传输数据时，使用的语言，之前是XML（一种类似HTML但是没有预定义标签的传输和储存方式），进化到现在使用的便是JSON</p>
+<h2 id="2-http报文"><a href="#2-http报文" class="headerlink" title="2.http报文"></a>2.http报文</h2><p>http协议是网络层上的协议，实现客户机服务器数据交互而存在，它有两种类型的报文：</p>
+<h3 id="（1）-请求报文"><a href="#（1）-请求报文" class="headerlink" title="（1）.请求报文"></a>（1）.请求报文</h3><p><img src="https://s2.loli.net/2022/05/03/WQxFRuGhKTngSvp.png" srcset="/img/loading.gif" lazyload alt="http请求报文.png"></p>
+<p>注意的是：报文头的格式，空行用于分割报文头和报文体，报文体在POST下是不为空的，在GET下是为空的（POST和GET都是请求方式）</p>
+<h3 id="（2）-响应报文"><a href="#（2）-响应报文" class="headerlink" title="（2）.响应报文"></a>（2）.响应报文</h3><p><img src="https://s2.loli.net/2022/05/03/4aLxr5AUydKk8bi.png" srcset="/img/loading.gif" lazyload alt="http响应报文.png"></p>
+<p>响应报文同样需要注意 报文头部，空行和报文体，这里的报文体返回的是服务器的数据，例如我们的html代码</p>
+<h3 id="（3）-NetWork"><a href="#（3）-NetWork" class="headerlink" title="（3）.NetWork"></a>（3）.NetWork</h3><p>我们在浏览器控制台中会有一个NetWork选项：（这里的请求报文是GET类型，所以没有报文体）</p>
+<p><img src="https://s2.loli.net/2022/05/03/jXSI68hposJFv7V.png" srcset="/img/loading.gif" lazyload alt="network选项.png"></p>
+<p>进入一个网页点开便是我们发送的所有请求（如果没有就刷新一下），在左侧的Name栏点击第一个文件，Header下的Request Header就是我们请求报文的报文头，Response Header便是我们响应报文的报文头。</p>
+<p>那么报文体在哪里呢？报文体在我们的Response选项中，得到的就是我们响应报文的报文体。如果我们发送的是POST请求报文，那它的报文体就在：</p>
+<p><img src="https://s2.loli.net/2022/05/03/AePl9E8Z6XGz74J.png" srcset="/img/loading.gif" lazyload alt="POST报文的报文体.png"></p>
+<p>Header下的From Data属性中。</p>
+<h2 id="3-express框架"><a href="#3-express框架" class="headerlink" title="3.express框架"></a>3.express框架</h2><h3 id="（1）-安装express"><a href="#（1）-安装express" class="headerlink" title="（1）.安装express"></a>（1）.安装express</h3><p>express框架是基于node.js 的，所以我们在安装express之前需要先安装node.js。安装完后，我们新建一个文件</p>
+<p>在控制台输入<code>npm i express</code>这样我们就可以安装express。</p>
+<p>接下来我们写第一个ajax代码：（代码大致分为四个部分）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//1.引入express</span><br><span class="line">const &#123; response &#125; = require(&#x27;express&#x27;);</span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line"></span><br><span class="line">//2.创建应用对象</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">//3.创建路由规则,request是对请求报文的封装，response是对响应报文的封装</span><br><span class="line">app.get(&#x27;/&#x27;, (request, response) =&gt; &#123;</span><br><span class="line">    //设置响应</span><br><span class="line">    response.send(&#x27;hello express&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//4.监听端口</span><br><span class="line">app.listen(8000,()=&gt;&#123;</span><br><span class="line">    console.log(&quot;服务已经启动，8000端口监听&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们在控制台输入<code>node 文件名</code>就可以在8000端口看到我们的页面了。</p>
+<h3 id="（2）-模拟服务器"><a href="#（2）-模拟服务器" class="headerlink" title="（2）.模拟服务器"></a>（2）.模拟服务器</h3><p>实现模拟我们需要两个代码，一个是我们的前端代码，一个是我们的服务器代码。</p>
+<p>我们先看才学习的服务器代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">//1.引入express</span><br><span class="line">const &#123; response &#125; = require(&#x27;express&#x27;);</span><br><span class="line">const express = require(&#x27;express&#x27;);</span><br><span class="line"></span><br><span class="line">//2.创建应用对象</span><br><span class="line">const app = express();</span><br><span class="line"></span><br><span class="line">//server是路径</span><br><span class="line">app.get(&#x27;/server&#x27;, (request, response) =&gt; &#123;</span><br><span class="line">    //设置响应头，设置允许跨域</span><br><span class="line">    response.setHeader(&#x27;Access-Control-Allow-Orgin&#x27;,&#x27;*&#x27;);</span><br><span class="line">    //设置响应</span><br><span class="line">    response.send(&#x27;hello AJAX&#x27;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">//4.监听端口</span><br><span class="line">app.listen(8000,()=&gt;&#123;</span><br><span class="line">    console.log(&quot;服务已经启动，8000端口监听&quot;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>和之前的变化不大，改变了一个<code>/server</code>,是路径名，也就是这个服务器在8000的<code>./sever</code>下 =》 <code>http://localhost:8000/server</code></p>
+<p>然后是前端代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;AJAX GET 请求&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #result &#123;</span><br><span class="line">            width: 200px;</span><br><span class="line">            height: 100px;</span><br><span class="line">            border: solid 1px #90b;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;button&gt;点击发送请求&lt;/button&gt;</span><br><span class="line">    &lt;div id=&quot;result&quot;&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        const btn = document.querySelector(&quot;button&quot;);</span><br><span class="line">        btn.onclick = function () &#123;//点击事件</span><br><span class="line">            //1.创建对象</span><br><span class="line">            const xhr = new XMLHttpRequest();</span><br><span class="line">            //2.初始化请求方式和url</span><br><span class="line">            xhr.open(&#x27;GET&#x27;, &#x27;http://localhost:8000/server&#x27;);</span><br><span class="line">            //3.发送</span><br><span class="line">            xhr.send();</span><br><span class="line">            //4.事件绑定</span><br><span class="line">            xhr.onreadystatechange = function () &#123;</span><br><span class="line">                if (xhr.readyState === 4) &#123;//说明返回来所有结果   </span><br><span class="line">                    if (xhr.Status &gt;= 200 &amp;&amp; xhr.Status &lt; 300) &#123;//状态码正常</span><br><span class="line">                        console.log(xhr.statusText);</span><br><span class="line">                        console.log(xhr.getAllResponseHeaders());</span><br><span class="line">                        console.log(xhr.response);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是script部分的四个步骤，主要是事件绑定中的两个判断，是对于响应报文的两个判断，在一切正常之后我们就可以得到响应报文的各个部分。</p>
+<h3 id="（3）-设置url参数"><a href="#（3）-设置url参数" class="headerlink" title="（3）.设置url参数"></a>（3）.设置url参数</h3><p>在URL中的参数，我们通过?和&amp;设置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.open(&#x27;GET&#x27;, &#x27;http://localhost:8000/server?a=100&amp;b=200&amp;c=300&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>这里便是配置了a,b,c三个参数，参数与地址之间用问号做分割，参数与参数之间用&amp;做分割。</p>
+<p>我们的参数设置成功之后就可以在<code>Network</code>中的<code>Payload</code>中参看</p>
+<h3 id="（4）-发送post请求"><a href="#（4）-发送post请求" class="headerlink" title="（4）.发送post请求"></a>（4）.发送post请求</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">result.addEventListener(&quot;mouseover&quot;, function () &#123;</span><br><span class="line">            //1.创建对象</span><br><span class="line">            const xhr = new XMLHttpRequest();</span><br><span class="line">            //2.初始化请求方式和url</span><br><span class="line">            xhr.open(&#x27;POST&#x27;, &#x27;http://localhost:8000/server&#x27;);</span><br><span class="line">            //3.发送</span><br><span class="line">            xhr.send();</span><br><span class="line">            //4.事件绑定</span><br><span class="line">            xhr.onreadystatechange = function () &#123;</span><br><span class="line">                if (xhr.readyState === 4) &#123;//说明返回来所有结果   </span><br><span class="line">                    if (xhr.Status &gt;= 200 &amp;&amp; xhr.Status &lt; 300) &#123;//状态码正常</span><br><span class="line">                        //获取response</span><br><span class="line">                        result.innerHTML = xhr.response;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>对于post请求，我们需要将 .open 选项的第一个参数改为 POST，表示这个是post类型的报文。</p>
+<p>因为我们post可以发送<strong>请求体</strong>，所以我们可以在send()中加入参数<strong>send(a:100)或者send(a=100)或者JSON格式</strong></p>
+<p>然后在服务器端：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//post请求</span><br><span class="line">app.post(&#x27;/server&#x27;, (request, response) =&gt; &#123;</span><br><span class="line">    //设置响应头，设置允许跨域</span><br><span class="line">    response.setHeader(&#x27;Access-Control-Allow-Origin&#x27;,&#x27;*&#x27;);</span><br><span class="line">    //设置响应</span><br><span class="line">    response.send(&#x27;hello AJAX post&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>增加这个代码，设置对于post请求的返回。</p>
+<h3 id="（5）-设置请求头"><a href="#（5）-设置请求头" class="headerlink" title="（5） .设置请求头"></a>（5） .设置请求头</h3><p>我们可以使用<code>setRequestHeader</code>设置请求头。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//设置请求头</span><br><span class="line">xhr.setRequestHeader(&#x27;Content-Type&#x27;,&#x27;application/x-www-form-urlencoded&#x27;);</span><br><span class="line">//自定义请求头</span><br><span class="line">xhr.setRequestHeader(&#x27;name&#x27;,&#x27;ajax&#x27;);</span><br></pre></td></tr></table></figure>
+
+<p>但是对于自定义请求头，服务器端需要申明接收</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.all(&#x27;/server&#x27;, (request, response) =&gt; &#123;</span><br><span class="line">    //设置响应头，设置允许跨域</span><br><span class="line">    response.setHeader(&#x27;Access-Control-Allow-Origin&#x27;,&#x27;*&#x27;);</span><br><span class="line">    //接收自定义请求头</span><br><span class="line">    response.setHeader(&#x27;Access-Control-Allow-Headers&#x27;,&#x27;*&#x27;);</span><br><span class="line">    //设置响应</span><br><span class="line">    response.send(&#x27;hello AJAX&#x27;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>1.需要改变接收类型为all，表示接收所有类型的请求头</p>
+<p>2.需要在setHeader中添加接收同意<code>response.setHeader(&#39;Access-Control-Allow-Headers&#39;,&#39;*&#39;);</code></p>
+<p>这样我们的自定义请求头也不会报错了！</p>
+<h3 id="（6）-JSON-转换"><a href="#（6）-JSON-转换" class="headerlink" title="（6）.JSON 转换"></a>（6）.JSON 转换</h3><p>在服务端发送数据的时候，<code>response.send()</code>中的数据必须是字符串类型的数据，所以在我们传输数据的时候就需要调动JSON。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">app.all(&#x27;/JSON-server&#x27;, (request, response) =&gt; &#123;</span><br><span class="line">    let data=&#123;</span><br><span class="line">        name:&#x27;swpu&#x27;</span><br><span class="line">    &#125;;</span><br><span class="line">    //将要送的对象转换为字符串</span><br><span class="line">    let str= JSON.stringify(data);</span><br><span class="line">    //设置响应头，设置允许跨域</span><br><span class="line">    response.setHeader(&#x27;Access-Control-Allow-Origin&#x27;,&#x27;*&#x27;);</span><br><span class="line">    //send只能送字符串</span><br><span class="line">    response.send(str);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>而在接收方，我们就需要解析response的数据，这里就有两种方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//方案一：手动转换</span><br><span class="line">if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) &#123;</span><br><span class="line">     //使用手动转换</span><br><span class="line">        let data = JSON.parse(xhr.response)</span><br><span class="line">        console.log(data);//手动的时候里面填data</span><br><span class="line">        result.innerHTML=data.name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//方案二：自动转换</span><br><span class="line">//设置自动转换类型-json，将response的json解析</span><br><span class="line">xhr.responseType=&quot;json&quot;</span><br><span class="line">...</span><br><span class="line">if (xhr.status &gt;= 200 &amp;&amp; xhr.status &lt; 300) &#123;</span><br><span class="line">	console.log(xhr.response);//这里的response已经解析过</span><br><span class="line">	result.innerHTML=xhr.response.name;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="（7）-nodemon"><a href="#（7）-nodemon" class="headerlink" title="（7）.nodemon"></a>（7）.nodemon</h3><p><code>nodemon</code> 是一个基于node 的小工具，它可以帮助我们实现<strong>不重启实行服务端的刷新</strong> ，首先确保安装了node.js</p>
+<p>然后我们在控制台输入：<code>npm install -g nodemon</code></p>
+<p>在我们需要运行服务端的时候输入：<code>nodemon 文件名</code></p>
+<p>tips：我运行时报了一个错：</p>
+<p><img src="https://s2.loli.net/2022/05/03/czu13ligoVNLURv.png" srcset="/img/loading.gif" lazyload alt="nodemon报错.png"></p>
+<p>遇到这个问题时，我们打开window的powershell，以管理员身份运行</p>
+<p><img src="https://s2.loli.net/2022/05/03/auoGSPJXMkTF1bx.png" srcset="/img/loading.gif" lazyload alt="nodemon问题解决1.png"></p>
+<p>输入：<code>set-ExecutionPolicy RemoteSigned</code>，再重新运行一下我们的nodemon就可以了</p>
+<h3 id="（8）-断网和超时响应"><a href="#（8）-断网和超时响应" class="headerlink" title="（8）.断网和超时响应"></a>（8）.断网和超时响应</h3><p>在我们网络不好或者没有网的时候需要得到页面的反馈，而这些就是ajax中的超时反馈</p>
+<p>我们通过setTimeout模拟网络延迟：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.all(&#x27;/delay&#x27;, (request, response) =&gt; &#123;</span><br><span class="line">    //设置响应头，设置允许跨域</span><br><span class="line">    response.setHeader(&#x27;Access-Control-Allow-Origin&#x27;,&#x27;*&#x27;);</span><br><span class="line">    //设置响应</span><br><span class="line">    setTimeout(() =&gt; &#123;</span><br><span class="line">        response.send(&#x27;hello AJAX&#x27;);</span><br><span class="line">    &#125;, 3000);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>设置三秒的延迟</p>
+<p>在前端页面上，我们要求在两秒以上便不再等待，直接报错提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xhr.timeout=2000;</span><br><span class="line">xhr.ontimeout=function()&#123;</span><br><span class="line">alert(&quot;网络异常，链接失败&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ontimeout会在timeout的时间之后，<strong>执行函数回调，并取消这个请求</strong></p>
+<p>我们接下来模拟断网，在network选项下选择offline</p>
+<p>前端页面中加入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">xhr.onerror=function()&#123;</span><br><span class="line">	alert(&quot;网络已断开&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在断网条件下，发出警示。</p>
+<h3 id="（9）-取消发送请求"><a href="#（9）-取消发送请求" class="headerlink" title="（9）.取消发送请求"></a>（9）.取消发送请求</h3><p>在我们需要使用<code>ajax</code>手动取消请求发送的时候，我们可以使用<code>ajax</code>对象上的abort()方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn2.onclick = function()&#123;</span><br><span class="line">            xhr.abort();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：<strong>要把xhr的定义放在外层，而且需要定义成let</strong> ，不然会因为变量域的问题报错。</p>
+<h3 id="（10）-重复发送问题"><a href="#（10）-重复发送问题" class="headerlink" title="（10）.重复发送问题"></a>（10）.重复发送问题</h3><p>在遇到一个用户多次或者多个用户同时发送超多请求的情况下。我们需要一种机制使得我们的服务端压力减少。</p>
+<p>这里采用的是标志变量的解决办法，比较暴力：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const btn1 = document.querySelector(&quot;#btn1&quot;);</span><br><span class="line">        //标志变量</span><br><span class="line">        let isSending=false;</span><br><span class="line">        let xhr=null;</span><br><span class="line">        btn1.onclick = function () &#123;</span><br><span class="line">            if(isSending) xhr.abort();//如果现在有请求，那么取消当前请求，发送一个新的请求</span><br><span class="line">            xhr = new XMLHttpRequest();</span><br><span class="line">            isSending=true;//表示此刻已有请求</span><br><span class="line">            xhr.open(&#x27;GET&#x27;, &#x27;http://localhost:8000/delay&#x27;);</span><br><span class="line">            xhr.send();</span><br><span class="line">            xhr.onreadystatechange = function () &#123;</span><br><span class="line">                if (xhr.readyState === 4) &#123;//说明返回来所有结果   </span><br><span class="line">                    isSending=false;//返回结果请求结束，重新改为false</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>每次发送请求之前都判断当前是否有请求发送但未回复，如果有就取消那个请求，并发送一个新的请求。</p>
+<h2 id="4-jQuery中的Ajax"><a href="#4-jQuery中的Ajax" class="headerlink" title="4.jQuery中的Ajax"></a>4.jQuery中的Ajax</h2><p>jQuery中通过Ajax发送请求的方式有三种，GET，POST和通用方法Ajax</p>
+<h3 id="方式1-get"><a href="#方式1-get" class="headerlink" title="方式1  $.get()"></a>方式1  $.get()</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;button&#x27;).eq(0).click(function()&#123;</span><br><span class="line">            $.get(&#x27;http://localhost:8000/jQuery-server&#x27;,&#123;a:100&#125;,function(data)&#123;</span><br><span class="line">                console.log(data);</span><br><span class="line">            &#125;,&#x27;json&#x27;)//末尾可以传入参数，表示传输的数据类型</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>和我们一般的get请求差异不大，只是写成了偏函数的形式。get中的参数(url，传参，回调，response解析格式)</p>
+<h3 id="方式2-post"><a href="#方式2-post" class="headerlink" title="方式2  $.post()"></a>方式2  $.post()</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;button&#x27;).eq(1).click(function()&#123;</span><br><span class="line">            $.post(&#x27;http://localhost:8000/jQuery-server&#x27;,&#123;a:100&#125;,function(data)&#123;</span><br><span class="line">                console.log(data);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;) </span><br></pre></td></tr></table></figure>
+
+<p>和get()类似，也是四个参数</p>
+<h3 id="方式3-ajax"><a href="#方式3-ajax" class="headerlink" title="方式3 $.ajax()"></a>方式3 $.ajax()</h3><p>这个使用与前面两个相比要复杂一点</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$(&#x27;button&#x27;).eq(2).click(function()&#123;</span><br><span class="line">           $.ajax(&#123;</span><br><span class="line">               //url地址</span><br><span class="line">               url:&#x27;http://localhost:8000/jQuery-server&#x27;,</span><br><span class="line">               //传入的参数</span><br><span class="line">               data:&#123;a:100,b:200&#125;,</span><br><span class="line">               //请求类型</span><br><span class="line">               type:&#x27;GET&#x27;,</span><br><span class="line">               //返回数据类型</span><br><span class="line">               dataType:&#x27;json&#x27;,</span><br><span class="line">               //成功的回调</span><br><span class="line">               success:function(data)&#123;</span><br><span class="line">                   console.log(data);</span><br><span class="line">               &#125;,</span><br><span class="line">               //时间限制</span><br><span class="line">               timeout:2000,</span><br><span class="line">               //失败回调</span><br><span class="line">               error:function()&#123;</span><br><span class="line">                   console.log(&quot;出错了&quot;);</span><br><span class="line">               &#125;,</span><br><span class="line">               //自定义头信息</span><br><span class="line">            //    headers:&#123;</span><br><span class="line">            //    &#125;</span><br><span class="line">           &#125;)</span><br><span class="line">        &#125;) </span><br></pre></td></tr></table></figure>
+
+<p>需要配置的参数都以对象的形式写了出来，这里是一些常用的参数，还有一些其他的参数，可以在jQuery官网上参看。</p>
+<h2 id="5-promise中的Ajax"><a href="#5-promise中的Ajax" class="headerlink" title="5.promise中的Ajax"></a>5.promise中的Ajax</h2><p>首先我们引入<code>axios</code>:</p>
+<p>1.我们在GitHub上面引入 –》<a target="_blank" rel="noopener" href="https://github.com/axios/axios">https://github.com/axios/axios</a></p>
+<p>2.如果觉得GitHub太慢，我们可以在bootcdn上引入 –》<a target="_blank" rel="noopener" href="https://www.bootcdn.cn/axios/">https://www.bootcdn.cn/axios/</a></p>
+<p>在我们的代码中引入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script crossorigin=&quot;anonymous&quot; src=&quot;https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>crossorigin=&quot;anonymous&quot;</code>是为了防止跨源报错，<strong>开启允许跨域访问</strong></p>
+<h3 id="方式1-axios-get"><a href="#方式1-axios-get" class="headerlink" title="方式1 axios.get()"></a>方式1 axios.get()</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">btns[0].onclick = function () &#123;</span><br><span class="line">            axios.get(&#x27;/axios-server&#x27;, &#123;</span><br><span class="line">                //url参数</span><br><span class="line">                params: &#123;</span><br><span class="line">                    a: 100,</span><br><span class="line">                    b: 200</span><br><span class="line">                &#125;,</span><br><span class="line">                //请求头信息</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    name: &quot;lol&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;).then(value =&gt; &#123;</span><br><span class="line">                console.log(value);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>因为axios基于promise，所以这里是通过promise的方法then()，产生回调。</p>
+<h3 id="方式2-axios-post"><a href="#方式2-axios-post" class="headerlink" title="方式2 axios.post()"></a>方式2 axios.post()</h3><p>post多出一个请求体内容：需要写在第二个参数，其他配置就挪到了第三个参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">btns[1].onclick = function () &#123;</span><br><span class="line">            axios.post(&#x27;/axios-server&#x27;, &#123;//第二个参数是请求体              </span><br><span class="line">                    username:&#x27;admin&#x27;,</span><br><span class="line">                    password:&#x27;admin&#x27;</span><br><span class="line">                &#125;,&#123;//第三个参数，其他数据</span><br><span class="line">                //url参数</span><br><span class="line">                params: &#123;</span><br><span class="line">                    uid: 666,</span><br><span class="line">                    b: 200</span><br><span class="line">                &#125;,</span><br><span class="line">                //请求头信息</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    name: &quot;lol&quot;</span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以在<code>Request PayLoad</code>中参看我们的请求体了</p>
+<h3 id="方式3-axios通用方法"><a href="#方式3-axios通用方法" class="headerlink" title="方式3 axios通用方法"></a>方式3 axios通用方法</h3><p>我们在开发中还有一种通用的方法发送ajax请求：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">btns[2].onclick = function () &#123;</span><br><span class="line">           axios(&#123;</span><br><span class="line">               //请求方法</span><br><span class="line">               method: &#x27;POST&#x27;,</span><br><span class="line">               //url</span><br><span class="line">               url:&#x27;/axios-server&#x27;,</span><br><span class="line">               //url参数</span><br><span class="line">               params:&#123;</span><br><span class="line">                   vip:10,</span><br><span class="line">                   level:30</span><br><span class="line">               &#125;,</span><br><span class="line">               //头信息</span><br><span class="line">               headers:&#123;</span><br><span class="line">                   a:100,</span><br><span class="line">                   b:200</span><br><span class="line">               &#125;,</span><br><span class="line">               //请求体参数</span><br><span class="line">               data:&#123;</span><br><span class="line">                   username:&#x27;admin&#x27;,</span><br><span class="line">                   password:&#x27;admin&#x27;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;).then(response=&gt;&#123;//获取响应内容</span><br><span class="line">               console.log(response);</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<p>与前面jQuery中的 $.ajax()很类似，我们需要配置的参数写在axios({})中</p>
+<h2 id="6-fetch发送Ajax请求"><a href="#6-fetch发送Ajax请求" class="headerlink" title="6.fetch发送Ajax请求"></a>6.fetch发送Ajax请求</h2><p>fetch是基于promise的全局发送ajax的一个方法（但是实际开发中，我们还是axios用的多一点）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">btn.onclick = function () &#123;</span><br><span class="line">            fetch(&#x27;http://localhost:8000/fetch-server?vip=10&#x27;, &#123;</span><br><span class="line">                //请求方法</span><br><span class="line">                method: &#x27;POST&#x27;,</span><br><span class="line">                //请求头</span><br><span class="line">                headers: &#123;</span><br><span class="line">                    name: &#x27;swpu&#x27;</span><br><span class="line">                &#125;,</span><br><span class="line">                //请求体</span><br><span class="line">                body: &#x27;username=admin &amp; password=admin&#x27;</span><br><span class="line">            &#125;).then(response =&gt; &#123;</span><br><span class="line">                return response.text();//如果是json格式，就response.json()</span><br><span class="line">            &#125;).then(response =&gt; &#123;</span><br><span class="line">                console.log(response);</span><br><span class="line">            &#125;).catch(err=&gt;&#123;</span><br><span class="line">                console.log(err);</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-跨域"><a href="#7-跨域" class="headerlink" title="7.跨域"></a>7.跨域</h2><h3 id="1-同源策略"><a href="#1-同源策略" class="headerlink" title="1.同源策略"></a>1.同源策略</h3><p>定义：协议，域名，端口号必须完全相同，页面和请求向同一个源请求</p>
+<p>ajax默认遵从同源策略，不是同源策略无法直接发ajax请求</p>
+<p>而如果我们违背了同源策略，那么我们就跨域了（3000端口向8000发请求，http向https发请求）</p>
+<p>满足同源策略：url可以简写=》与页面相同的部分url都可以不写</p>
+<h3 id="2-JSONP"><a href="#2-JSONP" class="headerlink" title="2.JSONP"></a>2.JSONP</h3><p>非官方的跨域解决方法，（也就是靠码农们的聪明才智），只支持get请求，是借助一些可以跨域的html标签（img,link…）实现的</p>
+<p>比如我们的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script crossorigin=&quot;anonymous&quot; src=&quot;https://cdn.bootcdn.net/ajax/libs/axios/0.26.1/axios.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>便是通过scipt标签跨源引入了我们的文件。</p>
+<p>但是对于我们的script标签，如果收到的返回是字符串之类的便会报错，<strong>因为js引擎只能识别js代码，所以我们需要服务端给我们返回js代码。</strong>一般可以返回函数调用，然后交给前端代码进行处理。</p>
+<h3 id="3-CORS"><a href="#3-CORS" class="headerlink" title="3.CORS"></a>3.CORS</h3><p>于是我们迎来了正规的跨域解决方法–CORS，发跨域的问题交给了服务端</p>
+<p>原理是通过设置一个响应头告诉浏览器实现跨域</p>
+<p>这个响应头也就是我们之前使用的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(&#x27;Access-Control-Allow-Origin&#x27;, &#x27;*&#x27;);//&#x27;*&#x27;里面可以添加那些网页可以给我发请求，*是全部</span><br></pre></td></tr></table></figure>
+
+<p>世界线收束！！！</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Ajax/">#Ajax</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ajax</div>
+      <div>http://yoursite.com/2022/04/30/Ajax/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年4月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/05/03/%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86/" title="配置代理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">配置代理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/17/%E5%8A%A8%E7%94%BB%E5%92%8C%E8%BF%87%E6%B8%A1/" title="动画与过渡">
+                        <span class="hidden-mobile">动画与过渡</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

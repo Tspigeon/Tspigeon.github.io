@@ -1,0 +1,809 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="自动化测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="selenium">
+<meta property="og:url" content="http://yoursite.com/2022/10/18/selenium/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="自动化测试">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/957963d514bf420cb341fc13ffa8ed11.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ea0618cd28dc4d9292bb77be3d66cef0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5a6a2280407a45b3969da5f7e7c23058.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0f648cedbc1246b3a79323fcb1b27cc4.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5de3d351654c441e95e48050ed2031ec.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0ae37f230d454c48bf694265e0d05f49.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/382b2f29268a488886b90e49f6aeca74.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a443fa4245484255ac588f4c5721a057.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d5ebfe5d8de14abe808e64f8b7246611.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/467a4377634245d099282b6e125d1247.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/39a4b1d8c6d146fcbedbb2fdd0956eef.png">
+<meta property="article:published_time" content="2022-10-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-11-07T09:04:42.160Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="测试">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/957963d514bf420cb341fc13ffa8ed11.png">
+  
+  
+  
+  <title>selenium - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="selenium"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-10-18 00:00" pubdate>
+          2022年10月18日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          61 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">selenium</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="selenium"><a href="#selenium" class="headerlink" title="selenium"></a>selenium</h1><p>selenium用于进行我们的性能测试和功能测试，常用与web端和应用端</p>
+<h2 id="1-eclipse-配置"><a href="#1-eclipse-配置" class="headerlink" title="1.eclipse 配置"></a>1.eclipse 配置</h2><p>首先，配置maven，然后创建一个maven项目</p>
+<p>使用new project，然后搜索maven创建新的maven项目</p>
+<p>group Id：是公司名称，使用com.xxx即可</p>
+<p>artifact Id：包名称，也就是我们的项目名称</p>
+<p>packaging：打包方式 有jar war等等</p>
+<p><img src="https://img-blog.csdnimg.cn/957963d514bf420cb341fc13ffa8ed11.png" srcset="/img/loading.gif" lazyload alt="新建maven项目"></p>
+<p>创建之后得到我们常见的项目目录，有开发人员的main和测试人员的test</p>
+<p>然后我们打开pom.xml</p>
+<p>应用selenium的dependence</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> &lt;dependencies&gt;</span><br><span class="line">  &lt;!-- selenium --&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">	    &lt;groupId&gt;org.seleniumhq.selenium&lt;/groupId&gt;</span><br><span class="line">	    &lt;artifactId&gt;selenium-java&lt;/artifactId&gt;</span><br><span class="line">	    &lt;version&gt;3.141.59&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt; </span><br></pre></td></tr></table></figure>
+
+<p>然后在test/java中需要写，这样我们就能操作Chrome打开百度网站</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">package com.test;</span><br><span class="line"></span><br><span class="line">import org.openqa.selenium.chrome.ChromeDriver;</span><br><span class="line"></span><br><span class="line">public class firstWebTest &#123;</span><br><span class="line">	public static void main(String arg[]) &#123;</span><br><span class="line">		//使用浏览器driver</span><br><span class="line">		ChromeDriver chromeriver = new ChromeDriver();</span><br><span class="line">		//访问百度</span><br><span class="line">		chromeriver.get(&quot;https://www.baidu.com&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-基本元素定位"><a href="#2-基本元素定位" class="headerlink" title="2.基本元素定位"></a>2.基本元素定位</h2><p>根据元素id进行定位，如果定位对象是一个input框，可以使用sendKeys填入数据，如果定位对象是一个按钮的话，就可以使用<code>.click</code>方法触发点击事件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public class firstWebTest &#123;</span><br><span class="line">	//设置全局变量</span><br><span class="line">	public static ChromeDriver chromeDriver;</span><br><span class="line">	public static void main(String arg[]) &#123;</span><br><span class="line">		openChrome();</span><br><span class="line">		//定位到百度输入框并输入数据</span><br><span class="line">		chromeDriver.findElement(By.id(&quot;kw&quot;)).sendKeys(&quot;腾讯课堂&quot;);</span><br><span class="line">		//定位到点击一下按钮</span><br><span class="line">		chromeDriver.findElement(By.id(&quot;su&quot;)).click();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public static void openChrome() &#123;</span><br><span class="line">		//使用浏览器driver</span><br><span class="line">		chromeDriver = new ChromeDriver();</span><br><span class="line">		//访问百度</span><br><span class="line">		chromeDriver.get(&quot;https://www.baidu.com&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更改By.xxx 的内容进行更改，如改为By.name</p>
+<p>还可以使用tagName去定位，tagName是什么呢？简单来说 html5标签</p>
+<p>还有根据className（class）和linkText（超链接文本值定位）partiaLinxText（部分超链接文本定位）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//使用linkTest点击超链接</span><br><span class="line">chromeDriver.findElement(By.partialLinkText(&quot;百度首页&quot;)).click();</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以又回到百度首页</p>
+<h2 id="3-特殊定位"><a href="#3-特殊定位" class="headerlink" title="3.特殊定位"></a>3.特殊定位</h2><h3 id="1-css定位"><a href="#1-css定位" class="headerlink" title="1.css定位"></a>1.css定位</h3><p>根据id定位需要加#</p>
+<p>根据class定位需要加.  如果是复合类名就需要在两个类名之间中.做分割</p>
+<p><img src="https://img-blog.csdnimg.cn/ea0618cd28dc4d9292bb77be3d66cef0.png" srcset="/img/loading.gif" lazyload alt="css定位"></p>
+<p>我们还有更精确的定位方式，<strong>我们在f12中使用Ctrl+F打开搜索功能</strong>，然后按照  <code>标签名[key=&quot;value&quot;]</code>的形式查找唯一符合标准的元素</p>
+<p>然后到selenium中使用cssSelector操作</p>
+<p><img src="https://img-blog.csdnimg.cn/5a6a2280407a45b3969da5f7e7c23058.png" srcset="/img/loading.gif" lazyload alt="精确定位"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//使用精确定位</span><br><span class="line">chromeDriver.findElement(By.cssSelector(&quot;a[class=&#x27;&#x27;]&quot;)).click();</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Xpath定位"><a href="#2-Xpath定位" class="headerlink" title="2.Xpath定位"></a>2.Xpath定位</h3><p>这种定位有绝对路径和相对路径两种</p>
+<p>绝对路径的耦合性较大：</p>
+<p>需要从/html/body开始一路向下找到我们所需要定位的元素</p>
+<p>相对路径由@开头：</p>
+<p><img src="https://img-blog.csdnimg.cn/0f648cedbc1246b3a79323fcb1b27cc4.png" srcset="/img/loading.gif" lazyload alt="Xpath相对路径定位"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromeDriver.findElement(By.xpath(&quot;//a[@class=&#x27;&#x27;][@tabindex=&#x27;0&#x27;]&quot;)).click();</span><br></pre></td></tr></table></figure>
+
+<p>这里还可以根据文本定位，使用：text()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chromeDriver.findElement(By.xpath(&quot;//a[text()=&#x27;官方&#x27;]&quot;)).click();</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-元素操作"><a href="#4-元素操作" class="headerlink" title="4.元素操作"></a>4.元素操作</h2><p>一些常用的元素操作有：</p>
+<p>click()：执行点击操作</p>
+<p>clear()：执行清空处理</p>
+<table>
+<thead>
+<tr>
+<th>更多操作方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>click(on_element=None)</td>
+<td>单击鼠标左键</td>
+</tr>
+<tr>
+<td>click_and_hold(on_element=None)</td>
+<td>单击鼠标左键,不松开</td>
+</tr>
+<tr>
+<td>context_click(on_element=None)</td>
+<td>单击鼠标右键</td>
+</tr>
+<tr>
+<td>double_click(on_element=None)</td>
+<td>双击鼠标左键</td>
+</tr>
+<tr>
+<td>drag_and_drop(soure, target)</td>
+<td>拖动到某个元素然后松开</td>
+</tr>
+<tr>
+<td>drag_and_drop_by_offset(soure,xoffset, yoffset)</td>
+<td>拖动到某个坐标然后松开</td>
+</tr>
+<tr>
+<td>key_down(value, element=None)</td>
+<td>按下某个键盘上的键</td>
+</tr>
+<tr>
+<td>key_up(value, element=None)</td>
+<td>松开某个键</td>
+</tr>
+<tr>
+<td>move_by_offset(xoffset, yoffset)</td>
+<td>鼠标指针从当前位置移动到某个坐标</td>
+</tr>
+<tr>
+<td>move_to_element(to_element)</td>
+<td>鼠标指针移动到某个元素</td>
+</tr>
+<tr>
+<td>move_to_element_with_offset(to_element,xoffset,yoffset)</td>
+<td>移动到距某个元素（左上角坐标）多少距离的位置</td>
+</tr>
+<tr>
+<td>perform()</td>
+<td>执行链中的所有动作</td>
+</tr>
+<tr>
+<td>release(on_element=None)</td>
+<td>在某个元素位置松开鼠标左键</td>
+</tr>
+<tr>
+<td>send_keys(keys_to_send)</td>
+<td>发送某个键到当前焦点的元素</td>
+</tr>
+<tr>
+<td>send_keys_to_element(element, keys_to_send)</td>
+<td>发生某个键到指定的元素</td>
+</tr>
+</tbody></table>
+<p>键盘事件：</p>
+<p><img src="https://img-blog.csdnimg.cn/5de3d351654c441e95e48050ed2031ec.png" srcset="/img/loading.gif" lazyload alt="键盘事件"></p>
+<p>时间等待：sleep</p>
+<p>sleep需要使用try catch包裹起来，使用Thread.sleep()实现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	driver.get(&quot;https://music.91q.com/&quot;);</span><br><span class="line">	driver.findElement(By.linkText(&quot;歌单&quot;)).click();</span><br><span class="line">	Thread.sleep(1000);</span><br><span class="line">	driver.findElement(By.xpath(&quot;//span[@title=\&quot;电子\&quot;]&quot;)).click();</span><br><span class="line">	Thread.sleep(1000);</span><br><span class="line">driver.findElement(By.xpath(&quot;//img[@src=\&quot;https://img01.dmhmusic.com/0105/M00/E9/A4/ChR45GKy4m2AGwKiAAuLrKC1ZgU349.jpg@w_300,h_300\&quot;]&quot;)).click();</span><br><span class="line">	Thread.sleep(1000);</span><br><span class="line">&#125;catch(Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>页面API：</p>
+<p><img src="https://img-blog.csdnimg.cn/0ae37f230d454c48bf694265e0d05f49.png" srcset="/img/loading.gif" lazyload alt="页面API"></p>
+<p>一般测试结束后都会调用quit函数，关闭浏览器</p>
+<p>操作实例</p>
+<p>这里的回退操作我本来想用<code>back()</code>的</p>
+<p>但是这里调用back会回到<code>data;</code>（因为没有点击click开启搜索，所以还是在第一个页面），所以就先使用to调转</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">openChrome();</span><br><span class="line">chromeDriver.findElement(By.id(&quot;kw&quot;)).sendKeys(&quot;swpu&quot;);</span><br><span class="line">//睡眠三秒</span><br><span class="line">Thread.sleep(3000);</span><br><span class="line">//清空内容</span><br><span class="line">chromeDriver.findElement(By.id(&quot;kw&quot;)).clear();</span><br><span class="line">//获取元素属性</span><br><span class="line">WebElement webElement1 = chromeDriver.findElement(By.id(&quot;kw&quot;));</span><br><span class="line">//输出标签名</span><br><span class="line">System.out.print(webElement1.getTagName());</span><br><span class="line">//回退</span><br><span class="line">chromeDriver.navigate().to(&quot;https://www.baidu.com&quot;);</span><br><span class="line">//输出文本值</span><br><span class="line">WebElement webElement2 = chromeDriver.findElement(By.xpath(&quot;//a[text()=\&quot;hao123\&quot;]&quot;));</span><br><span class="line">System.out.print(webElement2.getText());</span><br><span class="line">//检查元素是否显示</span><br><span class="line">System.out.print(webElement2.isDisplayed());</span><br></pre></td></tr></table></figure>
+
+<p>这里面driver的操作还有</p>
+<p>close(),</p>
+<p>quit()【一般放程序结束的地方】</p>
+<p>获取句柄（句柄（Handle）是一个是用来标识对象或者项目的<em><strong>标识符</strong></em>，可以用来<em>描述窗体、文件</em>等）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">openChrome();</span><br><span class="line">//定位到百度输入框并输入数据</span><br><span class="line">chromeDriver.findElement(By.id(&quot;kw&quot;)).sendKeys(&quot;腾讯课堂&quot;);</span><br><span class="line">//定位到点击一下按钮</span><br><span class="line">chromeDriver.findElement(By.id(&quot;su&quot;)).click();</span><br><span class="line">//获取当前句柄</span><br><span class="line">chromeDriver.getWindowHandle();</span><br><span class="line">//获取全部句柄</span><br><span class="line">chromeDriver.getWindowHandles();</span><br><span class="line">Thread.sleep(3000);</span><br><span class="line">//跳转页面</span><br><span class="line">chromeDriver.findElement(By.name(&quot;label&quot;)).click();</span><br><span class="line">//对比全部句柄</span><br><span class="line">chromeDriver.getWindowHandles();</span><br></pre></td></tr></table></figure>
+
+<p>还可以获取浏览器操作，使用manage，得到options对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Options option = chromeDriver.manage();</span><br><span class="line">option.xxx</span><br></pre></td></tr></table></figure>
+
+<p>其中有很多方法给我们使用，比如window进行页面参数的获取</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Options option = chromeDriver.manage();</span><br><span class="line">//获取当前页面大小</span><br><span class="line">System.out.print(option.window().getSize());</span><br></pre></td></tr></table></figure>
+
+<p>然后是我们操作浏览器路由的navigate</p>
+<p><img src="https://img-blog.csdnimg.cn/382b2f29268a488886b90e49f6aeca74.png" srcset="/img/loading.gif" lazyload alt="navigate对象"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//获取navigate对象</span><br><span class="line">Navigation navigate = chromeDriver.navigate();</span><br><span class="line">navigate.to(&quot;https://www.jd.com&quot;);</span><br><span class="line">navigate.refresh();</span><br><span class="line">navigate.back();</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-三大等待"><a href="#5-三大等待" class="headerlink" title="5.三大等待"></a>5.三大等待</h2><h3 id="5-1硬性等待"><a href="#5-1硬性等待" class="headerlink" title="5.1硬性等待"></a>5.1硬性等待</h3><p>使用线程Thread.sleep()</p>
+<p>需要抛出错误，实现等待</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">	driver.get(&quot;https://music.91q.com/&quot;);</span><br><span class="line">	driver.findElement(By.linkText(&quot;歌单&quot;)).click();</span><br><span class="line">	Thread.sleep(1000);</span><br><span class="line">	driver.findElement(By.xpath(&quot;//span[@title=\&quot;电子\&quot;]&quot;)).click();</span><br><span class="line">	Thread.sleep(1000);</span><br><span class="line">driver.findElement(By.xpath(&quot;//img[@src=\&quot;https://img01.dmhmusic.com/0105/M00/E9/A4/ChR45GKy4m2AGwKiAAuLrKC1ZgU349.jpg@w_300,h_300\&quot;]&quot;)).click();</span><br><span class="line">	Thread.sleep(1000);</span><br><span class="line">&#125;catch(Exception e)&#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2隐式等待"><a href="#5-2隐式等待" class="headerlink" title="5.2隐式等待"></a>5.2隐式等待</h3><p>隐式等待使用的是全局配置，设置之后只要后面需要寻找元素就会触发</p>
+<p>他在driver的manage方法下，第一个参数是num数字，第二个类型是时间单位</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//实现隐式等待 等待五秒</span><br><span class="line">chromeDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3显示等待"><a href="#5-3显示等待" class="headerlink" title="5.3显示等待"></a>5.3显示等待</h3><p>等待某个元素显示之后在执行操作</p>
+<p><img src="https://img-blog.csdnimg.cn/a443fa4245484255ac588f4c5721a057.png" srcset="/img/loading.gif" lazyload alt="显示等待"></p>
+<p>我们需要新构造一个WebDriverWait对象并传入driver和时间参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//显示等待</span><br><span class="line">WebDriverWait wait = new WebDriverWait(chromeDriver,5);</span><br><span class="line">WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(&quot;//a[text()=&#x27;_专业在线教育平台(ke.qq.com)&#x27;]&quot;)));</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-特殊元素定位"><a href="#6-特殊元素定位" class="headerlink" title="6.特殊元素定位"></a>6.特殊元素定位</h2><h3 id="6-1-alert弹窗"><a href="#6-1-alert弹窗" class="headerlink" title="6.1 alert弹窗"></a>6.1 alert弹窗</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//定位弹窗</span><br><span class="line">Alert alert =  chromeDriver.switchTo().alert();</span><br><span class="line">//对弹窗进行操作</span><br><span class="line">//同意操作</span><br><span class="line">alert.accept();</span><br><span class="line">//取消操作</span><br><span class="line">alert.dismiss();</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-2-confirm弹窗"><a href="#6-2-confirm弹窗" class="headerlink" title="6.2 confirm弹窗"></a>6.2 confirm弹窗</h3><p>confirm弹窗和alert一样，也是使用switchTo().alert()定位得到，然后使用accept和dismiss进行操作</p>
+<p>我们还可以进行<code>alert.getText()</code>进行获取弹窗中的文本信息</p>
+<h3 id="6-3-iframe定位"><a href="#6-3-iframe定位" class="headerlink" title="6.3 iframe定位"></a>6.3 iframe定位</h3><p>iframe是一种特殊的能够嵌套html文件的标签</p>
+<p><code> &lt;iframe src=&quot;demo_iframe_sandbox.htm&quot;&gt;&lt;/iframe&gt;</code></p>
+<p>我们在进入第一层html之后需要定位其他的html就需要进行如下操作</p>
+<p><img src="https://img-blog.csdnimg.cn/d5ebfe5d8de14abe808e64f8b7246611.png" srcset="/img/loading.gif" lazyload alt="iframe"></p>
+<h3 id="6-4-窗口定位"><a href="#6-4-窗口定位" class="headerlink" title="6.4 窗口定位"></a>6.4 窗口定位</h3><p>窗口定位有两种方式，第一种是使用页面的名字进行定位，第二种是使用句柄进行定位，但是句柄定位就需要用到增强for循环</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">		//window定位</span><br><span class="line">		chromeDriver.findElement(By.id(&quot;kw&quot;)).sendKeys(&quot;腾讯课堂&quot;);</span><br><span class="line">		chromeDriver.findElement(By.id(&quot;su&quot;)).click();</span><br><span class="line">		//第一个页面的handle</span><br><span class="line">		String handle1 = chromeDriver.getWindowHandle();</span><br><span class="line">		System.out.println(handle1);</span><br><span class="line">		Thread.sleep(3000);</span><br><span class="line">		chromeDriver.findElement(By.xpath(&quot;//span[@name=&#x27;label&#x27;]&quot;)).click();</span><br><span class="line">		//第二个页面的handle</span><br><span class="line">		Set&lt;String&gt; handle2 = chromeDriver.getWindowHandles();</span><br><span class="line">		//切换窗口</span><br><span class="line">		//根据name切换</span><br><span class="line">//		chromeDriver.switchTo().window(&quot;腾讯课堂_百度搜索&quot;);</span><br><span class="line">		//根据handle切换</span><br><span class="line">		for(String handle : handle2) &#123;</span><br><span class="line">			chromeDriver.switchTo().window(handle);</span><br><span class="line">			if(chromeDriver.getTitle().equals(&quot;腾讯课堂_百度搜索&quot;)) &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-5-select下拉框"><a href="#6-5-select下拉框" class="headerlink" title="6.5 select下拉框"></a>6.5 select下拉框</h3><p><img src="https://img-blog.csdnimg.cn/467a4377634245d099282b6e125d1247.png" srcset="/img/loading.gif" lazyload alt="select下拉框"></p>
+<h3 id="6-6-时间日期控件——js-脚本控制"><a href="#6-6-时间日期控件——js-脚本控制" class="headerlink" title="6.6 时间日期控件——js 脚本控制"></a>6.6 时间日期控件——js 脚本控制</h3><p>如果控件没有限制手动输入，我们可以使用sendKeys的方法进行输入</p>
+<p>如果不能手动输入</p>
+<p>我们还可以在java中执行js代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	//利用js处理一部分元素</span><br><span class="line">	JavascriptExecutor jsExecutor = (JavascriptExecutor) chromeDriver;</span><br><span class="line">	jsExecutor.executeScript(&quot;document.getElementById(&#x27;train_date&#x27;).setArribute(&#x27;readOnly&#x27;,true)&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-7-文件上传"><a href="#6-7-文件上传" class="headerlink" title="6.7 文件上传"></a>6.7 文件上传</h3><p><img src="https://img-blog.csdnimg.cn/39a4b1d8c6d146fcbedbb2fdd0956eef.png" srcset="/img/loading.gif" lazyload alt="文件上传"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B5%8B%E8%AF%95/">#测试</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>selenium</div>
+      <div>http://yoursite.com/2022/10/18/selenium/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年10月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/10/27/node.js/" title="node.js">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">node.js</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/10/12/uni-shop/" title="uni-shop">
+                        <span class="hidden-mobile">uni-shop</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
