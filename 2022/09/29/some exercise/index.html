@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>some exercise - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,1.task1-数组ex1.char a[2][3] = &amp;#123;&amp;#123;&#39;a&#39;, &#39;b&#39;, &#39;c&#39;&amp;#125;, &amp;#123;&#39;1&#39;, &#39;\0&#39;, &#39;2&#39;&amp;#125;&amp;#125;;
+pri,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="some exercise - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,1.task1-数组ex1.char a[2][3] = &amp;#123;&amp;#123;&#39;a&#39;, &#39;b&#39;, &#39;c&#39;&amp;#125;, &amp;#123;&#39;1&#39;, &#39;\0&#39;, &#39;2&#39;&amp;#125;&amp;#125;;
+pri,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="some exercise - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,1.task1-数组ex1.char a[2][3] = &amp;#123;&amp;#123;&#39;a&#39;, &#39;b&#39;, &#39;c&#39;&amp;#125;, &amp;#123;&#39;1&#39;, &#39;\0&#39;, &#39;2&#39;&amp;#125;&amp;#125;;
+pri,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">some exercise</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">some exercise</h1>
+        <div class="stuff">
+            <span>九月 29, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/exercise/" rel="tag">exercise</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="1-task1-数组"><a href="#1-task1-数组" class="headerlink" title="1.task1-数组"></a>1.task1-数组</h2><h3 id="ex1"><a href="#ex1" class="headerlink" title="ex1."></a>ex1.</h3><pre><code>char a[2][3] = &#123;&#123;'a', 'b', 'c'&#125;, &#123;'1', '\0', '2'&#125;&#125;;
+printf(&quot;%s&quot;, a[0]);
+</code></pre>
+<p>试问打印的结果是什么：</p>
+<p>首先我们要知道<code>%s</code>是字符串，那么a[0]应该是要输出全部数据，也就是<code>a,b,c,1,\0,2</code></p>
+<p>但是<code>\0</code>是转义字符是字符串的结束标志，所以我们最终的输出结果是<code>a,b,c,1</code></p>
+<p>或者会问：</p>
+<p>在C语言中，顺序存储长度为3的字符串，需要占用（）个字节。</p>
+<p>首先明确 一个char是一个字节，最后字符串会有一个<code>\0</code>作为结束，所以是4个字节</p>
+<h3 id="ex2"><a href="#ex2" class="headerlink" title="ex2."></a>ex2.</h3><pre><code>int a[] = &#123;1, 2, 3, 4, 5, 6, 7, 8&#125;;
+char s = &#39;a&#39;, e, i;
+</code></pre>
+<p>我们如果想得到a[4]=&gt;5怎么办</p>
+<p>首先想到的是ascll码</p>
+<p>使用a[‘e’-‘s’]，而’a’在这个题中是<code>char s</code></p>
+<p>所以可以写成<code>a[&#39;e&#39;-s]</code></p>
+<h3 id="ex3"><a href="#ex3" class="headerlink" title="ex3."></a>ex3.</h3><p>数组A=array[1..100，1..100]以行序为主序存储，设每个数据元素占2个存储单元，基地址为10，则LOC[5，5]应为。</p>
+<p>这个可以代表二维数组计数从1 开始，也就是4行4列的数据</p>
+<p><code>10+[4*100+4]*2</code>为818</p>
+<h2 id="2-task2-css"><a href="#2-task2-css" class="headerlink" title="2.task2-css"></a>2.task2-css</h2><h3 id="ex1-1"><a href="#ex1-1" class="headerlink" title="ex1."></a>ex1.</h3><p>有关css的优先级</p>
+<p>可以把样式的应用方式分为几个等级，按照等级来计算权重</p>
+<p>1、!important，加在样式属性值后，权重值为 10000<br>2、内联样式，如：style=””，权重值为1000<br>3、ID选择器，如：#content，权重值为100<br>4、类，伪类和属性选择器，如： content、:hover 权重值为10<br>5、标签选择器和伪元素选择器，如：div、p、:before 权重值为1</p>
+<p>6、通用选择器（*）、子选择器（&gt;）、相邻选择器（+）、同胞选择器（~）、权重值为0</p>
+<p>而去css优先级有这样一个规定：<code>越具体优先级越高</code>（#username &gt; span #username）</p>
+<p><strong>另外子选择器<code>&gt;</code>必须是<code>亲儿子</code></strong></p>
+<h3 id="ex2-1"><a href="#ex2-1" class="headerlink" title="ex2."></a>ex2.</h3><p>一些css3的东西</p>
+<p>1.<code>display: flex;</code>:弹性布局</p>
+<p>​    最常用的做法就是将所有<strong>子盒子</strong>都变成行内块元素</p>
+<p>可以在一行显示</p>
+<p>2.<code>line-height: 120rpx;</code>:行高</p>
+<p>​    就是一行文本框的高度，通过调节修改文字的上下位置</p>
+<p>3.<code>overflow: hidden;</code>:消除子元素浮动或者溢出隐藏</p>
+<p>4.<code>letter-spacing: 40rpx;</code>:用于调节单个字间距</p>
+<p>5.<code>flex-wrap: wrap;</code>:对于flex之后的盒子使用</p>
+<p>​    开启自动换行，因为flex之后不会换行，wrap会根据页面宽度进行换行</p>
+<p>6.<code>justify-content: space-between;</code>:贴边对齐</p>
+<p>​    常用与两个盒子并排，一个需要向左对齐，一个需要向右对齐</p>
+<p>7.<code>box-sizing</code>:调节盒子类型</p>
+<p>​    有两个取值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">box-sizing: content-box; /*默认值*/</span><br><span class="line">box-sizing: border-box;</span><br></pre></td></tr></table></figure>
+
+<p>content-box：我们设置的宽度是多宽盒子就多宽，然后<strong>padding和border会撑大盒子</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width = content-width;</span><br><span class="line">height = content-height;</span><br></pre></td></tr></table></figure>
+
+<p>border-box:相当于计算了border以内的所有宽度，调节<strong>padding和border不会撑大我们的盒子</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">width = content-width + padding-left + padding-right + border-left-width + border-right-width;</span><br><span class="line">height = content-height + padding-top + padding-bottom + border-top-height + border-bottom-height;</span><br></pre></td></tr></table></figure>
+
+<p>8.<code>flex-direction: column;</code></p>
+<p>灵活的项目将垂直显示，正如一个列一样。</p>
+<h2 id="3-task3-js"><a href="#3-task3-js" class="headerlink" title="3.task3-js"></a>3.task3-js</h2><h3 id="ex1-数组的map方法"><a href="#ex1-数组的map方法" class="headerlink" title="ex1.数组的map方法"></a>ex1.数组的map方法</h3><p>js数组中有一个map方法，多用于提取对象数组中特定的值，可以看成一个for循环</p>
+<p>语法: array.map( function ( item, index, arr) {} )</p>
+<p>第一个参数:item,必须,当前元素的值</p>
+<p>第二个参数:index,可选,当前元素在数组中的索引值</p>
+<p>第三个参数:arr,当前元素属于的数组对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//提取details数组中的img_url属性</span><br><span class="line">const urls = this.details.map(item =&gt; &#123;</span><br><span class="line">return item.img_url</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-task4-算法"><a href="#4-task4-算法" class="headerlink" title="4.task4-算法"></a>4.task4-算法</h2><h3 id="ex1-哈希表-链地址法"><a href="#ex1-哈希表-链地址法" class="headerlink" title="ex1.哈希表-链地址法"></a>ex1.哈希表-链地址法</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">设哈希表长为8，哈希函数为Hash (key)=key%7。初始记录关键字序列为(32，24，15，27，20，13)，用链地址法作为解决冲突方法的平均查找长度是？</span><br></pre></td></tr></table></figure>
+
+<p>首先根据<code>hash(key)=key%7</code>，那么关键字序列就得到了<code>(4,3,1,6,6,6)</code>，链表法是将重复的key插入在相同的key后面形成一个链表，每一次查找都需要遍历完整个链表。</p>
+<p>所以查找长度：4x1+1x2+1x3</p>
+<p>平均查找长度再除以一个6 得到1.5</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

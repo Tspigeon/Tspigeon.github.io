@@ -260,6 +260,13 @@
 <h2 id="8-请求"><a href="#8-请求" class="headerlink" title="8.请求"></a>8.请求</h2><p>其实我们常用的请求分为了四类：post，del，put，get对应了增删改查四种操作</p>
 <p>除了get的数据在header中，其他四个的数据都在body里面</p>
 <p>主要注意和后端协商请求方式，注意接口调试</p>
+<h2 id="9-测试"><a href="#9-测试" class="headerlink" title="9.测试"></a>9.测试</h2><h3 id="1-页面抖动"><a href="#1-页面抖动" class="headerlink" title="1.页面抖动"></a>1.页面抖动</h3><p>测试的时候需要一个很诡异的页面抖动：</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\收发系统开发日志\抖动代码.png" alt="抖动代码"></p>
+<p>原本的width是100%，但是100%会出现页面右侧滑动栏一直抖动的问题</p>
+<p>在百度一下之后发现可能是这个原因</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\收发系统开发日志\抖动原因.png" alt="抖动原因"></p>
+<p>也就是说刚刚好盒子大小和电脑屏幕一样大小，右侧的滚动条不知道改不改出现，产生了出现和不出现的叠加态（bushi）</p>
+<p>总的来说，这个时候把盒子的大小调小一点就可以了。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">

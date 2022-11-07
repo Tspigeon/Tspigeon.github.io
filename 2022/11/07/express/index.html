@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>express - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,Expressexpress是基于http封装出来的，极大提升了我们服务端的开发进度
+使用： 安装
+1npm install express@版本号
+
+然后新建一个index.js文件
+进行监听ge,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="express - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,Expressexpress是基于http封装出来的，极大提升了我们服务端的开发进度
+使用： 安装
+1npm install express@版本号
+
+然后新建一个index.js文件
+进行监听ge,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="express - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,Expressexpress是基于http封装出来的，极大提升了我们服务端的开发进度
+使用： 安装
+1npm install express@版本号
+
+然后新建一个index.js文件
+进行监听ge,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">express</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">express</h1>
+        <div class="stuff">
+            <span>十一月 07, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/node-js/" rel="tag">node.js</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h1><p>express是基于http封装出来的，极大提升了我们服务端的开发进度</p>
+<p>使用： 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express@版本号</span><br></pre></td></tr></table></figure>
+
+<p>然后新建一个index.js文件</p>
+<p>进行监听get请求：</p>
+<p>请求之后使用send发送信息给客户端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const express = require(&#x27;express&#x27;)</span><br><span class="line"></span><br><span class="line">const app = new express()</span><br><span class="line"></span><br><span class="line">const port = 3000</span><br><span class="line"></span><br><span class="line">app.get(&#x27;/&#x27;, (req, res)=&gt;&#123;</span><br><span class="line">    res.send(&#x27;hello world!&#x27;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, ()=&gt;&#123;</span><br><span class="line">    console.log(&#x27;listen port 3000&#x27;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>我们发现这些方法的使用和原生的http模块其实很类似</p>
+<p>send方法响应一个字符串，也可以响应一个json对象</p>
+<h2 id="1-常用api"><a href="#1-常用api" class="headerlink" title="1.常用api"></a>1.常用api</h2><h3 id="1-1-static"><a href="#1-1-static" class="headerlink" title="1.1 static"></a>1.1 static</h3><p>将静态资源向外展示，现在将public中的资源向外开放</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 向外展示静态资源</span><br><span class="line">// static中的便是需要展示的文件夹</span><br><span class="line">app.use(express.static(&#x27;public&#x27;))</span><br></pre></td></tr></table></figure>
+
+<p>但是我们访问public下的资源时不需要加<code>/public</code></p>
+<p>而是直接使用public下的相对路径就可以了</p>
+<h3 id="1-2-nodemon"><a href="#1-2-nodemon" class="headerlink" title="1.2 nodemon"></a>1.2 nodemon</h3><p>一个类似于热重载的插件</p>
+<p><code>npm install -g nodemon</code>全局安装nodemon</p>
+<p>安装完毕之后 使用<code>nodemon 文件名</code>启动项目</p>
+<p>之后每次代码变动，只要ctrl+s就会自动重载代码</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>

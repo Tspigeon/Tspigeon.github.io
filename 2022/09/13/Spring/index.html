@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Spring - Tspigeon &#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="My blog,Spring1.Spring Framework1.1 Framework的体系结构我们这里介绍的是Spring4.0的体系结构
+从底层的核心容器（管理对象）开始向上搭建
+
+1.2 核心概念IoC：,"> 
+    <meta name="author" content="Tspigeon"> 
+    <link rel="alternative" href="atom.xml" title="Tspigeon &#39;s blog" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Spring - Tspigeon &#39;s blog"/>
+    <meta name="twitter:description" content="My blog,Spring1.Spring Framework1.1 Framework的体系结构我们这里介绍的是Spring4.0的体系结构
+从底层的核心容器（管理对象）开始向上搭建
+
+1.2 核心概念IoC：,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Tspigeon &#39;s blog"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Spring - Tspigeon &#39;s blog"/>
+    <meta property="og:description" content="My blog,Spring1.Spring Framework1.1 Framework的体系结构我们这里介绍的是Spring4.0的体系结构
+从底层的核心容器（管理对象）开始向上搭建
+
+1.2 核心概念IoC：,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Tspigeon &#39;s blog</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://yoursite.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Spring</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Spring</h1>
+        <div class="stuff">
+            <span>九月 13, 2022</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h2 id="1-Spring-Framework"><a href="#1-Spring-Framework" class="headerlink" title="1.Spring Framework"></a>1.Spring Framework</h2><h3 id="1-1-Framework的体系结构"><a href="#1-1-Framework的体系结构" class="headerlink" title="1.1 Framework的体系结构"></a>1.1 Framework的体系结构</h3><p>我们这里介绍的是Spring4.0的体系结构</p>
+<p>从底层的核心容器（管理对象）开始向上搭建</p>
+<p><img src="https://img-blog.csdnimg.cn/ddc99f8b58b44c4ea42f29ddca52cbe1.png" alt="farmework体系结构"></p>
+<h3 id="1-2-核心概念"><a href="#1-2-核心概念" class="headerlink" title="1.2 核心概念"></a>1.2 核心概念</h3><p>IoC：为了解耦而提出的方案（控制反转）</p>
+<p><img src="https://img-blog.csdnimg.cn/758fe91bb7204080a6e09205f149202a.png" alt="ioc"></p>
+<p>不再new产生，而是使用IoC容器中的创建好的对象，将对象统一放入IoC容器中进行管理，并对于有依赖关系的对象提供DI</p>
+<p>原本的<code>priavte BookDao bookDao = new BookImp()</code> 变成了 <code>private BookDao bookDao</code></p>
+<p>而IoC容器中被管理的对象被称为<code>bean</code></p>
+<p>DI：依赖注入</p>
+<p>对bean与bean之间建立依赖关系，叫做依赖注入</p>
+<p>也是为了充分解耦而创建</p>
+<p>达到的效果就是获取IoC容器中的bean时，可以一起提取相关的对应关系</p>
+<h3 id="1-3入门案例"><a href="#1-3入门案例" class="headerlink" title="1.3入门案例"></a>1.3入门案例</h3><p>IoC：</p>
+<p>我们首先导入Spring</p>
+<p>在<code>pom.xml</code>中依赖中写入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-context&lt;/artifactId&gt;</span><br><span class="line">  &lt;version&gt;5.2.10.RELEASE&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在resource下新建spring的config文件-<code>applicationContext.xml</code></p>
+<p>然后在创建的配置文件下写入bean对应的class</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--2.配置bean--&gt;</span><br><span class="line">&lt;!--bean标签标示配置bean</span><br><span class="line">id属性标示给bean起名字</span><br><span class="line">class属性表示给bean定义类型--&gt;</span><br><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们建立一个主方法</p>
+<p>获取IoC容器，容器的类型是一个接口叫做<code>ApplicationContext</code>，我们new它的实现类<code>ClassPathXmlApplicationContext</code>，里面传递的参数是我们resource中配置spring文件的名称<code>applicationContext.xml</code></p>
+<p>调用getBean拿到Bean，然后使用对象中的方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//3.获取IoC容器</span><br><span class="line">ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">//4.获取bean（根据bean配置id获取）</span><br><span class="line">BookDao bookDao = (BookDao) ctx.getBean(&quot;bookDao&quot;);</span><br><span class="line">bookDao.save();</span><br></pre></td></tr></table></figure>
+
+<p>DI：</p>
+<p>我们在service（另一个class文件）中要获取另一个bean中的对象</p>
+<p>首先删除new替换为set方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//5.删除业务层中使用new的方式创建的dao对象</span><br><span class="line">private BookDao bookDao;</span><br><span class="line"></span><br><span class="line">public void save() &#123;</span><br><span class="line">    System.out.println(&quot;book service save ...&quot;);</span><br><span class="line">    bookDao.save();</span><br><span class="line">&#125;</span><br><span class="line">//6.提供对应的set方法</span><br><span class="line">public void setBookDao(BookDao bookDao) &#123;</span><br><span class="line">    this.bookDao = bookDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在<code>applicationContext.xml</code>文件中，为了实现将dao对象放入service中：</p>
+<p>其中name是被引入的对象在service中的名称，ref是该对象在bean中的id或者name（编程中我们一般统一）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot;&gt;</span><br><span class="line">    &lt;!--7.配置server与dao的关系--&gt;</span><br><span class="line">    &lt;!--property标签表示配置当前bean的属性</span><br><span class="line">    name属性表示配置哪一个具体的属性</span><br><span class="line">    ref属性表示参照哪一个bean--&gt;</span><br><span class="line">    &lt;property name=&quot;bookDao&quot; ref=&quot;bookDao&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-4-bean"><a href="#1-4-bean" class="headerlink" title="1.4 bean"></a>1.4 bean</h3><h4 id="1-4-1-基础配置"><a href="#1-4-1-基础配置" class="headerlink" title="1.4.1 基础配置"></a>1.4.1 基础配置</h4><p>bean中可以使用name给bean起别名</p>
+<p>别名可以有多个使用 空格，逗号和分号进行分隔</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;bookDao&quot; name=&quot;Dao1,Dao2&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>另外，bean为我们创建的对象默认是单一的，调用多次getBean得到的其实是同一个对象</p>
+<p>如果我们想获得多个对象</p>
+<p>就需要在bean中添加配置 prototype是不同的对象；singleton是默认的，为同一个对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot; scope=&quot;prototype&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但一般我们使用都是单一对象，因为方便进行快捷管理</p>
+<p>但如果对象的状态经常变化，那我们就不能生成单一对象了，简单来说就不交给bean管理</p>
+<p><img src="https://img-blog.csdnimg.cn/ce9544cba8c347488e1fad780266e630.png" alt="bean作用范围"></p>
+<h4 id="1-4-2-bean实例化"><a href="#1-4-2-bean实例化" class="headerlink" title="1.4.2 bean实例化"></a>1.4.2 bean实例化</h4><p>1.构造方法</p>
+<p>我们对于接口实例化建立构造方法的时候，构造方法是通过反射实现的（private也会调用）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class BookDaoImpl implements BookDao &#123;</span><br><span class="line"></span><br><span class="line">    private BookDaoImpl() &#123;</span><br><span class="line">        System.out.println(&quot;book dao constructor is running ....&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line">        System.out.println(&quot;book dao save ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//此时也能运行得到 book dao constructor is running ....</span><br></pre></td></tr></table></figure>
+
+<p>但是如果加入了参数</p>
+<p><code> pubilc BookDaoImpl(int i)</code>，就会报错</p>
+<p>说明spring创建bean的时候调用的是无参的构造方法时</p>
+<p>2.静态工厂实例化</p>
+<p>工厂代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public class OrderDaoFactory &#123;</span><br><span class="line">    public static OrderDao getOrderDao()&#123;</span><br><span class="line">        System.out.println(&quot;factory setup....&quot;);</span><br><span class="line">        return new OrderDaoImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过工厂写bean：因为构造出来的是一个<code>factory</code>对象，我们要获得<code>OrderDao</code>对象就需要调用工厂中的<code>getOrderDao</code>方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &lt;!--方式二：使用静态工厂实例化bean--&gt;</span><br><span class="line">&lt;bean id=&quot;orderDao&quot; class=&quot;com.itheima.factory.OrderDaoFactory&quot; factory-method=&quot;getOrderDao&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样运行得到的结果，既执行了dao的代码也执行了工厂中的代码</p>
+<p>但是现在这种方式使用的不多了</p>
+<p>3.实例工厂实例化</p>
+<p>通过实例工厂建立对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//实例工厂创建对象</span><br><span class="line">public class UserDaoFactory &#123;</span><br><span class="line">    public UserDao getUserDao()&#123;</span><br><span class="line">        return new UserDaoImpl();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>bean中需要通过工厂对象再得到dao对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    &lt;!--方式三：使用实例工厂实例化bean--&gt;</span><br><span class="line">&lt;bean id=&quot;userFactory&quot; class=&quot;com.itheima.factory.UserDaoFactory&quot;/&gt;</span><br><span class="line">    &lt;!--实例工厂获取对象，使用factory-bean获取工厂对象 factory-method获取工厂中创建对象的方法--&gt;</span><br><span class="line">&lt;bean id=&quot;userDao&quot; factory-method=&quot;getUserDao&quot; factory-bean=&quot;userFactory&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是我们发现工厂对象创建出来没有用处，只是为了单纯的得到dao对象而放入bean中</p>
+<p>4.通过factoryBean泛型实例化</p>
+<p>实际上是对第4种方式的优化</p>
+<p>在这个UserDaoFactoryBean中实现这个泛型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//FactoryBean创建对象</span><br><span class="line">public class UserDaoFactoryBean implements FactoryBean&lt;UserDao&gt; &#123;</span><br><span class="line">    //代替原始实例工厂中创建对象的方法</span><br><span class="line">    public UserDao getObject() throws Exception &#123;</span><br><span class="line">        return new UserDaoImpl();</span><br><span class="line">    &#125;</span><br><span class="line">	//写出返回类型</span><br><span class="line">    public Class&lt;?&gt; getObjectType() &#123;</span><br><span class="line">        return UserDao.class;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    //设置是否单例，默认为单例，return false关闭单例</span><br><span class="line">    public boolean isSingleton() &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在bean中，我们的代码得到了简化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--方式四：使用FactoryBean实例化bean--&gt;</span><br><span class="line">&lt;bean id=&quot;userDao&quot; class=&quot;com.itheima.factory.UserDaoFactoryBean&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-4-3-bean的生命周期"><a href="#1-4-3-bean的生命周期" class="headerlink" title="1.4.3 bean的生命周期"></a>1.4.3 bean的生命周期</h4><p>在dao中写两个方法代表初始化和销毁</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class BookDaoImpl implements BookDao &#123;</span><br><span class="line">    public void save() &#123;</span><br><span class="line">        System.out.println(&quot;book dao save ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    //表示bean初始化对应的操作</span><br><span class="line">    public void init()&#123;</span><br><span class="line">        System.out.println(&quot;init...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    //表示bean销毁前对应的操作</span><br><span class="line">    public void destory()&#123;</span><br><span class="line">        System.out.println(&quot;destory...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是现在这两个方法不会执行，所以我们需要在IoC中配置一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--init-method：设置bean初始化生命周期回调函数--&gt;</span><br><span class="line">&lt;!--destroy-method：设置bean销毁生命周期回调函数，仅适用于单例对象--&gt;</span><br><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot; init-method=&quot;init&quot; destroy-method=&quot;destory&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在主函数中初始化和销毁（close），但是<code>ApplicationContext</code>没有close方法，只有它的子类<code>ClassPathXmlApplicationContext</code>有close方法，所以我们使用<code>ClassPathXmlApplicationContext</code>，构建ctx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public static void main( String[] args ) &#123;</span><br><span class="line">    ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line"></span><br><span class="line">    BookDao bookDao = (BookDao) ctx.getBean(&quot;bookDao&quot;);</span><br><span class="line">    bookDao.save();</span><br><span class="line">    //注册关闭钩子函数，在虚拟机退出之前回调此函数，关闭容器</span><br><span class="line">    //ctx.registerShutdownHook();</span><br><span class="line">    //关闭容器</span><br><span class="line">    ctx.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了使用close方法，我们还可以注册钩子函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//注册关闭钩子函数，在虚拟机退出之前回调此函数，关闭容器</span><br><span class="line">ctx.registerShutdownHook();</span><br></pre></td></tr></table></figure>
+
+<p>也可以达到触达<code>destroy</code>的效果</p>
+<p>还可以使用接口控制，我们这里拿service举例，直接<code>implements</code>两个接口，两个接口各对应了一个方法</p>
+<p>但是时间顺序：<strong>setBookDao&gt;afterPropertiesSet</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class BookServiceImpl implements BookService, InitializingBean, DisposableBean &#123;</span><br><span class="line">    private BookDao bookDao;</span><br><span class="line"></span><br><span class="line">    public void setBookDao(BookDao bookDao) &#123;</span><br><span class="line">        System.out.println(&quot;set .....&quot;);</span><br><span class="line">        this.bookDao = bookDao;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line">        System.out.println(&quot;book service save ...&quot;);</span><br><span class="line">        bookDao.save();</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	//destroy</span><br><span class="line">    public void destroy() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;service destroy&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	///init</span><br><span class="line">    public void afterPropertiesSet() throws Exception &#123;</span><br><span class="line">        System.out.println(&quot;service init&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于bean的生命周期我们还要了解</p>
+<p>第一步是相当于new对象，然后执行构造方法</p>
+<p>set操作在init之前，也就是依赖注入等在init之前就触发的原因</p>
+<p>初始化容器部分，是一个一个bean执行的，也就是上一个bean的初始化方法执行完之后下一个bean才开始内存分配</p>
+<p><img src="https://img-blog.csdnimg.cn/1f42e7dd06094ac985d68741ff4ce196.png" alt="bean的生命周期"></p>
+<h4 id="1-4-4-setter注入"><a href="#1-4-4-setter注入" class="headerlink" title="1.4.4 setter注入"></a>1.4.4 setter注入</h4><p>我们在前面了解了bean setter注入的一种方式，引用注入</p>
+<p>对引用数据类型使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//6.提供对应的set方法</span><br><span class="line">public void setBookDao(BookDao bookDao) &#123;</span><br><span class="line">    this.bookDao = bookDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--注入引用类型--&gt;</span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot;&gt;</span><br><span class="line">    &lt;!--property标签：设置注入属性--&gt;</span><br><span class="line">    &lt;!--name属性：设置注入的属性名，实际是set方法对应的名称--&gt;</span><br><span class="line">    &lt;!--ref属性：设置注入引用类型bean的id或name--&gt;</span><br><span class="line">    &lt;property name=&quot;bookDao&quot; ref=&quot;bookDao&quot;/&gt;</span><br><span class="line">    &lt;property name=&quot;userDao&quot; ref=&quot;userDao&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>现在我们学习另外的方式</p>
+<p>如果我们要加入bean的数据是这样：<strong>还拥有两个属性</strong>，并提供可访问的set方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public class BookDaoImpl implements BookDao &#123;</span><br><span class="line">    private String databaseName;</span><br><span class="line">    private int connectionNum;</span><br><span class="line"></span><br><span class="line">    public BookDaoImpl() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setConnectionNum(int connectionNum) &#123;</span><br><span class="line">        this.connectionNum = connectionNum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDatabaseName(String databaseName) &#123;</span><br><span class="line">        this.databaseName = databaseName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void save() &#123;</span><br><span class="line">        System.out.println(&quot;book dao save ...&quot; + this.databaseName + &quot;,&quot; + this.connectionNum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们就需要引入这两个属性—注入我们的简单类型，对于基本数据类型的注入，我们使用<code>value</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--注入简单类型--&gt;</span><br><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;&gt;</span><br><span class="line">    &lt;!--property标签：设置注入属性--&gt;</span><br><span class="line">    &lt;!--name属性：设置注入的属性名，实际是set方法对应的名称--&gt;</span><br><span class="line">    &lt;!--value属性：设置注入简单类型数据值--&gt;</span><br><span class="line">    &lt;property name=&quot;connectionNum&quot; value=&quot;100&quot;/&gt;</span><br><span class="line">    &lt;property name=&quot;databaseName&quot; value=&quot;mysql&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-4-5-构造器注入"><a href="#1-4-5-构造器注入" class="headerlink" title="1.4.5 构造器注入"></a>1.4.5 构造器注入</h4><p>我们注入依赖还可以使用构造器注入</p>
+<p>我们之前使用的是set方法引用注入，现在将set方法转换成构造方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//引用数据类型</span><br><span class="line">private BookDao bookDao;</span><br><span class="line">private UserDao userDao;</span><br><span class="line"></span><br><span class="line">public BookServiceImpl(BookDao bookDao, UserDao userDao) &#123;</span><br><span class="line">    this.bookDao = bookDao;</span><br><span class="line">    this.userDao = userDao;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//基本数据类型</span><br><span class="line">private String databaseName;</span><br><span class="line">private int connectionNum;</span><br><span class="line"></span><br><span class="line">public BookDaoImpl(String databaseName, int connectionNum) &#123;</span><br><span class="line">    this.databaseName = databaseName;</span><br><span class="line">    this.connectionNum = connectionNum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后我们的<code>bean</code>配置中，不再使用<code>property</code>，而是使用<code>constructor-arg</code>标记，<strong>name和传入的形参名相同</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">标准书写</span><br><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;connectionNum&quot; value=&quot;10&quot;/&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;databaseName&quot; value=&quot;mysql&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;userDao&quot; class=&quot;com.itheima.dao.impl.UserDaoImpl&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot;&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;userDao&quot; ref=&quot;userDao&quot;/&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;bookDao&quot; ref=&quot;bookDao&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是这样使用变量名耦合度很高，所以提供了两种解决方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">使用变量类型作为标识，解决形参名称的问题，与形参名不耦合</span><br><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;int&quot; value=&quot;10&quot;/&gt;</span><br><span class="line">    &lt;constructor-arg type=&quot;java.lang.String&quot; value=&quot;mysql&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;userDao&quot; class=&quot;com.itheima.dao.impl.UserDaoImpl&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot;&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;userDao&quot; ref=&quot;userDao&quot;/&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;bookDao&quot; ref=&quot;bookDao&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line"></span><br><span class="line">使用index标记形参传入时的位置</span><br><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;&gt;</span><br><span class="line">    &lt;constructor-arg index=&quot;0&quot; value=&quot;mysql&quot;/&gt;</span><br><span class="line">    &lt;constructor-arg index=&quot;1&quot; value=&quot;100&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br><span class="line">&lt;bean id=&quot;userDao&quot; class=&quot;com.itheima.dao.impl.UserDaoImpl&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot;&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;userDao&quot; ref=&quot;userDao&quot;/&gt;</span><br><span class="line">    &lt;constructor-arg name=&quot;bookDao&quot; ref=&quot;bookDao&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>对于这两种构造方法如何选择：</p>
+<p><img src="https://img-blog.csdnimg.cn/5bf8dff7948c420c8959025640b49117.png" alt="注入方法选择"></p>
+<h4 id="1-4-6-依赖自动装配"><a href="#1-4-6-依赖自动装配" class="headerlink" title="1.4.6 依赖自动装配"></a>1.4.6 依赖自动装配</h4><p>spring为我们提供了自动装配方案</p>
+<p>使用bean中的autowire属性</p>
+<p>1.根据类型，接口类型（推荐）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot; autowire=&quot;byType&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是如果有两个同类型接口</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;/&gt;</span><br><span class="line">&lt;bean class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>就会出现识别错误并报错</p>
+<p>2.根据名称装配</p>
+<p>根据名称我们就需要使用id属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;bean id=&quot;bookService&quot; class=&quot;com.itheima.service.impl.BookServiceImpl&quot; autowire=&quot;byName&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是如果id错误就会返回一个空指针，导致报错</p>
+<p>tips：</p>
+<p>1.自动装配只适用于引用类型的数据，简单类型不可以</p>
+<p>2.自动装配的优先级低于setter注入和构造器注入</p>
+<h4 id="1-4-7-集合注入"><a href="#1-4-7-集合注入" class="headerlink" title="1.4.7 集合注入"></a>1.4.7 集合注入</h4><p>如果我们的bean中需要注入集合类型的元素（数组 list map…）</p>
+<p>按照如下方式装配，name属性指的是：<strong>集合在类中的数据名</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;bookDao&quot; class=&quot;com.itheima.dao.impl.BookDaoImpl&quot;&gt;</span><br><span class="line">    &lt;!--数组注入--&gt;</span><br><span class="line">    &lt;property name=&quot;array&quot;&gt;</span><br><span class="line">        &lt;array&gt;</span><br><span class="line">            &lt;value&gt;100&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;200&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;300&lt;/value&gt;</span><br><span class="line">        &lt;/array&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;!--list集合注入--&gt;</span><br><span class="line">    &lt;property name=&quot;list&quot;&gt;</span><br><span class="line">        &lt;list&gt;</span><br><span class="line">            &lt;value&gt;itcast&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;itheima&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;boxuegu&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;chuanzhihui&lt;/value&gt;</span><br><span class="line">        &lt;/list&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;!--set集合注入--&gt;</span><br><span class="line">    &lt;property name=&quot;set&quot;&gt;</span><br><span class="line">        &lt;set&gt;</span><br><span class="line">            &lt;value&gt;itcast&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;itheima&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;boxuegu&lt;/value&gt;</span><br><span class="line">            &lt;value&gt;boxuegu&lt;/value&gt;</span><br><span class="line">        &lt;/set&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;!--map集合注入--&gt;</span><br><span class="line">    &lt;property name=&quot;map&quot;&gt;</span><br><span class="line">        &lt;map&gt;</span><br><span class="line">            &lt;entry key=&quot;country&quot; value=&quot;china&quot;/&gt;</span><br><span class="line">            &lt;entry key=&quot;province&quot; value=&quot;henan&quot;/&gt;</span><br><span class="line">            &lt;entry key=&quot;city&quot; value=&quot;kaifeng&quot;/&gt;</span><br><span class="line">        &lt;/map&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;!--Properties注入--&gt;</span><br><span class="line">    &lt;property name=&quot;properties&quot;&gt;</span><br><span class="line">        &lt;props&gt;</span><br><span class="line">            &lt;prop key=&quot;country&quot;&gt;china&lt;/prop&gt;</span><br><span class="line">            &lt;prop key=&quot;province&quot;&gt;henan&lt;/prop&gt;</span><br><span class="line">            &lt;prop key=&quot;city&quot;&gt;kaifeng&lt;/prop&gt;</span><br><span class="line">        &lt;/props&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-数据库"><a href="#1-5-数据库" class="headerlink" title="1.5 数据库"></a>1.5 数据库</h3><p>使用bean管理数据库对象的时候，需要在bean中写入 driver，url，user，password这几个选项提供链接的条件</p>
+<p>当然还有很多选项：比如最大连接数，链接时间等都可以配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=&quot;dataSource&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot;&gt;</span><br><span class="line">        &lt;property name=&quot;driverClassName&quot; value=&quot;com.mysql.jdbc.Driver&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/spring_db&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;</span><br><span class="line">        &lt;property name=&quot;password&quot; value=&quot;root&quot;/&gt;</span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在类里面引入这个bean</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);</span><br><span class="line">    BookDao bookDao = (BookDao)ctx.getBean(&quot;bookDao&quot;);</span><br><span class="line">    bookDao.save();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们还可以对value中的值进行改善</p>
+<p>引入properties文件</p>
+<p>创建一个名为jdbc.properties 的文件（与xml文件同级，也就是resource文件夹下）</p>
+<p>写入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.mysql.jdbc.Driver</span><br><span class="line">jdbc.url=jdbc:mysql://127.0.0.1:3306/spring_db</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=root</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就需要引入这个properties文件进入xml，就是开辟新的命名空间</p>
+<p>这里面的context就是我们的新命名空间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       //配置新的xmlns</span><br><span class="line">       xmlns:context=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;</span><br><span class="line">            http://www.springframework.org/schema/beans</span><br><span class="line">            http://www.springframework.org/schema/beans/spring-beans.xsd</span><br><span class="line">            //在xsi中加入新空间</span><br><span class="line">            http://www.springframework.org/schema/context</span><br><span class="line">            http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">            &quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后引入properties文件</p>
+<p>第一种方法：多了<code>system-properties-mode=&quot;NEVER&quot;/</code>代表忽略系统变量，<strong>以免系统变量和我们properties文件重名</strong></p>
+<p>第二种方法：加载多个properties文件的时候使用</p>
+<p>第三种方式作为第二种方式的简写形式：代表加载所有的properties文件</p>
+<p>如果要加载类路径下的properties文件使用：<code>classpath*：*.properties</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--    2.使用context空间加载properties文件--&gt;</span><br><span class="line">&lt;!--    &lt;context:property-placeholder location=&quot;jdbc.properties&quot; system-properties-mode=&quot;NEVER&quot;/&gt;--&gt;</span><br><span class="line">&lt;!--    &lt;context:property-placeholder location=&quot;jdbc.properties,jdbc2.properties&quot; system-properties-mode=&quot;NEVER&quot;/&gt;--&gt;</span><br><span class="line">        &lt;context:property-placeholder location=&quot;classpath:*.properties&quot; system-properties-mode=&quot;NEVER&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-6-容器"><a href="#1-6-容器" class="headerlink" title="1.6 容器"></a>1.6 容器</h3><p>关于我们ctx容器的加载方式，我们还有其他的类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//        ApplicationContext ctx = new FileSystemXmlApplicationContext(&quot;D:\\workspace\\spring\\spring_10_container\\src\\main\\resources\\applicationContext.xml&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是这样写颇为麻烦，所以建议还是<code>ClassPathXmlApplicationContext</code></p>
+<p>还有getbean的方式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//        BookDao bookDao = (BookDao) ctx.getBean(&quot;bookDao&quot;);</span><br><span class="line">//作为一般方式的另一种书写形式</span><br><span class="line">BookDao bookDao = ctx.getBean(&quot;bookDao&quot;,BookDao.class);</span><br><span class="line">//直接声明是Book.class类型，但是有单一性</span><br><span class="line">BookDao bookDao = ctx.getBean(BookDao.class);</span><br></pre></td></tr></table></figure>
+
+<p>ClassPathXmlApplicationContext的顶层还有beanFactory构建bean</p>
+<h3 id="1-7-注解开发"><a href="#1-7-注解开发" class="headerlink" title="1.7 注解开发"></a>1.7 注解开发</h3><p>我们不再使用app.xml文件书写配置</p>
+<p>使用一个新建的类配置文件，他就是：config包下的文件</p>
+<p>使用<code>@Component(&quot;bookDao&quot;)</code>进行注解，括号中相当于是bean中id的属性</p>
+<p>在xml文件中配置，context命名空间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;</span><br><span class="line">       xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br><span class="line">       //context空间配置</span><br><span class="line">       xmlns:conetxt=&quot;http://www.springframework.org/schema/context&quot;</span><br><span class="line">       xsi:schemaLocation=&quot;</span><br><span class="line">            http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd</span><br><span class="line">            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后在下面代替bean写入：scan会扫描base-package下的所有文件中的component注解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--    注解开发--&gt;</span><br><span class="line">    &lt;conetxt:component-scan base-package=&quot;com.itheima.dao.impl&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>tips：如果要运行建议降低jdk版本，我使用的1.8版本运行</strong></p>
+<p>关于<code>@component</code>的衍生注解</p>
+<p>数据层：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Repository(&quot;bookDao&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>业务层：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br></pre></td></tr></table></figure>
+
+<p>控制层：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@Controller</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-7-1-纯注解开发"><a href="#1-7-1-纯注解开发" class="headerlink" title="1.7.1 纯注解开发"></a>1.7.1 纯注解开发</h4><p>现在我们提供一种全新的方式，不再使用配置文件，而是使用配置类</p>
+<p>先创建一个配置类：写上注解<code>@Configuration</code>代表这是一个注解类和<code>@ComponentScan(&#123;&quot;com.itheima.service&quot;, &quot;com.itheima.dao&quot;&#125;)</code>代表这个类中需要扫描的component</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">package com.itheima.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.context.annotation.ComponentScan;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line">@Configuration</span><br><span class="line">@ComponentScan(&#123;&quot;com.itheima.service&quot;, &quot;com.itheima.dao&quot;&#125;)</span><br><span class="line">public class SpringConfig &#123;</span><br><span class="line">    public SpringConfig() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这时我们就可以删掉我们的xml文件</p>
+<p>转而在main中这样写，使用全新的类形式加载<code>AnnotationConfigApplicationContext(new Class[]&#123;SpringConfig.class&#125;);</code></p>
+<p>剩下的操作和之前类似</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    ApplicationContext ctx = new AnnotationConfigApplicationContext(new Class[]&#123;SpringConfig.class&#125;);</span><br><span class="line">    BookDao bookDao = (BookDao)ctx.getBean(&quot;bookDao&quot;);</span><br><span class="line">    System.out.println(bookDao);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-7-1-生命周期管理"><a href="#1-7-1-生命周期管理" class="headerlink" title="1.7.1 生命周期管理"></a>1.7.1 生命周期管理</h4><p>注解<code>@Scope(&quot;singleton&quot;)</code>实现生成bean是单例</p>
+<p>有关生命周期的注解</p>
+<p>@postConstruct是在触发构造函数之后</p>
+<p>@preDestory是在销毁前</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//@PostConstruct设置bean的初始化方法</span><br><span class="line">@PostConstruct</span><br><span class="line">public void init() &#123;</span><br><span class="line">    System.out.println(&quot;init ...&quot;);</span><br><span class="line">&#125;</span><br><span class="line">//@PreDestroy设置bean的销毁方法</span><br><span class="line">@PreDestroy</span><br><span class="line">public void destroy() &#123;</span><br><span class="line">    System.out.println(&quot;destroy ...&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-8-Spring整合"><a href="#1-8-Spring整合" class="headerlink" title="1.8 Spring整合"></a>1.8 Spring整合</h3><h4 id="1-8-1-mybatis"><a href="#1-8-1-mybatis" class="headerlink" title="1.8.1 mybatis"></a>1.8.1 mybatis</h4>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
