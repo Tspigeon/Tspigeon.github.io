@@ -24,9 +24,9 @@
 <meta property="og:description" content="在牛客网上面刷题咯！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T09:52:18.723Z">
+<meta property="article:modified_time" content="2022-11-12T12:40:21.467Z">
 <meta property="article:author" content="Tspigeon">
-<meta property="article:tag" content="exercise">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          5k 字
         
       </span>
     
@@ -272,7 +272,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="1-task1-数组"><a href="#1-task1-数组" class="headerlink" title="1.task1-数组"></a>1.task1-数组</h2><h3 id="ex1"><a href="#ex1" class="headerlink" title="ex1."></a>ex1.</h3><pre><code class="hljs">char a[2][3] = &#123;&#123;'a', 'b', 'c'&#125;, &#123;'1', '\0', '2'&#125;&#125;;
+                <h2 id="task-数组"><a href="#task-数组" class="headerlink" title="task-数组"></a>task-数组</h2><h3 id="ex1"><a href="#ex1" class="headerlink" title="ex1."></a>ex1.</h3><pre><code class="hljs">char a[2][3] = &#123;&#123;'a', 'b', 'c'&#125;, &#123;'1', '\0', '2'&#125;&#125;;
 printf(&quot;%s&quot;, a[0]);
 </code></pre>
 <p>试问打印的结果是什么：</p>
@@ -291,13 +291,52 @@ char s = &#39;a&#39;, e, i;
 <h3 id="ex3"><a href="#ex3" class="headerlink" title="ex3."></a>ex3.</h3><p>数组A=array[1..100，1..100]以行序为主序存储，设每个数据元素占2个存储单元，基地址为10，则LOC[5，5]应为。</p>
 <p>这个可以代表二维数组计数从1 开始，也就是4行4列的数据</p>
 <p><code>10+[4*100+4]*2</code>为818</p>
-<h2 id="2-task2-css"><a href="#2-task2-css" class="headerlink" title="2.task2-css"></a>2.task2-css</h2><h3 id="ex1-1"><a href="#ex1-1" class="headerlink" title="ex1."></a>ex1.</h3><p>有关css的优先级</p>
+<h2 id="task-stack"><a href="#task-stack" class="headerlink" title="task-stack"></a>task-stack</h2><h3 id="ex1-中前后缀表达式"><a href="#ex1-中前后缀表达式" class="headerlink" title="ex1.中前后缀表达式"></a>ex1.中前后缀表达式</h3><p>中缀表达式：最符合人认识的表达式，也就是我们常写的<code>1+2*(3-4)</code></p>
+<p>中缀表达式的计算是：例如：<code>(10+20/2*3)/2+8</code></p>
+<p> 一个符号栈operatorStack，一个数字栈numberStack，刚开始栈都为空。</p>
+<p>ope:                num:            </p>
+<p>数字和符号分别入栈，如果<strong>入栈符号的优先级小于等于栈顶符号</strong>，则立即计算两个数字</p>
+<p>ope:  ( ，+ ，/      num: 10 20 2</p>
+<p>然后 * 入栈，因为 * 和 / 的优先级一样，进行20/2的计算得到10，再入栈</p>
+<p>ope:( +                 num: 10 10</p>
+<p>最后继续得到结果</p>
+<p>前缀表达式：符号放在前面的表达式</p>
+<p>运算：从右到左扫码表达式，扫描到符号的时候计算两个栈顶数字然后结果入栈</p>
+<p>中缀=&gt;前缀 转换：</p>
+<pre><code class="hljs"> - 初始化两个栈，符号栈s1、存放中间结果栈s2
+ - 从右至左扫描中缀表达式
+ - 遇到操作数，将其压入栈s2
+ - 遇到操作运算符，则需要比较其与s1栈顶操作符的优先级
+             1.若s1为空，或者栈顶运算符为右括号)，则直接入栈
+             2.优先级高于栈顶运算符，也直接入栈
+             3.否则，将s1栈顶运算符弹出压入s2，再转到步骤1进行判断
+ - 遇到括号：
+            1.如果遇到右括号，直接压入栈
+            2.如果遇到左括号，则依次弹出s1栈顶运算符，压入s2，直到遇到右括号为止，并将这一对括号丢弃
+- 重复2-5，直至表达式左边
+- 将s1中剩余运算符依次弹出并压入s2
+- 依次弹出s2的元素，即为中缀表达式
+</code></pre>
+<p>后缀表达式：符号在后面的表达式</p>
+<p>运算和前缀一样：从左至右扫描表达式，遇到数字时，将数字压入堆栈，遇到运算符时，弹出栈顶的两个数，用运算符对它们做相应的计算（<strong>次顶元素 op 栈顶元素</strong>），并将结果入栈；重复上述过程直到表达式最右端，最后运算得出的值即为表达式的结果</p>
+<p>中缀转后缀：方法也和前缀一样，只是是<strong>从左至右扫描</strong></p>
+<h3 id="ex2-增删速度"><a href="#ex2-增删速度" class="headerlink" title="ex2.增删速度"></a>ex2.增删速度</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-number">1</span>：vector 底层数据结构为数组，支持快速随机访问 <br><span class="hljs-number">2</span>：list 底层数据结构为双向链表，支持快速增删<br><span class="hljs-number">3</span>：map、set都是STL关联容器，支持快速增删<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="task-Queue"><a href="#task-Queue" class="headerlink" title="task-Queue"></a>task-Queue</h2><h3 id="ex1-链队列"><a href="#ex1-链队列" class="headerlink" title="ex1.链队列"></a>ex1.链队列</h3><p>首先我们都知道队列，队列的头指针和尾指针相等的时候说明队列为空</p>
+<p><strong>用链表表示的队列就简称为链队列</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">//初始化队列</span><br><span class="hljs-keyword">void</span> InitQueue(LinkQueue *Q)<br>&#123;<br>	<span class="hljs-comment">//申请头结点内存空间</span><br>	QueueNode *s = (QueueNode *)malloc(sizeof(QueueNode));<br>	assert(s != <span class="hljs-literal">NULL</span>);<br>	<span class="hljs-comment">//初始化时，将头指针和尾指针都指向头结点</span><br>	Q-&gt;front = Q-&gt;tail = s;<br>	<span class="hljs-comment">//将头结点的下一结点赋空</span><br>	Q-&gt;tail-&gt;next = <span class="hljs-literal">NULL</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们发现<strong>初始状态头结点和尾节点都是指向空</strong></p>
+<p>插入第 1 个元素时， rear+1 指向该元素， front+1 也指向该元素，插入第 2 个元素时 rear+1 ， front 不变，删除 1 个元素时 front+1 。即 front=rear 不为空时带链的队列中只有一个元素。</p>
+<h2 id="task-css"><a href="#task-css" class="headerlink" title="task-css"></a>task-css</h2><h3 id="ex1-优先级"><a href="#ex1-优先级" class="headerlink" title="ex1. 优先级"></a>ex1. 优先级</h3><p>有关css的优先级</p>
 <p>可以把样式的应用方式分为几个等级，按照等级来计算权重</p>
 <p>1、!important，加在样式属性值后，权重值为 10000<br>2、内联样式，如：style=””，权重值为1000<br>3、ID选择器，如：#content，权重值为100<br>4、类，伪类和属性选择器，如： content、:hover 权重值为10<br>5、标签选择器和伪元素选择器，如：div、p、:before 权重值为1</p>
 <p>6、通用选择器（*）、子选择器（&gt;）、相邻选择器（+）、同胞选择器（~）、权重值为0</p>
 <p>而去css优先级有这样一个规定：<code>越具体优先级越高</code>（#username &gt; span #username）</p>
 <p><strong>另外子选择器<code>&gt;</code>必须是<code>亲儿子</code></strong></p>
-<h3 id="ex2-1"><a href="#ex2-1" class="headerlink" title="ex2."></a>ex2.</h3><p>一些css3的东西</p>
+<h3 id="ex2-弹性布局技巧"><a href="#ex2-弹性布局技巧" class="headerlink" title="ex2. 弹性布局技巧"></a>ex2. 弹性布局技巧</h3><p>一些css3的东西</p>
 <p>1.<code>display: flex;</code>:弹性布局</p>
 <p>​    最常用的做法就是将所有<strong>子盒子</strong>都变成行内块元素</p>
 <p>可以在一行显示</p>
@@ -321,14 +360,50 @@ char s = &#39;a&#39;, e, i;
 
 <p>8.<code>flex-direction: column;</code></p>
 <p>灵活的项目将垂直显示，正如一个列一样。</p>
-<h2 id="3-task3-js"><a href="#3-task3-js" class="headerlink" title="3.task3-js"></a>3.task3-js</h2><h3 id="ex1-数组的map方法"><a href="#ex1-数组的map方法" class="headerlink" title="ex1.数组的map方法"></a>ex1.数组的map方法</h3><p>js数组中有一个map方法，多用于提取对象数组中特定的值，可以看成一个for循环</p>
+<h3 id="ex3-block，inline，inline-block"><a href="#ex3-block，inline，inline-block" class="headerlink" title="ex3. block，inline，inline-block"></a>ex3. block，inline，inline-block</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-number">1</span><span class="hljs-selector-class">.inline</span> ： 使用此属性后，元素会被显示为内联元素，元素则不会换行 <br><br>inline是行内元素，同行可以显示，像<span class="hljs-selector-tag">span</span>、<span class="hljs-attribute">font</span>、<span class="hljs-selector-tag">em</span>、<span class="hljs-selector-tag">b</span>这些默认都是行内元素，不会换行，无法设置宽度、高度、<span class="hljs-attribute">margin</span>、<span class="hljs-attribute">border</span><br><br><span class="hljs-number">2</span><span class="hljs-selector-class">.block</span> ： 使用此属性后，元素会被现实为块级元素，元素会进行换行。 <br><br>block，块元素，<span class="hljs-selector-tag">div</span>、<span class="hljs-selector-tag">p</span>、<span class="hljs-selector-tag">ul</span>、<span class="hljs-selector-tag">li</span>等这些默认都是块元素，会换行，除非设置<span class="hljs-attribute">float</span> <br><br><span class="hljs-number">3</span><span class="hljs-selector-class">.inline-block</span> ： 是使元素以块级元素的形式呈现在行内。意思就是说，让这个元素显示在同一行不换行，但是又可以控制高度和宽度，这相当于内敛元素的增强。(IE6不支持) <br></code></pre></td></tr></table></figure>
+
+<p>块级元素可以调节margin和padding，也可以使用text-indent（缩进功能），letter-spacing（调整字符间距）</p>
+<p>说道这里还有一个边距的顺序问题</p>
+<p>padding:上、右、下、左边距</p>
+<p>但是只有三个参数时：上 左右 下边距</p>
+<h3 id="ex4-canvas，object，source"><a href="#ex4-canvas，object，source" class="headerlink" title="ex4.canvas，object，source"></a>ex4.canvas，object，source</h3><p> <code>&lt;canvas&gt;</code> 是 <code>HTML5</code> 新增的，一个可以使用脚本(通常为<code>JavaScript</code>)在其中绘制图像的 <code>HTML</code> 元素。它可以用来制作照片集或者制作简单(也不是那么简单)的动画，甚至可以进行实时视频处理和渲染。</p>
+<p>object和source是用来指定媒体资源的</p>
+<p>object：用于指定多种文件格式的资源<code>&lt;object width=&quot;400&quot; height=&quot;400&quot; data=&quot;helloworld.swf&quot; &gt;</code></p>
+<p>source：专门用于指定video，audio，img等媒体资源</p>
+<h3 id="ex5-reflow，repaint"><a href="#ex5-reflow，repaint" class="headerlink" title="ex5. reflow，repaint"></a>ex5. reflow，repaint</h3><p>在浏览器渲染页面的过程中，页面中的代码进行渲染时，已经使浏览器不堪重负了，如果当用户使用时，替换一个背景颜色，或者更换一个样式，那么我们的浏览器又需要重新加载代码，而在这个过程中，浏览器又一次的受到了压力，日复一日说不定哪天就崩掉了</p>
+<pre><code class="hljs">而主要影响页面渲染速度的为：reflow和repaint
+</code></pre>
+<p>1.reflow(回流)<br>        为什么页面加载会慢，因为浏览器需要花时间、花精力去渲染，尤其是当它发现某个部分发生变化时影响到布局，就需要倒回去重新渲染，这个倒回去渲染的过程就叫做reflow(回流)</p>
+<p>2.repaint(重绘)<br>        如果变化的元素，只是更改了元素的背景色，文字颜色、边框颜色等等不影响它周围或者内部布局的属性，那这种行为只会引起repaint(重绘)，所以repaint的速度明显比reflow快</p>
+<p>所以页面改变要尽量减少触发回流（reflow）</p>
+<p>而最经典的就是：所以display会导致回流，visibility只会导致重绘</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-attribute">visibility</span>:hidden;属性会使对象不可见，但该对象在网页所占的空间没有改变，等于留出了一块空白区域，<br><span class="hljs-attribute">display</span>:none属性会使这个对象彻底消失不显示，也不再占用位置。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="ex6-nth-child"><a href="#ex6-nth-child" class="headerlink" title="ex6. :nth-child"></a>ex6. :nth-child</h3><p>:nth-child(n)  指的是 选择父元素的第n个子元素  n大于0 从1开始</p>
+<p>还有nth-last-child(n)也是选择子元素，只不过是倒着选取，从1开始</p>
+<h2 id="task-js"><a href="#task-js" class="headerlink" title="task-js"></a>task-js</h2><h3 id="ex1-数组的map方法"><a href="#ex1-数组的map方法" class="headerlink" title="ex1.数组的map方法"></a>ex1.数组的map方法</h3><p>js数组中有一个map方法，多用于提取对象数组中特定的值，可以看成一个for循环</p>
 <p>语法: array.map( function ( item, index, arr) {} )</p>
 <p>第一个参数:item,必须,当前元素的值</p>
 <p>第二个参数:index,可选,当前元素在数组中的索引值</p>
 <p>第三个参数:arr,当前元素属于的数组对象</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//提取details数组中的img_url属性</span><br><span class="hljs-keyword">const</span> urls = <span class="hljs-keyword">this</span>.details.map(item =&gt; &#123;<br><span class="hljs-keyword">return</span> item.img_url<br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//提取details数组中的img_url属性</span><br><span class="hljs-keyword">const</span> urls = <span class="hljs-keyword">this</span>.details.map(item =&gt; &#123;<br>	<span class="hljs-keyword">return</span> item.img_url<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<h2 id="4-task4-算法"><a href="#4-task4-算法" class="headerlink" title="4.task4-算法"></a>4.task4-算法</h2><h3 id="ex1-哈希表-链地址法"><a href="#ex1-哈希表-链地址法" class="headerlink" title="ex1.哈希表-链地址法"></a>ex1.哈希表-链地址法</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">设哈希表长为<span class="hljs-number">8</span>，哈希函数为Hash <span class="hljs-comment">(key)</span>=key<span class="hljs-meta">%</span><span class="hljs-number">7</span>。初始记录关键字序列为<span class="hljs-comment">(32，24，15，27，20，13)</span>，用链地址法作为解决冲突方法的平均查找长度是？<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="ex2-基础语法糖"><a href="#ex2-基础语法糖" class="headerlink" title="ex2.基础语法糖"></a>ex2.基础语法糖</h3><h4 id="Object-assign的理解："><a href="#Object-assign的理解：" class="headerlink" title="Object.assign的理解："></a>Object.assign的理解：</h4><p>作用：Object.assign可以实现对象的合并。</p>
+<p>语法：Object.assign(target, …sources)</p>
+<p>解析：</p>
+<ol>
+<li>Object.assign会将source里面的可枚举属性复制到target，如果和target的已有属性重名，则会覆盖。</li>
+<li>后续的source会覆盖前面的source的同名属性。</li>
+<li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</li>
+</ol>
+<p>简单来说就是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p1 = &#123;&#125;<br><span class="hljs-keyword">let</span> p2 = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jack&#x27;</span>&#125;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.assign(p1,p2))<br><span class="hljs-comment">//结果</span><br>p1=&gt;&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jack&#x27;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="iframe"><a href="#iframe" class="headerlink" title="iframe:"></a>iframe:</h4><h2 id="task-算法"><a href="#task-算法" class="headerlink" title="task-算法"></a>task-算法</h2><h3 id="ex1-哈希表-链地址法"><a href="#ex1-哈希表-链地址法" class="headerlink" title="ex1.哈希表-链地址法"></a>ex1.哈希表-链地址法</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">设哈希表长为<span class="hljs-number">8</span>，哈希函数为Hash <span class="hljs-comment">(key)</span>=key<span class="hljs-meta">%</span><span class="hljs-number">7</span>。初始记录关键字序列为<span class="hljs-comment">(32，24，15，27，20，13)</span>，用链地址法作为解决冲突方法的平均查找长度是？<br></code></pre></td></tr></table></figure>
 
 <p>首先根据<code>hash(key)=key%7</code>，那么关键字序列就得到了<code>(4,3,1,6,6,6)</code>，链表法是将重复的key插入在相同的key后面形成一个链表，每一次查找都需要遍历完整个链表。</p>
 <p>所以查找长度：4x1+1x2+1x3</p>
@@ -351,7 +426,7 @@ char s = &#39;a&#39;, e, i;
     
       <span class="category-chain">
         
-  <a href="/categories/exercise/" class="category-chain-item">exercise</a>
+  <a href="/categories/%E7%AE%97%E6%B3%95/" class="category-chain-item">算法</a>
   
   
 
@@ -366,7 +441,7 @@ char s = &#39;a&#39;, e, i;
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/exercise/">#exercise</a>
+        <a href="/tags/%E7%AE%97%E6%B3%95/">#算法</a>
       
     </div>
   
