@@ -23,17 +23,18 @@
 <meta property="og:site_name" content="Tspigeon &#39;s blog">
 <meta property="og:description" content="One Piece的时代终将来临">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/vue/vue3/vite.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/vue/vue3/proxy.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/vue/vue3/watch的几种情况.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/vue/vue3/生命周期组件式API.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/vue/vue3/toRef.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bfaf423d6bff48238ebcb67470dfa442.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f980aa564e374167936dbf70089df3ba.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/6a16a4068642451599baeaa80939acff.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/52b001236b4a44d3a4ccd04717c00103.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/970ce1664f8348f7b256f950b8eb78c0.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/4a93f07bf2ac4cee80cbd864888ab3e2.png">
 <meta property="article:published_time" content="2022-06-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T09:53:12.677Z">
+<meta property="article:modified_time" content="2022-11-28T07:21:49.503Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:/新建文件夹/文件/GitHub/pic/vue/vue3/vite.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/bfaf423d6bff48238ebcb67470dfa442.png">
   
   
   
@@ -229,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.2k 字
+          14k 字
         
       </span>
     
@@ -283,7 +284,7 @@
 <p>进入之后选择vue3脚手架即可</p>
 <h3 id="1-2-vite创建"><a href="#1-2-vite创建" class="headerlink" title="1.2 vite创建"></a>1.2 vite创建</h3><p>vite是新一代的前端构建工具，由vue团队开发，为了挑战webpack的地位</p>
 <p>vite的速度更快更轻量级，使用vite构建工程的方法如下：</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue3\vite.png" srcset="/img/loading.gif" lazyload alt="vite"></p>
+<p><img src="https://img-blog.csdnimg.cn/bfaf423d6bff48238ebcb67470dfa442.png" srcset="/img/loading.gif" lazyload alt="vite"></p>
 <p>启动不再是<code>npm run serve</code>而是<code>npm run dev</code></p>
 <p>我们会发现启动快了很多，但是vite是<strong>等你进入网址再进行动态加载页面</strong></p>
 <h2 id="2-vue3结构"><a href="#2-vue3结构" class="headerlink" title="2.vue3结构"></a>2.vue3结构</h2><p>vue3中的<code>main.js</code>中的代码和<code>vue2</code>不同，它使用一个轻量级的app管理组件，提供了挂载和卸载功能</p>
@@ -304,6 +305,7 @@
 
 <p>注意set up 不要和vue2中的data，method混用，会有优先级的问题</p>
 <p><strong>set up也不能是一个async函数</strong>，被async修饰后我们得到的就是一个promise包裹的对象了，所以被禁止了。</p>
+<p>但是后期我们学习了异步组件之后，异步组件中的setup可以是一个async函数</p>
 <h3 id="3-2-ref"><a href="#3-2-ref" class="headerlink" title="3.2 ref"></a>3.2 ref</h3><p>ref在vue2中是一个属性，而在vue3中是一个函数，用于实现数据响应式</p>
 <p>先引入ref</p>
 <figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nim"><span class="hljs-keyword">import</span> &#123; <span class="hljs-keyword">ref</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;<br></code></pre></td></tr></table></figure>
@@ -340,7 +342,7 @@
 <p>Vue.delete()和Vue.set()或者this.$set()和this.$delete()</p>
 <p>vue3中的响应式，只要是reactive中管理的数据，我们就可以直接使用delete删除</p>
 <p>vue3是通过proxy调用set和get进行数据的更改，deleteProperty实现删除</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue3\proxy.png" srcset="/img/loading.gif" lazyload alt="proxy"></p>
+<p><img src="https://img-blog.csdnimg.cn/f980aa564e374167936dbf70089df3ba.png" srcset="/img/loading.gif" lazyload alt="proxy"></p>
 <p>在vue2中我们使用props实现父向子传值，子组件接收需要使用props</p>
 <p>但是如果不使用props，我们也能在vc身上的<code>$attr</code>中看到</p>
 <p>在vue3中setup的执行时间比beforeCreate早</p>
@@ -385,7 +387,7 @@
 <p>我们发现没有oldValue了，只有newValue，而且自动开启了<strong>深度监视</strong></p>
 <p>如果我们需要使用oldValue就只有使用ref</p>
 <p>还有几种情况：</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue3\watch的几种情况.png" srcset="/img/loading.gif" lazyload alt="watch的几种情况"></p>
+<p><img src="https://img-blog.csdnimg.cn/6a16a4068642451599baeaa80939acff.png" srcset="/img/loading.gif" lazyload alt="watch的几种情况"></p>
 <p>注意一个特殊情况：这里的job是</p>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">job:</span>&#123;<br><span class="hljs-symbol">    j1:</span>&#123;<br><span class="hljs-symbol">        salary:</span><span class="hljs-string">&quot;1K&quot;</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -434,7 +436,7 @@
 </li>
 </ul>
 <p>一般形式和我们vue2中很像，所以我们这里介绍</p>
-<h4 id="组合式API："><a href="#组合式API：" class="headerlink" title="组合式API："></a>组合式API：</h4><p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue3\生命周期组件式API.png" srcset="/img/loading.gif" lazyload alt="生命周期组件式API"></p>
+<h4 id="组合式API："><a href="#组合式API：" class="headerlink" title="组合式API："></a>组合式API：</h4><p><img src="https://img-blog.csdnimg.cn/52b001236b4a44d3a4ccd04717c00103.png" srcset="/img/loading.gif" lazyload alt="生命周期组件式API"></p>
 <p>导入之后就可以在setUp中写</p>
 <p>导入：<code>import &#123; reactive, ref, onBeforeMount &#125; from &#39;vue&#39;;</code></p>
 <p>使用：（在setup中）</p>
@@ -454,14 +456,83 @@
 
 
 
-<h3 id="7-toRef"><a href="#7-toRef" class="headerlink" title="7.toRef"></a>7.toRef</h3><p>当我们需要单独将name拿出来存储的时候，</p>
+<h3 id="7-toRef"><a href="#7-toRef" class="headerlink" title="7.toRef"></a>7.toRef</h3><p>当我们需要单独将一个reactive对象中的一个属性比如：name拿出来使用的时候</p>
+<p>如果使用</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-built_in">return</span> &#123;<br>	<span class="hljs-built_in">name</span>: person.<span class="hljs-built_in">name</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>就会出现丢失了响应式的问题，所以我们需要使用到toRef</p>
 <p>有需要和之前的person产生联系使用</p>
 <p>相当于一个浅拷贝，有引用关系和指针指向问题</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\vue\vue3\toRef.png" srcset="/img/loading.gif" lazyload alt="toRef"></p>
+<p><img src="https://img-blog.csdnimg.cn/970ce1664f8348f7b256f950b8eb78c0.png" srcset="/img/loading.gif" lazyload alt="toRef"></p>
 <p>或者可以使用<code>toRefs</code>对一个对象的数据进行toRef操作，如果是有深度的数据就需要使用的时候加上层级关系</p>
 <p>但是return的时候需要使用<code>...toRefs(xxx)</code>，展开来进行返回</p>
+<h2 id="5-其他组合式api"><a href="#5-其他组合式api" class="headerlink" title="5. 其他组合式api"></a>5. 其他组合式api</h2><h3 id="1-shallowRef-and-shallowReactive（性能优化）"><a href="#1-shallowRef-and-shallowReactive（性能优化）" class="headerlink" title="1. shallowRef and shallowReactive（性能优化）"></a>1. shallowRef and shallowReactive（性能优化）</h3><p>shallow也就是浅层的意思，顾名思义，<strong>shallowReactive只处理对象浅层的数据的响应式，shallowRef只处理基本类型的数据响应式，不处理对象类型的数据的响应式</strong></p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>此时x的值为：</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">x.y</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;x.y++&quot;</span>&gt;</span>点我x.y+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>此时p1的值为：</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">sr.p1</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>此时p2.p3的值为：</span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">sr.p2.p3</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;sr.p1++&quot;</span>&gt;</span>点击p1+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click-</span>=<span class="hljs-string">&quot;sr.p2.p3++&quot;</span>&gt;</span>点击p3+1<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="xml">  </span><br><span class="xml">import &#123;reactive, shallowReactive, shallowRef, toRefs&#125; from &#x27;vue&#x27;;</span><br><span class="xml">export default &#123;</span><br><span class="xml">  name: &#x27;setUp&#x27;,</span><br><span class="xml">  setup() &#123;</span><br><span class="xml">    let x = shallowRef(&#123;</span><br><span class="xml">      y : 1</span><br><span class="xml">    &#125;)</span><br><span class="xml"></span><br><span class="xml">    let sr = shallowReactive(&#123;</span><br><span class="xml">      p1:1,</span><br><span class="xml">      p2:&#123;</span><br><span class="xml">        p3: 1</span><br><span class="xml">      &#125;</span><br><span class="xml">    &#125;)</span><br><span class="xml">    </span><br><span class="xml">    return&#123;</span><br><span class="xml">      x,</span><br><span class="xml">      sr</span><br><span class="xml">    &#125;</span><br><span class="xml">  &#125;</span><br><span class="xml">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>我们得到的结果是x.y 和p2.p3的值都不会改变 ，但是 p1的值会改变，说明了shallow的浅层响应式的作用</p>
+<h3 id="2-readOnly"><a href="#2-readOnly" class="headerlink" title="2. readOnly"></a>2. readOnly</h3><p>使用readOnly包裹一个数据，使其变成只读的数据，我们将person改为只读数据</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">let</span> <span class="hljs-string">person = reactive(&#123;</span><br>  <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;on&#x27;,</span><br>  <span class="hljs-attr">age</span>:<span class="hljs-string">&#x27;18&#x27;,</span><br>  <span class="hljs-attr">job</span>:<span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">j1</span>:<span class="hljs-string">&#123;</span><br>      <span class="hljs-attr">salary</span>:<span class="hljs-string">&quot;1K&quot;</span><br>    <span class="hljs-attr">&#125;</span><br>  <span class="hljs-attr">&#125;</span><br><span class="hljs-attr">&#125;)</span><br><br><span class="hljs-attr">person</span> = <span class="hljs-string">readonly(person)</span><br></code></pre></td></tr></table></figure>
+
+<p>此时再更改person中的数据的时候，就会失败而且控制台出现警告</p>
+<p><code>Set operation on key &quot;name&quot; failed: target is readonly. </code></p>
+<p>shallowReadOnly</p>
+<p>带有shallow的都是浅层的意思，那么shallowReadOnly就代表只把浅层的数据改为readOnly的形式</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">let</span> <span class="hljs-string">person = reactive(&#123;</span><br>  <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;on&#x27;,</span><br>  <span class="hljs-attr">age</span>:<span class="hljs-string">&#x27;18&#x27;,</span><br>  <span class="hljs-attr">job</span>:<span class="hljs-string">&#123;</span><br>    <span class="hljs-attr">j1</span>:<span class="hljs-string">&#123;</span><br>      <span class="hljs-attr">salary</span>:<span class="hljs-string">&quot;1K&quot;</span><br>    <span class="hljs-attr">&#125;</span><br>  <span class="hljs-attr">&#125;</span><br><span class="hljs-attr">&#125;)</span><br><br><span class="hljs-attr">person</span> = <span class="hljs-string">shallowReadonly(person)</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>这样person内层的数据还是可以改变，但是外层的数据已经不能改变了。</strong></p>
+<h3 id="3-toRaw-and-markRaw"><a href="#3-toRaw-and-markRaw" class="headerlink" title="3. toRaw and markRaw"></a>3. toRaw and markRaw</h3><p>raw类方法实现的是<strong>将响应式数据变为普通数据</strong>，也就是取消响应式效果（proxy代理）</p>
+<p>toRaw: 简单的取消响应式</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">person = <span class="hljs-keyword">to</span><span class="hljs-constructor">Raw(<span class="hljs-params">person</span>)</span><br></code></pre></td></tr></table></figure>
+
+<p>markRaw: 将一个数据永远不设置为响应式</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>给person添加car属性，但car属性不会更改<br><span class="hljs-keyword">function</span> addCar()&#123;<br>  let car = &#123;brand: <span class="hljs-string">&#x27;奔驰&#x27;</span>, price: <span class="hljs-string">&#x27;40w&#x27;</span>&#125;<br>  <span class="hljs-regexp">//m</span>arkRaw使得数据永远不会变为响应式<br>  person.car = markRaw(car)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-customRef"><a href="#4-customRef" class="headerlink" title="4.customRef"></a>4.customRef</h3><p>customRef实现自定义Ref，什么是自定义ref呢？如下代码</p>
+<p>其中的myRef就是我们自定义的ref，需要由我们来维护</p>
+<p>而维护这个ref就需要<strong>使用customRef自己来写响应式的get和set</strong></p>
+<p>我们在set中设置了延迟显示，晚一秒再触发trigger模型解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//自定义ref</span><br>   <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myRef</span>(<span class="hljs-params">value</span>)</span>&#123;<br>     <span class="hljs-keyword">let</span> timer<br>   <span class="hljs-comment">//  使用customRef实现自定义ref</span><br>     <span class="hljs-keyword">return</span> customRef(<span class="hljs-function">(<span class="hljs-params">track, trigger</span>)=&gt;</span>&#123;<br>       <span class="hljs-comment">//需要return一个对象</span><br>       <span class="hljs-keyword">return</span>&#123;<br>         <span class="hljs-function"><span class="hljs-title">get</span>(<span class="hljs-params"></span>)</span>&#123;<br><br>           <span class="hljs-comment">//将myRef中的value返回出去实现get</span><br>           <span class="hljs-comment">//track实现get的多次调用</span><br>           track()<br>           <span class="hljs-keyword">return</span> value<br>         &#125;,<br>         <span class="hljs-function"><span class="hljs-title">set</span>(<span class="hljs-params">newValue</span>)</span>&#123;<br>           <span class="hljs-comment">//set可以获取一个newValue参数</span><br>           <span class="hljs-built_in">clearTimeout</span>(timer)<br>           timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;<br>             value = newValue<br>             <span class="hljs-comment">//trigger实现模板的重新解析</span><br>             trigger()<br>           &#125;,<span class="hljs-number">1000</span>)<br>         &#125;<br>       &#125;<br>     &#125;)<br>   &#125;<br><br>   <span class="hljs-keyword">let</span> hello = myRef(<span class="hljs-string">&quot;hello&quot;</span>);<br>   <span class="hljs-keyword">return</span>&#123;<br>       hello<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<p>可是问题是：<strong>如果更改速度过快或者过多，就会触发很多定时器，产生抖动</strong></p>
+<p>所以我们需要在创建一个定时器前清除上一个定时器，保证只有一个定时器</p>
+<p>或者<strong>我们使用setTimeInterval，循环触发trigger</strong></p>
+<h3 id="5-provide-inject"><a href="#5-provide-inject" class="headerlink" title="5. provide inject"></a>5. provide inject</h3><p>这两个api用于祖孙组件间通信</p>
+<p>祖组件：使用provide将需要传输的数据传递出去</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> car = reactive(&#123;<span class="hljs-attr">brand</span>:<span class="hljs-string">&quot;BMW&quot;</span>, <span class="hljs-attr">price</span>:<span class="hljs-string">&quot;40w&quot;</span>&#125;)<br>  provide(<span class="hljs-string">&quot;car&quot;</span>,car)<br>  <span class="hljs-keyword">return</span>&#123;<br>    car<br>  &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+
+<p>孙组件：使用inject获取传出的数据</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> x = inject(<span class="hljs-string">&quot;car&quot;</span>)<br>  <span class="hljs-built_in">console</span>.log(x)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-判断是否为响应式"><a href="#6-判断是否为响应式" class="headerlink" title="6.判断是否为响应式"></a>6.判断是否为响应式</h3><p>使用isRef，isReactive，isReadOnly，isProxy </p>
+<p>分别代表是否是ref等，和是否是Proxy代理的对象</p>
+<h3 id="7-vue3新组件"><a href="#7-vue3新组件" class="headerlink" title="7.vue3新组件"></a>7.vue3新组件</h3><h4 id="1-fragment"><a href="#1-fragment" class="headerlink" title="1.fragment"></a>1.fragment</h4><p>一个vue3中的标签，不参与渲染，比如vue2中vue标签需要一个div包裹整个template，但是vue3中不需要而是一个隐藏的fragment</p>
+<h4 id="2-Teleport"><a href="#2-Teleport" class="headerlink" title="2.Teleport"></a>2.Teleport</h4><p>也是新标签，用于将组件中的dom节点传送到指定的地方</p>
+<p>在我们的文件结构中，父元素是App，子元素是child，孙元素是sun，孙元素拥有一个组件dialog-实现弹窗对话的效果</p>
+<p><strong>dialog组件：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;isShow=true&quot;</span>&gt;</span>点我显示弹窗<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;isShow&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;dialog&quot;</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>对话1<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>对话2<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;isShow=false&quot;</span>&gt;</span>点击关闭弹窗<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript"></span><br><span class="javascript"><span class="hljs-keyword">import</span> &#123;ref&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;</span><br><span class="javascript"></span><br><span class="javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;dialog&quot;</span>,</span><br><span class="javascript">  <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span>&#123;</span><br><span class="javascript">    <span class="hljs-keyword">let</span> isShow = ref(<span class="hljs-literal">false</span>)</span><br><span class="javascript">    <span class="hljs-keyword">return</span>&#123;</span><br><span class="javascript">      isShow</span><br><span class="javascript">    &#125;</span><br><span class="javascript">  &#125;</span><br><span class="javascript">&#125;</span><br><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css"></span><br><span class="css">  <span class="hljs-selector-class">.dialog</span>&#123;</span><br><span class="css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">300px</span>;</span><br><span class="css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">300px</span>;</span><br><span class="css">    <span class="hljs-attribute">background-color</span>: aliceblue;</span><br><span class="css">  &#125;</span><br><span class="css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>但是问题就在于，这时对话框默认是在sun组件里的，如果使用定位调节，也会有很多的repaint的问题</p>
+<p>所以我们使用teleport实现传送：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;teleport to=<span class="hljs-string">&quot;body&quot;</span>&gt;<br>  &lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;isShow&quot;</span> <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">dialog</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">h3</span>&gt;对话<span class="hljs-symbol">1</span>&lt;/<span class="hljs-symbol">h3</span>&gt;<br>    &lt;<span class="hljs-symbol">h3</span>&gt;对话<span class="hljs-symbol">2</span>&lt;/<span class="hljs-symbol">h3</span>&gt;<br>    &lt;<span class="hljs-symbol">button</span> @<span class="hljs-symbol">click</span>=&quot;<span class="hljs-symbol">isShow</span>=<span class="hljs-symbol">false</span>&quot;&gt;点击关闭弹窗&lt;/<span class="hljs-symbol">button</span>&gt;<br>  &lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;/<span class="hljs-symbol">teleport</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这样我们再写样式，<strong>这个dom节点就是依靠body来进行定位</strong></p>
+<h4 id="3-Suspence"><a href="#3-Suspence" class="headerlink" title="3.Suspence"></a>3.Suspence</h4><p>也是一个内置的标签组件，用于<strong>解决异步组件中由于加载快慢引起的抖动问题</strong></p>
+<p>首先引入异步组件：同步组件都是一起显示，等到所有的子组件都加在完毕之后再进行加载</p>
+<p>​                                而异步组件不同，异步组件是根据层级顺序进行加载，优先加载父组件，加载一个显示一个</p>
+<p>​                                <strong>而且异步组件中可以使用异步promise函数作为setup的返回对象，setup也可以是async函数</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//静态引入-异步组件生成函数</span><br><span class="hljs-keyword">import</span> &#123;defineAsyncComponent&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">const</span> Child = defineAsyncComponent(<span class="hljs-function">()=&gt;</span><span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./components/child&#x27;</span>))<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;App&quot;</span>,<br>  <span class="hljs-function"><span class="hljs-title">setup</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">return</span>&#123;&#125;<br>  &#125;,<br>  <span class="hljs-attr">components</span>: &#123; Child &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>为解决异步组件的抖动问题：我们需要Suspence，Suspence其实类似于插槽，需要使用v-slot</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>我是App组件<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">suspense</span>&gt;</span><br><span class="hljs-comment">&lt;!--    默认组件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">v-slot:default</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">Child</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Child</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-comment">&lt;!--    默认组件还在加载时显示的备用组件--&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">template</span> <span class="hljs-attr">v-slot:fallback</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>组件加载中》》》<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">suspense</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="…some-tips"><a href="#…some-tips" class="headerlink" title="…some tips"></a>…some tips</h2><h3 id="1-vue3全局挂载"><a href="#1-vue3全局挂载" class="headerlink" title="1.vue3全局挂载"></a>1.vue3全局挂载</h3><p>在vue2中使用全局挂载是直接调用Vue的原型（prototype）</p>
 <p>但是vue3中，我们不再创建vue实例，所以无法在原型上做更改</p>
+<p>一些全局的配置都做了替换：</p>
+<p><img src="https://img-blog.csdnimg.cn/4a93f07bf2ac4cee80cbd864888ab3e2.png" srcset="/img/loading.gif" lazyload alt="全局配置"></p>
 <p>我们引进一个全新的函数 <code>config.globalProperties</code></p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">const</span> <span class="hljs-keyword">app</span> = createApp(<span class="hljs-keyword">App</span>)<br><span class="hljs-keyword">app</span>.config.globalProperties.<span class="hljs-variable">$axios</span> = axios<br><span class="hljs-keyword">app</span>.mount(&#x27;#<span class="hljs-keyword">app</span>&#x27;)<br></code></pre></td></tr></table></figure>
 
@@ -475,6 +546,7 @@
 <p>所以为了获取我们全局挂载上的方法，我们需要使用<code>getCurrentInstance</code></p>
 <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-keyword">const</span> &#123;proxy&#125; = getCurrentInstance()<br><br><span class="hljs-keyword">const</span> $axios = proxy.$axios<br></code></pre></td></tr></table></figure>
 
+<h3 id="4-移除keyCode作为v-on的修饰符"><a href="#4-移除keyCode作为v-on的修饰符" class="headerlink" title="4.移除keyCode作为v-on的修饰符"></a>4.移除keyCode作为v-on的修饰符</h3><p>究竟怎样的结局配得上这一路颠沛流离</p>
 
                 
               </div>
