@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="JavaScriptex1.数组的筛选map：js数组中有一个map方法，多用于提取对象数组中特定的值，并返回一个新数组，可以看成一个for循环 语法: array.map( function ( item, index, arr) {} ) 第一个参数:item,必须,当前元素的值 第二个参数:index,可选,当前元素在数组中的索引值 第三个参数:arr,当前元素属于的数组对象 1234&#x2F;&#x2F;提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript基础">
+<meta property="og:url" content="http://yoursite.com/2022/12/05/JavaScript%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="JavaScriptex1.数组的筛选map：js数组中有一个map方法，多用于提取对象数组中特定的值，并返回一个新数组，可以看成一个for循环 语法: array.map( function ( item, index, arr) {} ) 第一个参数:item,必须,当前元素的值 第二个参数:index,可选,当前元素在数组中的索引值 第三个参数:arr,当前元素属于的数组对象 1234&#x2F;&#x2F;提">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-29T11:28:17.306Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>JavaScript基础 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="JavaScript基础"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-12-05 00:00" pubdate>
+          2022年12月5日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JavaScript基础</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="ex1-数组的筛选"><a href="#ex1-数组的筛选" class="headerlink" title="ex1.数组的筛选"></a>ex1.数组的筛选</h2><h3 id="map："><a href="#map：" class="headerlink" title="map："></a>map：</h3><p>js数组中有一个map方法，多用于提取对象数组中特定的值，<strong>并返回一个新数组</strong>，可以看成一个for循环</p>
+<p>语法: array.map( function ( item, index, arr) {} )</p>
+<p>第一个参数:item,必须,当前元素的值</p>
+<p>第二个参数:index,可选,当前元素在数组中的索引值</p>
+<p>第三个参数:arr,当前元素属于的数组对象</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//提取details数组中的img_url属性</span><br><span class="hljs-keyword">const</span> urls = <span class="hljs-keyword">this</span>.details.map(item =&gt; &#123;<br>	<span class="hljs-keyword">return</span> item.img_url<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="forEach："><a href="#forEach：" class="headerlink" title="forEach："></a>forEach：</h3><p>和map方法类似的就是forEach方法，只是forEach方法没有返回值</p>
+<p>forEach是将每个元素都遍历并进行操作，使用return或者return false可以跳出<strong>单次</strong>循环</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">arr.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each((<span class="hljs-params">num</span>, <span class="hljs-params">index</span>, <span class="hljs-params">arr</span>)</span> =&gt; &#123;<br>  arr<span class="hljs-literal">[<span class="hljs-identifier">index</span>]</span> = num<span class="hljs-operator"> * </span><span class="hljs-number">2</span>;<br>&#125;)<br>console.log(arr)   <span class="hljs-comment">// [6, 20, 16, 11.2, 108]</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="filter："><a href="#filter：" class="headerlink" title="filter："></a>filter：</h3><p>还有一个类似的方法，也就是我们常用的filter，但是filter常用于过滤，而且会返回一个全新的数组</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> resultFilter = arr.filter((<span class="hljs-built_in">num</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">num</span> &gt; <span class="hljs-number">5</span><br>&#125;)<br>console.log(resultFilter)   <span class="hljs-comment">// [10, 8, 5.6, 54]</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="find："><a href="#find：" class="headerlink" title="find："></a>find：</h3><p>find方法遍历整个数组，然后返回符合条件的<strong>新数组</strong></p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> resultFind = arr.find((<span class="hljs-built_in">num</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">num</span> &gt; <span class="hljs-number">9</span><br>&#125;)<br>console.log(resultFind)   <span class="hljs-comment">// 10</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="findIndex："><a href="#findIndex：" class="headerlink" title="findIndex："></a>findIndex：</h3><p>和find类似，只是返回的是索引数组</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">const</span> resultFindIndex = arr.findIndex((<span class="hljs-built_in">num</span>) =&gt; &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-built_in">num</span> &gt; <span class="hljs-number">9</span><br>&#125;)<br>console.log(resultFindIndex)   <span class="hljs-comment">// 1</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="some和every："><a href="#some和every：" class="headerlink" title="some和every："></a>some和every：</h3><p>some返回的是一个bool值，作用是判断数组中是否有满足条件的元素</p>
+<p>every返回的也是一个bool值，作用是判断数组元素是否全部满足条件</p>
+<h2 id="ex2-基础语法糖"><a href="#ex2-基础语法糖" class="headerlink" title="ex2.基础语法糖"></a>ex2.基础语法糖</h2><h3 id="Object-assign的理解："><a href="#Object-assign的理解：" class="headerlink" title="Object.assign的理解："></a>Object.assign的理解：</h3><p>作用：Object.assign可以实现对象的合并。</p>
+<p>语法：Object.assign(target, …sources)</p>
+<p>解析：</p>
+<ol>
+<li>Object.assign会将source里面的可枚举属性复制到target，如果和target的已有属性重名，则会覆盖。</li>
+<li>后续的source会覆盖前面的source的同名属性。</li>
+<li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</li>
+</ol>
+<p>简单来说就是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p1 = &#123;&#125;<br><span class="hljs-keyword">let</span> p2 = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jack&#x27;</span>&#125;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.assign(p1,p2))<br><span class="hljs-comment">//结果</span><br>p1=&gt;&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jack&#x27;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="arguments："><a href="#arguments：" class="headerlink" title="arguments："></a>arguments：</h3><p>用于函数参数传递的相关操作：</p>
+<p>arguments 当我们不知道有多少个参数传进来的时候就用 arguments 来接收，是一个类似于数组的对象，他有length属性，可以arguments[ i ]来访问对象中的元素， 但是它不能用数组的一些方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showargs</span>(<span class="hljs-params"></span>) </span>&#123;<br>	<span class="hljs-built_in">console</span>.log( <span class="hljs-built_in">arguments</span> );<br>&#125;<br><br>showargs(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>);<br><br></code></pre></td></tr></table></figure>
+
+<p>这里打印结果就是<code>1,2,3,4,5</code>，我们还可以单独打印某一个参数：</p>
+<p>例如 <code>arguments[1]</code>打印结果就是2</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this:"></a>this:</h3><p>普通函数调用直接调用中的this 会指向 window， 严格模式下this会指向 undefined，自执行函数 this 指向 window，定时器中的 this 指向 window</p>
+<p>在对象里调用的this，指向调用函数的那个对象，</p>
+<p>在构造函数以及类中的this，构造函数配合 new 使用, 而 new 关键字会将构造函数中的 this 指向实例化对象，所以构造函数中的 this 指向 当前实例化的对象</p>
+<p>方法中的this谁调用就指向谁。</p>
+<p>箭头函数没有自己的 this，箭头函数的this在定义的时候，会继承自外层第一个普通函数的this</p>
+<p>this是代表js程序当前指向的一种指针，一般条件下的this指向window，也就是全局</p>
+<p>这段代码中：**<code>this.foo</code>改变的是全局中的foo变量**，所以最后的运行结果是456</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">&#x27;123&#x27;</span>; <span class="hljs-comment">//全局的foo</span><br>	<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params"></span>) </span>&#123;<br>		<br>	<span class="hljs-keyword">var</span> foo = <span class="hljs-string">&#x27;456&#x27;</span>;	<span class="hljs-comment">//print 函数中的foo</span><br>		<br>	<span class="hljs-built_in">this</span>.foo = <span class="hljs-string">&#x27;789&#x27;</span>;<br>		<br>	<span class="hljs-built_in">console</span>.log(foo);<br>		<br>&#125;<br>	<br>print();<br></code></pre></td></tr></table></figure>
+
+<h3 id="加减："><a href="#加减：" class="headerlink" title="加减："></a>加减：</h3><p>在js中，<code>+</code>有两种含义，第一种是字符串拼接，第二种是算术运算符。而<code>-</code>只有一种含义，就是算术运算符</p>
+<p>在”100”+3-“1”中，<strong>减号作为算术运算转换1位num类型并优先运算</strong>，得到2</p>
+<p><strong>然后加号在有字符串的情况下优先代表字符串拼接</strong>，得到结果”102”</p>
+<h3 id="iframe"><a href="#iframe" class="headerlink" title="iframe:"></a>iframe:</h3><p><code>iframe</code>是<code>html</code>元素，用于在网页中内嵌另一个网页。</p>
+<p><code>iframe</code>行内块级元素，有以下元素属性：</p>
+<ol>
+<li><p>src : 指定内联网页的地址</p>
+</li>
+<li><p>frameborder: iframe默认有个边界，可以设置frameborder为0清除边界。</p>
+</li>
+<li><p>width,height: 控制iframe的宽高。</p>
+</li>
+<li><p>name： 框架的名称</p>
+</li>
+<li><p>scrolling： 是否可滚动，yes ,no , auto</p>
+</li>
+</ol>
+<ul>
+<li><p>切换iframe：每个iframe单独维护自己的window页面，但是iframe之间可以互相切换</p>
+<ol>
+<li>在父级使用<code>window.frames[name]</code>可以获取子iframe的window对象,相应的可以获取document对象，从而对子iframe进行dom操作。</li>
+<li>在子iframe想要操作父元素的iframe，直接使用子元素的<code>window.parent</code>来获取父级元素的window对象，从而获取document来操作dom。    </li>
+</ol>
+</li>
+<li><p>iframe之间传递消息：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;iframe :src=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;childFrame&quot;</span> importance=<span class="hljs-string">&quot;high&quot;</span> <span class="hljs-built_in">name</span>=<span class="hljs-string">&quot;demo&quot;</span> &gt;&lt;/iframe&gt;<br></code></pre></td></tr></table></figure>
+
+<p><code>top.postMessage(&quot;hello&quot;, &quot;http://localhost:8081&quot;);</code>，第一个参数是data，第二个参数是url地址</p>
+<p>接收消息是使用<code>window</code>的<code>onmessage</code>事件</p>
+<p>或者使用window的事件监听：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">window</span>.addEventListener( <span class="hljs-string">&quot;message&quot;</span>, <span class="hljs-function"><span class="hljs-params">(e)</span>=&gt;</span>&#123;<span class="hljs-built_in">console</span>.log(e.data)&#125;	 <span class="hljs-literal">false</span>);<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="判断数据类型："><a href="#判断数据类型：" class="headerlink" title="判断数据类型："></a>判断数据类型：</h3><p>js中判断数据类型的方法有很多种：</p>
+<ol>
+<li><p><code>typeof</code></p>
+<p>typeof(x)，可以查看变量的类型，返回一个字符串，<strong>但是typeof(x)区分不了array和object</strong>（统一显示为object）</p>
+<p>我们可以使用<code>Array.prototype.isPrototypeOf(list)</code>来查看是否为array</p>
+<p>我们由此还可以得出，每个prototype上有一个isPrototypeOf方法，用来进行是否为该类型的判断</p>
+</li>
+<li><p><code>instanceof</code></p>
+<p>左边是否等于右边的类型</p>
+</li>
+<li><p>看构造函数<code>b.constructor</code></p>
+<p>通过输出构造函数，也可以看到类型</p>
+</li>
+<li><p><code>Object.prototype.toString.call(x)</code>，字面意思，通过调用prototype中的方法进行判断</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">console.log(<span class="hljs-keyword">Object</span>.prototype.toString.<span class="hljs-keyword">call</span>(arr))<br>VM981:<span class="hljs-number">1</span> [<span class="hljs-keyword">object</span> <span class="hljs-keyword">Array</span>]<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="有关原型的那点事情："><a href="#有关原型的那点事情：" class="headerlink" title="有关原型的那点事情："></a>有关原型的那点事情：</h3><p>①<code>__proto__</code>和<code>constructor</code>属性是<strong>对象</strong>所独有的；</p>
+<p>② <code>prototype</code>属性是<strong>函数</strong>所独有的。<strong>但是由于JS中函数也是一种对象</strong>，所以函数也拥有<code>__proto__</code>和<code>constructor</code>属性</p>
+<p>首先我们区别<code>__proto__</code>与<code>prototype</code></p>
+<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nim">function <span class="hljs-type">Foo</span>() <span class="hljs-meta">&#123;...&#125;</span>;<br><span class="hljs-keyword">let</span> f1 = new <span class="hljs-type">Foo</span>();<br></code></pre></td></tr></table></figure>
+
+<p>对于这个函数和对象，简单来说<code>f1.__proto__ == Foo.prototype</code></p>
+<p>对于<code>constructor</code>，也就是构造函数，只要是对象就可以调用它的构造函数</p>
+<h2 id="ex3-amp-amp-和"><a href="#ex3-amp-amp-和" class="headerlink" title="ex3. &amp;&amp;和||"></a>ex3. &amp;&amp;和||</h2><p>js中常用这两个语法操作变量，一般用<code>||</code>的比较多，<strong>为了得到true或者有效的变量使用<code>||</code>获得多个变量中有用的那一个</strong></p>
+<p>比如在一个变量中：<code>let a = &#123;b:1, c:&#123;d:1&#125;&#125;</code></p>
+<p><strong>&amp;&amp; 和 || 的计算原则</strong></p>
+<p>a || b：如果a是true，返回a。如果a是false，直接返回b。（找）</p>
+<p>a &amp;&amp; b：如果a是true，那么返回b。如果a是false，返回a。（返回错误的一个）</p>
+<h2 id="ex4-函数柯里化"><a href="#ex4-函数柯里化" class="headerlink" title="ex4. 函数柯里化"></a>ex4. 函数柯里化</h2><p>简单来说就是参数复用</p>
+<p>对于一个简单的拼接url字符串函数，由于我们现在的协议（也就是prot变量）<strong>一般都是重复的https，所以我们现在需要减少这个参数</strong></p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs qml"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uri_curring</span>(<span class="hljs-params">prot, host, path</span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">$&#123;prot&#125;</span><span class="hljs-subst">$&#123;host&#125;</span><span class="hljs-subst">$&#123;path&#125;</span>`</span><br>&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-built_in">url</span> = url_curring(<span class="hljs-string">&#x27;https://&#x27;</span>, <span class="hljs-string">&#x27;www.baidu.com&#x27;</span>, <span class="hljs-string">&#x27;/search&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>进行柯里化：柯里化的主要思想就是，函数参数的作用域范围，外部参数可以被内部调用，做了一个很巧妙的处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> prot = <span class="hljs-string">&#x27;https://&#x27;</span><br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uri_curring</span>(<span class="hljs-params">prot</span>) </span>&#123; <br><br>    <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">host, path</span>)=&gt;</span>&#123;<br>        <span class="hljs-string">`<span class="hljs-subst">$&#123;prot&#125;</span><span class="hljs-subst">$&#123;host&#125;</span><span class="hljs-subst">$&#123;path&#125;</span>`</span><br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">const</span> url = url_curring(<span class="hljs-string">&#x27;www.baidu.com&#x27;</span>, <span class="hljs-string">&#x27;/search&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这样我们就只需要传入两个参数了</p>
+<h2 id="ex5-闭包"><a href="#ex5-闭包" class="headerlink" title="ex5. 闭包"></a>ex5. 闭包</h2><p>既然已经提到了函数柯里化了，那么就不得不提一下函数的闭包了</p>
+<p>函数闭包的概念很简单，就是在一个函数当中嵌套另外一个函数</p>
+<p>但是他的作用却很复杂，下面是一个简单的闭包代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs javascript">  <span class="hljs-comment">//version 1</span><br>  <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span><br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inner</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a)    <span class="hljs-comment">//1</span><br>  &#125;<br>  inner()<br>&#125;<br><br><span class="hljs-comment">//version 2</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span><br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inner</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a)    <span class="hljs-comment">//1</span><br>  &#125;<br>  inner()<br>&#125;<br>outer()<br></code></pre></td></tr></table></figure>
+
+<p>如果我们使用第一种形式的函数，外面就可以修改我们的a变量，导致问题</p>
+<p>但是在闭包之后，我们的a变量进入了函数里面，就不会有这样的问题了</p>
+<p><strong>但是闭包会有内存泄漏的问题</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">outer</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span><br><br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">inner</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(a)    <span class="hljs-comment">//1</span><br>  &#125;<br>  inner()<br>&#125;<br><span class="hljs-keyword">const</span> out = outer()<br></code></pre></td></tr></table></figure>
+
+<p>对于这段代码，如果我们不销毁out，那么给a分配的内存空间就一直不会被销毁</p>
+<h2 id="ex6-节流和防抖"><a href="#ex6-节流和防抖" class="headerlink" title="ex6. 节流和防抖"></a>ex6. 节流和防抖</h2><h4 id="防抖-lodash-debounce）"><a href="#防抖-lodash-debounce）" class="headerlink" title="防抖:(lodash._debounce）"></a>防抖:(lodash._debounce）</h4><p>常见于定时器上，定时器反复触发，只会执行最后一个，是连续触发事件</p>
+<p>例如：我设置了一个100毫秒的点击定时器，但是50毫秒的时候我又点击了一下，导致定时器被重置为100毫秒</p>
+<p>解决思路：重新开始，清空前面的定时器之类的</p>
+<p>常用场景：</p>
+<ol>
+<li><p>搜索框的搜索输入</p>
+</li>
+<li><p>文本框的实时保存</p>
+</li>
+</ol>
+<h4 id="节流：-lodash-throttle"><a href="#节流：-lodash-throttle" class="headerlink" title="节流：(lodash._throttle)"></a>节流：(lodash._throttle)</h4><p>节流和防抖很类似，但是节流的函数只执行一次</p>
+<p>例如：我设置一个100毫秒的定时器，但是点击了多次，但是最后也只能执行1次</p>
+<p>场景：高频事件上</p>
+<p>解决方案：等待上一次代码执行，还没执行完的时候return其他执行</p>
+<h2 id="ex7-web基础状态码："><a href="#ex7-web基础状态码：" class="headerlink" title="ex7. web基础状态码："></a>ex7. web基础状态码：</h2><p>常见的状态码<br>200（成功） - 服务器成功返回网页<br>201 （已创建） - 请求成功并且服务器创建了新的资源。<br>304 （未修改） - 自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。<br>400 （错误请求） - 服务器不理解请求的语法。<br>404（未找到） - 请求的网页不存在<br>500 （服务器内部错误） - 服务器遇到错误，无法完成请求。<br>503 （服务不可用）- 服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态。<br>HTTP状态码100-500详细介绍<br>1xx（临时响应信息提示 ）<br>这些状态代码表示临时的响应。客户端在收到常规响应之前，应准备接收一个或多个1xx</p>
+<p>100(继续) - 请求者应当继续提出请求。服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。<br>101(切换协议) - 服务器将遵从客户的请求转换到另外一种协议</p>
+<p>2xx (成功)（1-6）<br>表示成功处理了请求的状态代码。200(成功) - 服务器已成功处理了请求。<br>201(已创建) - 请求成功并且服务器创建了新的资源。<br>202(已接受) - 服务器已接受请求，但尚未处理。<br>203(非授权信息) - 服务器已成功处理了请求，但返回的信息可能来自另一来源。<br>204(无内容) - 服务器成功处理了请求，但没有返回任何内容。<br>205(重置内容) - 服务器成功处理了请求，但没有返回任何内容。与 204响应不同，此响应要求请求者重置文档视图(例如，清除表单内容以输入新内容)。<br>206(部分内容) - 服务器成功处理了部分 GET 请求。</p>
+<p>3xx - 重定向（6个123457）<br>表示要完成请求，需要进一步操作。客户端浏览器必须采取更多操作来实现请求。例如，浏览器可能不得不请求服务器上的不同的页面，或通过代理服务器重复该请求。 建议在每次请求中使用重定向不要超过 5次。 通常，这些状态代码用来重定向。</p>
+<p>300（多种选择）- 针对请求，服务器可执行多种操作。服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。<br>301（永久移动）- 请求的网页已永久移动到新位置。服务器返回此响应（对 GET 或 HEAD 请求的响应）时，会自动将请求者转到新位置。<br>302（临时移动）- 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>303（查看其他位置）- 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。<br>304（未修改）- 自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容。<br>305（使用代理）- 请求者只能使用代理访问请求的网页。如果服务器返回此响应，还表示请求者应使用代理。<br>307（临时重定向）- 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。</p>
+<p>4xx(请求错误)（5-7）<br>这些状态码表示请求可能出错，客户端似乎有问题。例如，客户端请求不存在的页面，客户端未提供有效的身份验证信息。 妨碍了服务器的处理。</p>
+<p>400(错误请求)服务器不理解请求的语法。<br>401(未授权)请求要求身份验证。对于登录后请求的网页，服务器可能返回此响应。<br>403(禁止)服务器拒绝请求。如果您在 Googlebot 尝试抓取您网站上的有效网页时看到此状态码(您可以在 Google网站管理员工具诊断下的网络抓取页面上看到此信息)，可能是您的服务器或主机拒绝了 Googlebot 访问。<br>404(未找到)服务器找不到请求的网页。例如，对于服务器上不存在的网页经常会返回此代码。<br>405(方法禁用)禁用请求中指定的方法。<br>406(不接受)无法使用请求的内容特性响应请求的网页。<br>407(需要代理授权)此状态码与 401(未授权)类似，但指定请求者应当授权使用代理。如果服务器返回此响应，还表示请求者应当使用代理。<br>408(请求超时)服务器等候请求时发生超时。<br>409(冲突)服务器在完成请求时发生冲突。服务器必须在响应中包含有关冲突的信息。服务器在响应与前一个请求相冲突的 PUT请求时可能会返回此代码，以及两个请求的差异列表。<br>410(已删除)如果请求的资源已永久删除，服务器就会返回此响应。该代码与404(未找到)代码类似，但在资源以前存在而现在不存在的情况下，有时会用来替代 404 代码。如果资源已永久移动，您应使用 301指定资源的新位置。<br>411(需要有效长度)服务器不接受不含有效内容长度标头字段的请求。<br>412(未满足前提条件)服务器未满足请求者在请求中设置的其中一个前提条件。<br>413(请求实体过大)服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。<br>414(请求的 URI 过长)请求的 URI(通常为网址)过长，服务器无法处理。<br>415(不支持的媒体类型)请求的格式不受请求页面的支持。<br>416(请求范围不符合要求)如果页面无法提供请求的范围，则服务器会返回此状态码。<br>417(未满足期望值)服务器未满足”期望”请求标头字段的要求。<br>5xx(服务器错误)<br>这些状态码表示服务器在处理请求时发生内部错误。这些错误可能是服务器本身的错误，而不是请求出错。</p>
+<p>500 （服务器内部错误） 服务器遇到错误，无法完成请求。<br>500.12 - 应用程序正忙于在 Web 服务器上重新启动。<br>500.13 - Web 服务器太忙。<br>500.15 - 不允许直接请求 Global.asa。<br>500.16 – UNC 授权凭据不正确。这个错误代码为 IIS 6.0 所专用。<br>500.18 – URL 授权存储不能打开。这个错误代码为 IIS 6.0 所专用。<br>500.100 - 内部 ASP 错误。<br>501 （尚未实施）- 服务器不具备完成请求的功能。例如，服务器无法识别请求方法时可能会返回此代码。<br>502 （错误网关）- 服务器作为网关或代理，从上游服务器收到无效响应。<br>503 （服务不可用）- 服务器目前无法使用（由于超载或停机维护）。通常，这只是暂时状态。<br>504 （网关超时）- 服务器作为网关或代理，但是没有及时从上游服务器收到请求。<br>505 （HTTP 版本不受支持）- 服务器不支持请求中所用的 HTTP 协议版本。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/JavaScript/" class="category-chain-item">JavaScript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/JavaScript/">#JavaScript</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>JavaScript基础</div>
+      <div>http://yoursite.com/2022/12/05/JavaScript基础/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年12月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/29/pytorch/" title="pytorch">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">pytorch</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/12/05/Ts%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/" title="Ts可视化项目">
+                        <span class="hidden-mobile">Ts可视化项目</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

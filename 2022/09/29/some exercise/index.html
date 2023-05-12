@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://img-blog.csdnimg.cn/e6655b35deb24ee7968ef6b395114440.jpeg">
-  <link rel="icon" href="https://img-blog.csdnimg.cn/e6655b35deb24ee7968ef6b395114440.jpeg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,7 +24,7 @@
 <meta property="og:description" content="在牛客网上面刷题咯！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-26T07:04:27.023Z">
+<meta property="article:modified_time" content="2022-12-06T11:59:00.163Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://img-blog.csdnimg.cn/fbe375c37a624b96b4791adaf5c3d9f0.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          4.6k 字
         
       </span>
     
@@ -383,34 +383,12 @@ char s = &#39;a&#39;, e, i;
 
 <h3 id="ex6-nth-child"><a href="#ex6-nth-child" class="headerlink" title="ex6. :nth-child"></a>ex6. :nth-child</h3><p>:nth-child(n)  指的是 选择父元素的第n个子元素  n大于0 从1开始</p>
 <p>还有nth-last-child(n)也是选择子元素，只不过是倒着选取，从1开始</p>
-<h2 id="task-js"><a href="#task-js" class="headerlink" title="task-js"></a>task-js</h2><h3 id="ex1-数组的map方法"><a href="#ex1-数组的map方法" class="headerlink" title="ex1.数组的map方法"></a>ex1.数组的map方法</h3><p>js数组中有一个map方法，多用于提取对象数组中特定的值，可以看成一个for循环</p>
-<p>语法: array.map( function ( item, index, arr) {} )</p>
-<p>第一个参数:item,必须,当前元素的值</p>
-<p>第二个参数:index,可选,当前元素在数组中的索引值</p>
-<p>第三个参数:arr,当前元素属于的数组对象</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">//提取details数组中的img_url属性</span><br><span class="hljs-keyword">const</span> urls = <span class="hljs-keyword">this</span>.details.map(item =&gt; &#123;<br>	<span class="hljs-keyword">return</span> item.img_url<br>&#125;)<br></code></pre></td></tr></table></figure>
+<h3 id="ex7-scoped的样式问题"><a href="#ex7-scoped的样式问题" class="headerlink" title="ex7. scoped的样式问题"></a>ex7. scoped的样式问题</h3><p>当我们写App.vue的代码的时候，如果写成这样：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;less&quot;</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="css"></span><br><span class="css">  <span class="hljs-selector-tag">html</span>,<span class="hljs-selector-tag">body</span>,<span class="hljs-selector-id">#app</span>&#123;</span><br><span class="css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;</span><br><span class="css">  &#125;</span><br><span class="css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-
-
-<h3 id="ex2-基础语法糖"><a href="#ex2-基础语法糖" class="headerlink" title="ex2.基础语法糖"></a>ex2.基础语法糖</h3><h4 id="Object-assign的理解："><a href="#Object-assign的理解：" class="headerlink" title="Object.assign的理解："></a>Object.assign的理解：</h4><p>作用：Object.assign可以实现对象的合并。</p>
-<p>语法：Object.assign(target, …sources)</p>
-<p>解析：</p>
-<ol>
-<li>Object.assign会将source里面的可枚举属性复制到target，如果和target的已有属性重名，则会覆盖。</li>
-<li>后续的source会覆盖前面的source的同名属性。</li>
-<li>Object.assign复制的是属性值，如果属性值是一个引用类型，那么复制的其实是引用地址，就会存在引用共享的问题。</li>
-</ol>
-<p>简单来说就是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> p1 = &#123;&#125;<br><span class="hljs-keyword">let</span> p2 = &#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jack&#x27;</span>&#125;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.assign(p1,p2))<br><span class="hljs-comment">//结果</span><br>p1=&gt;&#123;<span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;jack&#x27;</span>&#125;<br></code></pre></td></tr></table></figure>
-
-<h4 id="this"><a href="#this" class="headerlink" title="this:"></a>this:</h4><p>this是代表js程序当前指向的一种指针，一般条件下的this指向window，也就是全局</p>
-<p>这段代码中：**<code>this.foo</code>改变的是全局中的foo变量**，所以最后的运行结果是456</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">&#x27;123&#x27;</span>; <span class="hljs-comment">//全局的foo</span><br>	<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params"></span>) </span>&#123;<br>		<br>	<span class="hljs-keyword">var</span> foo = <span class="hljs-string">&#x27;456&#x27;</span>;	<span class="hljs-comment">//print 函数中的foo</span><br>		<br>	<span class="hljs-built_in">this</span>.foo = <span class="hljs-string">&#x27;789&#x27;</span>;<br>		<br>	<span class="hljs-built_in">console</span>.log(foo);<br>		<br>&#125;<br>	<br>print();<br></code></pre></td></tr></table></figure>
-
-<h4 id="加减："><a href="#加减：" class="headerlink" title="加减："></a>加减：</h4><p>在js中，<code>+</code>有两种含义，第一种是字符串拼接，第二种是算术运算符。而<code>-</code>只有一种含义，就是算术运算符</p>
-<p>在”100”+3-“1”中，<strong>减号作为算术运算转换1位num类型并优先运算</strong>，得到2</p>
-<p><strong>然后加号在有字符串的情况下优先代表字符串拼接</strong>，得到结果”102”</p>
-<h4 id="iframe"><a href="#iframe" class="headerlink" title="iframe:"></a>iframe:</h4><h2 id="task-算法"><a href="#task-算法" class="headerlink" title="task-算法"></a>task-算法</h2><h3 id="ex1-哈希表-链地址法"><a href="#ex1-哈希表-链地址法" class="headerlink" title="ex1.哈希表-链地址法"></a>ex1.哈希表-链地址法</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">设哈希表长为<span class="hljs-number">8</span>，哈希函数为Hash <span class="hljs-comment">(key)</span>=key<span class="hljs-meta">%</span><span class="hljs-number">7</span>。初始记录关键字序列为<span class="hljs-comment">(32，24，15，27，20，13)</span>，用链地址法作为解决冲突方法的平均查找长度是？<br></code></pre></td></tr></table></figure>
+<p>会导致样式不显示，因为scoped导致样式被锁在了<code>id = &#39;app&#39;</code>的盒子中，而其中有关于html和body的设置，所以导致了样式不显示</p>
+<p><strong>所以对于app.vue中的样式我们一般不加scoped</strong></p>
+<h2 id="task-算法"><a href="#task-算法" class="headerlink" title="task-算法"></a>task-算法</h2><h3 id="ex1-哈希表-链地址法"><a href="#ex1-哈希表-链地址法" class="headerlink" title="ex1.哈希表-链地址法"></a>ex1.哈希表-链地址法</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">设哈希表长为<span class="hljs-number">8</span>，哈希函数为Hash <span class="hljs-comment">(key)</span>=key<span class="hljs-meta">%</span><span class="hljs-number">7</span>。初始记录关键字序列为<span class="hljs-comment">(32，24，15，27，20，13)</span>，用链地址法作为解决冲突方法的平均查找长度是？<br></code></pre></td></tr></table></figure>
 
 <p>首先根据<code>hash(key)=key%7</code>，那么关键字序列就得到了<code>(4,3,1,6,6,6)</code>，链表法是将重复的key插入在相同的key后面形成一个链表，每一次查找都需要遍历完整个链表。</p>
 <p>所以查找长度：4x1+1x2+1x3</p>

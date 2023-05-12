@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://img-blog.csdnimg.cn/e6655b35deb24ee7968ef6b395114440.jpeg">
-  <link rel="icon" href="https://img-blog.csdnimg.cn/e6655b35deb24ee7968ef6b395114440.jpeg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,7 +24,7 @@
 <meta property="og:description" content="该书详细描述了vue.js的实现过程，对深入了解vue有不小的帮助">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T09:47:04.116Z">
+<meta property="article:modified_time" content="2023-03-02T02:16:19.815Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -194,7 +194,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://img-blog.csdnimg.cn/fbe375c37a624b96b4791adaf5c3d9f0.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.2k 字
+          4.9k 字
         
       </span>
     
@@ -306,7 +306,7 @@
 
 
 
-<h3 id="2-array变化侦测"><a href="#2-array变化侦测" class="headerlink" title="2.array变化侦测"></a>2.array变化侦测</h3><p>array变化侦测是使用一个拦截器覆盖了<code>Array.prototype</code>，操作数组的时候就会触发这个拦截器</p>
+<h3 id="2-array变化侦测"><a href="#2-array变化侦测" class="headerlink" title="2. array变化侦测"></a>2. array变化侦测</h3><p>array变化侦测是使用一个拦截器覆盖了<code>Array.prototype</code>，操作数组的时候就会触发这个拦截器</p>
 <h4 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h4><p>拦截器代码</p>
 <p>创建arrayProto，后面会使用arrayProto去覆盖Array.prototype</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">const</span> <span class="hljs-built_in">array</span>Proto = Array.prototype<br>export <span class="hljs-keyword">const</span> <span class="hljs-built_in">array</span>Methods = Object.create(<span class="hljs-built_in">array</span>Proto)<br></code></pre></td></tr></table></figure>
@@ -317,6 +317,17 @@
 <p>使用拦截器覆盖array原型</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">export <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observer</span> </span>&#123;<br>  <span class="hljs-keyword">constructor</span> (value: any) &#123;<br>    <span class="hljs-keyword">this</span>.value = value<br>    <span class="hljs-keyword">this</span>.dep = new Dep()<br>    <span class="hljs-keyword">this</span>.vmCount = <span class="hljs-number">0</span><br>    def(value, <span class="hljs-string">&#x27;__ob__&#x27;</span>, <span class="hljs-keyword">this</span>)<br><br>    <span class="hljs-keyword">if</span> (Array.isArray(value)) &#123;<br>      value.__proto__ = arrayMethods <span class="hljs-comment">// 新增</span><br>      <span class="hljs-keyword">this</span>.observeArray(value)<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-keyword">this</span>.walk(value)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>但是对于一些不能使用<code>__proto__</code>的情况，使用<code>const hasProto = &#39;__proto__&#39; in &#123;&#125;</code>判断数据是否有<code>__proto__</code>方法</p>
+<p>不能使用<code>__proto__</code>就直接暴力挂载，将一些方法挂载上拦截器，使用这些方法的时候就执行的不再是<code>Array.prototype</code>而是拦截器中提供的方法</p>
+<h4 id="收集依赖-1"><a href="#收集依赖-1" class="headerlink" title="收集依赖"></a>收集依赖</h4><p>收集依赖的方法和object很类似，也是使用dep数组保存依赖，dep保存在observer中，我们可以通过数据的<code>__ob__</code>拿到observer属性，使用getter收集依赖，setter触发依赖</p>
+<p>数组响应式和object类似，数组转变成响应式不仅要将自己转变成响应式数据，也要将<strong>数组中的每一个元素转换成响应式数据，并添加<code>__ob__</code>属性</strong></p>
+<h3 id="3-变化侦测API实现"><a href="#3-变化侦测API实现" class="headerlink" title="3. 变化侦测API实现"></a>3. 变化侦测API实现</h3><h4 id="1-vm-watch"><a href="#1-vm-watch" class="headerlink" title="1. vm.$watch"></a>1. vm.$watch</h4><p>vm.$watch是对<code>Watcher</code>的一种封装，简单讲一下$watch的实现</p>
+<p>首先，我们使用new Watcher()，构造一个基本的Watcher实现基础的功能</p>
+<p>然后为其添加例如：deep，immediate参数</p>
+<h4 id="2-vm-deep"><a href="#2-vm-deep" class="headerlink" title="2. vm.deep"></a>2. vm.deep</h4><p>deep也就是我们的依赖收集模块和触发依赖模块，deep和我们的watch有紧密的联系</p>
+<p>deep的功能除了触发当前被监听数据依赖的逻辑，还要把当前监听值在内的所有子值都触发一遍收集依赖逻辑</p>
+<h4 id="3-vm-set"><a href="#3-vm-set" class="headerlink" title="3. vm.$set"></a>3. vm.$set</h4><p>对于一个被添加的数据，我们需要将其转变为响应式</p>
+<p>$set的作用就是为object新增属性，然后vue.js就可以将这个属性转换成响应式</p>
 
                 
               </div>

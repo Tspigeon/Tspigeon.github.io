@@ -1,0 +1,893 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="医疗文献检索系统开发日志一、pdf.jspdf.js 简单来说就是一个用于展示pdf文档的库。 网络上前端展示pdf的方法我大概看了两种，一种是使用pdf.js，另一种是使用vue-pdf 第一种去官网下载之后，在项目文件夹中src下创建一个lib文件夹，将下载的包放入然后解压  pdf.js展示pdf都是使用的canvas标签或者ifram 主要是方法是load和渲染的两个方法  第二种是使用v">
+<meta property="og:type" content="article">
+<meta property="og:title" content="医疗文献检索系统">
+<meta property="og:url" content="http://yoursite.com/2023/02/13/%E5%8C%BB%E7%96%97%E6%96%87%E7%8C%AE%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="医疗文献检索系统开发日志一、pdf.jspdf.js 简单来说就是一个用于展示pdf文档的库。 网络上前端展示pdf的方法我大概看了两种，一种是使用pdf.js，另一种是使用vue-pdf 第一种去官网下载之后，在项目文件夹中src下创建一个lib文件夹，将下载的包放入然后解压  pdf.js展示pdf都是使用的canvas标签或者ifram 主要是方法是load和渲染的两个方法  第二种是使用v">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/医疗文献检索/upload.png">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/医疗文献检索/message.png">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/医疗文献检索/download.png">
+<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/医疗文献检索/details.png">
+<meta property="article:published_time" content="2023-02-12T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-04-13T10:57:58.628Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="大数据">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="d:/新建文件夹/文件/GitHub/pic/医疗文献检索/upload.png">
+  
+  
+  
+  <title>医疗文献检索系统 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="医疗文献检索系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-02-13 00:00" pubdate>
+          2023年2月13日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          17k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">医疗文献检索系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="医疗文献检索系统开发日志"><a href="#医疗文献检索系统开发日志" class="headerlink" title="医疗文献检索系统开发日志"></a>医疗文献检索系统开发日志</h1><h2 id="一、pdf-js"><a href="#一、pdf-js" class="headerlink" title="一、pdf.js"></a>一、pdf.js</h2><p>pdf.js 简单来说就是一个用于展示pdf文档的库。</p>
+<p>网络上前端展示pdf的方法我大概看了两种，一种是使用pdf.js，另一种是使用vue-pdf</p>
+<p>第一种去官网下载之后，在项目文件夹中src下创建一个lib文件夹，将下载的包放入然后解压</p>
+<ul>
+<li>pdf.js展示pdf都是使用的canvas标签或者ifram</li>
+<li>主要是方法是load和渲染的两个方法</li>
+</ul>
+<p>第二种是使用vue-pdf，vue-pdf其实更像是一个组件，使用pdf组件标签展示pdf</p>
+<ul>
+<li>使用的时候使用pdf组件标签放在template中</li>
+<li>使用pdf.scale等来指定pdf的大小</li>
+</ul>
+<h2 id="二、ES算法"><a href="#二、ES算法" class="headerlink" title="二、ES算法"></a>二、ES算法</h2><h3 id="ES：检索词的搜索以及评分"><a href="#ES：检索词的搜索以及评分" class="headerlink" title="ES：检索词的搜索以及评分"></a>ES：检索词的搜索以及评分</h3><p>什么是ES：Elasticsearch（ES）使用的搜索算法主要包括以下几种：</p>
+<ol>
+<li>全文搜索：ES的主要搜索算法是全文搜索，使用倒排索引来实现。当用户输入关键词时，ES将根据倒排索引中的词条快速定位到相关文档，然后根据相关性进行排名并返回搜索结果。</li>
+<li>精确匹配：ES还支持精确匹配算法，例如Term Query和Exact Query，这些算法可以在索引中精确匹配查询语句中的单词或短语。</li>
+<li>模糊匹配：ES的模糊匹配算法包括Fuzzy Query和Wildcard Query等。这些算法可以根据一些规则和通配符，从索引中匹配相似的单词或短语。</li>
+<li>范围匹配：ES的范围匹配算法包括Range Query和Prefix Query等。这些算法可以根据一定的范围或前缀，从索引中匹配符合条件的单词或短语。</li>
+<li>布尔逻辑：ES的搜索算法支持布尔逻辑，包括AND、OR和NOT等。这些逻辑操作可以帮助用户更精确地定位搜索结果。</li>
+</ol>
+<p>除此之外，ES还支持聚合、排序、分页等高级搜索功能，可以帮助用户更好地分析和展示搜索结果。同时，ES也支持自定义插件和算法，用户可以根据自己的需求扩展ES的搜索功能。</p>
+<h3 id="BM25："><a href="#BM25：" class="headerlink" title="BM25："></a>BM25：</h3><h3 id="easy-es"><a href="#easy-es" class="headerlink" title="easy-es"></a>easy-es</h3><p>Easy-Es（简称EE）是一款基于ElasticSearch(简称Es)官方提供的RestHighLevelClient打造的ORM开发框架，在 RestHighLevelClient 的基础上,只做增强不做改变，为简化开发、提高效率而生,您如果有用过Mybatis-Plus(简称MP),那么您基本可以零学习成本直接上手EE,EE是MP的Es平替版,在有些方面甚至比MP更简单,同时也融入了更多Es独有的功能,助力您快速实现各种场景的开发.</p>
+<h2 id="三、OCR算法"><a href="#三、OCR算法" class="headerlink" title="三、OCR算法"></a>三、OCR算法</h2><h3 id="opencv："><a href="#opencv：" class="headerlink" title="opencv："></a>opencv：</h3><p>easy-ocr和PaddleOCR之类ocr都需要的一个开源库</p>
+<p>   OpenCV（全称是Open source Computer Vision Library,开放源代码计算机视觉库）是一个免费的计算机视觉库(是一套关于计算机视觉的开放源代码的API函数库)。</p>
+<p> 它是跨平台的，可以运行在Linux、Windows、Android和Mac OS操作系统上。</p>
+<h3 id="Easy-OCR"><a href="#Easy-OCR" class="headerlink" title="Easy-OCR"></a>Easy-OCR</h3><p>我的easyocr直接通过pycharm的包管理工具进行下载</p>
+<p>简单的识别代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">from easyocr import Reader<br><br>reader = Reader(<span class="hljs-selector-attr">[<span class="hljs-string">&#x27;en&#x27;</span>,<span class="hljs-string">&#x27;ch_sim&#x27;</span>]</span>)<br>result = reader<span class="hljs-selector-class">.readtext</span>(<span class="hljs-string">&#x27;C:\\Users\\Lenovo\\Pictures\\Camera Roll\\chinese2.png&#x27;</span>)<br><span class="hljs-function"><span class="hljs-title">print</span><span class="hljs-params">(result)</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="pytesseract"><a href="#pytesseract" class="headerlink" title="pytesseract"></a>pytesseract</h3><p>在官网上下载它的安装包，配置环境变量path（网上教程很多）</p>
+<p>这里展示一下简单的识别代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> PIL <span class="hljs-keyword">import</span> Image<br><span class="hljs-keyword">import</span> pytesseract<br><br>text = pytesseract.image_to_string(Image.<span class="hljs-built_in">open</span>(<span class="hljs-string">r&#x27;C:\Users\Lenovo\Pictures\Camera Roll\image.png&#x27;</span>))<br><span class="hljs-built_in">print</span>(text)<br></code></pre></td></tr></table></figure>
+
+<p>可以看到他是通过文件绝对路径进行文件查找，识别到的文本内容可以用变量保存和输出。</p>
+<h3 id="chineseocr-lite"><a href="#chineseocr-lite" class="headerlink" title="chineseocr_lite"></a>chineseocr_lite</h3><p>一个针对中文文档进行ocr识别的库。主要体现一个速度快</p>
+<p>但是一般在网上看到的都是Linux和macos下的安装，就连本身的setup.md文档都是只写了Linux和mac</p>
+<h3 id="paddleocr"><a href="#paddleocr" class="headerlink" title="paddleocr"></a>paddleocr</h3><p>百度开源项目，文档完善，2020年6月开源。PaddleOCR 旨在打造一套丰富、领先、且实用的 OCR 工具库，助力使用者训练出更好的模型，并应用落地。</p>
+<p>PaddleOCR 是基于飞桨的 OCR 工具库，包含总模型仅8.6M的超轻量级中文 OCR，单模型支持中英文数字组合识别、竖排文本识别、长文本识别。同时支持多种文本检测、文本识别的训练算法。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-keyword">from</span> paddleocr import PaddleOCR, draw_ocr<br><br><span class="hljs-comment"># 模型路径下必须含有model和params文件</span><br>ocr = PaddleOCR(<span class="hljs-attribute">use_angle_cls</span>=<span class="hljs-literal">True</span>,<br>                <span class="hljs-attribute">use_gpu</span>=<span class="hljs-literal">False</span>)  # <span class="hljs-attribute">det_model_dir</span>=<span class="hljs-string">&#x27;&#123;your_det_model_dir&#125;&#x27;</span>, <span class="hljs-attribute">rec_model_dir</span>=<span class="hljs-string">&#x27;&#123;your_rec_model_dir&#125;&#x27;</span>, <span class="hljs-attribute">rec_char_dict_path</span>=<span class="hljs-string">&#x27;&#123;your_rec_char_dict_path&#125;&#x27;</span>, <span class="hljs-attribute">cls_model_dir</span>=<span class="hljs-string">&#x27;&#123;your_cls_model_dir&#125;&#x27;</span>, <span class="hljs-attribute">use_angle_cls</span>=<span class="hljs-literal">True</span><br>img_path = <span class="hljs-string">&#x27;C:\\Users\\Lenovo\\Pictures\\Camera Roll\\image.png&#x27;</span><br>result = ocr.ocr(img_path, <span class="hljs-attribute">cls</span>=<span class="hljs-literal">True</span>)<br><span class="hljs-builtin-name">print</span>(result)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="调研总结："><a href="#调研总结：" class="headerlink" title="调研总结："></a>调研总结：</h3><ol>
+<li>EasyOCR    优点    支持全语种（包括70+门外语识别）<br>缺点    速度慢，两行文字要7-12秒（亲测）<br>部署    pip安装，只能linux/windows下运行，使用独立显卡可以提高运行效率;</li>
+<li>chineseocr    缺点    目前极少更新维护</li>
+<li>chineseocr_lite    优点    速度快，1秒以内，模型轻巧，准确率比Easyocr高<br>缺点    不支持自定义训练；不支持复杂、不常见字符，比如德语、法语；竖向文本识别错误<br>部署    无法pip安装，要git clone 下载安装</li>
+<li>cnocr    优点    区域检测和内容识别效果都很高<br>缺点    start星最低，目前极少更新维护<br>部署    pip安装，doker部署</li>
+<li>PaddleOCR    优点    百度准确率高，支持英文、法语、德语、韩语、日语，支持自训练，支持倾斜、竖排等多种方向文字识别<br>缺点    偏向中文识别，语言支持有限<br>部署    支持本地部署，云端部署，手机端集成部署，docker</li>
+<li>tesseract    优点    谷歌开源，支持100多种语言，英文和数字识别准确率高<br>缺点    单纯中文识别准确率需优化<br>部署    c或c++ API</li>
+</ol>
+<h2 id="四、部署"><a href="#四、部署" class="headerlink" title="四、部署"></a>四、部署</h2><p>对比下：PaddleOCR的准确度最高</p>
+<p>参考博客：</p>
+<p>主要是使用百度自己开发的Hub serving的一个机器学习模型的服务端部署方法</p>
+<h2 id="五、前端代码"><a href="#五、前端代码" class="headerlink" title="五、前端代码"></a>五、前端代码</h2><h3 id="待解决："><a href="#待解决：" class="headerlink" title="待解决："></a>待解决：</h3><p>分页器10条都不显示分页</p>
+<p>预览图片</p>
+<p>查看详情</p>
+<p>前端的基本构建使用的是：vue3+ts+vite</p>
+<p>使用以下命令安装：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> create vite@latest <br></code></pre></td></tr></table></figure>
+
+<p>安装之后记得：<code>npm install</code>，不然连vue都没有，悲伤的故事</p>
+<p>安装路由：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> i vue vue-router<br></code></pre></td></tr></table></figure>
+
+<p>新建router文件夹，新建index.ts文件</p>
+<h3 id="上传："><a href="#上传：" class="headerlink" title="上传："></a>上传：</h3><h4 id="页面设计："><a href="#页面设计：" class="headerlink" title="页面设计："></a>页面设计：</h4><p>上传页面的main部分主要分成两个部分，一个部分是用于切换的bar</p>
+<p>一个是随bar切换而改变的右侧部分（上传文档和上传记录页面切换），我们现在把它叫做<code>switch-router</code>，因为它主要使用router实现</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\医疗文献检索\upload.png" srcset="/img/loading.gif" lazyload alt="upload"></p>
+<p>页面构造：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">el-container</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">Header</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">el-main</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-main&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!--   main栏的切换   --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-comment">&lt;!--   因为需要再上传和记录切换   --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch-router&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">el-main</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">el-container</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这里的el-main如果出现滚动条可以内联添加height=100%解决</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;el-main <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;height:100%&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-string">&quot;my-main&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这里是完善一部分的页面：主要加入了<code>el-menu</code>和<code>routerlink</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">el-container</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">el-header</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">uploadHeader</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">uploadHeader</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">el-header</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">el-main</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height:100%&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-main&quot;</span>&gt;</span><br><span class="hljs-comment">&lt;!--   main栏的切换   --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">el-menu</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch_item&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/uploadDoc&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch_to&quot;</span> <span class="hljs-attr">active-class</span>=<span class="hljs-string">&quot;switch_active&quot;</span> <span class="hljs-attr">exact</span>&gt;</span><br>              上传文档<br>            <span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>          <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch_item&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">router-link</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/uploadRecord&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch_to&quot;</span> <span class="hljs-attr">active-class</span>=<span class="hljs-string">&quot;switch_active&quot;</span> <span class="hljs-attr">exact</span>&gt;</span><br>              上传记录<br>            <span class="hljs-tag">&lt;/<span class="hljs-name">router-link</span>&gt;</span><br>          <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-comment">&lt;!--   因为需要再上传和记录切换   --&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch_view&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">router-view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch-router&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">el-main</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">el-container</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>顶部header的样式问题：</strong></p>
+<p>因为想要复用首页的header页面，但是首页header和我们这里的header样式有一点不一样（字体颜色方面）</p>
+<p>这种我们一般使用<code>:deep(选择器)</code>解决</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">.father&#123;  <span class="hljs-regexp">//</span>包含子组件的选择器<br>  :deep(.children)&#123;  <span class="hljs-regexp">//</span>children是子组件中的某个样式的选择器<br>    color:<span class="hljs-comment">#000000;</span><br>  &#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h5 id="上传记录页面："><a href="#上传记录页面：" class="headerlink" title="上传记录页面："></a>上传记录页面：</h5><p>构造：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs stata">&lt;template&gt;<br>  &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;上传记录&lt;/div&gt;<br>  &lt;el-<span class="hljs-keyword">table</span> :data=<span class="hljs-string">&quot;upload&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;record_table&quot;</span>&gt;   <span class="hljs-comment">//这里有错误</span><br>    &lt;el-<span class="hljs-keyword">table</span>-column <span class="hljs-keyword">prop</span>=<span class="hljs-string">&quot;name&quot;</span> <span class="hljs-keyword">label</span>=<span class="hljs-string">&quot;文献名称&quot;</span> width=<span class="hljs-string">&quot;353px&quot;</span> /&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-column <span class="hljs-keyword">prop</span>=<span class="hljs-string">&quot;writer&quot;</span> <span class="hljs-keyword">label</span>=<span class="hljs-string">&quot;作者&quot;</span> width=<span class="hljs-string">&quot;214px&quot;</span> /&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-column <span class="hljs-keyword">prop</span>=<span class="hljs-string">&quot;time&quot;</span> <span class="hljs-keyword">label</span>=<span class="hljs-string">&quot;上传时间&quot;</span> width=<span class="hljs-string">&quot;343px&quot;</span> /&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-column <span class="hljs-keyword">prop</span>=<span class="hljs-string">&quot;state&quot;</span> <span class="hljs-keyword">label</span>=<span class="hljs-string">&quot;审核状态&quot;</span> /&gt;<br>  &lt;/el-<span class="hljs-keyword">table</span>&gt;<br>&lt;/template&gt;<br><br></code></pre></td></tr></table></figure>
+
+<p>其中的数据从pinia中获取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123;useTestStore&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../store/index&#x27;</span><br>  <span class="hljs-keyword">const</span> upload = useTestStore()	<span class="hljs-comment">//这里其实有问题</span><br></code></pre></td></tr></table></figure>
+
+<p>可能会出现这样的报错：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">getActivePinia was <span class="hljs-keyword">called</span> <span class="hljs-keyword">with</span> <span class="hljs-keyword">no</span> active Pinia. Did you forget <span class="hljs-keyword">to</span> install pinia?<br></code></pre></td></tr></table></figure>
+
+<p>这个时候可以看一下<code>app.use(store)</code>有没有</p>
+<p>第二个问题是：</p>
+<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">TypeError:</span> data.includes <span class="hljs-built_in">is</span> <span class="hljs-built_in">not</span> a <span class="hljs-keyword">function</span><br></code></pre></td></tr></table></figure>
+
+<p>因为这条语句</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs armasm">:<span class="hljs-meta">data</span>=<span class="hljs-string">&quot;upload&quot;</span> <br></code></pre></td></tr></table></figure>
+
+<p><code>upload</code>其实是我们store的名字，要取到里面的数据</p>
+<p>需要：<code>:data=&quot;upload.recordTable&quot;</code></p>
+<h5 id="上传文档页面："><a href="#上传文档页面：" class="headerlink" title="上传文档页面："></a>上传文档页面：</h5><p>上传文档页面的构造相对更加简单：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;upDoc&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/icon/updoc.png&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;image&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;upClick&quot;</span>&gt;</span>上传PDF<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;tip&quot;</span>&gt;</span>仅支持pdf，而大小不超过100MB<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="页面数据"><a href="#页面数据" class="headerlink" title="页面数据"></a>页面数据</h4><p>页面数据统一使用pinia进行状态管理</p>
+<p>关于下载记录表格的测试数据样例如下：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs perl">recordTable:[<br>    &#123;name:<span class="hljs-string">&#x27;java基本应用&#x27;</span>, writer:<span class="hljs-string">&#x27;王小虎&#x27;</span>, <span class="hljs-keyword">time</span>:<span class="hljs-string">&#x27;2020-11-2&#x27;</span>, <span class="hljs-keyword">state</span>:<span class="hljs-string">&#x27;已通过&#x27;</span>&#125;<br>]<br></code></pre></td></tr></table></figure>
+
+<p>点击上传按钮之后触发打开资源管理器，并发送文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> upload_file= <span class="hljs-keyword">async</span> ()=&gt;&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;open file&quot;</span>)<br>    <span class="hljs-comment">//设置文件类型</span><br>    <span class="hljs-keyword">const</span> pickerOpts = &#123;<br>        <span class="hljs-attr">types</span>: [<br>            &#123;<br>                <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;Pdfs&quot;</span>,<br>                <span class="hljs-attr">accept</span>: &#123;<br>                    <span class="hljs-string">&quot;image/*&quot;</span>: [<span class="hljs-string">&quot;.pdf&quot;</span>],<br>                &#125;,<br>            &#125;,<br>        ],<br>        <span class="hljs-attr">excludeAcceptAllOption</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">multiple</span>: <span class="hljs-literal">false</span>,<br>    &#125;;<br>    <span class="hljs-comment">//上传文件</span><br>    <span class="hljs-keyword">let</span> [file] = <span class="hljs-keyword">await</span> <span class="hljs-built_in">window</span>.showOpenFilePicker(pickerOpts)<br>    <span class="hljs-keyword">let</span> result = <span class="hljs-keyword">await</span> fileUpload(file)<br>    <span class="hljs-keyword">if</span>(result.data.msg)&#123;<br>        alert(result.data.msg)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h5 id="上传文档："><a href="#上传文档：" class="headerlink" title="上传文档："></a>上传文档：</h5><p>上传文档需要使用到js的打开资源管理器的函数和文件流类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> upload_file= <span class="hljs-keyword">async</span> ()=&gt;&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;open file&quot;</span>)<br>    <span class="hljs-comment">//设置文件类型</span><br>    <span class="hljs-keyword">const</span> pickerOpts = &#123;<br>        <span class="hljs-attr">types</span>: [<br>            &#123;<br>                <span class="hljs-attr">description</span>: <span class="hljs-string">&quot;Pdfs&quot;</span>,<br>                <span class="hljs-attr">accept</span>: &#123;<br>                    <span class="hljs-string">&quot;image/*&quot;</span>: [<span class="hljs-string">&quot;.pdf&quot;</span>],<br>                &#125;,<br>            &#125;,<br>        ],<br>        <span class="hljs-attr">excludeAcceptAllOption</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">multiple</span>: <span class="hljs-literal">false</span>,<br>    &#125;;<br>    <span class="hljs-comment">//上传文件</span><br>    <span class="hljs-keyword">let</span> file = <span class="hljs-keyword">await</span> <span class="hljs-built_in">window</span>.showOpenFilePicker(pickerOpts)<br>    <span class="hljs-built_in">console</span>.log(file)<br>    <span class="hljs-comment">// let result = await fileUpload(file)</span><br>    <span class="hljs-comment">// if(result.data.msg)&#123;</span><br>    <span class="hljs-comment">//     alert(result.data.msg)</span><br>    <span class="hljs-comment">// &#125;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>但是这里打印出来的是<code>[FileSystemFileHandle]</code>上传的时候参数类型似乎也有问题</p>
+<p>但是这里我们拿到的file其实不是真正的file，而是文件的句柄</p>
+<p>我们需要根据文件的句柄去<code>getFile</code>才能拿到文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//上传文件</span><br><span class="hljs-keyword">let</span> [fileHandle]= <span class="hljs-keyword">await</span> <span class="hljs-built_in">window</span>.showOpenFilePicker(pickerOpts)<br><span class="hljs-keyword">const</span> file = <span class="hljs-keyword">await</span> fileHandle?.getFile()<br><span class="hljs-built_in">console</span>.log(file)<br></code></pre></td></tr></table></figure>
+
+<p>但是上传请求的时候会报错：<code>multipart/form-data</code></p>
+<p>解决方案：将原来的file封装成formData然后更改请求头信息</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fileUpload</span>(<span class="hljs-params">file:<span class="hljs-built_in">any</span></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> format = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.FormData();<br>    format.append(<span class="hljs-string">&quot;file&quot;</span>,file) <span class="hljs-comment">//封装一下file为formData</span><br>    <span class="hljs-keyword">return</span> axios(&#123;<br>        <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;/api/files/upload&#x27;</span>,<br>        <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,<br>        <span class="hljs-attr">headers</span>: &#123;<br>            <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;multipart/form-data&#x27;</span> <span class="hljs-comment">//更改请求头信息</span><br>        &#125;,<br>        <span class="hljs-attr">data</span>: format<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="编辑信息："><a href="#编辑信息：" class="headerlink" title="编辑信息："></a>编辑信息：</h3><p>编辑信息页面ui展示：</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\医疗文献检索\message.png" srcset="/img/loading.gif" lazyload alt="message"></p>
+<p>编辑信息页面主要是表单信息部分，主要使用el-form表单</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"><span class="hljs-comment">&lt;!--  头像--&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">el-image</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">:src</span>=<span class="hljs-string">&quot;url&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">fit</span>=<span class="hljs-string">&quot;cover&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">      <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;p-img&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">  &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-image</span>&gt;</span></span><br><span class="xml"><span class="hljs-comment">&lt;!--  表单--&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">el-form</span></span></span><br><span class="hljs-tag"><span class="xml">    <span class="hljs-attr">label-width</span>=<span class="hljs-string">&quot;100px&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">    <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;max-width: 460px&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">    <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form&quot;</span>  &gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;用户名&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-item&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-input</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;密码&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-item&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-input</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;确认密码&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-item&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-input</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;邮箱&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-item&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-input</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;性别&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-item&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">el-radio-group</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;gender&quot;</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">el-radio</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;0&quot;</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;large&quot;</span> <span class="hljs-attr">border</span>&gt;</span>男<span class="hljs-tag">&lt;/<span class="hljs-name">el-radio</span>&gt;</span></span><br><span class="xml">        <span class="hljs-tag">&lt;<span class="hljs-name">el-radio</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;large&quot;</span> <span class="hljs-attr">border</span>&gt;</span>女<span class="hljs-tag">&lt;/<span class="hljs-name">el-radio</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">el-radio-group</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">el-form-item</span> <span class="hljs-attr">label</span>=<span class="hljs-string">&quot;电话&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;form-item&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">el-input</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">el-input</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">el-form-item</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">el-form</span>&gt;</span></span><br><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">el-button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>提交<span class="hljs-tag">&lt;/<span class="hljs-name">el-button</span>&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">import</span> </span></span><span class="hljs-template-variable">&#123; ref, reactive &#125;</span><span class="xml"><span class="javascript"> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">import</span> </span></span><span class="hljs-template-variable">&#123;isBoolean&#125;</span><span class="xml"><span class="javascript"> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;lodash&quot;</span>;</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">let</span> checkout=ref(<span class="hljs-literal">true</span>)</span></span><br><span class="javascript"><span class="xml">  <span class="hljs-keyword">let</span> changeItem = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">gender:boolean</span>)</span></span></span><span class="hljs-template-variable">&#123;</span><br><span class="hljs-template-variable">    checkout.value = gender</span><br><span class="hljs-template-variable">  &#125;</span><span class="xml"></span><br><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>性别选择这一块使用<code>el-radio-group</code>然后再在其中使用<code>el-radio</code>实现单选功能</p>
+<h4 id="form规则（rules）"><a href="#form规则（rules）" class="headerlink" title="form规则（rules）"></a>form规则（rules）</h4><p>在el-form中可以加入规则以对填入表单的数据进行制约</p>
+<p>rules写在这个位置</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;el-form<br>	:<span class="hljs-attribute">model</span>=<span class="hljs-string">&quot;userInfo.changeUser&quot;</span><br>  <span class="hljs-attribute">label-width</span>=<span class="hljs-string">&quot;100px&quot;</span><br>  <span class="hljs-attribute">style</span>=<span class="hljs-string">&quot;max-width: 460px&quot;</span><br>  <span class="hljs-attribute">class</span>=<span class="hljs-string">&quot;form&quot;</span><br>  :<span class="hljs-attribute">rules</span>=<span class="hljs-string">&quot;rules&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>在逻辑中可以定义rules</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">//表单规则<br>  let rules = &#123;<br>    pass:[&#123; required:<span class="hljs-keyword">false</span>, message:&quot;请输入密码&quot;, <span class="hljs-keyword">trigger</span>: <span class="hljs-string">&#x27;blur&#x27;</span> &#125;,<br>          &#123; min:<span class="hljs-number">6</span>, message:&quot;密码数需要大于六位&quot;,<span class="hljs-keyword">trigger</span>: <span class="hljs-string">&#x27;blur&#x27;</span>&#125;,<br>          &#123; <span class="hljs-keyword">validator</span>: checkPass, message:&quot;两次输入密码不一致&quot;, <span class="hljs-keyword">trigger</span>: &quot;blur&quot;&#125;<br>          ],<br>    checkPass: [&#123; require:<span class="hljs-keyword">true</span>, message:&quot;请再次输入密码&quot;, <span class="hljs-keyword">trigger</span>: <span class="hljs-string">&#x27;blur&#x27;</span> &#125;,<br>                &#123; <span class="hljs-keyword">validator</span>: checkPass, message:&quot;两次输入密码不一致&quot;, <span class="hljs-keyword">trigger</span>: &quot;blur&quot;&#125;<br>                ],<br>    //邮箱格式<br>    mail:[<br>      &#123;require:<span class="hljs-keyword">true</span>, message:&quot;请输入邮箱&quot;,<span class="hljs-keyword">trigger</span>:<span class="hljs-string">&#x27;blur&#x27;</span>&#125;,<br>      &#123; <span class="hljs-keyword">validator</span>: checkMail, message: &quot;请输入正确格式的邮箱&quot;, <span class="hljs-keyword">trigger</span>: <span class="hljs-string">&#x27;blur&#x27;</span> &#125;<br>    ]<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>rules中的每一个单项规则可以在form-item中使用prop加入，代表应用这项规范</p>
+<p>需要注意的是prop中的属性需要和el-form中的model绑定对象中的属性一一对应，是一个名称映射关系</p>
+<p>即下面代码中item中input框中的绑定的属性需要是<code>userInfo.changeUser.pass</code></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;el-form-item <span class="hljs-attribute">label</span>=<span class="hljs-string">&quot;密码&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-string">&quot;form-item&quot;</span> <span class="hljs-attribute">prop</span>=<span class="hljs-string">&quot;pass&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>其中validator中的函数可以单独定义，也就是我们常说的自定义规则</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">const checkPass =<span class="hljs-function"> (<span class="hljs-params">rule</span>:<span class="hljs-params">any</span>, <span class="hljs-params">value</span>:<span class="hljs-params">any</span>, <span class="hljs-params">callback</span>:<span class="hljs-params">any</span>)=&gt;</span>&#123;<br>  <span class="hljs-keyword">let</span> password = userIf.userInfo.password<br>  <span class="hljs-keyword">if</span>(password != checkPwd.value)&#123;<br>    callback(<span class="hljs-keyword">new</span> <span class="hljs-constructor">Error(<span class="hljs-string">&quot;两次输入的密码不一致&quot;</span>)</span>)<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="对于密码的加密解密"><a href="#对于密码的加密解密" class="headerlink" title="对于密码的加密解密"></a>对于密码的加密解密</h4><p>在vue2中可以使用安装<code>js-base64</code>的方法，然后再main.js中进行引入和vue.use</p>
+<p>vue3中我直接使用js自带的方法：</p>
+<p>在Vue3中使用Base64进行加密可以通过JavaScript内置的atob()和btoa()方法来实现。atob()方法可以将Base64编码的字符串解码为原始字符串，而btoa()方法可以将原始字符串编码为Base64字符串。</p>
+<h3 id="下载："><a href="#下载：" class="headerlink" title="下载："></a>下载：</h3><p>下载界面和上传界面类似，但是下载界面更加简单，因为上传页面涉及到了子路由的切换</p>
+<p>下载页面是一个单页面组件</p>
+<p><img src="D:\新建文件夹\文件\GitHub\pic\医疗文献检索\download.png" srcset="/img/loading.gif" lazyload alt="download"></p>
+<p>搭建：</p>
+<p>view中父组件：使用el布局组件布局</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">el-container</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">el-main</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;height: 100%&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;my-main&quot;</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">el-menu</span>&gt;</span><br>          <span class="hljs-tag">&lt;<span class="hljs-name">el-menu-item</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch_item&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span>下载记录<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>          <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu-item</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">el-menu</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;switch-view&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">DownLoadRecord</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">DownLoadRecord</span>&gt;</span><br>      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">el-main</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">el-container</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>components中子组件：DownLoadRecord，主要是table的内容和一个切换页面的切换器</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">&lt;<span class="hljs-keyword">template</span>&gt;<br>  &lt;div <span class="hljs-keyword">class</span>=&quot;title&quot;&gt;下载记录&lt;/div&gt;<br>  &lt;el-<span class="hljs-keyword">table</span> :data=&quot;recordList&quot; <span class="hljs-keyword">class</span>=&quot;record_table&quot;&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-<span class="hljs-keyword">column</span> prop=&quot;date&quot; label=&quot;文献名称&quot; width=&quot;353&quot;/&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-<span class="hljs-keyword">column</span> prop=&quot;Docname&quot; label=&quot;作者&quot; width=&quot;214&quot; /&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-<span class="hljs-keyword">column</span> prop=&quot;author&quot; label=&quot;上传时间&quot; width=&quot;343&quot; /&gt;<br>    &lt;el-<span class="hljs-keyword">table</span>-<span class="hljs-keyword">column</span> prop=&quot;operate&quot; label=&quot;审核状态&quot;&gt;<br>      &lt;el-button @click=&quot;del&quot;&gt;删除&lt;/el-button&gt;<br>    &lt;/el-<span class="hljs-keyword">table</span>-<span class="hljs-keyword">column</span>&gt;<br>  &lt;/el-<span class="hljs-keyword">table</span>&gt;<br>  &lt;el-pagination<br>      :total=&quot;recordList.length&quot;<br>      :<span class="hljs-keyword">current</span>-page=&quot;query.page&quot;<br>      :page-size=&quot;query.page_size&quot;<br>      :page-sizes=&quot;[5, 10]&quot;<br>      layout=&quot; total, sizes, prev, pager, next&quot;<br>      background<br>      @<span class="hljs-keyword">current</span>-change=&quot;handleCurrentChange&quot;<br>      @size-change=&quot;handleSizeChange&quot;<br>      <span class="hljs-keyword">class</span>=&quot;pager&quot;&gt;<br>  &lt;/el-pagination&gt;<br>&lt;/<span class="hljs-keyword">template</span>&gt;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="详细结果："><a href="#详细结果：" class="headerlink" title="详细结果："></a>详细结果：</h3><p><img src="D:\新建文件夹\文件\GitHub\pic\医疗文献检索\details.png" srcset="/img/loading.gif" lazyload alt="details"></p>
+<p>详细结果主要是对一个特定item的v-for循环，先来看看item的结构</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;detail-item&quot;</span>&gt;<br>  &lt;img src=<span class="hljs-string">&quot;/icon/mark.png&quot;</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;mark&quot;</span>&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;page-num&quot;</span>&gt;【第二页】&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;el-link href=<span class="hljs-string">&quot;#&quot;</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;link&quot;</span>&gt;查看详情&lt;/el-link&gt;<br>  &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;target&quot;</span>&gt;<br>    &lt;img v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;false&quot;</span> src=<span class="hljs-string">&quot;/img/thumb.png&quot;</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;thumb&quot;</span>&gt;<br>    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;tip&quot;</span>&gt;来源于文字&lt;/<span class="hljs-keyword">div</span>&gt;<br>    &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">class</span>=<span class="hljs-string">&quot;message&quot;</span>&gt;背景：肠道菌群主要负责维持宿主防御和免疫耐受之间的平衡。此外，肠道菌群与自身免疫性疾病关系密切，且运动可对肠道菌群具有重要调控作用，进而影响着各类自身免疫性疾病的发生发展。&lt;/<span class="hljs-keyword">div</span>&gt;<br>  &lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<p>下面的item与item之间还有缩略图（thumb）的差距，主要的困难在于处理thumb缩略图存在于不存在的样式</p>
+<p>首先我们明确thumb需要使用<code>v-if</code>进行修饰</p>
+<p>对于item盒子我们需要使用一个flex布局，帮助我们更好的调节各个dom元素之间的位置</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.detail-item</span>&#123;<br>  <span class="hljs-attribute">border-top</span>: <span class="hljs-number">1px</span> solid;<br>  <span class="hljs-selector-class">.target</span>&#123;<br>    <span class="hljs-attribute">display</span>: flex;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">1300px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">87px</span>;<br>    <span class="hljs-selector-class">.thumb</span>&#123;<br>      //<span class="hljs-attribute">display</span>: block;<br>      <span class="hljs-attribute">position</span>: relative;<br>      <span class="hljs-attribute">top</span>:<span class="hljs-number">20px</span>;<br>      <span class="hljs-attribute">width</span>:<span class="hljs-number">66px</span>;<br>      <span class="hljs-attribute">height</span>: <span class="hljs-number">87px</span>;<br>    &#125;<br>    <span class="hljs-selector-class">.tip</span>&#123;<br>      <span class="hljs-attribute">position</span>: relative;<br>      <span class="hljs-attribute">left</span>: <span class="hljs-number">5px</span>;<br>      <span class="hljs-attribute">top</span>: <span class="hljs-number">25px</span>;<br>      <span class="hljs-attribute">width</span>: <span class="hljs-number">80px</span>;<br>      <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;<br>      <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>      <span class="hljs-attribute">color</span>: <span class="hljs-number">#347CAF</span>;<br>    &#125;<br>    <span class="hljs-selector-class">.message</span>&#123;<br>      <span class="hljs-attribute">position</span>: relative;<br>      <span class="hljs-attribute">top</span>:<span class="hljs-number">60px</span>;<br>      <span class="hljs-attribute">left</span>: -<span class="hljs-number">70px</span>;<br>      <span class="hljs-attribute">font-size</span>: <span class="hljs-number">14px</span>;<br>      <span class="hljs-attribute">text-align</span>: left;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后加上分页器的时候突然出现了一个<code>margin-right</code></p>
+<h4 id="下载文档："><a href="#下载文档：" class="headerlink" title="下载文档："></a>下载文档：</h4><p>后端传给我们一个文件，我们如何下载下来呢</p>
+<p>我这里的解决方法是创建一个a链接，type是download</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> down = async <span class="hljs-keyword">function</span> <span class="hljs-literal">()</span>&#123;<br>  <span class="hljs-keyword">let</span> file_d:any = await download(id2)<br>  const url = window.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">URL</span>.</span></span>create<span class="hljs-constructor">ObjectURL(<span class="hljs-params">new</span> Blob([<span class="hljs-params">file_d</span>])</span>);	<span class="hljs-comment">//这里url需要new一个blob对象</span><br>  const link = document.create<span class="hljs-constructor">Element(&#x27;<span class="hljs-params">a</span>&#x27;)</span>;<br>  link.href = url;<br>  link.set<span class="hljs-constructor">Attribute(&#x27;<span class="hljs-params">download</span>&#x27;,<span class="hljs-params">file</span>.<span class="hljs-params">fileName</span>)</span>;	<span class="hljs-comment">// file.fileName来自组件中的数据</span><br>  document.body.append<span class="hljs-constructor">Child(<span class="hljs-params">link</span>)</span>;<br>  link.click<span class="hljs-literal">()</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后自己触发<code>link.click</code></p>
+<p>就可以下载文件了</p>
+<h4 id="转存图片："><a href="#转存图片：" class="headerlink" title="转存图片："></a>转存图片：</h4><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">//通过tumb</span><br><span class="hljs-function">export  function <span class="hljs-title">reqGetFilePic</span>(<span class="hljs-params"><span class="hljs-keyword">params</span> : <span class="hljs-built_in">string</span></span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> token = getToken()<br>    <span class="hljs-keyword">return</span> axios(&#123;<br>        url:<span class="hljs-string">&#x27;/api/thumb/&#x27;</span>+ <span class="hljs-keyword">params</span>,<br>        method:<span class="hljs-string">&#x27;get&#x27;</span>,<br>        headers:&#123;<br>            <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json;charset=UTF-8&#x27;</span>,<br>            <span class="hljs-string">&#x27;token&#x27;</span>: token<br>        &#125;,<br>        data:<span class="hljs-keyword">params</span>,<br>        responseType: <span class="hljs-string">&#x27;blob&#x27;</span> <span class="hljs-comment">//这个最重要，一定不要忘记</span><br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>获取图片转存url的前提就是<code> responseType: &#39;blob&#39;</code></p>
+<p>这个<code>responseType:&#39;blob&#39;</code>是导出文件类型的形式，axios默认的导出方式是json，但是对于文件流和图片流，我们需要导出文件类型为<code>blob</code></p>
+<p>调用了这个函数之后</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">for</span> (const item <span class="hljs-keyword">of</span> result_f.data.esFileObjectVO.picContents) &#123;<br>  const res:any = await req<span class="hljs-constructor">GetFilePic(<span class="hljs-params">item</span>.<span class="hljs-params">id</span>)</span><br>  item.url = window.<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">URL</span>.</span></span>create<span class="hljs-constructor">ObjectURL(<span class="hljs-params">res</span>)</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>window.URL.createObjectURL(res)</code></p>
+<p>URL.createObjectURL()方法会根据传入的参数创建一个指向该参数对象的URL. 这个URL的生命仅存在于它被创建的这个文档里. 新的对象URL指向执行的File对象或者是Blob对象.</p>
+<p>然后这个url就可以被用于img等图片媒体和多媒体的src中了</p>
+<p>还有图片实现预览效果的组件</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs elixir">&lt;el-image<br>    class=<span class="hljs-string">&quot;thumb&quot;</span><br>    <span class="hljs-symbol">:src=<span class="hljs-string">&quot;item.url&quot;</span></span><br>    <span class="hljs-symbol">:preview-src-list=<span class="hljs-string">&quot;[item.url]&quot;</span></span><br>    <span class="hljs-symbol">:key=<span class="hljs-string">&quot;item.id&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>src</code>代表当前image的url，<code>perview-src-list</code>需要的是一个数组，效果是点击图片实现预览效果，<strong>但是预览的顺序和数组的遍历顺序</strong></p>
+<h4 id="预览文档："><a href="#预览文档：" class="headerlink" title="预览文档："></a>预览文档：</h4><p>预览文档主要是使用了<code> URL.createObjectUR</code>函数，该函数收到一个<strong>responseType为bolb的参数，</strong>然后返回一个url，也就是我们pdf的url</p>
+<p>如果我们想实现跳转就在<code>window.open</code>参数中的pdf中拼接上<code>#page=x</code>(x为跳转的页数)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">//获取pdfURL</span><br><span class="hljs-keyword">const</span> getMore = <span class="hljs-function">(<span class="hljs-params">page:<span class="hljs-built_in">any</span></span>) =&gt;</span>&#123;<br>  <span class="hljs-built_in">console</span>.log(page)<br>  useSearchResultStore().createPdfUrl(id)<br>  reqGetFilePDF(id).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br><br>    pdfURL.value = URL.createObjectURL(res)<br>    <span class="hljs-comment">//打开pdf网址</span><br>    <span class="hljs-built_in">window</span>.open(pdfURL.value+<span class="hljs-string">`#page=<span class="hljs-subst">$&#123;page&#125;</span>`</span>)<br>  &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="报错："><a href="#报错：" class="headerlink" title="报错："></a>报错：</h2><h3 id="Q1：npm-amp-cnpm"><a href="#Q1：npm-amp-cnpm" class="headerlink" title="Q1：npm &amp; cnpm"></a>Q1：npm &amp; cnpm</h3><p>npm gyp Python和vs什么什么的，疯狂报错</p>
+<p>然后在<code>package.json</code>中删除了<code>node-sass</code></p>
+<p>一切恢复</p>
+<p>那么这个<code>node-sass</code>是什么东西呢？</p>
+<p>Node-sass是一个库，它将Node.js绑定到LibSass（流行样式表预处理器Sass的C版本）。它允许用户以令人难以置信的速度将.scss文件本地编译为css，并通过连接中间件自动编译。</p>
+<p>解决方法：cnpm下载（也不知道为什么单独下载就可以）</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">npm install -g cnpm --<span class="hljs-attr">registry=</span>https://registry.npm.taobao.org<br>cnpm install --save-dev <span class="hljs-keyword">node</span><span class="hljs-title">-sass</span>   <br></code></pre></td></tr></table></figure>
+
+<p>可能是因为我npm的一些问题（vscode被卸载了？），需要使用cnpm（中國版npm）来进行下载  :sob:</p>
+<p>还有<code>npm run dev</code>的时候出现vite找不到的</p>
+<p>这个时候查看一些是不是自己的node_modules被删了</p>
+<h3 id="Q2：element-plus的样式"><a href="#Q2：element-plus的样式" class="headerlink" title="Q2：element-plus的样式"></a>Q2：element-plus的样式</h3><p>之前一直存在element-plus组件样式需要更改的情况，但是之前都是使用的style内联修改</p>
+<p>其实有一部分的样式可以通过</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">display:flex	<span class="hljs-comment">//弹性布局来修改</span><br></code></pre></td></tr></table></figure>
+
+<p>但是还有一些长度和宽度为变为0的情况</p>
+<h3 id="Q3：热重载失效"><a href="#Q3：热重载失效" class="headerlink" title="Q3：热重载失效"></a>Q3：热重载失效</h3><p>今天突然写着写着热重载失效了，但是只是一个页面无法及时更新，而且页面组件文件的颜色的变了</p>
+<p>网上查询了一下原因，发现是router中index文件中组件的名字写错了，大小写的问题</p>
+<p>把名字改过来之后，热重载就重新有效了</p>
+<h3 id="Q4：reactive丢失响应式"><a href="#Q4：reactive丢失响应式" class="headerlink" title="Q4：reactive丢失响应式"></a>Q4：reactive丢失响应式</h3><p>reactive重新赋值之后会丢失响应式</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs lasso">场景:<br><span class="hljs-number">1.</span>你定义了一个数据:<span class="hljs-keyword">let</span> <span class="hljs-built_in">data</span>=reactive(&#123;<br>          name:<span class="hljs-string">&quot;&quot;</span>,<br>          age:<span class="hljs-string">&quot;&quot;</span><br>&#125;)<br><span class="hljs-number">2.</span>然后你请求了接口，赋值给<span class="hljs-built_in">data</span><br><span class="hljs-keyword">let</span> res=await getUserApi();  <span class="hljs-comment">//请求接口</span><br><span class="hljs-built_in">data</span>=res.<span class="hljs-built_in">data</span>;   <br></code></pre></td></tr></table></figure>
+
+<p>这样在data就会变为普通对象，丢失自己的响应式</p>
+<p>1.ref 定义数据（包括对象）时，都会变成 RefImpl(Ref 引用对象) 类的实例，无论是修改还是重新赋值都会调用 setter，都会经过 reactive 方法处理为响应式对象。</p>
+<p>2.但是 reactive 定义数据（必须是对象），是直接调用 reactive 方法处理成响应式对象。如果重新赋值，就会丢失原来响应式对象的引用地址，变成一个新的引用地址，这个新的引用地址指向的对象是没有经过 reactive 方法处理的，所以是一个普通对象，而不是响应式对象。解构同理。</p>
+<p>解决方法：</p>
+<p>1.嵌套对象</p>
+<p>顾名思义，在data中嵌套一个对象datain，用它来实现我们的响应式就可以了</p>
+<p><code>data.datain = res.data</code></p>
+<p>2.Ts的类解决方案</p>
+<p>按下不表</p>
+<h3 id="Q5：常见异步问题（赋值与请求）"><a href="#Q5：常见异步问题（赋值与请求）" class="headerlink" title="Q5：常见异步问题（赋值与请求）"></a>Q5：常见异步问题（赋值与请求）</h3><p>我们常常从pinia或者vuex中拿数据，而vuex中的数据又是通过请求得到的</p>
+<p>这就可能导致我们的无法从vuex中拿到数据，或者说拿到的是未更新的数据</p>
+<p><strong>（最常见的就是挂载时页面没有数据，而刷新之后页面数据就恢复了）</strong></p>
+<p>因为赋值语句是同步语句，而请求语句是异步语句</p>
+<p>异步语句会晚于同步语句执行，这就导致了执行顺序是 赋值==》请求</p>
+<p><strong>所以要注意赋值和请求的顺序</strong></p>
+<p><strong>使用async和await也是一个解决方法</strong></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" class="category-chain-item">大数据</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">#大数据</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>医疗文献检索系统</div>
+      <div>http://yoursite.com/2023/02/13/医疗文献检索系统开发日志/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年2月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/02/22/%E7%A0%94%E7%A9%B6%E7%94%9F/" title="研究生分数">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">研究生分数</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/29/pytorch/" title="pytorch">
+                        <span class="hidden-mobile">pytorch</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

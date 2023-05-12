@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="https://img-blog.csdnimg.cn/e6655b35deb24ee7968ef6b395114440.jpeg">
-  <link rel="icon" href="https://img-blog.csdnimg.cn/e6655b35deb24ee7968ef6b395114440.jpeg">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -34,7 +34,7 @@
 <meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/git/上传到仓库2.png">
 <meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/git/克隆仓库效果.png">
 <meta property="article:published_time" content="2022-05-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-07T09:51:02.912Z">
+<meta property="article:modified_time" content="2023-04-23T01:08:55.373Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="Github">
 <meta name="twitter:card" content="summary_large_image">
@@ -205,7 +205,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('https://img-blog.csdnimg.cn/fbe375c37a624b96b4791adaf5c3d9f0.png') no-repeat center center; background-size: cover;">
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.8k 字
         
       </span>
     
@@ -289,7 +289,7 @@
 <p>Workspace：工作区<br>Index / Stage：暂存区<br>Repository：仓库区（或本地仓库）<br>Remote：远程仓库</p>
 <p>也许现在还不是很看得到这个图，继续看下去</p>
 <h2 id="Git基本命令"><a href="#Git基本命令" class="headerlink" title="Git基本命令"></a>Git基本命令</h2><h3 id="1-git-config-–global"><a href="#1-git-config-–global" class="headerlink" title="1.git config –global"></a>1.git config –global</h3><p>这个命令用于设置你的用户名和邮箱，当然你可以为不同的仓库指定不同的用户名和邮箱</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//设置用户名</span><br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.name</span> <span class="hljs-string">&quot;xxx&quot;</span><br><span class="hljs-comment">//设置邮箱</span><br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.emil</span> <span class="hljs-string">&quot;xxx&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs verilog"><span class="hljs-comment">//设置用户名</span><br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.name</span> <span class="hljs-string">&quot;xxx&quot;</span><br><span class="hljs-comment">//设置邮箱</span><br>git <span class="hljs-keyword">config</span> --<span class="hljs-keyword">global</span> user<span class="hljs-variable">.email</span> <span class="hljs-string">&quot;xxx&quot;</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="2-git-init"><a href="#2-git-init" class="headerlink" title="2.git init"></a>2.git init</h3><p>现在我们需要创建一个本地仓库（repository），新建一个文件夹，然后选择<code>Git Bush Here</code></p>
 <p>然后输入<code>git init</code>，便把这个目录变成可以管理的仓库。</p>
@@ -364,8 +364,11 @@
 <h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p>参看远程库信息：<code>git remote</code></p>
 <p>参看远程库详细信息：<code>git remote -v</code>、</p>
 <h3 id="1-克隆分支"><a href="#1-克隆分支" class="headerlink" title="1.克隆分支"></a>1.克隆分支</h3><p><code>git clone 远程库地址</code>，此时目录下就会生成远程库文件</p>
+<p><code>git clone -b 分支名 地址名</code>，通过这种方式拉取某一分支的文件</p>
+<p>克隆之后再需要拉取代码就使用 <code>git pull</code></p>
+<p>如果拉取分支代码就是 <code>git pull origin 分支名</code></p>
 <h3 id="2-推送分支"><a href="#2-推送分支" class="headerlink" title="2.推送分支"></a>2.推送分支</h3><p>比如我们要在dev分支上开发，那么我们就需要在克隆的库中建立一个dev分支 <code>git checkout -b dev origin/dev</code></p>
-<p>推送分支就是使用我们的<code>git push origin dev</code></p>
+<p>推送分支就是使用我们的<code>git push origin dev</code>，但是推送到指定分支的前提是本地分支和指定分支同名</p>
 <h3 id="3-get-pull"><a href="#3-get-pull" class="headerlink" title="3.get pull"></a>3.get pull</h3><p><code>git pull </code>的本质是 <code>git fetch</code> +<code>git merge</code></p>
 <p> <code>git fetch</code>是从远端获取最新版本到本地，但是不会合并分支</p>
 <p><code>git merge</code>就帮助我们合并了分支</p>
@@ -377,6 +380,10 @@
 <p>这个是pull：</p>
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"> <span class="hljs-comment">A</span>--<span class="hljs-literal">-</span><span class="hljs-comment">B</span>--<span class="hljs-literal">-</span><span class="hljs-comment">C</span> <span class="hljs-comment">topic</span><br><span class="hljs-comment">/</span>         <span class="hljs-comment">\</span><br>  <span class="hljs-comment">D</span>--<span class="hljs-literal">-</span><span class="hljs-comment">E</span>--<span class="hljs-literal">-</span><span class="hljs-comment">F</span>--<span class="hljs-literal">-</span><span class="hljs-comment">G</span>--<span class="hljs-literal">-</span><span class="hljs-comment">H</span> <span class="hljs-comment">master</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="4-IDE使用git"><a href="#4-IDE使用git" class="headerlink" title="4. IDE使用git"></a>4. IDE使用git</h3><p>这里使用webstorm举例，微软旗下的idea和pycharm等可以同理</p>
+<h3 id="5-代码隔离"><a href="#5-代码隔离" class="headerlink" title="5.代码隔离"></a>5.代码隔离</h3><p>开发中工作区中暂时不需要提交的文件可以放在隔离区</p>
+<p>根目录下创建.gitignore文件</p>
+<p>然后将文件名<code>node_modules/</code>写入，这样就将node_modules隔离出去了</p>
 
                 
               </div>
