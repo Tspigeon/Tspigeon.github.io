@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="superblock GC优化GBD调参：1gdb .&#x2F;ssd  进入gdb页面之后开始 1run 1 1 .&#x2F;trace  机制思路：问题：同时gc，占用通道很多  设置一个有效页阈值作为基本判断条件，小于等于阈值的超级块才能进入第二步 将第一步筛选之后的超级块，放入机器学习模型进行判断，二分类得出是否为cold超级块，将cold超级块再次选出来进行第三步 在选出的超级块当中，每次一个chann">
+<meta property="og:type" content="article">
+<meta property="og:title" content="超级块GC优化">
+<meta property="og:url" content="http://yoursite.com/2024/07/23/superblock%20GC%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="superblock GC优化GBD调参：1gdb .&#x2F;ssd  进入gdb页面之后开始 1run 1 1 .&#x2F;trace  机制思路：问题：同时gc，占用通道很多  设置一个有效页阈值作为基本判断条件，小于等于阈值的超级块才能进入第二步 将第一步筛选之后的超级块，放入机器学习模型进行判断，二分类得出是否为cold超级块，将cold超级块再次选出来进行第三步 在选出的超级块当中，每次一个chann">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-16T09:18:04.738Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="SSD">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>超级块GC优化 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="超级块GC优化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-23 00:00" pubdate>
+          2024年7月23日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">超级块GC优化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="superblock-GC优化"><a href="#superblock-GC优化" class="headerlink" title="superblock GC优化"></a>superblock GC优化</h1><h2 id="GBD调参："><a href="#GBD调参：" class="headerlink" title="GBD调参："></a>GBD调参：</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">gdb <span class="hljs-string">./ssd</span><br></code></pre></td></tr></table></figure>
+
+<p>进入gdb页面之后开始</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">run</span> <span class="hljs-number">1</span> <span class="hljs-number">1</span> ./trace<br></code></pre></td></tr></table></figure>
+
+<h2 id="机制思路："><a href="#机制思路：" class="headerlink" title="机制思路："></a>机制思路：</h2><p><strong>问题：</strong>同时gc，占用通道很多</p>
+<ol>
+<li>设置一个有效页阈值作为基本判断条件，小于等于阈值的超级块才能进入第二步</li>
+<li>将第一步筛选之后的超级块，放入机器学习模型进行判断，二分类得出是否为cold超级块，将cold超级块再次选出来进行第三步</li>
+<li>在选出的超级块当中，每次一个channel，选择同SB中其他block最多被GC的块</li>
+<li>在都相同的情况下，选择最久没有被无效的block进行GC</li>
+<li>如果该超级块中多个块都被GC了，那么提高该超级块中其他小块的优先级，其实3就实现了这个过程</li>
+<li>最后如果到了该做GC的时间，该超级块中还有块没有被GC，则强制进行GC</li>
+</ol>
+<h2 id="10-26讨论："><a href="#10-26讨论：" class="headerlink" title="10.26讨论："></a>10.26讨论：</h2><p>冷热判断指标：最后一次更新时间，无效页数量+SB的一些指标</p>
+<p>硬阈值到达：成本高低、无效页数量选择、已经做gc最多的SB</p>
+<p><strong>问题：</strong>软阈值进行有效页迁移的块要进行映射更新，更新到新的位置，提前gc只迁移不擦除，SB是整个进行擦除</p>
+<p><strong>注意点：</strong>软阈值靠近硬阈值，选择冷trace</p>
+<p><strong>优势：</strong>IO优化</p>
+<h2 id="superblock理解："><a href="#superblock理解：" class="headerlink" title="superblock理解："></a>superblock理解：</h2><p>在一些情况下，superblock可能跨越一个通道内的多个die或plane。这种设计允许使用高级Flash命令，例如<strong>interleaving</strong>（跨die操作）或<strong>multi-plane</strong>（跨plane操作），从而加快读写速度。</p>
+<h2 id="1-软硬阈值实现"><a href="#1-软硬阈值实现" class="headerlink" title="1.软硬阈值实现"></a>1.软硬阈值实现</h2><p>在SSD Sim中，在intialize.h中的parameter_value中有 <em>float gc_threshold;</em> (当达到这个阈值时，开始GC操作，在主动写策略中，开始GC操作后可以临时中断GC操作，服务新到的请求；在普通策略中，GC不可中断)</p>
+<p>和 <em>float gc_hard_threshold</em>(普通策略中用不到该参数，只有在主动写策略中，当满足这个阈值时，GC操作不可中断)</p>
+<p>gc_threshold只是被引用和读取但是没有被使用在其他地方</p>
+<p>gc_hard_threshold被用于判断普通GC操作是否到达GC阈值，普通模式就是最基础的数据管理方式</p>
+<p>以上都是判断plane的无效页</p>
+<p><strong>实现方案1：</strong></p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">if</span> (*ssd*-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>active_write==<span class="hljs-number">0</span>)  <span class="hljs-comment">/*如果没有主动策略，只采用gc_hard_threshold，并且无法中断GC过程*/</span><br><br>&#123; <br></code></pre></td></tr></table></figure>
+
+<p>在该函数下</p>
+<p>通过plane的无效页实现软阈值：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 设置plane中的无效页到软阈值</span><br><span class="hljs-keyword">if</span> (ssd-&gt;channel_head<span class="hljs-literal">[<span class="hljs-identifier">channel</span>]</span>.chip_head<span class="hljs-literal">[<span class="hljs-identifier">chip</span>]</span>.die_head<span class="hljs-literal">[<span class="hljs-identifier">die</span>]</span>.plane_head<span class="hljs-literal">[<span class="hljs-identifier">plane</span>]</span>.free<span class="hljs-constructor">_page(<span class="hljs-params">ssd</span>-&gt;<span class="hljs-params">parameter</span>-&gt;<span class="hljs-params">page_block</span><span class="hljs-operator">*</span><span class="hljs-params">ssd</span>-&gt;<span class="hljs-params">parameter</span>-&gt;<span class="hljs-params">block_plane</span><span class="hljs-operator">*</span><span class="hljs-params">ssd</span>-&gt;<span class="hljs-params">parameter</span>-&gt;<span class="hljs-params">gc_threshold</span>)</span>)  <br>&#123;<br>	<span class="hljs-comment">// 再挑选superblock中无效页到达软阈值的SB放入队列</span><br>	<span class="hljs-keyword">if</span>(blk<span class="hljs-constructor">_Inqueue(<span class="hljs-params">ssd</span>, <span class="hljs-params">channel</span>, <span class="hljs-params">chip</span>, <span class="hljs-params">die</span>, <span class="hljs-params">plane</span>)</span><span class="hljs-operator"> == </span>ERROR)&#123;<br>		printf(<span class="hljs-string">&quot;Error: no blk\n&quot;</span>);<br>		getchar<span class="hljs-literal">()</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>当plane的无效页达到一定数值之后将superblock放入判断模型：下面代码模仿get_blk</p>
+<p>这个函数功能应该还是选择冷块中无效页最多的块，也就是先判断冷热，再判断无效页数量</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-comment">// 当无效页到达软阈值的时候，选择超级块软阈值放入队列</span><br>Status blk_Inqueue(struct ssd_info *ssd, <span class="hljs-keyword">int</span> channel, <span class="hljs-keyword">int</span> chip, <span class="hljs-keyword">int</span> <span class="hljs-keyword">die</span>, <span class="hljs-keyword">int</span> plane, <span class="hljs-keyword">int</span> *blk_id)&#123;<br>	<span class="hljs-keyword">int</span> i;<br>    <span class="hljs-keyword">int</span> block = -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">int</span> active_block = <span class="hljs-number">0</span>; <span class="hljs-comment">// 默认活跃块号</span><br>    unsigned <span class="hljs-keyword">int</span> invalid_page = <span class="hljs-number">200</span>;<br>    unsigned <span class="hljs-keyword">int</span> superblock_invalid_page_num = <span class="hljs-number">0</span>;<br><br>	 <span class="hljs-keyword">if</span>(find_active_block(ssd,channel,chip,<span class="hljs-keyword">die</span>,plane)!=SUCCESS)     <span class="hljs-comment">/*获取活跃块*/</span><br>	&#123;<br>		printf(<span class="hljs-string">&quot;\n\n Error in uninterrupt_gc().\n&quot;</span>);<br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">ERROR</span>;<br>	&#125;<br>	active_block=ssd-&gt;channel_head[channel].chip_head[chip].die_head[<span class="hljs-keyword">die</span>].plane_head[plane].active_block;<br>	<span class="hljs-comment">// 超级块起始和结束</span><br>	<span class="hljs-keyword">int</span> start_superblock = (chip == <span class="hljs-number">0</span>) ? <span class="hljs-number">0</span> : ssd-&gt;parameter-&gt;block_plane;<br>    <span class="hljs-keyword">int</span> end_superblock = (chip == <span class="hljs-number">0</span>) ? ssd-&gt;parameter-&gt;block_plane : ssd-&gt;parameter-&gt;block_plane * ssd-&gt;parameter-&gt;chip_channel[<span class="hljs-number">0</span>];<br>	<span class="hljs-comment">//遍历的是超级块0-ssd-&gt;parameter-&gt;block_plane</span><br>    <span class="hljs-keyword">for</span>(i=start_superblock;i&lt;end_superblock;i++)      <br>	&#123;<br>		<span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j &lt; ssd-&gt;parameter-&gt;channel_number;j++)<br>		&#123;<br>			<span class="hljs-keyword">if</span>(ssd-&gt;channel_head[j].chip_head[chip].die_head[<span class="hljs-keyword">die</span>].plane_head[plane].blk_head[ssd-&gt;superblock[i].super_blk_loc[j].blk].free_page_num &gt; <span class="hljs-number">0</span><br>			|| ssd-&gt;channel_head[j].chip_head[chip].die_head[<span class="hljs-keyword">die</span>].plane_head[plane].blk_head[ssd-&gt;superblock[i].super_blk_loc[j].blk].super_flag == <span class="hljs-number">1</span>)<br>			&#123;<br>               flag = <span class="hljs-number">1</span>;<br>			   <span class="hljs-keyword">break</span>;<br>			&#125;<br>			<span class="hljs-keyword">if</span>(j == channel)<br>			&#123;<br>				<span class="hljs-keyword">continue</span>;<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">if</span>(flag == <span class="hljs-number">1</span>)<br>		&#123;<br>		   <span class="hljs-keyword">continue</span>;<br>		&#125;<br>		<span class="hljs-keyword">if</span>((active_block!=i)&amp;&amp;(ssd-&gt;superblock[i].invalid_page_count&gt;invalid_page)) <span class="hljs-comment">// 不是忙碌快，而且无效页最多</span><br>		&#123;<br>			<span class="hljs-comment">// 判断冷热</span><br>			<span class="hljs-comment">// if()&#123;&#125;</span><br>			<span class="hljs-comment">// 选择block</span><br>			block = i;<br>			<br>		&#125;<br>	   &#125;	<br>	*blk_id = block;	<br>	<span class="hljs-keyword">if</span> (block == -<span class="hljs-number">1</span>)<br>	&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-built_in">ERROR</span>;<br>	&#125;<br>	<span class="hljs-keyword">return</span> SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>实现方案2：</strong></p>
+<p>我们需要判断superblock中的无效页个数：</p>
+<p>首先我们需要在写请求完成之后，统计同偏移量块空闲页的数量之和，也就是该块对应超级块的空闲页之和</p>
+<p>如果为0，说明该超级块被写完了，可以进行软阈值判断</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">ssd-&gt;channel_head[channel]<span class="hljs-string">.chip_head</span>[chip]<span class="hljs-string">.die_head</span>[die]<span class="hljs-string">.plane_head</span>[plane]<span class="hljs-string">.blk_head</span>[active_block]<span class="hljs-string">.free_page_num--</span>;  <span class="hljs-string">//</span>空闲页--，但也没说明写好了<br><span class="hljs-string">//</span> 判断SB中空闲页个数，看该SB有没有写完<br>int SB_freepage = 0;<br>for<span class="hljs-params">(int <span class="hljs-attr">i</span>=0; i&lt;ssd-&gt;parameter-&gt;plane_die; i++)</span>&#123;<br>	SB_freepage += ssd-&gt;channel_head[channel]<span class="hljs-string">.chip_head</span>[chip]<span class="hljs-string">.die_head</span>[die]<span class="hljs-string">.plane_head</span>[i]<span class="hljs-string">.blk_head</span>[active_block]<span class="hljs-string">.free_page_num</span><br>&#125;<br><span class="hljs-string">//</span> 为0说明写完，空闲页为0<br>   <span class="hljs-keyword">if</span><span class="hljs-params">(<span class="hljs-attr">SB_freepage</span> == 0)</span>&#123;<br>	<span class="hljs-string">//</span> 然后判断SB的无效页个数<br>	。。。<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>选择我们需要通过块号推断得到我们的超级块号，这里我们的SSD配置是8channel-2chip-1die-1plane-512block</p>
+<p>但是这里需要在每次写入完成之后判断所有超级块有没有达到软阈值</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs xl">int SB_freepage = <span class="hljs-number">1</span>;<br>int SB_num = <span class="hljs-number">0</span>;<br><span class="hljs-comment">// 如果这个块的空闲页为0了，开始判断是不是SB空闲页为0</span><br><span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span>channel_head[channel].chip_head[chip].die_head[die].plane_head[plane].blk_head[active_block].free_page_num == <span class="hljs-number">0</span>)&#123;<br>	SB_freepage = <span class="hljs-number">0</span>;<br>	<span class="hljs-function"><span class="hljs-title">for</span>(int i=0; i&lt;ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>channel_number; i++)&#123;<br>		SB_<span class="hljs-function"><span class="hljs-title">freepage</span> += ssd-&gt;</span>channel_head[i].chip_head[chip].die_head[die].plane_head[plane].blk_head[active_block].free_page_num;<br>	&#125;	<br>&#125;<br><span class="hljs-comment">// 为0说明写完，空闲页为0</span><br>   <span class="hljs-keyword">if</span>(SB_freepage == <span class="hljs-number">0</span>)&#123;<br>	<span class="hljs-comment">// 然后判断SB的无效页个数</span><br>	SB_<span class="hljs-function"><span class="hljs-title">num</span> = active_block+(chip*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>block_plane);<br>	<span class="hljs-comment">// 如果无效页数量大于软阈值，放入队列判断</span><br>	<span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span>superblock[SB_num].invalid_page_count&gt;<span class="hljs-number">200</span>)&#123;<br>		<span class="hljs-comment">// 放入队列</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="代码更改："><a href="#代码更改：" class="headerlink" title="代码更改："></a>代码更改：</h3><p>集中在get_ppn和gc这两个函数中</p>
+<p>在get_ppn的 <code>if (*ssd*-&gt;parameter-&gt;active_write==0) </code>条件下，此时SSD会检查plane中还有没有足够的有效页</p>
+<p>如果没有，就开始GC，此时我们需要将达到无效页软阈值的SB放入队列</p>
+<h2 id="2-模型选择："><a href="#2-模型选择：" class="headerlink" title="2.模型选择："></a>2.模型选择：</h2><p>PHFTL可以实现在FTL层使用ML模型进行预测，在一篇论文中体现为数据生命周期的预测</p>
+<p>选择什么模型呢，训练集没有标签</p>
+<h2 id="3-模型运用："><a href="#3-模型运用：" class="headerlink" title="3.模型运用："></a>3.模型运用：</h2><p>由于需要判断冷热条件，输入给模型的数据需要包括：</p>
+<ul>
+<li><strong>访问频率</strong>：块被读取或写入的次数。高频率表示该块为“热”块，低频率则为“冷”块。</li>
+<li><strong>访问时间间隔</strong>：块自上次访问以来经过的时间。长时间未被访问的块一般为“冷”块。</li>
+<li><strong>写入/擦除次数</strong>：频繁的写入或擦除操作可能表明块处于“热”状态。 <strong>擦除次数已知，存在blk_info当中</strong></li>
+<li><strong>数据存储时间</strong>：某些数据长期存储在块中，未发生改变，可以认为该块为“冷”块。</li>
+</ul>
+<p>我通过在SB_info当中添加一些字段达到目的：</p>
+<ul>
+<li><strong>访问频率</strong>：读写次数，在每次读写请求完成之后进行统计。</li>
+<li><strong>访问时间间隔</strong>：记录读写请求访问的时间间隔。</li>
+<li><strong>擦除次数</strong>：通过超级块包含的各个块的累加。</li>
+<li></li>
+</ul>
+<p>在 C 语言的 <strong>SSDSim</strong> 中直接使用 Python 保存的 <code>.pkl</code> 模型文件（例如 <code>logistic_model.pkl</code>）并不直接可行，因为 <code>.pkl</code> 文件是 Python 特定的格式，而 <strong>SSDSim</strong> 是用 C 语言编写的。因此，你需要通过以下步骤实现 <strong>SSDSim</strong> 和 <strong>Python 模型</strong>的交互：</p>
+<p>结构体添加字段：主要添加写请求访问和上次访问时间</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">superblock_info</span>&#123;</span><br>	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> superblock_id;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">superblock_channel</span> *<span class="hljs-title">super_blk_loc</span>;</span><br>    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> invalid_page_count;<br>	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> write_count; <span class="hljs-comment">// 写请求访问次数</span><br>	<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> last_access_time; <span class="hljs-comment">//上次访问时间，每次更新</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>更新字段：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+
+<p><strong>方法概述</strong>：</p>
+<ol>
+<li><strong>将模型保存为可调用的 Python 脚本</strong>。</li>
+<li><strong>使用 C 调用 Python</strong>：在 C 中使用系统调用或嵌入式 Python 来调用模型。</li>
+<li><strong>通过输入输出交互</strong>：C 语言通过特征向量传递给 Python，Python 返回预测结果给 C。</li>
+</ol>
+<p><strong>具体步骤</strong></p>
+<ol>
+<li><strong>将 Python 模型封装成可调用的脚本</strong></li>
+</ol>
+<p>将 <code>.pkl</code> 文件封装成一个可以接收输入并返回预测结果的 Python 脚本。这段脚本会负责加载模型并对输入进行预测。</p>
+<p><strong>示例 Python 脚本：<code>predict_block_temperature.py</code></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python">python复制代码<span class="hljs-keyword">import</span> joblib<br><span class="hljs-keyword">import</span> sys<br><br><span class="hljs-comment"># 加载训练好的逻辑回归模型</span><br>model = joblib.load(<span class="hljs-string">&#x27;logistic_model.pkl&#x27;</span>)<br><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">predict_block_temperature</span>(<span class="hljs-params">features</span>):</span><br>    <span class="hljs-comment"># 将传入的特征进行预测</span><br>    prediction = model.predict([features])  <span class="hljs-comment"># 输入的特征应该是一个二维列表</span><br>    <span class="hljs-keyword">return</span> prediction[<span class="hljs-number">0</span>]  <span class="hljs-comment"># 返回预测结果</span><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-comment"># 从命令行接收输入特征，例如: &quot;python predict_block_temperature.py 5 10 3 50&quot;</span><br>    input_features = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">float</span>, sys.argv[<span class="hljs-number">1</span>:]))<br>    <br>    <span class="hljs-comment"># 进行预测并输出结果</span><br>    result = predict_block_temperature(input_features)<br>    <span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># 输出预测结果，0表示冷，1表示热</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>解释</strong>：</p>
+<ul>
+<li>脚本会加载 <code>.pkl</code> 文件中的模型，并接收特征输入。</li>
+<li>输入的特征可以从命令行传递给脚本，经过模型处理后输出预测结果。</li>
+</ul>
+<ol start="2">
+<li><strong>在 C 中调用 Python 脚本</strong></li>
+</ol>
+<p>在 C 语言中，可以通过 <code>system()</code> 函数或其他进程控制函数来调用 Python 脚本。你可以将 SSD 块的特征传递给 Python 脚本，并通过标准输出获取预测结果。</p>
+<p><strong>示例 C 代码：</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp">c复制代码<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">predict_block_temperature</span><span class="hljs-params">(<span class="hljs-keyword">float</span> read_count, <span class="hljs-keyword">float</span> write_count, <span class="hljs-keyword">float</span> erase_count, <span class="hljs-keyword">float</span> last_access_time)</span> </span>&#123;<br>    <span class="hljs-keyword">char</span> command[<span class="hljs-number">256</span>];<br>    FILE *fp;<br>    <span class="hljs-keyword">int</span> prediction;<br><br>    <span class="hljs-comment">// 构建 Python 调用命令，传递块的特征作为参数</span><br>    <span class="hljs-built_in">snprintf</span>(command, <span class="hljs-built_in"><span class="hljs-keyword">sizeof</span></span>(command), <span class="hljs-string">&quot;python3 predict_block_temperature.py %f %f %f %f&quot;</span>, <br>             read_count, write_count, erase_count, last_access_time);<br><br>    <span class="hljs-comment">// 打开命令的输出管道</span><br>    fp = <span class="hljs-built_in">popen</span>(command, <span class="hljs-string">&quot;r&quot;</span>);<br>    <span class="hljs-keyword">if</span> (fp == <span class="hljs-literal">NULL</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Error running Python script\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 从 Python 输出中读取预测结果</span><br>    <span class="hljs-built_in">fscanf</span>(fp, <span class="hljs-string">&quot;%d&quot;</span>, &amp;prediction);<br>    <span class="hljs-built_in">pclose</span>(fp);<br><br>    <span class="hljs-keyword">return</span> prediction;  <span class="hljs-comment">// 返回预测结果</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">float</span> read_count = <span class="hljs-number">5.0</span>;<br>    <span class="hljs-keyword">float</span> write_count = <span class="hljs-number">10.0</span>;<br>    <span class="hljs-keyword">float</span> erase_count = <span class="hljs-number">3.0</span>;<br>    <span class="hljs-keyword">float</span> last_access_time = <span class="hljs-number">50.0</span>;<br><br>    <span class="hljs-keyword">int</span> prediction = <span class="hljs-built_in">predict_block_temperature</span>(read_count, write_count, erase_count, last_access_time);<br>    <br>    <span class="hljs-keyword">if</span> (prediction == <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The block is HOT\n&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;The block is COLD\n&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>解释</strong>：</p>
+<ul>
+<li><code>snprintf</code> 构建了 Python 命令，传递了 SSD 块的特征数据。</li>
+<li><code>popen()</code> 用于执行 Python 脚本，并从脚本输出中读取预测结果。</li>
+<li><code>fscanf</code> 从 Python 脚本的输出中获取预测结果（<code>0</code> 表示冷块，<code>1</code> 表示热块）。</li>
+<li>最终，C 程序根据 Python 模型的预测结果采取相应操作。</li>
+</ul>
+<ol start="3">
+<li><strong>将此方法集成到</strong> SSD Sim</li>
+</ol>
+<p>你可以将 <code>predict_block_temperature()</code> 函数集成到 <strong>SSD Sim</strong> 的垃圾回收或数据迁移模块中。例如，在垃圾回收之前，根据每个块的特征调用该函数判断块的冷热状态，并根据结果优化回收策略。</p>
+<p><strong>关键注意事项</strong>：</p>
+<ul>
+<li><strong>Python 环境</strong>：确保在运行 <strong>SSDSim</strong> 的机器上已经安装了 Python，并且可以从 C 代码中执行 <code>python3</code> 命令。</li>
+<li><strong>性能优化</strong>：通过系统调用 Python 脚本会有一些开销。如果你需要高频调用预测模型，考虑优化或批量处理预测，或者将 Python 模型移植到 C 环境中（通过将模型转换为 C 库或使用 TensorFlow C API 等方式）。</li>
+<li><strong>异常处理</strong>：在 C 代码中增加对 Python 调用失败的处理逻辑，以应对脚本执行失败或特征不合理的情况。</li>
+</ul>
+<p><strong>进一步优化</strong>：</p>
+<ol>
+<li><p>**使用 <code>PyRun_SimpleString</code>**：C 可以嵌入 Python 解释器，使用 <code>Python.h</code> 来执行 Python 代码而不通过外部命令：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">c复制代码#<span class="hljs-keyword">include</span> &lt;<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Python</span>.</span></span>h&gt;<br><span class="hljs-constructor">Py_Initialize()</span>;<br><span class="hljs-constructor">PyRun_SimpleString(<span class="hljs-string">&quot;import predict_block_temperature; predict_block_temperature(5, 10, 3, 50)&quot;</span>)</span>;<br><span class="hljs-constructor">Py_Finalize()</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这样可以减少系统调用的开销，但复杂度较高。</p>
+</li>
+<li><p>**模型移植到 C/C++**：可以考虑将模型转换为 C/C++ 格式。比如，训练好模型后导出为 ONNX 模型格式，然后在 C 中使用 ONNX Runtime 进行推理。</p>
+</li>
+</ol>
+<p><strong>总结</strong>：</p>
+<ul>
+<li><strong>Python 模型（logistic_model.pkl）</strong> 和 <strong>C 代码（SSDSim）</strong> 的结合需要通过系统调用或嵌入式 Python 来实现。</li>
+<li>将 Python 模型封装为可调用的脚本，并通过 C 中的 <code>system()</code> 或 <code>popen()</code> 函数调用该脚本，传递块的特征，获取预测结果。</li>
+<li>在 SSD Sim 中，基于这些预测结果优化垃圾回收和数据迁移策略。</li>
+</ul>
+<h2 id="4-分块GC："><a href="#4-分块GC：" class="headerlink" title="4.分块GC："></a>4.分块GC：</h2><p>1.应用SB的invaild_page，这个需要在写请求完成之后对该字段进行加一，需要在更新操作之后进行，是块对应的超级块数量++</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-keyword">else</span>      <span class="hljs-comment">//此时有映射关系，就说明对这个逻辑页进行了更新，需要将原来的页置为失效</span><br>&#123;<br>	<span class="hljs-function"><span class="hljs-title">ppn</span>=ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">dram</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">map</span>-&gt;</span>map_entry[lpn].pn;<br>	location=find_location(ssd,ppn);<br>	<span class="hljs-function"><span class="hljs-title">if</span>(	ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[location-&gt;</span><span class="hljs-function"><span class="hljs-title">channel</span>].chip_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">chip</span>].die_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">die</span>].plane_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">plane</span>].blk_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">block</span>].page_head[location-&gt;</span><span class="hljs-built_in">page</span>].lpn!=lpn)<br>	&#123;<br>		printf(<span class="hljs-string">&quot;\nError in get_ppn()\n&quot;</span>);<br>	&#125;<br>         <span class="hljs-comment">//找到了location过后就会把这个页置为无效</span><br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[location-&gt;</span><span class="hljs-function"><span class="hljs-title">channel</span>].chip_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">chip</span>].die_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">die</span>].plane_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">plane</span>].blk_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">block</span>].page_head[location-&gt;</span><span class="hljs-built_in">page</span>].valid_state=<span class="hljs-number">0</span>;          <span class="hljs-comment">//表示其中某一页失效，同时标记valid和free状态都为0</span><br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[location-&gt;</span><span class="hljs-function"><span class="hljs-title">channel</span>].chip_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">chip</span>].die_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">die</span>].plane_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">plane</span>].blk_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">block</span>].page_head[location-&gt;</span><span class="hljs-built_in">page</span>].free_state=<span class="hljs-number">0</span>;         <span class="hljs-comment">//表示某一页失效，同时标记valid和free状态都为0</span><br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[location-&gt;</span><span class="hljs-function"><span class="hljs-title">channel</span>].chip_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">chip</span>].die_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">die</span>].plane_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">plane</span>].blk_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">block</span>].page_head[location-&gt;</span><span class="hljs-built_in">page</span>].lpn=<span class="hljs-number">0</span>;   <span class="hljs-comment">//删除该页的映射</span><br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[location-&gt;</span><span class="hljs-function"><span class="hljs-title">channel</span>].chip_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">chip</span>].die_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">die</span>].plane_head[location-&gt;</span><span class="hljs-function"><span class="hljs-title">plane</span>].blk_head[location-&gt;</span><span class="hljs-keyword">block</span>].invalid_page_num++;   <span class="hljs-comment">//无效页++</span><br>	<span class="hljs-comment">// SB的invalid_page++</span><br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">superblock</span>[<span class="hljs-keyword">block</span>+(location-&gt;</span><span class="hljs-function"><span class="hljs-title">chip</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>block_plane)].invalid_page_count++;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>2.添加被gc的小块的count，这里在<code>gc_for_channel</code>函数中修改，在gc完成之后将对应SB块的已经被gc的小块的数量加一</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">if</span> (gc_node-&gt;priority==GC_UNINTERRUPT)   <span class="hljs-comment">//!!</span><br>&#123;<br>	flag_direct_erase=gc<span class="hljs-constructor">_direct_erase(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">chip</span>,<span class="hljs-params">die</span>,<span class="hljs-params">plane</span>)</span>;<br>	<span class="hljs-keyword">if</span> (flag_direct_erase!=SUCCESS)<br>	&#123;<br>		<span class="hljs-comment">// flag_gc=uninterrupt_gc(ssd,channel,chip,die,plane);  </span><br>		flag_gc=uninterrupt<span class="hljs-constructor">_gc_super(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">chip</span>,<span class="hljs-params">die</span>,<span class="hljs-params">plane</span>,<span class="hljs-params">block</span>)</span>;    <span class="hljs-comment">/*当一个完整的gc操作完成时（已经擦除一个块，回收了一定数量的flash空间），返回1，将channel上相应的gc操作请求节点删除*/</span><br>		<span class="hljs-keyword">if</span> (flag_gc==<span class="hljs-number">1</span>)<br>		&#123;<br>			delete<span class="hljs-constructor">_gc_node(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">gc_node</span>)</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		delete<span class="hljs-constructor">_gc_node(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">gc_node</span>)</span>;<br>	&#125;	<br>	<span class="hljs-comment">// gc完成，对应SB的gc_count字段自增</span><br>	ssd-&gt;superblock<span class="hljs-literal">[<span class="hljs-identifier">block</span>+(<span class="hljs-identifier">chip</span><span class="hljs-operator">*</span><span class="hljs-identifier">ssd</span>-&gt;<span class="hljs-identifier">parameter</span>-&gt;<span class="hljs-identifier">block_plane</span>)]</span>.gc_count++;<br>	return SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>3.到达软阈值尾插挂载</p>
+<p>在结构体中加入链表头尾指针</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-keyword">struct</span> <span class="hljs-type">gc_operation</span> *gc_command;     <span class="hljs-comment">//记录需要产生gc的位置，头指针</span><br><span class="hljs-keyword">struct</span> <span class="hljs-type">gc_operation</span> *gc_command_tail;	<span class="hljs-comment">//记录gc链表的尾指针</span><br></code></pre></td></tr></table></figure>
+
+<p>软阈值进行尾插：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-comment">// 软阈值更改，软阈值的判断范围在hard和普通之间</span><br><span class="hljs-function"><span class="hljs-title">if</span> (ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].chip_head[chip].die_head[die].plane_head[plane].free_page&lt;(ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">page_block</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">block_plane</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">gc_threshold</span>) &amp;&amp; ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].chip_head[chip].die_head[die].plane_head[plane].free_page&gt;(ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">page_block</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">block_plane</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>gc_hard_threshold))  <span class="hljs-comment">//如果plane中的free_page有效页的数目少于gc_threshold所设定的阈值就产生gc操作</span><br>&#123;<br>	int blk_id = -<span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">if</span> (blk_Inqueue(ssd, channel, chip, die, plane, &amp;blk_id) == ERROR) &#123;<br>		printf(<span class="hljs-string">&quot;Error: no blk for blkInqueue\n&quot;</span>);<br>		getchar();<br>	&#125;<br>	<span class="hljs-comment">// 说明有软阈值块</span><br>	<span class="hljs-function"><span class="hljs-title">for</span>(int i = 0;i &lt; ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>channel_number;i++)<br>	&#123;<br>		int gc_change_block = -<span class="hljs-number">1</span>;<br>		<span class="hljs-comment">//因为传的是超级块号，所以得返回具体GC块号</span><br>		gc_change_block = find_superblock_change(ssd,i,chip,die,plane,&amp;blk_id);	  <br>		<span class="hljs-keyword">if</span>(gc_change_block == ERROR)<br>		&#123;<br>			printf(<span class="hljs-string">&quot;Error: no find blk\n&quot;</span>);<br>		    getchar();<br>		&#125;<br>    <br>		gc_node=(struct gc_operation *)malloc(sizeof(struct gc_operation));<br>		alloc_assert(gc_node,<span class="hljs-string">&quot;gc_node&quot;</span>);<br>		memset(gc_node,<span class="hljs-number">0</span>, sizeof(struct gc_operation));<br><br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>next_node=NULL;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>chip=chip;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>die=die;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>plane=plane;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span><span class="hljs-keyword">block</span>=gc_change_block;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span><span class="hljs-built_in">page</span>=<span class="hljs-number">0</span>;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>state=GC_WAIT;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>priority=GC_UNINTERRUPT;<br>		<span class="hljs-comment">// 软阈值这里进行尾插</span><br>		<span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span>channel_head[i].gc_command == NULL)&#123;<br>			<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command = gc_node;<br>			<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command_tail = gc_node;<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[i].gc_command_tail-&gt;</span>next_node = gc_node;<br>			<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command_tail = gc_node;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>gc_request++;<br>		<span class="hljs-comment">// if(ssd-&gt;channel_head[i].chip_head[chip].die_head[die].plane_head[plane].blk_head[gc_change_block].free_page_num &gt; 0 )</span><br>		<span class="hljs-comment">// &#123;</span><br>		<span class="hljs-comment">// 	printf(&quot;---------------\n&quot;);</span><br>		<span class="hljs-comment">// 	while (1)&#123;&#125;	</span><br>		<span class="hljs-comment">// &#125;</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>4.到达硬阈值头插挂载，首先判断count，找到max的SB进行选择，然后遍历判断是否被GC然后进行GC，注意这里是提交到对头。</p>
+<p>硬阈值到达，选出已经gc最多的块，然后遍历进行gc</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">if</span> (ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].chip_head[chip].die_head[die].plane_head[plane].free_page&lt;(ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">page_block</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">block_plane</span>*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>gc_hard_threshold))  <span class="hljs-comment">//如果plane中的free_page有效页的数目少于gc_hard_threshold所设定的阈值就产生gc操作</span><br>&#123;<br>	int blk_id = -<span class="hljs-number">1</span>;<br>	<span class="hljs-comment">// 原函数为选出无效页最多的块，现在要选出gc最多的块</span><br>	<span class="hljs-keyword">if</span> (get_GC_count_max(ssd, channel, chip, die, plane, &amp;blk_id) == ERROR) &#123;<br>		printf(<span class="hljs-string">&quot;Error: no blk\n&quot;</span>);<br>		getchar();<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-title">for</span>(int i = 0;i &lt; ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>channel_number;i++)<br>	&#123;<br>		int blk_number = -<span class="hljs-number">1</span>;<br>		<span class="hljs-comment">// 因为传的是超级块号，所以得返回没有gc的块号</span><br>		<span class="hljs-function"><span class="hljs-title">blk_number</span> = ssd-&gt;</span>superblock[blk_id].super_blk_loc[i].blk;<br>		<span class="hljs-comment">// 判断这个块有没有被gc	  </span><br>		<span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span>channel_head[channel].chip_head[chip].die_head[die].plane_head[plane].blk_head[blk_number].free_page_num &gt; <span class="hljs-number">0</span>)<br>		&#123;<br>			printf(<span class="hljs-string">&quot;find %d already gc\n&quot;</span>, blk_number);<br>		    continue;<br>		&#125;        <br>		gc_node=(struct gc_operation *)malloc(sizeof(struct gc_operation));<br>		alloc_assert(gc_node,<span class="hljs-string">&quot;gc_node&quot;</span>);<br>		memset(gc_node,<span class="hljs-number">0</span>, sizeof(struct gc_operation));<br><br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>next_node=NULL;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>chip=chip;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>die=die;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>plane=plane;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span><span class="hljs-keyword">block</span>=gc_change_block;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span><span class="hljs-built_in">page</span>=<span class="hljs-number">0</span>;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>state=GC_WAIT;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span>priority=GC_UNINTERRUPT;<br>		<span class="hljs-function"><span class="hljs-title">gc_node</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">next_node</span>=ssd-&gt;</span>channel_head[i].gc_command;<br>		<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command=gc_node;    <span class="hljs-comment">//接在这个channel的gc链表后面，应该是链表的头插操作</span><br>		<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>gc_request++;<br>		<span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span>channel_head[i].chip_head[chip].die_head[die].plane_head[plane].blk_head[gc_change_block].free_page_num &gt; <span class="hljs-number">0</span> )<br>		&#123;<br>			printf(<span class="hljs-string">&quot;---------------\n&quot;</span>);<br>			<span class="hljs-keyword">while</span> (<span class="hljs-number">1</span>)&#123;&#125;	<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后应该还要把gc_count置为0，这个操作是在<code>gc_for_channel</code>函数中执行</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-comment">// gc完成，对应SB的gc_count字段自增，但是如果count等于8，说明开启了新一轮gc</span><br><span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">superblock</span>[<span class="hljs-keyword">block</span>+(chip*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>block_plane)].gc_count == <span class="hljs-number">8</span>)&#123;<br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">superblock</span>[<span class="hljs-keyword">block</span>+(chip*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>block_plane)].gc_count = <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">superblock</span>[<span class="hljs-keyword">block</span>+(chip*ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">parameter</span>-&gt;</span>block_plane)].gc_count++;<br></code></pre></td></tr></table></figure>
+
+<h3 id="这里更改了插入和删除节点的逻辑"><a href="#这里更改了插入和删除节点的逻辑" class="headerlink" title="这里更改了插入和删除节点的逻辑"></a>这里更改了插入和删除节点的逻辑</h3><p>插入节点</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-comment">// 尾插法</span><br><span class="hljs-function"><span class="hljs-title">if</span>(ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[i].gc_command == NULL || ssd-&gt;</span>channel_head[i].gc_command_tail == NULL)&#123;<br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command = gc_node;<br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command_tail = gc_node;<br>&#125;<span class="hljs-keyword">else</span>&#123; <br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[i].gc_command_tail-&gt;</span>next_node = gc_node;<br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[i].gc_command_tail = gc_node;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>删除节点：分为</p>
+<ol>
+<li>是头结点但不是最后一个节点</li>
+<li>队列中只有一个节点，删除了之后队列为空</li>
+<li>队列中的任意节点，包括队列中的尾巴节点，删除之后队列不为空</li>
+</ol>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs xl"><span class="hljs-function"><span class="hljs-title">if</span> (gc_node==ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].gc_command &amp;&amp; ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].gc_command-&gt;</span>next_node != NULL)<br>&#123;<br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].gc_command = gc_node-&gt;</span>next_node;<br>	flag = <span class="hljs-number">0</span>;<br>	<span class="hljs-comment">// ssd-&gt;channel_head[channel].gc_command_tail = gc_node-&gt;next_node;</span><br>&#125;<span class="hljs-function"><span class="hljs-title">else</span> <span class="hljs-keyword">if</span>(ssd-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].gc_command-&gt;</span>next_node == NULL)&#123; <span class="hljs-comment">// 最后一个节点的删除</span><br>	<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">channel_head</span>[channel].gc_command = ssd-&gt;</span>channel_head[channel].gc_command_tail = NULL;<br>	flag = <span class="hljs-number">0</span>;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>	<span class="hljs-function"><span class="hljs-title">gc_pre</span>=ssd-&gt;</span>channel_head[channel].gc_command;<br>	<span class="hljs-function"><span class="hljs-title">while</span> (gc_pre-&gt;</span>next_node!=NULL)<br>	&#123;<br>		<span class="hljs-function"><span class="hljs-title">if</span> (gc_pre-&gt;</span>next_node==gc_node)<br>		&#123;<br>			flag = <span class="hljs-number">0</span>;<br>			<span class="hljs-function"><span class="hljs-title">gc_pre</span>-&gt;</span><span class="hljs-function"><span class="hljs-title">next_node</span>=gc_node-&gt;</span>next_node;<br>			<span class="hljs-function"><span class="hljs-title">if</span>(gc_node-&gt;</span>next_node == NULL)&#123;<br>				<span class="hljs-function"><span class="hljs-title">ssd</span>-&gt;</span>channel_head[channel].gc_command_tail = gc_pre;<br>			&#125;<br>			break;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-title">gc_pre</span>=gc_pre-&gt;</span>next_node;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="4-1-注意点：先迁移数据然后一起擦除"><a href="#4-1-注意点：先迁移数据然后一起擦除" class="headerlink" title="4.1 注意点：先迁移数据然后一起擦除"></a>4.1 注意点：先迁移数据然后一起擦除</h3><p>特别注意！！！</p>
+<p>在page_move之后块内都是无效页，需要删除原有的<code>direct_erase</code>函数，不然会导致block被直接擦除</p>
+<p>在<code>uninterrupt_gc_super_soft</code>的时候不进行擦除，而是在整个SB，gc完成之后，即gc_count等于8的时候一起进行擦除</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">if</span> (gc_node-&gt;priority==GC_UNINTERRUPT)   <span class="hljs-comment">//!!</span><br>&#123;<br>	flag_direct_erase=gc<span class="hljs-constructor">_direct_erase(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">chip</span>,<span class="hljs-params">die</span>,<span class="hljs-params">plane</span>)</span>;<br>	<span class="hljs-keyword">if</span> (flag_direct_erase!=SUCCESS)<br>	&#123;<br>		<span class="hljs-comment">// flag_gc=uninterrupt_gc(ssd,channel,chip,die,plane);  </span><br>		<span class="hljs-comment">// flag_gc=uninterrupt_gc_super(ssd,channel,chip,die,plane,block);    /*当一个完整的gc操作完成时（已经擦除一个块，回收了一定数量的flash空间），返回1，将channel上相应的gc操作请求节点删除*/</span><br>		flag_gc=uninterrupt<span class="hljs-constructor">_gc_super_soft(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">chip</span>,<span class="hljs-params">die</span>,<span class="hljs-params">plane</span>,<span class="hljs-params">block</span>)</span>; <span class="hljs-comment">//不擦除</span><br>		<span class="hljs-keyword">if</span> (flag_gc==<span class="hljs-number">1</span>)<br>		&#123;<br>			delete<span class="hljs-constructor">_gc_node(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">gc_node</span>)</span>;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		delete<span class="hljs-constructor">_gc_node(<span class="hljs-params">ssd</span>,<span class="hljs-params">channel</span>,<span class="hljs-params">gc_node</span>)</span>;<br>	&#125;	<br>	<span class="hljs-comment">// gc完成，对应SB的gc_count字段自增，但是如果count等于8，说明开启了新一轮gc</span><br>	<span class="hljs-keyword">if</span>(ssd-&gt;superblock<span class="hljs-literal">[<span class="hljs-identifier">block</span>+(<span class="hljs-identifier">chip</span><span class="hljs-operator">*</span><span class="hljs-identifier">ssd</span>-&gt;<span class="hljs-identifier">parameter</span>-&gt;<span class="hljs-identifier">block_plane</span>)]</span>.gc_count<span class="hljs-operator"> == </span><span class="hljs-number">8</span>)&#123;<br>		ssd-&gt;superblock<span class="hljs-literal">[<span class="hljs-identifier">block</span>+(<span class="hljs-identifier">chip</span><span class="hljs-operator">*</span><span class="hljs-identifier">ssd</span>-&gt;<span class="hljs-identifier">parameter</span>-&gt;<span class="hljs-identifier">block_plane</span>)]</span>.gc_count = <span class="hljs-number">0</span>;<br>		<span class="hljs-comment">// 然后一起擦除</span><br>		<span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i=<span class="hljs-number">0</span>; i&lt;ssd-&gt;parameter-&gt;channel_number; i++)&#123;<br>			erase<span class="hljs-constructor">_operation(<span class="hljs-params">ssd</span>, <span class="hljs-params">i</span>, <span class="hljs-params">chip</span>, <span class="hljs-params">die</span>, <span class="hljs-params">plane</span>, <span class="hljs-params">block</span>)</span>;<br>		&#125;<br>	&#125;<br>	ssd-&gt;superblock<span class="hljs-literal">[<span class="hljs-identifier">block</span>+(<span class="hljs-identifier">chip</span><span class="hljs-operator">*</span><span class="hljs-identifier">ssd</span>-&gt;<span class="hljs-identifier">parameter</span>-&gt;<span class="hljs-identifier">block_plane</span>)]</span>.gc_count++;<br>	return SUCCESS;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-2-时间问题"><a href="#4-2-时间问题" class="headerlink" title="4.2 时间问题"></a>4.2 时间问题</h3><p>因为需要先page_move然后再进行擦除，所以不能在<code>uninterrupt_gc_super</code>当中直接添加擦除时间</p>
+<p>原代码：这里的<strong>ssd-&gt;parameter-&gt;time_characteristics.tBERS</strong>就是擦除时间</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">if</span> ((ssd-&gt;parameter-&gt;advanced_commands&amp;AD_COPYBACK)==AD_COPYBACK)<br>&#123;<br>	<span class="hljs-keyword">if</span> (ssd-&gt;parameter-&gt;greed_CB_ad==<span class="hljs-number">1</span>)<br>	&#123;<br><br>		ssd-&gt;channel_head[channel].next_state_predict_time=ssd-&gt;current_time+page_move_count*(<span class="hljs-number">7</span>*ssd-&gt;parameter-&gt;time_characteristics.tWC+ssd-&gt;parameter-&gt;time_characteristics.tR+<span class="hljs-number">7</span>*ssd-&gt;parameter-&gt;time_characteristics.tWC+ssd-&gt;parameter-&gt;time_characteristics.tPROG);<br>		ssd-&gt;channel_head[channel].chip_head[chip].next_state_predict_time=ssd-&gt;channel_head[channel].next_state_predict_time+ssd-&gt;parameter-&gt;time_characteristics.tBERS; <span class="hljs-comment">// 擦除时间去掉</span><br>	&#125;<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>	<span class="hljs-comment">// ssd-&gt;channel_head[channel].next_state_predict_time=ssd-&gt;current_time+page_move_count* (7*ssd-&gt;parameter-&gt;time_characteristics.tWC+ssd-&gt;parameter-&gt;time_characteristics.tR+7*ssd-&gt;parameter-&gt;time_characteristics.tWC+ssd-&gt;parameter-&gt;time_characteristics.tPROG)+transfer_size*SECTOR*(ssd-&gt;parameter-&gt;time_characteristics.tWC+ssd-&gt;parameter-&gt;time_characteristics.tRC);</span><br>	<span class="hljs-comment">// ssd-&gt;channel_head[channel].chip_head[chip].next_state_predict_time=ssd-&gt;channel_head[channel].next_state_predict_time+ssd-&gt;parameter-&gt;time_characteristics.tBERS;	</span><br>	ssd-&gt;channel_head[channel].next_state_predict_time=ssd-&gt;current_time+page_move_count* (<span class="hljs-number">7</span>*ssd-&gt;parameter-&gt;time_characteristics.tWC+ssd-&gt;parameter-&gt;time_characteristics.tR)+transfer_size*SECTOR*ssd-&gt;parameter-&gt;time_characteristics.tRC;<br>	ssd-&gt;channel_head[channel].chip_head[chip].next_state_predict_time=ssd-&gt;channel_head[channel].next_state_predict_time+ssd-&gt;parameter-&gt;time_characteristics.tBERS;	<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>我们将擦除时间放在erase操作之前</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c">    <span class="hljs-comment">/*当一个完整的gc操作完成时（已经擦除一个块，回收了一定数量的flash空间），返回1，将channel上相应的gc操作请求节点删除*/</span><br>flag_gc=uninterrupt_gc_super_soft(ssd,channel,chip,die,plane,block); <span class="hljs-comment">//不擦除</span><br><span class="hljs-comment">// 将小块的page_move标志位置为1，代表被page_move了</span><br>ssd-&gt;channel_head[channel].chip_head[chip].die_head[die].plane_head[plane].blk_head[block].SB_gc_flag = <span class="hljs-number">1</span>;<br>ssd-&gt;superblock[block+(chip*ssd-&gt;parameter-&gt;block_plane)].gc_count++;	<br>	<span class="hljs-comment">// gc完成，对应SB的gc_count字段自增，但是如果count等于8，说明开启了新一轮gc</span><br><span class="hljs-keyword">if</span>(ssd-&gt;superblock[block+(chip*ssd-&gt;parameter-&gt;block_plane)].gc_count == <span class="hljs-number">8</span>)&#123;<br>	ssd-&gt;superblock[block+(chip*ssd-&gt;parameter-&gt;block_plane)].gc_count = <span class="hljs-number">0</span>;<br><span class="hljs-comment">// 然后一起擦除</span><br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;ssd-&gt;parameter-&gt;channel_number; i++)&#123;<br><span class="hljs-comment">// ssd-&gt;channel_head[channel].chip_head[chip].die_head[die].plane_head[plane].blk_head[block].fast_erase = TRUE;</span><br>	ssd-&gt;channel_head[i].chip_head[chip].die_head[die].plane_head[plane].blk_head[block].SB_gc_flag = <span class="hljs-number">0</span>;<br>	ssd-&gt;channel_head[channel].chip_head[chip].next_state_predict_time = ssd-&gt;channel_head[channel].next_state_predict_time + ssd-&gt;parameter-&gt;time_characteristics.tBERS;<br>							erase_operation(ssd, i, chip, die, plane, block);  <br>						&#125;<br>					&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-3-优先级问题"><a href="#4-3-优先级问题" class="headerlink" title="4.3 优先级问题"></a>4.3 优先级问题</h3><p>然后我们需要区分软阈值触发gc和硬阈值触发gc的优先级问题</p>
+<p>软阈值触发gc，需要在<code>channel</code>的当前状态和下一个状态是空闲而且预测时间允许的情况下进行</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SSD/" class="category-chain-item">SSD</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSD/">#SSD</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>超级块GC优化</div>
+      <div>http://yoursite.com/2024/07/23/superblock GC优化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/24/SSDSim%E6%BA%90%E7%A0%81/" title="SSDSim_code">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SSDSim_code</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/21/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1_python/" title="数学建模">
+                        <span class="hidden-mobile">数学建模</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

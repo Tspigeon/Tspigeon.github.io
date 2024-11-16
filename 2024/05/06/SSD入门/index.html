@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SSD基础入门学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSD">
+<meta property="og:url" content="http://yoursite.com/2024/05/06/SSD%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="SSD基础入门学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-12T11:55:00.949Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="SSD">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>SSD - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SSD"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-06 00:00" pubdate>
+          2024年5月6日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SSD</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="SSD入门"><a href="#SSD入门" class="headerlink" title="SSD入门"></a>SSD入门</h1><h2 id="1-深入浅出SSD"><a href="#1-深入浅出SSD" class="headerlink" title="1. 深入浅出SSD"></a>1. 深入浅出SSD</h2><p>SSD和HDD：</p>
+<ol>
+<li>完全不同的数据存储介质和读写方式。</li>
+<li>性能、功耗、适用场景广</li>
+<li>SATA和NVMe，SATA更多是HDD</li>
+</ol>
+<h3 id="工作原理："><a href="#工作原理：" class="headerlink" title="工作原理："></a>工作原理：</h3><ol>
+<li><p>组成：</p>
+<ol>
+<li>前端：和主机直接通信（收发）</li>
+<li> FLT（实现优化最关键的部分）：地址转换（数据块到物理空间），垃圾回收</li>
+<li> 后端：缓存数据到闪存空间</li>
+</ol>
+</li>
+<li><p>基本参数</p>
+<ol>
+<li><p>容量：OP概念：多余空间与用户空间的比例</p>
+</li>
+<li><p>介质：闪存分类、2D tran 3D</p>
+</li>
+<li><p>性能：IOPS（随机、小块）、吞吐量（顺序、大块）两个指标和访问模式（有三个需要关注的点：随机和连续数据、块大小是多少、读写命令的比例）反应三种测试类型：顺序读、随机写、随机混合读写（其实就是访问模式三个方面的组合）</p>
+<p>时延（响应速度）则是越低越好，平均时延通过所有命令时间除以命令行数反映，最大时延是测试周期中最长的一个</p>
+</li>
+<li><p>寿命：</p>
+<ul>
+<li>指标：DWPD（每天最多写满多少次）：可以通过总写入量进行换算，但其实写少读多 0.3都可以接受</li>
+</ul>
+<p>​            TBW（生命周期内可以写入的字节数）：按道理是容量乘以擦除次数除以WA</p>
+<p><strong>为什么需要WA呢？</strong></p>
+<p>WA 是指实际写入到 SSD 的数据量与主机发送的数据量之间的比率。</p>
+<p>WA 影响 TBW 的主要原因有以下几点：</p>
+<ol>
+<li><p><strong>写入放大效应</strong>: SSD 写入数据时，通常需要擦除旧数据并写入新数据。由于 SSD 的内部工作原理（如块擦除和写入），实际写入的数据量可能大于主机发送的数据量，这就是写入放大效应。较高的 WA 意味着更大的写入放大效应，因此会导致 SSD 的 TBW 更快地消耗完。</p>
+<p><strong>写入放大效应</strong>：</p>
+<p>​    <strong>块擦除和写入</strong>：</p>
+<ul>
+<li>SSD 的存储单位是 NAND 闪存芯片，其最小擦除单位是一块（Block）。当主机发送数据进行写入时，SSD 需要首先将目标块擦除（Erase），然后再进行写入操作。由于 SSD 不支持原地擦除，因此即使只有部分数据需要更新，整个块也需要被擦除和重新写入，导致了写入放大效应的出现。</li>
+</ul>
+</li>
+<li><p><strong>耗损和寿命</strong>: SSD 存储单元在擦写过程中会发生物理损耗，较高的 WA 会导致更频繁的写入操作，从而加速 SSD 的物理损耗，降低其寿命。</p>
+</li>
+<li><p><strong>性能影响</strong>: 高 WA 可能会导致 SSD 性能下降，因为写入放大效应会增加写入操作的延迟，降低 SSD 的写入性能。</p>
+</li>
+</ol>
+<p><strong>DWPD和TBW也可以换算，为什么？</strong>：在没有WA的情况下也能换算？换算出来不是寿命吗？</p>
+<p>​    就是寿命，这两个指标是基于 SSD 厂商提供的标称值计算得出的，并且已经考虑了写入放大效应对 SSD 寿命的影响。</p>
+</li>
+<li><p>数据可靠性</p>
+<ul>
+<li>指标：UBER（读取错误数量的比率）：可以通过ECC纠错码降低，RBER（本来就错误的）：出厂自带的、MTBF（平均故障间隔时间）</li>
+</ul>
+</li>
+<li><p>功耗：主要是各个功耗等级（运行状态之间的切换）与时延之间的取舍</p>
+</li>
+<li><p>兼容性：BIOS、OS、电信号抖动、硬件、容错处理</p>
+</li>
+<li><p>接口：</p>
+<ul>
+<li>接口类型：SATA、PCIe（NVMe规格）、SAS</li>
+<li>尺寸：主流为2.5寸，还有M.2尺寸</li>
+<li>新兴BGA SSD：BGA为一种新兴的封装技术</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="主控和介质："><a href="#主控和介质：" class="headerlink" title="主控和介质："></a>主控和介质：</h3><p>前端：</p>
+<ul>
+<li>接口部分：三大接口。速度大致为 SATA&lt;SAS&lt;PCIe（其中PCIe的速度与通道数有关）</li>
+<li>前端总线与设备的命令交互：检查缓冲区、命令解析之后分派任务给后端</li>
+</ul>
+<p>主控CPU：</p>
+<ul>
+<li>SMP和AMP：都是多核软件，不同在于多核有没有执行同一份代码也就是I/D-RAM</li>
+</ul>
+<p>后端：</p>
+<h3 id="概念释意："><a href="#概念释意：" class="headerlink" title="概念释意："></a>概念释意：</h3><p>SSD FW：FW指的是固件，SSD FW既是SSD的固件，固件算法掌握着SSD读写和传输</p>
+<p>ECC：ECC 的原理是在数据存储的过程中，对存储的数据进行特定的编码操作，使得数据中的错误可以被检测和纠正。通常情况下，ECC 使用一种或多种校验位对数据进行编码，以增加数据的冗余度，从而提高数据的可靠性。</p>
+<ol>
+<li><strong>编码操作</strong>：<ul>
+<li>在存储数据之前，对数据进行编码操作，添加额外的冗余信息，以增加数据的纠错能力。这个过程通常使用一种或多种纠错码算法，如海明码（Hamming Code）、Reed-Solomon 码等。</li>
+</ul>
+</li>
+<li><strong>校验位添加</strong>：<ul>
+<li>在编码过程中，向数据中添加一定数量的校验位，这些校验位存储了数据的一部分信息，可以用来检测和纠正数据中的错误。通常情况下，校验位的数量和纠错能力相关，增加校验位的数量可以提高纠错能力。</li>
+</ul>
+</li>
+<li><strong>错误检测和纠正</strong>：<ul>
+<li>在读取数据时，通过对读取的数据进行解码操作，检测数据中的错误，并尝试根据校验位的信息对错误进行纠正。如果检测到数据中的错误，ECC 可以根据校验位的信息定位和纠正错误的位，从而恢复正确的数据。</li>
+</ul>
+</li>
+</ol>
+<p>BCH：ECC的一种纠错算法，通过生成多项式等等方法编码和纠错</p>
+<p>BIOS：用于在系统启动时进行硬件初始化和自检，并提供基本的输入输出功能。BIOS 是操作系统启动前的一个关键组成部分，它负责与计算机硬件进行交互，初始化系统硬件，并加载操作系统到内存中，从而启动计算机系统。</p>
+<p>PCBA模式：指的是 SSD 的主板（PCB，Printed Circuit Board）上的电路设计和布局。PCBA 模式通常包括了 SSD 主板上的电子元件、连接线路以及电路布局等方面的设计。</p>
+<p>闪存：用于数据存储和传输。闪存以其快速的读写速度、低功耗、耐用性和静态性等特点，在计算机、移动设备、嵌入式系统等领域得到广泛应用。SSD中的闪存一般指的是NAND后端</p>
+<p>DMA：DMA用于在外设与存储器之间以及存储器与存储器之间提供高速数据传输。可以在无需任何 CPU 操作的情况下通过 DMA 快速移动数据。这样节省的 CPU 资源可供其它操作使用。</p>
+<p>DRAM：PC当前要执行的程序和数据都保存在由DRAM组成的内存模块主存储系统内</p>
+<h2 id="2-NVMe协议"><a href="#2-NVMe协议" class="headerlink" title="2. NVMe协议"></a>2. NVMe协议</h2><p>动机：AHCI和SATA已经不能满足高性 能和低延时SSD的需求，因此SSD迫切需要自己更快、更高效的协议和接口。解决传输速率限制的问题，采用PCIe访问SSD，减少延迟并简化了指令集</p>
+<p>PCIe接口：NVMe的前端也就是物理层基于PCIe进行数据传输，PCIe的传输速率在前端接口中是有目共睹的快，而且具有可扩展性（速率随通道数的增加而增加）而且原生PCIe主控与CPU 直接相连，而不像传统方式，要通过南桥控制器中转再连接CPU，因此 基于PCIe的SSD时延更低。</p>
+<p>NVMe的命令个数少了很多，完全是为SSD量身定制的。</p>
+<ol>
+<li><strong>更高的带宽和吞吐量</strong>：PCIe NVMe SSD 相较于 SATA SSD，具有更高的数据传输速率和吞吐量。PCIe 通道具有更高的带宽，可提供更快的数据传输速度，这使得 NVMe SSD 在数据读写操作时更快，能够更快地处理大量数据。</li>
+<li><strong>更低的延迟</strong>：PCIe NVMe SSD 采用了一种更快速的传输协议，与传统的 SATA 接口相比，具有更低的访问延迟。这意味着 NVMe SSD 能够更快地响应主机的读写请求，提供更快的数据访问速度。</li>
+<li><strong>更高的并发性能</strong></li>
+</ol>
+<h3 id="NVMe队列"><a href="#NVMe队列" class="headerlink" title="NVMe队列"></a>NVMe队列</h3><p>NVMe队列有三个重要概念：SQ/CQ在主机内存中</p>
+<ul>
+<li>SQ：发送队列，存储主机要发送的命令，然后通知SSD来取</li>
+<li>CQ：完成队列，命令执行完成之后，执行结果打包成软件包并写入CQ</li>
+<li>DB：通过DB实现主机向SSD传递命令，也就是主机和SSD的消息缓冲区<ol>
+<li>每个SQ 或者CQ，都有两个对应的DB：Head DB和Tail DB。记录头和尾巴指针的位置</li>
+<li>主机不能读DB，但是可以根据命令完成状态获取头尾部</li>
+</ol>
+</li>
+</ul>
+<h3 id="NVMe寻址"><a href="#NVMe寻址" class="headerlink" title="NVMe寻址"></a>NVMe寻址</h3><p>LBA：write命令用，一个LBA对应一笔用户数据，数据写入闪存之后生成LBA与闪存位置的映射关系，这种映射关系可以用于read命令实现中</p>
+<p>主机有两种方式告诉SSD数据所在内存位置</p>
+<p>（Admin命令和IO命令）<strong>PRP</strong>：主机内存物理页划分，使用PRP Entry描述一个物理页空间，多个Entry组织成一个PRP List‘</p>
+<p>NVMe中的可以有两个PRP，PRP1是指针的指针，也就是存储的是PRP链表的位置</p>
+<p>（只能IO命令）<strong>SGL</strong>：SGL（Scatter Gather List）首先是个List，是个链表，由一个或者多个SGL段，而每个SGL段又由一个或者多个SGL描述符</p>
+<p>有四种SLG的描述符，作用分别是：描述数据、下一段指针、通知链表到头了、主机不需要后面数据的标识</p>
+<p>为什么需要SLG：因为需要描述任意大小的内存空间</p>
+<h2 id="3-PCIe接口"><a href="#3-PCIe接口" class="headerlink" title="3. PCIe接口"></a>3. PCIe接口</h2><h3 id="与SATA和PCI比较"><a href="#与SATA和PCI比较" class="headerlink" title="与SATA和PCI比较"></a>与SATA和PCI比较</h3><ul>
+<li><p>SATA：</p>
+<p>•PCIe接口速率的可扩展性</p>
+<p>•SATA3.0 在理论上的最优传输速度可达 600MB / s（实际速度 为 560MB / s）。</p>
+<p>•PCIe是全双工、SATA是半双工</p>
+</li>
+<li><p>PCI：</p>
+<ul>
+<li>PCI使用并口传输数据，而PCIe使用的是串口传输。</li>
+<li>PCI因为时钟漂移，要求的时钟周期更大</li>
+<li>拓扑结构不同<ul>
+<li><strong>更高的带宽</strong>：PCIe 使用高速串行连接，相较于 PCI 的并行连接，拥有更高的带宽。PCIe 可以支持多个通道和多条总线，从而在数据传输时实现并行处理，大大提高了数据传输速率和吞吐量。</li>
+<li><strong>低延迟</strong>：PCIe 的树型拓扑结构可以降低数据传输的延迟。相较于 PCI 的总线型拓扑结构，PCIe 的每个端口连接到根端口，形成一棵树状结构，数据传输路径更短、更直接，因此具有更低的延迟。</li>
+<li><strong>更好的可扩展性</strong>：PCIe 的树型拓扑结构支持更多的设备连接，并且可以根据需求灵活地增加或减少设备数量，从而更好地满足系统的扩展性需求。PCIe 支持热插拔功能，可以在系统运行时插入或拔出设备，而不影响其他设备的正常工作。</li>
+<li><strong>更高的稳定性和可靠性</strong>：PCIe 的树型拓扑结构具有更好的稳定性和可靠性。每个 PCIe 设备都连接到根端口，形成独立的通信链路，因此故障隔离更容易，一个设备的故障不会影响到其他设备的正常工作。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="三层模型"><a href="#三层模型" class="headerlink" title="三层模型"></a>三层模型</h3><p>PCIe传输的数据格式是数据包（TLP），并定义了三层分层结构</p>
+<p>事务层：主要职责是创建（发送）或者解析（接收） TLP（Transaction Layer Packet）、流量控制、QoS、事务排序等</p>
+<p>数据链路层：创建（发送）或者解析（接收） DLLP（Data Link Layer Packet）、Ack/Nak协议（链路层检错和纠 错）、流控、电源管理等。</p>
+<p>物理层：处理所有的Packet数据物理传输，发送端数据 分发到各个Lane传输（Stripe），接收端把各个Lane上的数据汇总起来 （De-stripe），每个Lane上进行处理</p>
+<h2 id="4-MQSim论文"><a href="#4-MQSim论文" class="headerlink" title="4. MQSim论文"></a>4. MQSim论文</h2><p>现在仿真工具的三个问题：多队列方法、充分模拟稳态行为、捕捉IO请求的端到端延迟</p>
+<p>目标：该模拟器可以完全模拟现代多队列固态硬盘（NVMe）和传统的基于SATA 的固态硬盘 的特性和性能。</p>
+<p>论文查询点：WA，ECC，BCH</p>
+<p>论文：[1]李进,金龙旭,李国宁,等.ECC嵌入BCH码的NAND闪存纠错算法[J].哈尔滨工程大学学报,2012,33(11):1399-1404.</p>
+<p>[1]郝嘉,候梦清.NVMe存储协议浅论[J].信息系统工程,2020(03):160-161.</p>
+<p>[1]润冬,刘芳,肖侬,等.PCIe SSD I/O栈设计与原型系统研究[J].计算机研究与发展,2015,52(S2):124-130.</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SSD/" class="category-chain-item">SSD</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSD/">#SSD</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SSD</div>
+      <div>http://yoursite.com/2024/05/06/SSD入门/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/19/SSD%E7%9B%B8%E5%85%B3%E7%8E%AF%E5%A2%83/" title="SSD环境安装">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SSD环境安装</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/29/24.2%E6%9C%88%E8%AE%A1%E5%88%92/" title="24年 2月计划">
+                        <span class="hidden-mobile">24年 2月计划</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
