@@ -34,7 +34,7 @@
 <meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/git/上传到仓库2.png">
 <meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/git/克隆仓库效果.png">
 <meta property="article:published_time" content="2022-05-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-04-23T01:08:55.373Z">
+<meta property="article:modified_time" content="2025-05-14T03:21:51.268Z">
 <meta property="article:author" content="Tspigeon">
 <meta property="article:tag" content="Github">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          3.7k 字
         
       </span>
     
@@ -318,17 +318,60 @@
 <p>但是如果是从版本库中删除呢？</p>
 <p>那就是在删除之后commit提交一遍</p>
 <p>在没有commit之前都是可以通过checkout恢复的</p>
-<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="1-建立远程仓库"><a href="#1-建立远程仓库" class="headerlink" title="1.建立远程仓库"></a>1.建立远程仓库</h3><p>我们在GitHub上new repository，得到这样的页面</p>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="1-建立远程仓库"><a href="#1-建立远程仓库" class="headerlink" title="1.建立远程仓库"></a>1.建立远程仓库</h3><h4 id="1-1http链接"><a href="#1-1http链接" class="headerlink" title="1.1http链接"></a>1.1http链接</h4><p>我们在GitHub上new repository，得到这样的页面</p>
 <p><img src="D:\新建文件夹\文件\GitHub\pic\git\创建新仓库.png" srcset="/img/loading.gif" lazyload alt="创建新仓库"></p>
 <p>复制HTTPS的地址，然后Git Bush 输入</p>
 <p><code>git remote add origin 复制的HTTPS</code>，这样便做好了一个本地和远程的链接</p>
+<h4 id="1-2-ssh链接"><a href="#1-2-ssh链接" class="headerlink" title="1.2 ssh链接"></a>1.2 ssh链接</h4><p><strong>1. 检查是否已有 SSH 密钥</strong></p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">ls ~<span class="hljs-regexp">/.ssh/i</span>d_*<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>如果看到 <code>id_rsa</code> 或 <code>id_edsa</code>，说明已有密钥，跳到 <strong>步骤3</strong>。</li>
+<li>如果没有，继续生成新密钥。</li>
+</ul>
+<p><strong>2. 生成新的 SSH 密钥</strong></p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">ssh</span>-keygen -t ed<span class="hljs-number">25519</span> -C <span class="hljs-string">&quot;your_email@example.com&quot;</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>按 <code>Enter</code> 接受默认路径 (<code>~/.ssh/id_ed25519</code>)。</li>
+<li>可选：设置密码（增加安全性）。</li>
+</ul>
+<p><strong>3. 将公钥添加到 GitHub</strong></p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">cat ~<span class="hljs-regexp">/.ssh/i</span>d_ed25519.pub<br></code></pre></td></tr></table></figure>
+
+<p>复制输出的内容（以 <code>ssh-ed25519 AAA...</code> 开头），然后：</p>
+<ol>
+<li>登录 GitHub → <strong>Settings</strong> → <strong>SSH and GPG keys</strong> → <strong>New SSH key</strong>。</li>
+<li>粘贴公钥，保存。</li>
+</ol>
+<p><strong>4. 测试 SSH 连接</strong></p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">ssh -T <span class="hljs-symbol">git@</span>github.com<br></code></pre></td></tr></table></figure>
+
+<p>如果看到：</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada">Hi username! You<span class="hljs-symbol">&#x27;ve</span> successfully authenticated...<br></code></pre></td></tr></table></figure>
+
+<p>说明 SSH 配置成功。</p>
+<p><strong>检查远程仓库 URL 是否使用 SSH</strong></p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">git remote -v</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>正确</strong>（SSH 协议）：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs scss">origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/repo.git (fetch)<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/repo.git (push)<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>错误</strong>（HTTPS 协议）：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">origin  https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/username/</span>repo.git (fetch)<br>origin  https:<span class="hljs-regexp">//gi</span>thub.com<span class="hljs-regexp">/username/</span>repo.git (push)<br></code></pre></td></tr></table></figure></li>
+</ul>
 <h3 id="2-git-push"><a href="#2-git-push" class="headerlink" title="2.git push"></a>2.git push</h3><p><code>git push</code>就是把本地仓库内容推送到远程</p>
+<p><code>git push -u origin 本地分支:远端分支</code></p>
 <p>第一次推送的时候加上 -u <code>git push -u origin master</code></p>
 <p>以后提交便可以<code>git push origin master</code></p>
 <p>如果分支不是master</p>
 <p>那么就是<code>git push origin 分支名</code></p>
 <p>还有强制推送（不建议）</p>
 <p><code>git push origin 分支名 -f</code></p>
+<p>经常显示 <code>Failed to connect to github.com port 443 after 133239 ms: Connection timed out</code></p>
+<p>取消代理</p>
+<figure class="highlight tcl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tcl">git config --<span class="hljs-keyword">global</span> --<span class="hljs-keyword">unset</span> <span class="hljs-keyword">http</span>.proxy<br>git config --<span class="hljs-keyword">global</span> --<span class="hljs-keyword">unset</span> https.proxy<br></code></pre></td></tr></table></figure>
+
 <h3 id="3-删除本地和远程的链接"><a href="#3-删除本地和远程的链接" class="headerlink" title="3.删除本地和远程的链接"></a>3.删除本地和远程的链接</h3><p>使用<code>git remote rm origin</code>取消链接</p>
 <h2 id="GitHub同步（克隆仓库）"><a href="#GitHub同步（克隆仓库）" class="headerlink" title="GitHub同步（克隆仓库）"></a>GitHub同步（克隆仓库）</h2><p>我们在写项目的时候，一般都是一个团队去完成一个项目，那么同步GitHub仓库就显得尤为重要。接下来介绍一下如何同步自己和别人的仓库。</p>
 <h3 id="1-新建一个仓库"><a href="#1-新建一个仓库" class="headerlink" title="1. 新建一个仓库"></a>1. 新建一个仓库</h3><p><img src="D:\新建文件夹\文件\GitHub\pic\git\新建仓库.png" srcset="/img/loading.gif" lazyload alt="新建仓库"></p>
