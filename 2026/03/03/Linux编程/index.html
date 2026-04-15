@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Linux编程入门环境变量环境变量是操作系统中一个非常基础且重要的概念。简单来说，它是存储在操作系统中的一组动态的“键值对”（Key-Value Pair），用来指定操作系统运行环境的一些参数。 可以把它理解成操作系统的“全局备忘录”或“快捷方式”。 在Linux中通过 env 就可以查看所有的环境变量 其中最常见的环境变量就是 PATH，PATH是系统运行程序时查找的目录 输入 ehco $PA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux编程入门">
+<meta property="og:url" content="http://yoursite.com/2026/03/03/Linux%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="Linux编程入门环境变量环境变量是操作系统中一个非常基础且重要的概念。简单来说，它是存储在操作系统中的一组动态的“键值对”（Key-Value Pair），用来指定操作系统运行环境的一些参数。 可以把它理解成操作系统的“全局备忘录”或“快捷方式”。 在Linux中通过 env 就可以查看所有的环境变量 其中最常见的环境变量就是 PATH，PATH是系统运行程序时查找的目录 输入 ehco $PA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1772701812519-d3d9dd7a-4023-4614-8b00-89974f1b01bd.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1773283243860-452f14fa-33a2-42b9-8bd7-a78e4171f38f.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1774101659705-62493eea-bb28-4db5-a080-e6e454cdb90c.png">
+<meta property="article:published_time" content="2026-03-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-15T05:13:17.809Z">
+<meta property="article:author" content="Tspigeon">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1772701812519-d3d9dd7a-4023-4614-8b00-89974f1b01bd.png">
+  
+  
+  
+  <title>Linux编程入门 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Linux编程入门"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-03 00:00" pubdate>
+          2026年3月3日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          32k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux编程入门</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Linux编程入门"><a href="#Linux编程入门" class="headerlink" title="Linux编程入门"></a>Linux编程入门</h1><h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><p><strong><font style="color:rgb(15, 17, 21);">环境变量</font></strong><font style="color:rgb(15, 17, 21);">是操作系统中一个非常基础且重要的概念。简单来说，它是存储在操作系统中的</font><strong><font style="color:rgb(15, 17, 21);">一组动态的“键值对”（Key-Value Pair）</font></strong><font style="color:rgb(15, 17, 21);">，用来指定操作系统运行环境的一些参数。</font></p>
+<p><font style="color:rgb(15, 17, 21);">可以把它理解成</font><strong><font style="color:rgb(15, 17, 21);">操作系统的“全局备忘录”或“快捷方式”</font></strong><font style="color:rgb(15, 17, 21);">。</font></p>
+<p><font style="color:rgb(15, 17, 21);">在Linux中通过 </font><em><font style="color:rgb(15, 17, 21);">env</font></em><font style="color:rgb(15, 17, 21);"> 就可以查看所有的环境变量</font></p>
+<p><font style="color:rgb(15, 17, 21);">其中最常见的环境变量就是 </font><em><font style="color:rgb(15, 17, 21);">PATH</font></em><font style="color:rgb(15, 17, 21);">，</font><em><font style="color:rgb(15, 17, 21);">PATH</font></em><font style="color:rgb(15, 17, 21);">是系统运行程序时查找的目录</font></p>
+<p><font style="color:rgb(15, 17, 21);">输入 </font><em><font style="color:rgb(15, 17, 21);">ehco $PATH</font></em><font style="color:rgb(15, 17, 21);"> 就可以查看 </font><em><font style="color:rgb(15, 17, 21);">PATH </font></em><font style="color:rgb(15, 17, 21);">变量的值，值之间通过 : 进行分割</font></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript">/home/pigeon/.local/bin<br>  :<span class="hljs-regexp">/usr/</span>local/sbin<br>    :<span class="hljs-regexp">/usr/</span>local/bin<br>      :<span class="hljs-regexp">/usr/</span>sbin<br>      :<span class="hljs-regexp">/usr/</span>bin<br>      :/sbin<br>        :<span class="hljs-regexp">/bin:/u</span>sr/games<br>          :<span class="hljs-regexp">/usr/</span>local/games<br>            :<span class="hljs-regexp">/usr/</span>lib/wsl/lib:<span class="hljs-regexp">/mnt/</span>c/Windows/system32<br>              :<span class="hljs-regexp">/mnt/</span>c/Windows:<span class="hljs-regexp">/mnt/</span>c/Windows/System32/Wbem<br>                :<span class="hljs-regexp">/mnt/</span>c/Windows/System32/WindowsPowerShell/v1<span class="hljs-number">.0</span>/<br>                  :<span class="hljs-regexp">/mnt/</span>c/Windows/System32/OpenSSH/<br>                  :<span class="hljs-regexp">/mnt/</span>d/Program Files/Git/cmd<br>                  :<span class="hljs-regexp">/mnt/</span>c/Users/<span class="hljs-number">13465</span>/AppData/Local/Programs/Python/Python310/Scripts/<br>                    :<span class="hljs-regexp">/mnt/</span>c/Users/<span class="hljs-number">13465</span>/AppData/Local/Programs/Python/Python310/<br>  :<span class="hljs-regexp">/mnt/</span>c/Users/<span class="hljs-number">13465</span>/AppData/Local/Microsoft/WindowsApps:<span class="hljs-regexp">/snap/</span>bin<br></code></pre></td></tr></table></figure>
+
+<p><font style="color:rgb(15, 17, 21);">例如：输入 </font><em><font style="color:rgb(15, 17, 21);">python </font></em><font style="color:rgb(15, 17, 21);">时，系统会到 </font><em><font style="color:rgb(15, 17, 21);">PATH </font></em><font style="color:rgb(15, 17, 21);">中列出的这些目录里挨个找。</font></p>
+<p><font style="color:rgb(15, 17, 21);">最后在 </font><em><font style="color:rgb(15, 17, 21);">/Python310/Scripts/ </font></em><font style="color:rgb(15, 17, 21);">找到了python.exe并用于执行</font></p>
+<h3 id="1-设置环境变量"><a href="#1-设置环境变量" class="headerlink" title="1.设置环境变量"></a><font style="color:rgb(15, 17, 21);">1.设置环境变量</font></h3><ol>
+<li>临时设置</li>
+</ol>
+<p>临时设置只会对当前开启的终端有效，终端执行以下命令：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> PATH=$PATH:/home...<br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>永久设置</li>
+</ol>
+<p>对当前用户有效：</p>
+<p>修改~/.bashrc，在行尾添加或修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> PATH=$PATH:/home...<br></code></pre></td></tr></table></figure>
+
+<p>对全部用户有效：</p>
+<p>修改/etc/environment，然后手动在PATH的value中添加路径</p>
+<h2 id="开发板连接"><a href="#开发板连接" class="headerlink" title="开发板连接"></a>开发板连接</h2><p>这一节的背景是ZYNQ7000系列的开发板</p>
+<p>一开始需要连接电源线和串口线，打开电源开关即可启动</p>
+<p>然后进入设备管理器，查看电脑是否识别到了开发板。在没有驱动的情况下，开发板会显示在其他设备哪一栏，这个时候需要去安装驱动</p>
+<p>ps.  识别驱动：可以将设备管理器显示的名称发给AI，然后AI会告诉你去哪里下驱动，我的板子是在这个地址进行驱动下载 选择 CP210x Windows Drivers  进行下载</p>
+<p><a target="_blank" rel="noopener" href="https://www.silabs.com/software-and-tools/usb-to-uart-bridge-vcp-drivers?tab=downloads">CP210x USB to UART Bridge VCP Drivers - Silicon Labs</a></p>
+<p>下载解压安装驱动，在进入设备管理器，设备就会被识别，如下图所示：</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1772701812519-d3d9dd7a-4023-4614-8b00-89974f1b01bd.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="SD卡安装Linux"><a href="#SD卡安装Linux" class="headerlink" title="SD卡安装Linux"></a>SD卡安装Linux</h2><p>如果开发板没有自带Linux系统，就需要通过SD卡将linux写进去</p>
+<p>首先下载一个vivado linux版本的SDK，建议在Linux虚拟机上联网直接下载<br>如果想再windows上下载传输到linux虚拟机，可以使用xftp类似的文件传输软件，或者使用u盘（FAT32文件系统不行，因为SDK太大）</p>
+<p>如果以上方法都不行，可以使用<strong>SSH文件传输</strong>：</p>
+<p>这个方法利用Linux虚拟机自带的SSH（安全外壳协议，Secure Shell）服务，在Windows上通过命令或工具直接把文件“推”过去，非常灵活 。</p>
+<p>Linux 虚拟机端开启 SSH 服务，在Linux终端中，安装并启动SSH服务：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Debian/Ubuntu</span><br>sudo apt install openssh-server<br>sudo systemctl start ssh<br>sudo systemctl enable ssh # 设置开机自启<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> Red Hat/CentOS</span><br>sudo yum install openssh-server<br>sudo systemctl start sshd<br>sudo systemctl enable sshd<br>在Linux终端输入 ip addr 或 ifconfig，记下Linux虚拟机的IP地址（通常是以 192.168. 开头的那个）。<br></code></pre></td></tr></table></figure>
+
+
+
+<p>Windows 端使用 SCP 命令传输文件</p>
+<p>在Windows上，打开命令提示符或PowerShell。使用 scp 命令将文件发送给Linux虚拟机。</p>
+<p>命令格式：scp &lt;Windows上的文件路径&gt; &lt;Linux用户名&gt;@<Linux-IP>:&lt;Linux上的目标路径&gt;</p>
+<p>例如，将桌面的Vivado安装文件传到Linux用户的 Downloads 目录下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">scp C:\Users\你的用户名\Desktop\Vivado_Installer.exe username@192.168.x.x:~/Downloads/<br></code></pre></td></tr></table></figure>
+
+<p>输入你的Linux用户密码后，文件就会开始传输。</p>
+<p>如果需要<strong>虚拟机存储空间不够</strong>的情况，就需要在虚拟机设置中分配更多的内存，并且在虚拟机中安装Gparted，</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install Gparted<br></code></pre></td></tr></table></figure>
+
+<p>分配新加入给虚拟机的存储空间</p>
+<p>安装完成vivado链接开发板识别芯片，之后下载<strong>linux下载器驱动，</strong>下载完成之后打开vivado，选择Flow -&gt; Hardware manage就可以连接到芯片</p>
+<p><strong>注意！！</strong>如果显示JTAG口被占用，大概率是因为我们把板子连接到了USB2.0的接口上，我们需要把开发板<strong>连接到USB3.0的接口</strong>，或者在虚拟机的设置中把<strong>USB适配器改到USB3.0</strong></p>
+<h1 id="adb和nfs"><a href="#adb和nfs" class="headerlink" title="adb和nfs"></a>adb和nfs</h1><p>ADB (Android Debug Bridge)和NFS (Network File System) 这两个工具都是用于在开发板和Linux系统之间<strong>传输文件，</strong>ADB相比于NFS操作更加简单，现在大多数开发板都支持adb</p>
+<h2 id="1-NFS传输文件"><a href="#1-NFS传输文件" class="headerlink" title="1.NFS传输文件"></a>1.NFS传输文件</h2><p>使用NFS传输文件需要</p>
+<ol>
+<li>Linux配置NFS服务器，主要是<strong>安装NFS服务</strong>和创建共享网络文件夹以及进行简单的配置</li>
+<li>保证开发板和Linux在<strong>同一局域网</strong>下，并且能够互相ping通。将<strong>开发板和路由器链接起来</strong>，虚拟机的话开启桥接模式，这样开发板和Linux就在同一局域网下</li>
+<li>开发板上安装NFS客服端，创建挂载节点，执行挂载命令，就可以将网络共享文件夹挂载到开发板上了</li>
+</ol>
+<p>NFS的原理就是利用<strong>网络请求</strong>在主机和开发板之间交换数据，从而实现文件传输</p>
+<p>断开网络连接之后，网络共享文件夹就不能再被访问，需要提前将文件夹中的文件 copy 到本地</p>
+<p>具体操作时，我们需要给Linux安装nfs服务</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">sudo  apt-get  install  nfs-kernel-server <br></code></pre></td></tr></table></figure>
+
+<p>新建一个work目录作为nfs的工作目录，文件放入可以目录中就可以给开发板共享</p>
+<p>配置NFS文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">sudo  gedit  /etc/exports <br></code></pre></td></tr></table></figure>
+
+<p>在文件尾部添加如下片段，username是你的linux用户名，（在Linux文件管理器home目录下的文件夹，实际最后会在/home/用户名/ 目录下）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">/home/username/work *(rw,sync,no_root_squash,no_subtree_check)  <br></code></pre></td></tr></table></figure>
+
+<p>然后重启NFS服务</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">sudo  /etc/init.d/rpcbind  restart <br>sudo  /etc/init.d/nfs-kernel-server restart<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-adb传输文件"><a href="#2-adb传输文件" class="headerlink" title="2.adb传输文件"></a>2.adb传输文件</h2><p>adb传输文件相比于nfs简单很多，使用adb put 和adb pull 就可以上传和拉取文件</p>
+<p>但是如果没有自带adb的开发板需要自己烧录adb</p>
+<h1 id="GEMU"><a href="#GEMU" class="headerlink" title="GEMU"></a>GEMU</h1><p>GEMU的兼容多款开发板的模拟器，具体安装过程可以参考这篇博客 <a target="_blank" rel="noopener" href="https://blog.csdn.net/kxingfang/article/details/157611092?spm=1001.2014.3001.5506">Ubuntu安装GEMU</a></p>
+<p>接下来记录一下安装过程中遇到的问题：</p>
+<ol>
+<li>git clone代码的时候出现问题</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git clone https://github.com/u-boot/u-boot.git<br></code></pre></td></tr></table></figure>
+
+<p>如果不能成功执行以上代码，可以到github地址里面手动下载</p>
+<p>注意23版本以上需要gcc版本&gt;=10 下载之前使用以下命令查看gcc版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">arm-linux-gnueabihf-gcc --version<br></code></pre></td></tr></table></figure>
+
+<p>由于我使用的Ubuntu20.04仓库中最新的gcc版本也只是9.4，所以我下载的uboot23</p>
+<ol start="2">
+<li>依赖问题</li>
+</ol>
+<p>uboot需要的依赖</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt install bison flex build-essential<br>sudo apt install bison flex build-essential libssl-dev libncurses-dev bc<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>权限问题</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sh: 1: ./scripts/gcc-version.sh: Permission denied<br>sh: 1: ./scripts/gcc-version.sh: Permission denied<br></code></pre></td></tr></table></figure>
+
+<p>以上报错就是明显的权限问题，可以通过给所有可执行文件添加执行权限解决</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">find . -type f -name &quot;*.sh&quot; -exec chmod +x &#123;&#125; \;<br></code></pre></td></tr></table></figure>
+
+<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><p>服务端和客户端之间的数据传输，需要依靠协议（TCP、UDP 分别是可靠传输和不可靠传输协议）</p>
+<p>在网络通信中，我们还是使用<strong>文件传输</strong>来写程序</p>
+<p>而传输使用的是**套接字建立连接 **，Socket 是操作系统提供的一种机制，它是对网络中不同主机上应用程序之间进行双向通信的端点的抽象。</p>
+<p>ex. :一个 Socket 通常用一个组合来表示：&lt;IP地址:端口号&gt;。</p>
+<p>服务器要做的事情是被动的相应请求，主要使用socket创建fd，bind绑定fd和ip端口，listen监听这个ip端口，accept接受客户端发来的链接， send和receive发送和接受数据</p>
+<p>客户端要做的事情是主动的发送请求，同样还是使用socket创建fd，connect建立链接，send和receive收发数据</p>
+<h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><p>在基于TCP协议的应用场景下，我们建立服务端和客户端的连接 进行网络编程</p>
+<p>以下是服务端代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/socket.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;netinet/in.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;arpa/inet.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;signal.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SERVER_PORT 8888</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BACKLOG  10</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-comment">//一般使用socketarrin代替socketaddr 表示服务器ip地址</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_in</span> <span class="hljs-title">socketServerAddr</span>;</span><br>    <span class="hljs-comment">//客户端地址信息</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_in</span> <span class="hljs-title">socketClientAddr</span>;</span><br>    <span class="hljs-comment">//区分客户端信息</span><br>    <span class="hljs-keyword">int</span> Clientnum = <span class="hljs-number">-1</span>;	<span class="hljs-comment">//客户端连接数量</span><br>    <span class="hljs-keyword">int</span> iSocketClinet = <span class="hljs-number">0</span>;	<span class="hljs-comment">//客户端套接字描述符</span><br>    <span class="hljs-keyword">int</span> iSocketServer = <span class="hljs-number">0</span>;	<span class="hljs-comment">//服务端套接字描述符</span><br>    <span class="hljs-keyword">int</span> iRet = <span class="hljs-number">0</span>;	<span class="hljs-comment">//连接返回状态</span><br>    <span class="hljs-comment">//接受客户端数据的缓冲区</span><br>    <span class="hljs-keyword">char</span> recvBuf[<span class="hljs-number">1000</span>];<br>    <span class="hljs-keyword">int</span> recvLen = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//设置signal函数，避免僵尸进程</span><br>    signal(SIGCHLD, SIG_IGN);<br>    <span class="hljs-comment">//INET代表ipv4，stream代表tcp流传输 0是自动选择协议   此时得到的isocket没有任何信息       </span><br>    iSocketServer = socket(AF_INET, SOCK_STREAM, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span>(iSocketServer == <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;server error\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//配置服务器端的网络地址结构体</span><br>    socketServerAddr.sin_family = AF_INET;<br>    socketServerAddr.sin_port = htons(SERVER_PORT);<br>    socketServerAddr.sin_addr.s_addr = INADDR_ANY;<br>    <span class="hljs-built_in">memset</span>(socketServerAddr.sin_zero, <span class="hljs-number">0</span>, <span class="hljs-number">8</span>);<br>    <span class="hljs-comment">//调用bind绑定端口</span><br>    iRet = bind(iSocketServer, (<span class="hljs-keyword">const</span> struct sockaddr *)&amp;socketServerAddr, <span class="hljs-keyword">sizeof</span>(struct sockaddr));<br><br>    <span class="hljs-keyword">if</span>(iRet == <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error in bind\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    iRet = listen(iSocketServer, BACKLOG);<br>    <span class="hljs-keyword">if</span>(iRet == <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error in listen\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">int</span> addrLen = <span class="hljs-keyword">sizeof</span>(struct sockaddr);<br>        <span class="hljs-comment">//accept 等待连接</span><br>        iSocketClinet = accept(iSocketServer, (struct sockaddr *)&amp;socketClientAddr, &amp;addrLen);<br>        <span class="hljs-comment">//连接成功返回非负数</span><br>        <span class="hljs-keyword">if</span>(iSocketClinet != <span class="hljs-number">-1</span>)&#123;<br>            Clientnum++;<br>            <span class="hljs-comment">//ntoa将地址转成ascll 192.xxx的形式</span><br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;GET connect from %s from %d\n&quot;</span>, inet_ntoa(socketClientAddr.sin_addr), Clientnum);<br>            <span class="hljs-comment">//使用fork复制进程</span><br>            <span class="hljs-keyword">if</span>(!fork())&#123;<br>                <span class="hljs-comment">//子进程执行</span><br>                <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>                    <span class="hljs-comment">//接受客户端数据</span><br>                    recvLen = recv(iSocketClinet, recvBuf, <span class="hljs-number">999</span>, <span class="hljs-number">0</span>);<br>                    <span class="hljs-keyword">if</span>(recvLen &lt;= <span class="hljs-number">0</span>)&#123;<br>                        close(iSocketClinet);<br>                        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>                    &#125;<span class="hljs-keyword">else</span>&#123;<br>                        recvBuf[recvLen] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>                        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Msg from %d is %s \n&quot;</span>, Clientnum, recvBuf);<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <br>    &#125;<br>    close(iSocketServer);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>其中我们使用_ int iSocketClinet _接受socket的返回，socket返回的是一个套接字描述符，是一个整数，这个整数是<strong>进程文件描述符表的索引下标，</strong>send的时候内核可以<strong>通过 <strong><em><strong>iSocketClinet</strong></em></strong> 找到socket结构体</strong>从而知道把数据发给谁。</p>
+<p>客户端代码相比于服务端要简单许多</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/socket.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;netinet/in.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;arpa/inet.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SERVER_PORT 8888</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> iSocketClient;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_in</span> <span class="hljs-title">socketServerAddr</span>;</span><br>    <span class="hljs-keyword">int</span> iRet;<br>    <span class="hljs-comment">//缓冲区</span><br>    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> sendBuf[<span class="hljs-number">1000</span>];<br>    <span class="hljs-comment">//发送数据长度</span><br>    <span class="hljs-keyword">int</span> sendLen = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//connect</span><br>    iSocketClient = socket(AF_INET, SOCK_STREAM, <span class="hljs-number">0</span>);<br><br>    socketServerAddr.sin_family = AF_INET;<br>    socketServerAddr.sin_port = htons(SERVER_PORT);<br>    <span class="hljs-comment">//argv[1]是服务器ip</span><br>    <span class="hljs-keyword">if</span>( <span class="hljs-number">0</span> == inet_aton(argv[<span class="hljs-number">1</span>], &amp;socketServerAddr.sin_addr))&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-built_in">memset</span>(socketServerAddr.sin_zero, <span class="hljs-number">0</span>, <span class="hljs-number">8</span>);<br><br>    <span class="hljs-comment">//连接操作</span><br>    iRet = connect(iSocketClient, (struct sockaddr *)&amp;socketServerAddr, <span class="hljs-keyword">sizeof</span>(struct sockaddr));<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-number">-1</span> == iRet)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;connect error\n&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//发送数据</span><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">if</span>(fgets(sendBuf, <span class="hljs-number">999</span>, <span class="hljs-built_in">stdin</span>))&#123;<br>            sendLen = send(iSocketClient, sendBuf, <span class="hljs-built_in">strlen</span>(sendBuf), <span class="hljs-number">0</span>);<br>            <span class="hljs-keyword">if</span>(sendLen &lt;= <span class="hljs-number">0</span>)&#123;<br>                close(iSocketClient);<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>            &#125;<br>        &#125;<br>        <br>    &#125;<br><br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>将服务端和客户端代码进行编译之后运行（服务端 客户端分别开一个shell）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">./server <span class="hljs-comment">//服务端运行</span><br>./client <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>	<span class="hljs-comment">//客户端运行 后面跟上ip</span><br></code></pre></td></tr></table></figure>
+
+<p>然后客户端与服务端之间就可以互相传输数据</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1773283243860-452f14fa-33a2-42b9-8bd7-a78e4171f38f.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>注意</strong>：我们使用fork函数创建子进程的同时会出现僵尸进程的问题</p>
+<p><strong>僵尸进程</strong>-子进程exit之后还存在 <em>server <defunct></em></p>
+<p>应为子进程退出之后还需要等待父进程进行处理，通俗来说就是等待父进程 收尸</p>
+<p>避免这种情况：在一开始设置 _signal _函数（子进程exit的时候会给父进程发signal）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//设置signal函数，避免僵尸进程</span><br>signal(SIGCHLD, SIG_IGN);<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>使用UDP进行不可靠传输，主要应用在保证流畅度的场景下</p>
+<p>server：与TCP网络编程不同的是，UDP不用保证可靠性，具体来说就是UDP连接不需要 <em>listen</em> 和 <em>accept</em></p>
+<p>使用 <em>recvfrom</em> 就可以获得传输的数据</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/socket.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;netinet/in.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;arpa/inet.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;signal.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SERVER_PORT 8888</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BACKLOG  10</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-comment">//一般使用socketarrin代替socketaddr 表示服务器ip地址</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_in</span> <span class="hljs-title">socketServerAddr</span>;</span><br>    <span class="hljs-comment">//客户端地址信息</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_in</span> <span class="hljs-title">socketClientAddr</span>;</span><br>    <span class="hljs-comment">//区分客户端信息</span><br>    <span class="hljs-keyword">int</span> addLen = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> iSocketClinet = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> iSocketServer = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> iRet = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//接受客户端数据的缓冲区</span><br>    <span class="hljs-keyword">char</span> recvBuf[<span class="hljs-number">1000</span>];<br>    <span class="hljs-keyword">int</span> recvLen = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//INET代表ipv4，DGRAM代表UDP传输   此时得到的isocket没有任何信息       </span><br>    iSocketServer = socket(AF_INET, SOCK_DGRAM, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">if</span>(iSocketServer == <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;server error\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    socketServerAddr.sin_family = AF_INET;<br>    socketServerAddr.sin_port = htons(SERVER_PORT);<br>    socketServerAddr.sin_addr.s_addr = INADDR_ANY;<br>    <span class="hljs-built_in">memset</span>(socketServerAddr.sin_zero, <span class="hljs-number">0</span>, <span class="hljs-number">8</span>);<br>    <span class="hljs-comment">//调用bind绑定端口</span><br>    iRet = bind(iSocketServer, (struct sockaddr *)&amp;socketServerAddr, <span class="hljs-keyword">sizeof</span>(struct sockaddr));<br><br>    <span class="hljs-keyword">if</span>(iRet == <span class="hljs-number">-1</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error in bind\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//直接使用recvfrom就可以接受传输</span><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        addLen = <span class="hljs-keyword">sizeof</span>(struct sockaddr);<br>        recvLen = recvfrom(iSocketServer, recvBuf, <span class="hljs-number">999</span>, <span class="hljs-number">0</span>, (struct sockaddr *)&amp;socketServerAddr, &amp;addLen);<br>        <span class="hljs-keyword">if</span>(recvLen &gt; <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-comment">//设置结束字符</span><br>            recvBuf[recvLen] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;receive from %s is %s \n&quot;</span>, inet_ntoa(socketServerAddr.sin_addr), recvBuf);<br>        &#125;<br>    &#125;<br>    close(iSocketServer);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<p>而客户端的编程的时候，既可以使用 _connect-send  _也可以使用 _sendto _函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;sys/socket.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;netinet/in.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;arpa/inet.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> SERVER_PORT 8888</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-keyword">int</span> iSocketClient;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">sockaddr_in</span> <span class="hljs-title">socketServerAddr</span>;</span><br>    <span class="hljs-keyword">int</span> iRet;<br>    <span class="hljs-comment">//缓冲区</span><br>    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> sendBuf[<span class="hljs-number">1000</span>];<br>    <span class="hljs-comment">//发送数据长度</span><br>    <span class="hljs-keyword">int</span> sendLen = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//connect</span><br>    iSocketClient = socket(AF_INET, SOCK_DGRAM, <span class="hljs-number">0</span>);<br><br>    socketServerAddr.sin_family = AF_INET;<br>    socketServerAddr.sin_port = htons(SERVER_PORT);<br>    <span class="hljs-comment">//argv[1]是服务器ip</span><br>    <span class="hljs-keyword">if</span>( <span class="hljs-number">0</span> == inet_aton(argv[<span class="hljs-number">1</span>], &amp;socketServerAddr.sin_addr))&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-built_in">memset</span>(socketServerAddr.sin_zero, <span class="hljs-number">0</span>, <span class="hljs-number">8</span>);<br><br>    <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 0</span><br>    <span class="hljs-comment">//连接操作</span><br>    iRet = connect(iSocketClient, (struct sockaddr *)&amp;socketServerAddr, <span class="hljs-keyword">sizeof</span>(struct sockaddr));<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-number">-1</span> == iRet)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;connect error\n&quot;</span>);<br>    &#125;<br>    <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br><br>    <span class="hljs-comment">//发送数据</span><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-keyword">if</span>(fgets(sendBuf, <span class="hljs-number">999</span>, <span class="hljs-built_in">stdin</span>))&#123;<br>            <span class="hljs-meta">#<span class="hljs-meta-keyword">if</span> 0</span><br>            sendLen = send(iSocketClient, sendBuf, <span class="hljs-built_in">strlen</span>(sendBuf), <span class="hljs-number">0</span>);<br>            <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span></span><br>            sendLen = sendto(iSocketClient, sendBuf, <span class="hljs-built_in">strlen</span>(sendBuf), <span class="hljs-number">0</span>, (<span class="hljs-keyword">const</span> struct sockaddr *)&amp;socketServerAddr, <span class="hljs-keyword">sizeof</span>(struct sockaddr));<br>            <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br>            <span class="hljs-keyword">if</span>(sendLen &lt;= <span class="hljs-number">0</span>)&#123;<br>                close(iSocketClient);<br>                <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>            &#125;<br>        &#125;<br>        <br>    &#125;<br><br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="多线程编程"><a href="#多线程编程" class="headerlink" title="多线程编程"></a>多线程编程</h1><p>采用多线程编程的原因主要是为了使得我们的程序有更高的<strong>并行性</strong></p>
+<p>本节的示例是开启两个线程，一个是接收线程 一个是打印线程，</p>
+<p>接受线程接受数据，接受到数据之后唤醒打印线程，打印线程打印处理</p>
+<p>主要有两种实现方法： 条件量/信号量 + 互斥量</p>
+<ul>
+<li><font style="color:rgb(6, 10, 38);">条件量是一个等待队列。它本身不存储状态，只负责“挂起”和“唤醒”线程。</font></li>
+<li><font style="color:rgb(6, 10, 38);">信号量是一个</font><strong><font style="color:rgb(6, 10, 38);">计数器</font></strong><font style="color:rgb(6, 10, 38);"> (整数)。它存储状态（剩余资源数），线程根据计数值决定是继续运行还是阻塞。</font></li>
+</ul>
+<p><strong>1.信号量+互斥量</strong></p>
+<p>由于这两个进程公用同一个buf，所以会存在资源争用的情况，所以需要进行同步机制</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//信号量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">sem_t</span> g_sem;<br><span class="hljs-comment">//互斥量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">pthread_mutex_t</span> g_tmutex = PTHREAD_MUTEX_INITIALIZER;<br></code></pre></td></tr></table></figure>
+
+<p>使用信号量可以在接收线程接收完数据之后唤醒打印线程</p>
+<p>使用互斥量可以让两个线程互斥访问buf，保证数据可靠性</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;semaphore.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">char</span> buf[<span class="hljs-number">1000</span>];<br><span class="hljs-comment">//信号量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">sem_t</span> g_sem;<br><span class="hljs-comment">//互斥量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">pthread_mutex_t</span> g_tmutex = PTHREAD_MUTEX_INITIALIZER;<br><br><span class="hljs-comment">//打印线程被唤醒的时候会运行这个函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> *<span class="hljs-title">my_thread_func</span><span class="hljs-params">(<span class="hljs-keyword">void</span> * data)</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-comment">//等待读值</span><br>        sem_wait(&amp;g_sem);<br>        <br>        <span class="hljs-comment">//printf 的时候上锁</span><br>        pthread_mutex_lock(&amp;g_tmutex);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;recv:%s&quot;</span>, buf);<br>        pthread_mutex_unlock(&amp;g_tmutex);<br>    &#125;<br><br>    retrun <span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-keyword">pthread_t</span> tid;<br>    <span class="hljs-keyword">int</span> ret;<br>    <span class="hljs-comment">//初始化信号量，初始值0</span><br>    sem_init(&amp;g_sem, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);<br>    <span class="hljs-comment">//初始化临时buf 避免长时间锁占用</span><br>    <span class="hljs-keyword">char</span> l_buf[<span class="hljs-number">1000</span>];<br><br>    <span class="hljs-comment">//创建接受线程</span><br>    ret = pthread_create(&amp;tid, <span class="hljs-literal">NULL</span>, my_thread_func, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-keyword">if</span>(ret)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error\n&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//主线程读取标准输入，发送给接收线程</span><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-comment">//锁外阻塞，锁内阻塞会导致其他线程无法获得锁</span><br>        fgets(l_buf, <span class="hljs-number">1000</span>, <span class="hljs-built_in">stdin</span>);<br>        <span class="hljs-comment">//lock</span><br>        pthread_mutex_lock(&amp;g_tmutex);<br>        <span class="hljs-built_in">memcpy</span>(buf, l_buf, <span class="hljs-number">1000</span>);<br>        <span class="hljs-comment">//unlock</span><br>        pthread_mutex_unlock(&amp;g_tmutex);<br><br>        <span class="hljs-comment">//唤醒线程</span><br>        sem_post(&amp;g_sem);<br>    &#125;<br> <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>对比以下两份代码</p>
+<p>1.<strong>锁外阻塞</strong>，接受线程unlock之后不会立即lock，而是等待输入</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//锁外阻塞，锁内阻塞会导致其他线程无法获得锁</span><br>fgets(l_buf, <span class="hljs-number">1000</span>, <span class="hljs-built_in">stdin</span>);<br><span class="hljs-comment">//lock</span><br>pthread_mutex_lock(&amp;g_tmutex);<br><span class="hljs-built_in">memcpy</span>(buf, l_buf, <span class="hljs-number">1000</span>);<br><span class="hljs-comment">//unlock</span><br>pthread_mutex_unlock(&amp;g_tmutex);<br></code></pre></td></tr></table></figure>
+
+<p>2.锁内阻塞，导致接受线程unlock之后很快又lock，打印线程无法获得锁</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//lock</span><br>pthread_mutex_lock(&amp;g_tmutex);<br>fgets(buf, <span class="hljs-number">1000</span>, <span class="hljs-built_in">stdin</span>);<br><span class="hljs-comment">//unlock</span><br>pthread_mutex_unlock(&amp;g_tmutex);<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>2.条件量+互斥量</strong></p>
+<p>以下是使用条件变量+互斥量的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;pthread.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;semaphore.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">char</span> buf[<span class="hljs-number">1000</span>];<br><span class="hljs-comment">//互斥量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">pthread_mutex_t</span> g_tmutex = PTHREAD_MUTEX_INITIALIZER;<br><span class="hljs-comment">//条件变量替代信号量</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">pthread_cond_t</span> g_tconvar = PTHREAD_COND_INITIALIZER;<br><br><span class="hljs-comment">//线程运行的时候会运行这个函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> *<span class="hljs-title">my_thread_func</span><span class="hljs-params">(<span class="hljs-keyword">void</span> * data)</span></span>&#123;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-comment">//等待读值</span><br>        pthread_mutex_lock(&amp;g_tmutex);<br>        <span class="hljs-comment">//条件成立而且获得互斥量执行下一行 不然释放互斥量</span><br>        pthread_cond_wait(&amp;g_tconvar, &amp;g_tmutex);<br>        <br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;recv:%s&quot;</span>, buf);<br>        pthread_mutex_unlock(&amp;g_tmutex);<br>    &#125;<br><br>    retrun <span class="hljs-literal">NULL</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> **argv)</span></span>&#123;<br>    <span class="hljs-keyword">pthread_t</span> tid;<br>    <span class="hljs-keyword">int</span> ret;<br>    <span class="hljs-comment">//初始化临时buf 避免长时间锁占用</span><br>    <span class="hljs-keyword">char</span> l_buf[<span class="hljs-number">1000</span>];<br><br>    <span class="hljs-comment">//创建接受线程</span><br>    ret = pthread_create(&amp;tid, <span class="hljs-literal">NULL</span>, my_thread_func, <span class="hljs-literal">NULL</span>);<br>    <span class="hljs-keyword">if</span>(ret)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error\n&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">//主线程读取标准输入，发送给接收线程</span><br>    <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>        <span class="hljs-comment">//锁外阻塞，锁内阻塞会导致其他线程无法获得锁</span><br>        fgets(l_buf, <span class="hljs-number">1000</span>, <span class="hljs-built_in">stdin</span>);<br>        <span class="hljs-comment">//lock</span><br>        pthread_mutex_lock(&amp;g_tmutex);<br>        <span class="hljs-built_in">memcpy</span>(buf, l_buf, <span class="hljs-number">1000</span>);<br>        <span class="hljs-comment">//arise other p</span><br>        pthread_cond_signal(&amp;g_tconvar);<br>        <span class="hljs-comment">//unlock</span><br>        pthread_mutex_unlock(&amp;g_tmutex);<br>    &#125;<br> <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h1><p>串口全称叫异步首发传输器（UART）简称串口，它的作用是：</p>
+<ul>
+<li>调试：移植应用时，使用串口查看打印信息</li>
+<li>外接各种模块：GPS 蓝牙模块</li>
+</ul>
+<p>串口的内部主要有</p>
+<ul>
+<li>TXD：输出引脚 用于输出数据</li>
+<li>RXD：read引脚 用于读取数据</li>
+<li>GND：<font style="color:rgb(6, 10, 38);">公共参考电平（0V）它是信号传输的“基准线”</font></li>
+</ul>
+<p>串口数据是通过电平高低，<strong>逐位发送，串行发送</strong></p>
+<p>使用mobaxterm连接开发板，需要填的信息主要是波特率</p>
+<ul>
+<li>波特率：发送一个数据位的时间（每一个数据位的发送占时），例如波特率为115200的时候，<ul>
+<li><strong>1s传输的数据是115200bit</strong>的数据</li>
+<li>如果按照btye计算，在<strong>8n1</strong>（8个数据位，没有校验位，一个停止位）的情况下，1byte的数据需要传输10bit（start（1），data（8），stop（1），1s传输的字节数是 1/(10/115200) = 11520字节</li>
+</ul>
+</li>
+</ul>
+<p>串口之间的数据传输路径大概是：<strong>串口1 -&gt; 串口2 -&gt; 驱动 -&gt; 行规程 -&gt; app(shell)</strong></p>
+<hr>
+<p><strong>tty：</strong></p>
+<p>它是用户与操作系统内核交互的接口设备。</p>
+<p>负责接收你的键盘输入，并将其发送给内核；同时负责接收内核的输出，并显示在你的屏幕上。</p>
+<p>数据流：<strong>用户键盘 -&gt; TTY设备 -&gt; shell进程 -&gt; 内核</strong></p>
+<p>对于UART编程的套路就是 open-&gt; <strong>设置行规程</strong> -&gt;read/write 主要难点是设置行规程</p>
+<hr>
+<h2 id="回环实验"><a href="#回环实验" class="headerlink" title="回环实验"></a>回环实验</h2><p>我们在开发板上进行回环实验，要达到的目的是使得我们输入的字符经过开发板又回显到我们的pc shell上</p>
+<p>实验的实现比较简单，主要是将开发板串口的txd和rxd短接到一起，这样做的目的是让<strong>开发板发送的数据传回开发板</strong></p>
+<p>这里展示 while中的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)&#123;<br>    <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%c&quot;</span>, &amp;c);<br>    write(fd, &amp;c, <span class="hljs-number">1</span>);<br>    iret = read(fd, &amp;c, <span class="hljs-number">1</span>);<br>    <span class="hljs-keyword">if</span>(iret &gt; <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>,c);<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;error&quot;</span>);<br>    &#125;<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>最后得到的结果却是 输入a，回显：error error</p>
+<p>原因是因为我们输入的时候其实是两个字符：<strong>a enter 而且write之后数据传输还没到就read了，导致read不到数据 iret = 0 出现了两个error</strong></p>
+<p>如果我们继续输入就会出现回显 a enter</p>
+<hr>
+<h1 id="I2C"><a href="#I2C" class="headerlink" title="I2C"></a>I2C</h1><p><font style="color:rgb(6, 10, 38);">I2C是一种</font><strong><font style="color:rgb(6, 10, 38);">同步、串行、半双工</font></strong><font style="color:rgb(6, 10, 38);">的通信协议，主要用于微控制器（MCU）与各种低速外围设备（如传感器、EEPROM、实时时钟、LCD驱动器等）之间的短距离通信。</font></p>
+<ul>
+<li><font style="color:rgb(6, 10, 38);">写操作</font></li>
+</ul>
+<p><font style="color:rgb(6, 10, 38);">I2C传输数据的时候，由主芯片发出一个start信号，接收方设备回应之后，建立连接开始传输数据。</font></p>
+<p><font style="color:rgb(6, 10, 38);">主设备发送数据之后等待回应，每传输1bit都需要等待回应，发送完成之后主芯片发送停止信号。</font></p>
+<ul>
+<li><font style="color:rgb(6, 10, 38);">读操作</font></li>
+</ul>
+<p>与写操作相同，只不过读操作是 从设备 1bit发送信号 主设备1bit接收</p>
+<p>I2C协议传输数据需要两条线 SCK是传输时钟 SDA是传输数据</p>
+<p>以下是I2C协议的一些重要结构体</p>
+<p><font style="color:rgb(6, 10, 38);">i2c_msg 是</font><strong><font style="color:rgb(6, 10, 38);">最直接</font></strong><font style="color:rgb(6, 10, 38);">描述一次 I2C 传输消息的结构体。当你调用 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;i2c_transfer()&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 函数时，传递的参数就是该结构体的数组。它定义了“要发什么数据”、“发给谁”、“是读还是写”。</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">i2c_msg</span> &#123;</span><br>    __u16 addr;  <span class="hljs-comment">// 从设备地址 (7位或10位)</span><br>    __u16 flags; <span class="hljs-comment">// 标志位，如 I2C_M_RD (读操作), I2C_M_TEN (10位地址)</span><br>    __u16 len;   <span class="hljs-comment">// 数据长度 (字节数)</span><br>    __u8 *buf;   <span class="hljs-comment">// 数据缓冲区指针 (发送时指向源数据，接收时指向存放数据的 buffer)</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p> <font style="color:rgb(6, 10, 38);">在驱动中构造一个或两个 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;i2c_msg&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 结构体（例如：先写寄存器地址，再读数据），然后传递给 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;i2c_transfer()&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);">。</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">i2c_msg</span> <span class="hljs-title">msgs</span>[2];</span><br>u8 buf_tx[<span class="hljs-number">1</span>];<br>u8 buf_rx[<span class="hljs-number">4</span>];<br><br><span class="hljs-comment">// 消息1: 写操作 (发送寄存器地址)</span><br>msgs[<span class="hljs-number">0</span>].addr = client-&gt;addr;<br>msgs[<span class="hljs-number">0</span>].flags = <span class="hljs-number">0</span>; <span class="hljs-comment">// 写</span><br>msgs[<span class="hljs-number">0</span>].len = <span class="hljs-number">1</span>;<br>msgs[<span class="hljs-number">0</span>].buf = buf_tx;<br>buf_tx[<span class="hljs-number">0</span>] = <span class="hljs-number">0x05</span>; <span class="hljs-comment">// 寄存器地址</span><br><br><span class="hljs-comment">// 消息2: 读操作 (读取数据)</span><br>msgs[<span class="hljs-number">1</span>].addr = client-&gt;addr;<br>msgs[<span class="hljs-number">1</span>].flags = I2C_M_RD; <span class="hljs-comment">// 读标志</span><br>msgs[<span class="hljs-number">1</span>].len = <span class="hljs-number">4</span>;<br>msgs[<span class="hljs-number">1</span>].buf = buf_rx;<br><br><span class="hljs-comment">// 执行传输</span><br>i2c_transfer(client-&gt;adapter, msgs, <span class="hljs-number">2</span>);<br></code></pre></td></tr></table></figure>
+
+
+
+<p><font style="color:rgb(6, 10, 38);">i2c_client 结构体代表挂在 I2C 总线上的</font><strong><font style="color:rgb(6, 10, 38);">具体物理设备</font></strong><font style="color:rgb(6, 10, 38);">（如某个温度传感器）。在设备驱动（Device Driver）中，你通常会通过 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;probe&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 函数拿到这个结构体的指针，并从中获取设备地址和适配器信息。</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">i2c_client</span> &#123;</span><br>    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">short</span> addr;      <span class="hljs-comment">// 设备的 I2C 地址 (驱动通过此知道发给谁)</span><br>    <span class="hljs-keyword">char</span> name[I2C_NAME_SIZE]; <span class="hljs-comment">// 设备名称</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">i2c_adapter</span> *<span class="hljs-title">adapter</span>;</span> <span class="hljs-comment">// 指向所属的适配器 (控制器)，用于调用 transfer 函数</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">device</span> <span class="hljs-title">dev</span>;</span>        <span class="hljs-comment">// 通用的设备模型结构</span><br>    <span class="hljs-comment">// ... 其他成员</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><font style="color:rgb(6, 10, 38);"> 还有</font><strong><font style="color:rgb(6, 10, 38);">I2C 控制器硬件</font></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">i2c_adapter</span> &#123;</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">module</span> *<span class="hljs-title">owner</span>;</span><br>    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> id;          <span class="hljs-comment">// 适配器编号 (如 i2c-0, i2c-1)</span><br>    <span class="hljs-keyword">char</span> name[I2C_NAME_SIZE]; <span class="hljs-comment">// 适配器名称</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">i2c_algorithm</span> *<span class="hljs-title">algo</span>;</span> <span class="hljs-comment">// 核心：指向具体的通信算法实现</span><br>    <span class="hljs-keyword">void</span> *algo_data;          <span class="hljs-comment">// 算法所需的私有数据</span><br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">device</span> <span class="hljs-title">dev</span>;</span>        <span class="hljs-comment">// 通用设备模型</span><br>    <span class="hljs-comment">// ...</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="SMBus"><a href="#SMBus" class="headerlink" title="SMBus"></a>SMBus</h2><p>SMBus是I2C协议的子集 其对I2C协议进行了限制</p>
+<ul>
+<li>VDD电压不同</li>
+<li>限定了最小时钟频率</li>
+<li>地址回应：设备接收到地址之后是否需要发出回应信号</li>
+<li>REPEATED START：在数据发送结束之后不用发出P信号，而是直接发出S型号代表下一个请求的开始</li>
+</ul>
+<h1 id="驱动"><a href="#驱动" class="headerlink" title="驱动"></a>驱动</h1><p>驱动（Driver）是告诉 OS 如何操作具体的硬件（如网卡、屏幕、传感器），是OS的一部分</p>
+<p>如何编写驱动程序：</p>
+<ol>
+<li><font style="color:rgb(0, 0, 0);">确定</font><strong><font style="color:rgb(0, 0, 0);">主设备号</font></strong><font style="color:rgb(0, 0, 0);"> </font></li>
+<li><font style="color:rgb(0, 0, 0);">定义自己的</font><strong><font style="color:rgb(0, 0, 0);">file_operations</font></strong><font style="color:rgb(0, 0, 0);">结构体</font></li>
+<li><font style="color:rgb(0, 0, 0);">实现对应的open/read/write等函数，填入file_operations结构体</font></li>
+<li><font style="color:rgb(0, 0, 0);">把file_operations结构体告诉内核: </font><strong><font style="color:rgb(0, 0, 0);">注册驱动程序</font></strong><font style="color:rgb(0, 0, 0);">（register） </font></li>
+<li><font style="color:rgb(0, 0, 0);">谁来注册驱动程序啊? 得有一个入口函数:安装驱动程序时，就会去调用这个入口函数 </font></li>
+<li><font style="color:rgb(0, 0, 0);">有入口函数就应该有出口函数:卸载驱动程序时，就会去调用这个出口函数 </font></li>
+<li><font style="color:rgb(0, 0, 0);">其他完善:提供设备信息，自动创建设备节点</font></li>
+</ol>
+<p><font style="color:rgb(0, 0, 0);"></font></p>
+<p><font style="color:rgb(0, 0, 0);">接下来我们将编写第一个驱动程序</font></p>
+<p><strong><font style="color:rgb(0, 0, 0);">注意</font></strong><font style="color:rgb(0, 0, 0);">：如果是在</font><strong><font style="color:rgb(0, 0, 0);">wsl环境</font></strong><font style="color:rgb(0, 0, 0);">下进行代码编写会出现库函数无法补全 头文件报错的问题</font></p>
+<p><font style="color:rgb(0, 0, 0);">原因：这是因为wsl环境下的Linux内核是微软写的与普通Ubuntu不同  tips ubuntu版本22.04</font></p>
+<p><font style="color:rgb(0, 0, 0);">解决方案：</font></p>
+<ul>
+<li><font style="color:rgb(0, 0, 0);">根目录下新建 </font><em><font style="color:rgb(0, 0, 0);">.vscode/c_cpp_properties.json </font></em></li>
+<li><font style="color:rgb(0, 0, 0);">删除无效微软仓库配置</font></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">sudo rm /etc/apt/sources.<span class="hljs-built_in">list</span>.d/wsl.<span class="hljs-built_in">list</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>更新软件源 安装通用内核头文件</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">sudo apt update<br>sudo apt install linux-headers-generic build-essential<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>创建符号连接</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"># 查看已安装的内核头文件版本<br>dpkg -l | grep linux-headers<br><br># 假设输出中有 linux-headers<span class="hljs-number">-6.8</span><span class="hljs-number">.0</span>-xx-generic<br># 则创建软链接：<br>sudo ln -sf /usr/src/linux-headers<span class="hljs-number">-6.8</span><span class="hljs-number">.0</span>-xx-generic /lib/modules/$(uname -r)/build<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>验证是否成功</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c">ls -l /lib/modules/$(uname -r)/build<br><br><span class="hljs-comment">//refer</span><br><span class="hljs-comment">//lrwxrwxrwx 1 root root 39 Apr  5 10:00 /lib/modules/6.6.87.2-microsoft-standard-WSL2/build -&gt; /usr/src/linux-headers-6.8.0-xx-generic</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>书写配置文件_<font style="color:rgb(0, 0, 0);">c_cpp_properties.json </font>_</li>
+</ul>
+<p><strong><font style="color:rgb(0, 0, 0);">主要是让系统找到 /usr/src/linux-headers-6.8.0-xx-generic/include 这些头文件</font></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c">&#123;<br>    <span class="hljs-string">&quot;configurations&quot;</span>: [<br>        &#123;<br>            <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;WSL-Kernel-Dev&quot;</span>,<br>            <span class="hljs-string">&quot;includePath&quot;</span>: [<br>                <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span>,<br>                <span class="hljs-string">&quot;/usr/src/linux-headers-6.8.0-xx-generic/include&quot;</span>,<br>                <span class="hljs-string">&quot;/usr/src/linux-headers-6.8.0-xx-generic/arch/x86/include&quot;</span>,<br>                <span class="hljs-string">&quot;/usr/include&quot;</span><br>            ],<br>            <span class="hljs-string">&quot;defines&quot;</span>: [<br>                <span class="hljs-string">&quot;__KERNEL__&quot;</span>,<br>                <span class="hljs-string">&quot;MODULE&quot;</span>,<br>                <span class="hljs-string">&quot;CONFIG_X86_64&quot;</span>,<br>                <span class="hljs-string">&quot;_GNU_SOURCE&quot;</span><br>            ],<br>            <span class="hljs-string">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;/usr/bin/gcc&quot;</span>,<br>            <span class="hljs-string">&quot;cStandard&quot;</span>: <span class="hljs-string">&quot;gnu11&quot;</span>,<br>            <span class="hljs-string">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;gnu++14&quot;</span>,<br>            <span class="hljs-string">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;linux-gcc-x64&quot;</span><br>        &#125;<br>    ],<br>    <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-number">4</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>完成之后重启窗口，查看是否还有报错</li>
+</ul>
+<h2 id="第一个驱动程序："><a href="#第一个驱动程序：" class="headerlink" title="第一个驱动程序："></a>第一个驱动程序：</h2><p>按照前面提到的编写驱动程序的步骤，我们编写一个驱动程序</p>
+<p>可以参考Linux内核中 _/drivers/char/misc.c _的文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/module.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/fs.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/errno.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/miscdevice.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/kernel.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/major.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/mutex.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/proc_fs.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/seq_file.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/stat.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/device.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/tty.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/kmod.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/gfp.h&gt;</span></span><br><br><span class="hljs-comment">//确定主设备号</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> major = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">char</span> kernel_buf[<span class="hljs-number">1024</span>];<br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-keyword">class</span> *<span class="hljs-title">hello_class</span>;</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MIN(a,b) (a&lt;b ? a:b)</span><br><br><span class="hljs-comment">//填充open等函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">ssize_t</span> <span class="hljs-title">hello_drv_read</span> <span class="hljs-params">(struct file * file, <span class="hljs-keyword">char</span> __user * buf, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">loff_t</span> * offset)</span></span>&#123;<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-keyword">int</span> err = copy_from_user(buf, kernel_buf, MIN(<span class="hljs-number">1024</span>,size));<br>    <span class="hljs-keyword">return</span> MIN(<span class="hljs-number">1024</span>,size);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">ssize_t</span> <span class="hljs-title">hello_drv_write</span> <span class="hljs-params">(struct file * file,<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> __user * buf, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">loff_t</span> * offset)</span></span>&#123;<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-keyword">int</span> err = copy_to_user(kernel_buf, buf, MIN(<span class="hljs-number">1024</span>,size));<br>    <span class="hljs-keyword">return</span> MIN(<span class="hljs-number">1024</span>,size);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hello_drv_open</span> <span class="hljs-params">(struct inode * node, struct file * file)</span></span>&#123;<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hello_drv_close</span> <span class="hljs-params">(struct inode * node, struct file * file)</span></span>&#123;<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//定义file_operations结构体</span><br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">file_operations</span> <span class="hljs-title">hello_drv</span> =</span> &#123;<br>    .owner = THIS_MODULE,<br>    .open = hello_drv_open,<br>    .read = hello_drv_read,<br>    .write = hello_drv_write,<br>    .release = hello_drv_close,<br>&#125;;<br><br><span class="hljs-comment">//file结构体告诉内核，注册驱动</span><br><span class="hljs-comment">//入口函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> __init <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123;<br>    major = register_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;hello&quot;</span>, &amp;hello_drv);<br>    <span class="hljs-comment">//创建设备信息 class</span><br>    hello_class = class_create(THIS_MODULE, <span class="hljs-string">&quot;hello_class&quot;</span>);<br>	<span class="hljs-keyword">int</span> err = PTR_ERR(hello_class);<br>	<span class="hljs-keyword">if</span> (IS_ERR(hello_class))&#123;<br>        <span class="hljs-comment">//创建失败 删除设备</span><br>        unregister_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;hello&quot;</span>);<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//创建device MKDEV(主设备号，次设备号)</span><br>    device_create(hello_class, <span class="hljs-literal">NULL</span>, MKDEV(major, <span class="hljs-number">0</span>), <span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;hello&quot;</span>);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//出口函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> __exit <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123;<br>    <span class="hljs-comment">//删除设备</span><br>    device_destroy(hello_class, MKDEV(major, <span class="hljs-number">0</span>));<br>    class_destroy(hello_class);<br>    unregister_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;hello&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">//提供设备信息 自动创建节点</span><br>module_init(hello_init);<br>module_exit(hello_exit);<br><span class="hljs-comment">//申明协议</span><br>MODULE_LICENSE(<span class="hljs-string">&quot;GPL&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>总结一下：</p>
+<ul>
+<li> 设备<strong>驱动的读写</strong>要和<strong>Linux的读写</strong>一一对应起来使用 file_operations结构体</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//构建一一对应关系 .open是Linux的open drv_open是驱动的open</span><br>    .owner = THIS_MODULE,<br>    .open = hello_drv_open,<br>    .read = hello_drv_read,<br>    .write = hello_drv_write,<br>    .release = hello_drv_close,<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>对应关系建立之后告诉内核 _register_chrdev _目的是将驱动程序放入数组项，其中主设备号是定位，0代表系统自动分配</li>
+<li>但是调用register需要入口函数 _hello_init _同时也有出口函数 _hello_exit _这两个函数定义之后 内核会自动调用</li>
+<li>系统创建设备节点就需要_create_class_ 和 <em>create_devices</em></li>
+<li>传输数据就需要 <em>copy_to_user</em> 和_copy_from_user_</li>
+</ul>
+<p>写一个test程序执行驱动，我们可以发现应用程序打开设备是调用open，Linux通过驱动将设备转换成文件进行访问，这就是Linux的设计核心之一 <strong>一切皆是文件</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fcntl.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unistd.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/types.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sys/stat.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEVICE_PATH <span class="hljs-meta-string">&quot;/dev/hello&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> BUFFER_SIZE 1024</span><br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> fd;<br>    <span class="hljs-keyword">char</span> write_buf[BUFFER_SIZE] = <span class="hljs-string">&quot;Hello, Kernel Driver! This is a test from user space.&quot;</span>;<br>    <span class="hljs-keyword">char</span> read_buf[BUFFER_SIZE] = &#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-keyword">int</span> ret;<br><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;--- Starting Driver Test ---\n&quot;</span>);<br><br>    <span class="hljs-comment">// 1. 打开设备</span><br>    fd = open(DEVICE_PATH, O_RDWR);<br>    <span class="hljs-keyword">if</span> (fd &lt; <span class="hljs-number">0</span>) &#123;<br>        perror(<span class="hljs-string">&quot;Error: Failed to open /dev/hello&quot;</span>);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hint: Did you run &#x27;sudo insmod hello.ko&#x27;? Is the device node created?\n&quot;</span>);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[OK] Device opened successfully.\n&quot;</span>);<br><br>    <span class="hljs-comment">// 2. 写入数据</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[INFO] Writing to device: \&quot;%s\&quot;\n&quot;</span>, write_buf);<br>    ret = write(fd, write_buf, <span class="hljs-built_in">strlen</span>(write_buf));<br>    <span class="hljs-keyword">if</span> (ret &lt; <span class="hljs-number">0</span>) &#123;<br>        perror(<span class="hljs-string">&quot;Error: Write failed&quot;</span>);<br>        close(fd);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[OK] Wrote %d bytes.\n&quot;</span>, ret);<br><br>    <span class="hljs-comment">// 3. 重置文件偏移量 (为了读取刚才写入的内容)</span><br>    <span class="hljs-comment">// 因为我们的驱动 read 函数简单实现了 offset 累加，如果不 lseek，read 可能读不到数据</span><br>    lseek(fd, <span class="hljs-number">0</span>, SEEK_SET);<br><br>    <span class="hljs-comment">// 4. 读取数据</span><br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[INFO] Reading from device...\n&quot;</span>);<br>    <span class="hljs-built_in">memset</span>(read_buf, <span class="hljs-number">0</span>, BUFFER_SIZE);<br>    ret = read(fd, read_buf, BUFFER_SIZE);<br>    <span class="hljs-keyword">if</span> (ret &lt; <span class="hljs-number">0</span>) &#123;<br>        perror(<span class="hljs-string">&quot;Error: Read failed&quot;</span>);<br>        close(fd);<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[OK] Read %d bytes: \&quot;%s\&quot;\n&quot;</span>, ret, read_buf);<br><br>    <span class="hljs-comment">// 5. 验证数据</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>(write_buf, read_buf) == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n[SUCCESS] Data matches! Driver is working correctly.\n&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n[FAIL] Data mismatch!\n&quot;</span>);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Expected: %s\n&quot;</span>, write_buf);<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Got:      %s\n&quot;</span>, read_buf);<br>    &#125;<br><br>    <span class="hljs-comment">// 6. 关闭设备</span><br>    close(fd);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;--- Test Finished ---\n&quot;</span>);<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后可以进行make编译</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c">KERN_DIR = /home/pigeon/code/linux/kenrel/ebf-image-builder/ebf_linux_kernel<br>CROSS_COMPILE = arm-linux-gnueabihf-<br>ARCH = arm<br><br>all:<br>	make -C $(KERN_DIR) M=`pwd` ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules<br>	$(CROSS_COMPILE)gcc -o hellotest hellotest.c<br><br>clean:<br>	make -C $(KERN_DIR) M=`pwd` modules clean<br>	rm -rf modules.order<br>	rm -f hellotest<br><br><span class="hljs-comment">//编译成驱动 -m代表加载成内核模块也就是 .ko文件</span><br>obj-m += hellodriver.o<br></code></pre></td></tr></table></figure>
+
+<p>将编译好的ko驱动文件和c程序放入开发板</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//load 驱动程序</span><br>insmod hellodriver.ko<br><span class="hljs-comment">//查看驱动</span><br>cat /proc/devices<br>lsmod<br>ls /dev/hellodriver<br><span class="hljs-comment">//然后执行c程序</span><br>./hello_drv_test<br><span class="hljs-comment">//可以看到输出信息</span><br><span class="hljs-comment">//卸载驱动</span><br>rmmod 驱动名<br></code></pre></td></tr></table></figure>
+
+<p>执行c程序不成功可能是因为<strong>设备访问权限</strong>和<strong>可执行权限</strong>的问题</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//给hellotest加上可执行权限</span><br>chmod +x hellotest<br><span class="hljs-comment">//给hello设备加上user可访问权限</span><br>sudo chmod <span class="hljs-number">666</span> /dev/hello<br></code></pre></td></tr></table></figure>
+
+<p>然后再执行就基本没有问题了</p>
+<!-- 这是一张图片，ocr 内容为： -->
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1774101659705-62493eea-bb28-4db5-a080-e6e454cdb90c.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="LED-驱动"><a href="#LED-驱动" class="headerlink" title="LED 驱动"></a>LED 驱动</h2><p> 下面是操作LED的一个驱动，主要是通过APP（Shell）控制LED灯的亮灭，</p>
+<p>其中涉及到三个寄存器 </p>
+<ul>
+<li>_IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 _该寄存器的作用是选择 SNVS_TAMPER3 这个<strong>硬件引脚的工作模式</strong>。你可以把它理解为<strong>一个功能选择开关</strong>，通过配置它，你可以告诉芯片这个引脚是作为普通的GPIO（输入/输出）使用，还是作为定时器、中断等专用功能引脚使用</li>
+<li>_GPIO5_DR _是控制LED亮灭的关键，他输出1/0就可以控制LED的亮灭</li>
+<li>_GPIO5_GDIR _是GPIO5组的方向控制寄存器。它的核心作用就是配置GPIO5组中每个引脚的数据流向，决定<strong>引脚是用于输入还是输出</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><code class="hljs c"> <br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/kernel.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/module.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/slab.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/fs.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/delay.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/poll.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/mutex.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/wait.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/uaccess.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/device.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;asm/io.h&gt;</span></span><br> <br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> major;<br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-keyword">class</span> *<span class="hljs-title">led_class</span>;</span><br> <br><span class="hljs-comment">/* registers */</span><br><span class="hljs-comment">// IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 地址：0x02290000 + 0x14 </span><br><span class="hljs-comment">//它的作用是决定 SNVS_TAMPER3 这个物理引脚到底用来干什么。</span><br><span class="hljs-comment">// volatile代表编译器不对这个变量进行优化</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3;<br> <br><span class="hljs-comment">// GPIO5_GDIR 地址：0x020AC004</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *GPIO5_GDIR;<br> <br><span class="hljs-comment">//GPIO5_DR 地址：0x020AC000 GPIO5是NXP i.MX中GPIO5 端口的数据寄存器（DR）</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *GPIO5_DR;<br> <br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">ssize_t</span> <span class="hljs-title">led_write</span><span class="hljs-params">(struct file *filp, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> __user *buf,</span></span><br><span class="hljs-params"><span class="hljs-function">			 <span class="hljs-keyword">size_t</span> count, <span class="hljs-keyword">loff_t</span> *ppos)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-keyword">char</span> val;<br>	<span class="hljs-keyword">int</span> ret;<br>	<br>	<span class="hljs-comment">/* copy_from_user : get data from app */</span><br>	ret = copy_from_user(&amp;val, buf, <span class="hljs-number">1</span>);<br> <br>	<span class="hljs-comment">/* to set gpio register: out 1/0 */</span><br>	<span class="hljs-keyword">if</span> (val)<br>	&#123;<br>		<span class="hljs-comment">/* set gpio to let led on */</span><br>        <span class="hljs-comment">//将寄存器第三位设置位0 拉低电平 这块板子是低电平开灯</span><br>		*GPIO5_DR &amp;= ~(<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">3</span>);<br>	&#125;<br>	<span class="hljs-keyword">else</span><br>	&#123;<br>		<span class="hljs-comment">/* set gpio to let led off */</span><br>		*GPIO5_DR |= (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">3</span>);<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">led_open</span><span class="hljs-params">(struct inode *inode, struct file *filp)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-comment">/* enable gpio5</span><br><span class="hljs-comment">	 * configure gpio5_io3 as gpio</span><br><span class="hljs-comment">	 * configure gpio5_io3 as output </span><br><span class="hljs-comment">	 */</span><br>    <span class="hljs-comment">//设置 MUX_MODE = 5 也就是开启GPIO5</span><br>	*IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 &amp;= ~<span class="hljs-number">0xf</span>;<br>	*IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 |= <span class="hljs-number">0x5</span>;<br><br>    <span class="hljs-comment">//设置输入输出模式</span><br>	*GPIO5_GDIR |= (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">3</span>);<br>	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br> <br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">file_operations</span> <span class="hljs-title">led_fops</span> =</span> &#123;<br>	.owner		= THIS_MODULE,<br>	.write		= led_write,<br>	.open		= led_open,<br>&#125;;<br> <br><span class="hljs-comment">/* 入口函数 */</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> __init <span class="hljs-title">led_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>	printk(<span class="hljs-string">&quot;%s %s %d\n&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>	<br>	major = register_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;100ask_led&quot;</span>, &amp;led_fops);<br> <br>	<span class="hljs-comment">/* ioremap */</span><br>	<span class="hljs-comment">// IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 地址：0x02290000 + 0x14</span><br>	IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 = ioremap(<span class="hljs-number">0x02290000</span> + <span class="hljs-number">0x14</span>, <span class="hljs-number">4</span>);<br>	<br>	<span class="hljs-comment">// GPIO5_GDIR 地址：0x020AC004</span><br>	GPIO5_GDIR = ioremap(<span class="hljs-number">0x020AC004</span>, <span class="hljs-number">4</span>);<br>	<br>	<span class="hljs-comment">//GPIO5_DR 地址：0x020AC000</span><br>	GPIO5_DR  = ioremap(<span class="hljs-number">0x020AC000</span>, <span class="hljs-number">4</span>);<br> <br>	led_class = class_create(THIS_MODULE, <span class="hljs-string">&quot;myled&quot;</span>);<br>	device_create(led_class, <span class="hljs-literal">NULL</span>, MKDEV(major, <span class="hljs-number">0</span>), <span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;myled&quot;</span>); <span class="hljs-comment">/* /dev/myled */</span><br>	<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> __exit <span class="hljs-title">led_exit</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">//清除寄存器地址映射</span><br>	iounmap(IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3);<br>	iounmap(GPIO5_GDIR);<br>	iounmap(GPIO5_DR);<br>	<br>	device_destroy(led_class, MKDEV(major, <span class="hljs-number">0</span>));<br>	class_destroy(led_class);<br>	<br>	unregister_chrdev(major, <span class="hljs-string">&quot;100ask_led&quot;</span>);<br>&#125;<br> <br>module_init(led_init);<br>module_exit(led_exit);<br>MODULE_LICENSE(<span class="hljs-string">&quot;GPL&quot;</span>);<br> <br> <br></code></pre></td></tr></table></figure>
+
+<p>需要注意的几个点：</p>
+<ul>
+<li>地址寄存器映射，使用 _ioremap和iounmap _对寄存器地址和指针进行映射(目的是将物理地址映射为虚拟地址)，可以看作一种指针的定义</li>
+<li><em>volatile</em> 的使用，整个关键字告诉编译器，整个变量不被优化</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell">//优化意义<br>int a = 1;<br>a = 2;<br>//编译器会对这段代码进行优化 直接成为 int a = 2;<br><br>//使用volatile进行优化<br>volatile int a = 1;<br>a = 2;<br>//编译器不会对这段代码进行优化，a会经历赋值为1 再覆盖为2的过程<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="Driver框架"><a href="#Driver框架" class="headerlink" title="Driver框架"></a>Driver框架</h2><p>在LED驱动中我们写了操作一个LED的驱动，但是如果面对多个LED，操作每一个LED的数据寄存器和高低电平可能不一样。</p>
+<p>所以我们需要<strong>复用代码的公共部分</strong>，<strong>重写物理硬件的特性部分</strong></p>
+<p>公共部分代码包括驱动与app交互的整个流程，这对于任何硬件都是不变的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/module.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/fs.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/errno.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/miscdevice.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/kernel.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/major.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/mutex.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/proc_fs.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/seq_file.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/stat.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/init.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/device.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/tty.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/kmod.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/gfp.h&gt;</span></span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;led_opera.h&quot;</span></span><br><br><span class="hljs-comment">//确定主设备号</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> major = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-keyword">class</span> *<span class="hljs-title">hello_class</span>;</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">led_operations</span> *<span class="hljs-title">p_led_opera</span>;</span><br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MIN(a,b) (a&lt;b ? a:b)</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> NUM 2</span><br><br><span class="hljs-comment">//填充open等函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">ssize_t</span> <span class="hljs-title">hello_drv_read</span> <span class="hljs-params">(struct file * file, <span class="hljs-keyword">char</span> __user * buf, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">loff_t</span> * offset)</span></span>&#123;<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-keyword">return</span> MIN(<span class="hljs-number">1024</span>,size);<br>&#125;<br><span class="hljs-comment">//使用status保存写入</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">ssize_t</span> <span class="hljs-title">hello_drv_write</span> <span class="hljs-params">(struct file * file,<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> __user * buf, <span class="hljs-keyword">size_t</span> size, <span class="hljs-keyword">loff_t</span> * offset)</span></span>&#123;<br>    <span class="hljs-keyword">char</span> status;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">inode</span> *<span class="hljs-title">inode</span> =</span> file_inode(file);<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    copy_from_user(&amp;status, buf, <span class="hljs-number">1</span>);<br>    <span class="hljs-comment">//根据次设备号和status控制led</span><br>    <span class="hljs-comment">//1获取次设备号</span><br>    <span class="hljs-keyword">int</span> minor = iminor(inode);<br>    <span class="hljs-comment">//2控制灯</span><br>    p_led_opera-&gt;ctl(minor, status);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hello_drv_open</span> <span class="hljs-params">(struct inode * node, struct file * file)</span></span>&#123;<br>    <span class="hljs-comment">//找到操作哪一盏灯 设备号</span><br>    <span class="hljs-keyword">int</span> minor = iminor(node);<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-comment">//根据设备号设置led</span><br>    p_led_opera-&gt;init(minor);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hello_drv_close</span> <span class="hljs-params">(struct inode * node, struct file * file)</span></span>&#123;<br>    printk(<span class="hljs-string">&quot;%s %s line %d&quot;</span>, __FILE__, __FUNCTION__, __LINE__);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><span class="hljs-comment">//定义file_operations结构体</span><br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">file_operations</span> <span class="hljs-title">hello_drv</span> =</span> &#123;<br>    .owner = THIS_MODULE,<br>    .open = hello_drv_open,<br>    .read = hello_drv_read,<br>    .write = hello_drv_write,<br>    .release = hello_drv_close,<br>&#125;;<br><br><span class="hljs-comment">//file结构体告诉内核，注册驱动</span><br><span class="hljs-comment">//入口函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> __init <span class="hljs-title">hello_init</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123;<br>    major = register_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;hello&quot;</span>, &amp;hello_drv);<br>    <span class="hljs-comment">//创建设备信息 class</span><br>    hello_class = class_create(THIS_MODULE, <span class="hljs-string">&quot;hello_led&quot;</span>);<br>	<span class="hljs-keyword">int</span> err = PTR_ERR(hello_class);<br>	<span class="hljs-keyword">if</span> (IS_ERR(hello_class))&#123;<br>        <span class="hljs-comment">//创建失败 删除设备</span><br>        unregister_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;hello&quot;</span>);<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">//创建device MKDEV(主设备号，次设备号)</span><br>    <span class="hljs-comment">//多个设备循环创建</span><br>    <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i&lt;NUM; i++)<br>        device_create(hello_class, <span class="hljs-literal">NULL</span>, MKDEV(major, i), <span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;hello%d&quot;</span>,i);<br><br>    p_led_opera = get_board_led_opr();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//出口函数</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> __exit <span class="hljs-title">hello_exit</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123;<br>    <span class="hljs-comment">//删除设备</span><br>    <span class="hljs-comment">//多个设备删除</span><br>    <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(i = <span class="hljs-number">0</span>; i&lt;NUM; i++)<br>        device_destroy(hello_class, MKDEV(major, i));<br>    class_destroy(hello_class);<br>    unregister_chrdev(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;hello_led&quot;</span>);<br>&#125;<br><br><span class="hljs-comment">//提供设备信息 自动创建节点</span><br>module_init(hello_init);<br>module_exit(hello_exit);<br><span class="hljs-comment">//申明协议</span><br>MODULE_LICENSE(<span class="hljs-string">&quot;GPL&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>主要的改变是：</p>
+<ul>
+<li>init的时候我们通过 _get_board_led_opr() _来得到board的相关信息（主要是获取led_operation结构体）</li>
+<li>write中，我们通过一个结构体的函数来设置led的明灭，实现了解耦</li>
+</ul>
+<p>结构体和头文件如下面所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> _LED_OPR    <span class="hljs-comment">//避免重复定义</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> _LDE_OPR</span><br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">led_operations</span> &#123;</span><br>    <span class="hljs-keyword">int</span> (*init) (<span class="hljs-keyword">int</span> which);<span class="hljs-comment">//初始化LED，which代表哪一个led</span><br>    <span class="hljs-keyword">int</span> (*ctl) (<span class="hljs-keyword">int</span> which, <span class="hljs-keyword">char</span> status);<span class="hljs-comment">//控制led，which代表led，status代表灯的明灭</span><br>&#125;;<br><br><span class="hljs-function">struct led_operations *<span class="hljs-title">get_board_led_opr</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>;<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>init 主要实现设备的初始化 也就是<strong>初始化寄存器等的操作</strong></li>
+<li>ctl 实现<strong>控制寄存器操作灯的明灭的操作</strong></li>
+</ul>
+<p>而针对每一种灯或者开发板的实现代码就是重写_ led_operations _中的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;linux/gfp.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;asm/io.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;led_opera.h&quot;</span></span><br><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *CCM_CCGR1;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *GPIO5_GDIR;<br><span class="hljs-keyword">static</span> <span class="hljs-keyword">volatile</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *GPIO5_DR;<br><br><br><span class="hljs-comment">//初始化</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">board_demo_init</span><span class="hljs-params">(<span class="hljs-keyword">int</span> which)</span></span>&#123;<br>    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> val;<br>    <span class="hljs-keyword">if</span>(which == <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-comment">//寄存器地址映射</span><br>        <span class="hljs-keyword">if</span>(!CCM_CCGR1)&#123;<span class="hljs-comment">//如果是空指针则映射</span><br>            CCM_CCGR1 = ioremap(<span class="hljs-number">0x20C406C</span>, <span class="hljs-number">4</span>);<br>            IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 = ioremap(<span class="hljs-number">0x2290014</span>, <span class="hljs-number">4</span>);<br>            GPIO5_GDIR = ioremap(<span class="hljs-number">0x020AC000</span> + <span class="hljs-number">0x4</span>, <span class="hljs-number">4</span>);<br>            GPIO5_DR = ioremap(<span class="hljs-number">0x020AC000</span> + <span class="hljs-number">0</span>, <span class="hljs-number">4</span>);<br>        &#125;<br><br>        <span class="hljs-comment">//调节GPIO5</span><br>        *CCM_CCGR1 |= (<span class="hljs-number">3</span>&lt;&lt;<span class="hljs-number">30</span>);<br><br>        <span class="hljs-comment">//清除重写</span><br>        <span class="hljs-comment">/* 下面代码是两次读写 */</span><br>        <span class="hljs-comment">// *IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 &amp;= ~(0xf);</span><br>        <span class="hljs-comment">// *IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 |= (5); </span><br>        <span class="hljs-comment">/* 下面是一次读写 */</span><br>        val = *IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3;<br>        val &amp;= ~(<span class="hljs-number">0xf</span>);<br>        val |= (<span class="hljs-number">5</span>);<br>        *IOMUXC_SNVS_SW_MUX_CTL_PAD_SNVS_TAMPER3 = val;<br><br>        <span class="hljs-comment">/* 设置GPIO5 IO03为输出引脚 */</span><br>        *GPIO5_GDIR |= (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">3</span>);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-comment">//操作</span><br><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">board_demo_ctl</span><span class="hljs-params">(<span class="hljs-keyword">int</span> which, <span class="hljs-keyword">char</span> status)</span></span>&#123;<br>    <span class="hljs-keyword">if</span>(which == <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-keyword">if</span>(status)&#123;<br>            <span class="hljs-comment">//引脚输出低电平点灯</span><br>            *GPIO5_DR &amp;= ~(<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">3</span>);<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            *GPIO5_DR |= (<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">3</span>);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">led_operations</span> <span class="hljs-title">board_demo_oper</span> =</span> &#123;<br>    .num = <span class="hljs-number">1</span>,<br>    .init = board_demo_init,<br>    .ctl = board_demo_ctl,<br>&#125;;<br><br><span class="hljs-function">struct led_operations *<span class="hljs-title">get_board_led_opr</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> &amp;board_demo_oper;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>我们操作GIO寄存器实现点灯（低电平）灭灯（高电平）</li>
+</ul>
+<p>Make file当中要进行文件链接：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c">KERN_DIR = /home/pigeon/code/linux/kenrel/ebf-image-builder/ebf_linux_kernel<br>CROSS_COMPILE = arm-linux-gnueabihf-<br>ARCH = arm<br><br>all:<br>	make -C $(KERN_DIR) M=`pwd` ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules<br>	$(CROSS_COMPILE)gcc -o ledtest ledtest.c<br><br>clean:<br>	make -C $(KERN_DIR) M=`pwd` modules clean<br>	rm -rf modules.order<br>	rm -f ledtest<br><br># 多个c文件编译成一个ko<br>temp_led-y := temp_driver.o board_imx6_led.o<br>obj-m += temp_led.o<br></code></pre></td></tr></table></figure>
+
+<h3 id="报错objtool"><a href="#报错objtool" class="headerlink" title="报错objtool"></a>报错<font style="color:rgb(15, 17, 21);background-color:rgb(235, 238, 242);">objtool</font></h3><p>执行make的时候先是报错，找不到temp.driver.c，但是temp.driver.c是存在的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">make[<span class="hljs-number">2</span>]: *** No rule to make target <span class="hljs-string">&#x27;/home/pigeon/code/linux/driver/drive_template/temp_driver.o&#x27;</span>, <br>    needed by <span class="hljs-string">&#x27;/home/pigeon/code/linux/driver/drive_template/temp_led.o&#x27;</span>.  Stop.<br></code></pre></td></tr></table></figure>
+
+<p>然后更加makefile</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c"># 多个c文件编译成一个ko<br><span class="hljs-comment">// temp_led-y := temp_driver.o board_imx6_led.o</span><br><span class="hljs-comment">// obj-m += temp_led.o</span><br>#单独编译<br>obj-m := temp_driver.o<br></code></pre></td></tr></table></figure>
+
+<p>报错没有找到objtool，objtool 是 Linux 内核中的一个静态分析工具，用于检查栈帧、未初始化变量等。某些内核配置（如 CONFIG_STACK_VALIDATION）会要求编译时使用 objtool。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//解决方案：进入内核源码，生成objtool</span><br>cd /home/ebf_linux_kernel<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- tools/objtool<br></code></pre></td></tr></table></figure>
+
+<p>安装好之后重新编译即可</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Linux编程入门</div>
+      <div>http://yoursite.com/2026/03/03/Linux编程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/03/12/SOC%E5%BC%80%E5%8F%91%E6%9D%BF%E7%BC%96%E7%A8%8B/" title="SOC编程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SOC编程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fpage%E5%AD%97%E6%AE%B5/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

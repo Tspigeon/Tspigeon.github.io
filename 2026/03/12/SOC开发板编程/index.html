@@ -16,36 +16,21 @@
   <meta name="author" content="Tspigeon">
   <meta name="keywords" content="">
   
-    <meta name="description" content="微信小程序page字段 ​                                                                                                  （图一） app.json中的page字段和资源管理器中的page字段相对应。 图一中的demo1 便是新加的page字段  ​">
+    <meta name="description" content="SOC编程第一个程序使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板 连接上开发板 给开发板插网线 之后使用 _ifconfig _查看ip 查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输 我们编写经典程序 hello world，本地进行交叉编译 版本问题：方法1： 如果开发板有配套教程可以进入配套教程中找找有没有符合开发板Linux版">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tspigeon &#39;s blog">
-<meta property="og:url" content="http://yoursite.com/2025/11/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8Fpage%E5%AD%97%E6%AE%B5/index.html">
+<meta property="og:title" content="SOC编程">
+<meta property="og:url" content="http://yoursite.com/2026/03/12/SOC%E5%BC%80%E5%8F%91%E6%9D%BF%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Tspigeon &#39;s blog">
-<meta property="og:description" content="微信小程序page字段 ​                                                                                                  （图一） app.json中的page字段和资源管理器中的page字段相对应。 图一中的demo1 便是新加的page字段  ​">
+<meta property="og:description" content="SOC编程第一个程序使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板 连接上开发板 给开发板插网线 之后使用 _ifconfig _查看ip 查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输 我们编写经典程序 hello world，本地进行交叉编译 版本问题：方法1： 如果开发板有配套教程可以进入配套教程中找找有没有符合开发板Linux版">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/page字段.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/page字段2.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/window字段.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/每个页面的配置文件.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/view和text元素.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/check属性.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/数据绑定.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/循环1.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/循环2.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/列表循环3.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/block标签.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/条件渲染.png">
-<meta property="og:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/条件渲染2.png">
-<meta property="article:published_time" content="2025-11-14T09:06:50.784Z">
-<meta property="article:modified_time" content="2025-11-14T09:14:55.086Z">
+<meta property="article:published_time" content="2026-03-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-15T05:07:45.497Z">
 <meta property="article:author" content="Tspigeon">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="d:/新建文件夹/文件/GitHub/pic/WeChat/page字段.png">
   
   
   
-  <title>Tspigeon &#39;s blog</title>
+  <title>SOC编程 - Tspigeon &#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -214,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="SOC编程"></span>
           
         </div>
 
@@ -225,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-11-14 17:06" pubdate>
-          2025年11月14日 下午
+        <time datetime="2026-03-12 00:00" pubdate>
+          2026年3月12日 凌晨
         </time>
       </span>
     
@@ -237,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          613 字
+          3.7k 字
         
       </span>
     
@@ -281,44 +266,96 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">SOC编程</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="微信小程序page字段"><a href="#微信小程序page字段" class="headerlink" title="微信小程序page字段"></a>微信小程序page字段</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\page字段.png" srcset="/img/loading.gif" lazyload alt="page字段"></p>
-<p>​                                                                                                  <em>（图一）</em></p>
-<p>app.json中的page字段和资源管理器中的page字段相对应。</p>
-<p>图一中的demo1 便是新加的page字段</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\page字段2.png" srcset="/img/loading.gif" lazyload alt="page字段2"></p>
-<p>​                                                                                                        （<em>图二</em>）</p>
-<p>图二中的的demo2在后面加入，便排在demo1后</p>
-<p><strong>注意！显示问题：在page字段中的顺序便是页面在小程序中的顺序，如此时首页便是demo2</strong></p>
-<h1 id="window字段"><a href="#window字段" class="headerlink" title="window字段"></a>window字段</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\window字段.png" srcset="/img/loading.gif" lazyload alt="window字段"></p>
-<p>navigationBar字段中的三个代码对应图中的三块区域，除了这些代码之外，还有其他的配置项，如background的配置等等</p>
-<h1 id="每个页面的json文件"><a href="#每个页面的json文件" class="headerlink" title="每个页面的json文件"></a>每个页面的json文件</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\每个页面的配置文件.png" srcset="/img/loading.gif" lazyload alt="每个页面的配置文件"></p>
-<p>每个页面的json文件可以加入每个页面的不同样式</p>
-<h1 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\view和text元素.png" srcset="/img/loading.gif" lazyload alt="view和text元素"></p>
-<p><code>&lt;view&gt;</code>和<code>&lt;text&gt;</code>标签</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\check属性.png" srcset="/img/loading.gif" lazyload alt="check属性"></p>
-<p><em>checkbox</em>相当于复选框（多选题的选择框就是他）其中有<em>checked</em>属性设置为“<strong>true</strong>”是默认勾选 </p>
-<h1 id="数据绑定"><a href="#数据绑定" class="headerlink" title="数据绑定"></a>数据绑定</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\数据绑定.png" srcset="/img/loading.gif" lazyload alt="数据绑定"></p>
-<p>1.使用插值语句进行wxml文件和js文件的交互—（类似于vue）</p>
-<p>2.如果要使用object中的一个属性就需要用具体到那个属性上<code>person.age</code></p>
-<p>3.bool类型一定要注意空格—会导致识别失败</p>
-<h1 id="插入表达式"><a href="#插入表达式" class="headerlink" title="插入表达式"></a>插入表达式</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p>类似于vue中的插值语法</p>
-<h1 id="循环（wx-for）"><a href="#循环（wx-for）" class="headerlink" title="循环（wx-for）"></a>循环（wx-for）</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\循环1.png" srcset="/img/loading.gif" lazyload alt="循环1"></p>
-<p>将list中的小对象分别展示出来</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\循环2.png" srcset="/img/loading.gif" lazyload alt="循环2"></p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\列表循环3.png" srcset="/img/loading.gif" lazyload alt="列表循环3"></p>
-<p>代码效果在图一</p>
-<p>另外还有block标签：</p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\block标签.png" srcset="/img/loading.gif" lazyload alt="block标签"></p>
-<p>block标签类似于标签的占位符，如果你不想要view中再嵌套一个view去实现你的循环，就可以使用block标签实现替代，<em>block标签本来是没有任何效果的</em></p>
-<h1 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h1><p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\条件渲染.png" srcset="/img/loading.gif" lazyload alt="条件渲染"></p>
-<p><img src="D:\新建文件夹\文件\GitHub\pic\WeChat\条件渲染2.png" srcset="/img/loading.gif" lazyload alt="条件渲染2"></p>
-<p><strong>hidden不要和样式display一起连用</strong>，隐藏属性的代码会被覆盖</p>
+                <h1 id="SOC编程"><a href="#SOC编程" class="headerlink" title="SOC编程"></a>SOC编程</h1><h1 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h1><p>使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板</p>
+<p>连接上开发板 给开发板插网线 之后使用 _ifconfig _查看ip</p>
+<p>查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输</p>
+<p>我们编写经典程序 hello world，本地进行交叉编译</p>
+<h2 id="版本问题："><a href="#版本问题：" class="headerlink" title="版本问题："></a>版本问题：</h2><p><strong>方法1：</strong></p>
+<p><strong>如果开发板有配套教程</strong>可以进入配套教程中找找有没有符合开发板Linux版本的源代码和交叉编译工具链，将教程中的交叉编译工具链加入环境变量</p>
+<p>然后对教程中的linux源代码进行交叉编译，就可以得到了可以运行在arm开发板上面的Linux源代码文件</p>
+<p>添加到环境变量</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//编辑系统配置文件</span><br>nano ~/.bashrc<br><span class="hljs-comment">//在最后一行加入</span><br><span class="hljs-keyword">export</span> PATH=/your_path/gcc-linaro<span class="hljs-number">-7.5</span><span class="hljs-number">.0</span><span class="hljs-number">-2019.12</span>-x86_64_arm-linux-gnueabihf/bin:$PATH<br></code></pre></td></tr></table></figure>
+
+<p><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;nano&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);">：按 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;Ctrl + O&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 然后回车保存，再按 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;Ctrl + X&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 退出。</font></p>
+<p>然后重新加载该文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">source ~/.bashrc<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>方法2：</strong></p>
+<p>**如果没有配套教程就需要在手动安装编译环境<br>**由于我的ubuntu是22版本，开发板是debian10buster，glibc的版本差异导致Ubuntu编译过的程序无法在开发板上运行</p>
+<p>所以我首先在Ubuntu上装了docker 使用docker<strong>拉取了debian10</strong>的镜像，执行以下操作</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c">sudo cp /etc/apt/sources.<span class="hljs-built_in">list</span> /etc/apt/sources.<span class="hljs-built_in">list</span>.bak<br><br># <span class="hljs-number">2.</span> 写入归档源<br>echo <span class="hljs-string">&quot;deb http://archive.debian.org/debian buster main contrib non-free&quot;</span> | sudo tee /etc/apt/sources.<span class="hljs-built_in">list</span><br>echo <span class="hljs-string">&quot;deb http://archive.debian.org/debian-security buster/updates main contrib non-free&quot;</span> | sudo tee -a /etc/apt/sources.<span class="hljs-built_in">list</span><br><br># <span class="hljs-number">3.</span> 更新源（允许过期）<br>sudo apt-get update --allow-releaseinfo-change<br><br># <span class="hljs-number">4.</span> 安装完整开发环境<br>sudo apt-get install gcc-arm-linux-gnueabihf g++-arm-linux-gnueabihf<br></code></pre></td></tr></table></figure>
+
+<p>执行完毕之后进行交叉编译</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">arm-linux-gnueabihf-gcc -o helloworld helloworld.c<br></code></pre></td></tr></table></figure>
+
+<p>把编译完成的代码通过ssh放到开发板的目录下，添加可执行权限</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">chmod +x helloworld<br></code></pre></td></tr></table></figure>
+
+<p>然后执行</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c">./helloworld<br><span class="hljs-comment">//打印 hello world</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="multiple-definition-of-‘yylloc’"><a href="#multiple-definition-of-‘yylloc’" class="headerlink" title="multiple definition of ‘yylloc’"></a>multiple definition of ‘yylloc’</h2><p><strong><font style="color:rgb(6, 10, 38);">经典的 Flex/Bison 版本兼容性问题</font></strong></p>
+<p><font style="color:rgb(6, 10, 38);">因为我的Linux内核是4.x版本，但是bison是3.8版本导致不兼容</font></p>
+<p><font style="color:rgb(6, 10, 38);">以下是编译源代码的步骤</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"># <span class="hljs-number">1.</span> 进入内核目录<br>cd /home/pigeon/code/linux/kernel/ebf-image-builder/ebf_linux_kernel<br><br># <span class="hljs-number">2.</span> 清理构建环境 (非常重要！)<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- mrproper<br><br># <span class="hljs-number">3.</span> 重新配置 (根据你的板子选择，这里用 versatile 做示例)<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- yourconfig<br><br># <span class="hljs-number">4.</span> 再次尝试准备模块环境<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_prepare<br></code></pre></td></tr></table></figure>
+
+<p>此时会报错 _multiple definition of `yylloc’，_然后</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">cd ./scripts/dtc<br>vim dtc-parser.tab.c<br><span class="hljs-comment">//将其中1177行，将yylloc注释掉</span><br></code></pre></td></tr></table></figure>
+
+<p>具体操作参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/432591735">注释yylloc</a></p>
+<p>然后再执行 **make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_prepare **就可以成功编译了</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//编译指令 生成内存映像</span><br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j$(nproc)<br><span class="hljs-comment">//安装指令 然后就可以在 /lib/modules中查看</span><br>sudo make modules_install<br></code></pre></td></tr></table></figure>
+
+<p>生成内存映像的时候如果出现 <em>/bin/sh: 1: lzop: not found</em></p>
+<p>安装一下 <em>sudo apt-get install lzop</em></p>
+<p><strong>注意！！：</strong></p>
+<ul>
+<li><strong>对bison进行降级的办法行不通 因为高版本的linux内核不支持低版本的bison</strong></li>
+<li><strong>更不能对低版本的内核源码打补丁适应高版本的内核 这样可能出现内核污染 不能再交叉编译代码</strong></li>
+</ul>
+<h2 id="config问题：ARMv6-vs-ARMv7"><a href="#config问题：ARMv6-vs-ARMv7" class="headerlink" title="config问题：ARMv6 vs. ARMv7"></a>config问题：ARMv6 vs. ARMv7</h2><p><font style="color:rgb(15, 17, 21);">ARMv6 与 ARMv7 是 ARM 处理器架构的两个主要版本。它们在指令集、特性、性能等方面有显著差异，但也存在一定的兼容性。</font></p>
+<p><font style="color:rgb(15, 17, 21);"></font></p>
+<p><font style="color:rgb(15, 17, 21);">如果驱动程序是ARMv6但是开发板是ARMv7将会出现insmod的时候报错</font></p>
+<p><font style="color:rgb(15, 17, 21);">所以在安装驱动前检查架构版本：</font></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//开发板上运行 查看arm架构版本</span><br>uname -a<br><br><span class="hljs-comment">//模块目录运行 查看驱动适配的架构版本-其实是内核config的架构版本</span><br>modinfo xxx.ko<br><span class="hljs-comment">// 关注 # vermagic 字段 </span><br></code></pre></td></tr></table></figure>
+
+<p><em><font style="color:rgb(15, 17, 21);">vermagic：</font></em><font style="color:rgb(15, 17, 21);">vermagic 是 Linux 内核模块（.ko 文件）中的一个版本魔数（Version Magic）字符串。</font></p>
+<p><font style="color:rgb(15, 17, 21);"></font></p>
+<p>如果不一致执行以下代码进行<strong>内核配置修改</strong></p>
+<p>在执行编译配置的时候，其实这个是告诉内核我要用什么配置编译你，启动那些选项</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- yourconfig<br></code></pre></td></tr></table></figure>
+
+<p><strong>yourconfig</strong>这个配置文件不能乱选，一个是参考开发板手册</p>
+<p>手册找不到的话 我是野火imu6 mini的板子，</p>
+<p>_ebf-image-builder/ebf_linux_kernel _目录下会有一个_made_deb.sh _</p>
+<p>如果可以执行的话 make mrproper 清空一下之前的安装痕迹 然后 <em>sh made_deb.sh</em></p>
+<p>如果sh不能执行，就查看sh文件里面的 _make ${build_opts}  _<em><strong>npi_v7_defconfig</strong></em></p>
+<p>然后我们这样设置配置：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- npi_v7_defconfig<br></code></pre></td></tr></table></figure>
+
+<p>然后会显示 _config write to .config _此时进入内核目录下查看 .config文件</p>
+<p>搜索：_CONFIG_ARCH_MULTI_V6，_如果显示以下配置或者只显示 _ CONFIG_ARCH_MULTI_V7=y _就是正确的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"># CONFIG_ARCH_MULTI_V6 is <span class="hljs-keyword">not</span> <span class="hljs-built_in">set</span><br>CONFIG_ARCH_MULTI_V7=y<br>CONFIG_ARCH_MULTI_V6_V7=y<br></code></pre></td></tr></table></figure>
+
+<p>然后<strong>makefile</strong>这样写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs c">KERN_DIR = /home/pigeon/code/linux/kenrel/ebf-image-builder/ebf_linux_kernel<br>CROSS_COMPILE = arm-linux-gnueabihf-<br>ARCH = arm<br>#设置开发板架构和芯片类型（因为armv7架构下有三种芯片不同配置）<br>ccflags-y := -march=armv7-a -mcpu=cortex-a9<br><br>all:<br>	make -C $(KERN_DIR) M=`pwd` ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules<br>	$(CROSS_COMPILE)gcc -o hellotest hellotest.c<br><br>clean:<br>	make -C $(KERN_DIR) M=<span class="hljs-string">&#x27;pwd&#x27;</span> modules clean<br>	rm -rf modules.order<br>	rm -f hellotest<br><br>obj-m += hellodriver.o<br></code></pre></td></tr></table></figure>
+
+<p>主要是想强调：</p>
+<ul>
+<li>KERN_DIR：内核目录，我的Linux头文件从哪里来</li>
+<li>CROSS_COMPILE：交叉编译链用哪一个</li>
+<li>ARCH：架构是什么架构</li>
+</ul>
+<p>或者<strong>通过设置环境变量的方式</strong>就make自动使用交叉编译arm</p>
 
                 
               </div>
@@ -326,6 +363,27 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="category-chain-item">嵌入式</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>
@@ -336,8 +394,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>http://yoursite.com/2025/11/14/微信小程序page字段/</div>
+      <div>SOC编程</div>
+      <div>http://yoursite.com/2026/03/12/SOC开发板编程/</div>
     </div>
     <div class="license-meta">
       
@@ -349,7 +407,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年11月14日</div>
+          <div>2026年3月12日</div>
         </div>
       
       
@@ -381,9 +439,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/03/03/Linux%E7%BC%96%E7%A8%8B/" title="Linux编程入门">
+                      <a href="/2026/03/18/Linux%E5%86%85%E6%A0%B8/" title="Linux内核机制的学习博客">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux编程入门</span>
+                        <span class="hidden-mobile">Linux内核机制的学习博客</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -391,8 +449,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/10/29/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" title="微服务">
-                        <span class="hidden-mobile">微服务</span>
+                      <a href="/2026/03/03/Linux%E7%BC%96%E7%A8%8B/" title="Linux编程入门">
+                        <span class="hidden-mobile">Linux编程入门</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
