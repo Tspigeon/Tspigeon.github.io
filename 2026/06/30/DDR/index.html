@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="DDR-计算机中的黄金">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DDR基础知识">
+<meta property="og:url" content="http://yoursite.com/2026/06/30/DDR/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="DDR-计算机中的黄金">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975504507-17b96a3c-35a3-4082-b23a-bed9450f870f.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975526245-767afcfb-9625-4d14-b7da-8c209b2ae989.png">
+<meta property="article:published_time" content="2026-06-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-12T15:15:29.987Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="SSD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975504507-17b96a3c-35a3-4082-b23a-bed9450f870f.png">
+  
+  
+  
+  <title>DDR基础知识 - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DDR基础知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-30 00:00" pubdate>
+          2026年6月30日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">DDR基础知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="DDR"><a href="#DDR" class="headerlink" title="DDR"></a>DDR</h1><h2 id="what-is-DDR"><a href="#what-is-DDR" class="headerlink" title="what is DDR?"></a>what is DDR?</h2><p>DDR是DRAM的一种，特点是DDR的IO数据频率是时钟频率的两倍。</p>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><p>DDR最主要的存储结构是：ch→ rank → die/chip → Bank Group(BG) → Bank → 行Row → 列Column → 存储Cell</p>
+<ol>
+<li>Channel（通道）<br>一个主板上可能有多个插槽，这些槽位分成一组或多组，组内共享物理信号线。简单理解，一个通道对应一个DDR控制器（DDRC），每个通道拥有一组地址线、控制线和数据线。CPU外核或北桥如果有两个内存控制器，就可以支持双通道，从而使内存带宽理论上增加一倍。</li>
+<li>DIMM（双列直插式存储模块）<br>DIMM是主板上的一个内存插槽（Dual Inline Memory Module）。一个Channel可以包含多个DIMM。</li>
+<li>Rank（列）<br>Rank是一组内存芯片的集合。当芯片位宽乘以芯片数量等于内存总位宽（通常为64bit）时，这些芯片就组成一个Rank。例如，一般每个芯片位宽是8bit，内存条每面8个芯片，那么这一面就构成一个Rank。同一个Rank中的所有芯片协作来共同读取同一个Address。为了提高容量，有些双面内存条会有两个Rank，通过一根地址线来区分当前要访问的是哪一组。</li>
+<li>Chip（芯片/颗粒）<br>Chip即是单个DDR存储颗粒。多个Chip排列在内存条上，共同组成一个Rank。</li>
+<li>Bank（逻辑块）<br>Bank是一个逻辑上的概念。一个Chip内部通常包含多个Bank（例如DDR3芯片通常由8个Bank组成）。每次读数据时，会选定一个Rank，然后同时读取每个Chip上的同一个Bank。</li>
+<li>Row（行）与 Column（列）<br>这是存储阵列（Memory Array）的最底层物理结构。Bank可以理解为一个二维的存储矩阵（类似一个大方格子阵），由许多行（Row）和列（Column）组成。存取某个数据时，只需要告知是哪一行哪一列即可，这也是内存能够实现“随机存取”的核心原因。</li>
+<li>cell是DDR的单个存储单元，一个cell存储1bit信息。cell的组成是一个CMOS加一个电容，CMOS控制充放电，电容负责存储信息。</li>
+</ol>
+<p>电路组织结构还有：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975504507-17b96a3c-35a3-4082-b23a-bed9450f870f.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol>
+<li>bitline：位线，位线是连接cell的gate级。之所以叫bitline是因为read操作可以通过bitline读取1bit的数据。</li>
+<li>wordline：字线，字线连接cell的source级。wordline可以在write操作的时候和bitline一起控制写多个bit的数据，所以叫wordline。</li>
+</ol>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><h3 id="read操作"><a href="#read操作" class="headerlink" title="read操作"></a>read操作</h3><p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975526245-767afcfb-9625-4d14-b7da-8c209b2ae989.png" srcset="/img/loading.gif" lazyload alt="img"><br>read操作通过bitline实现，接收到read信号之后，</p>
+<ol>
+<li>bitline会通1/2 满电容电压的电压</li>
+<li>要读取cell的wordline加高电平导通</li>
+<li>此时bitline的电压会因为电容是否慢电出现升高还是降低</li>
+<li>电压变化传导到bitline模块放大器（图中蓝色模块），放大器会放大bitline上出现变化的电压，并保存电压变化。</li>
+<li>由于bitline导通可能出现的对cell电容的充放电，所以在读取完成之后还需要对读取数据进行刷新重写（刷新重写的数据来源于放大器中存储的信号）。</li>
+</ol>
+<h3 id="write操作"><a href="#write操作" class="headerlink" title="write操作"></a>write操作</h3><p>write操作通过wordline和bitline实现<br>写“1”（充电）：先将Bitline预充电至电源电压VDD，再激活对应Wordline，使晶体管导通，电流从Bitline经晶体管流入电容，使其充电至高电平。<br>写“0”（放电）：先将Bitline拉低至地电位GND，再激活Wordline，使晶体管导通，电容中的电荷经晶体管流向Bitline并被泄放，最终电容电压接近0V。</p>
+<h2 id="DDR系列"><a href="#DDR系列" class="headerlink" title="DDR系列"></a>DDR系列</h2><h3 id="DDR4"><a href="#DDR4" class="headerlink" title="DDR4"></a>DDR4</h3><h3 id="DDR5"><a href="#DDR5" class="headerlink" title="DDR5"></a>DDR5</h3><p><strong>片上ECC：</strong></p>
+<ul>
+<li>片上ECC（On-Die ECC）是一种在DRAM芯片内部实现错误检查和纠正（ECC）的技术，旨在提升内存数据存储的可靠性，尤其适用于先进工艺节点下误码率上升的场景</li>
+<li><strong>写入过程</strong>：</li>
+</ul>
+<ol>
+<li>控制器将需要写入的数据发送给DRAM芯片。</li>
+<li>DRAM芯片内部根据写入的数据进行计算，生成对应的ECC码。</li>
+<li>DRAM芯片将写入的数据和对应的ECC码保存在存储阵列中。</li>
+</ol>
+<ul>
+<li><strong>读取过程</strong>：</li>
+</ul>
+<ol>
+<li>DRAM芯片将数据和对应的ECC码读取出来。</li>
+<li>DRAM芯片根据读取出的数据进行计算，生成用于校验的ECC码。</li>
+<li>DRAM芯片将读取出的ECC码和计算生成的ECC码进行比较。若相同，则表明读取出的数据没有发生错误，数据将直接传输给控制器；若不同，则表明读取出的数据存在错误，DRAM芯片将对数据进行单bit纠错。</li>
+</ol>
+<ul>
+<li>与<strong>边带ECC</strong>的对比</li>
+</ul>
+<p>实现方式：On-Die ECC技术的ECC码计算生成和比较都在DRAM芯片内部进行，而边带ECC技术则通过DDR控制器（封装在CPU中或者在主板上）之间的辅助通信通道来实现纠错功能。</p>
+<p>使用场景：On-Die ECC技术更适用于对可靠性要求极高且对性能影响敏感的场景，如服务器、高性能计算和嵌入式系统等。而边带ECC技术则更适用于需要更高纠错能力且对性能影响相对不敏感的场景。</p>
+<p>优缺点：On-Die ECC技术具有集成度高、性能影响小等优点，但可能无法定位系统级错误。边带ECC技术则具有更高的纠错能力，但会增加通信开销和系统复杂性。</p>
+<p><strong>均衡技术DFE：</strong></p>
+<p>随着DDR5内存数据速率的提升，信号在传输过程中更容易受到码间干扰（ISI）的影响，导致信号失真和误码率上升。为了解决这一问题，DDR5引入了均衡技术，通过补偿信号在传输过程中的损失和反射，提高信号的完整性和可靠性。</p>
+<p>DFE是一种基于反馈的均衡技术，它通过以下步骤来补偿码间干扰：</p>
+<ol>
+<li><strong>信号接收与初步处理</strong>：</li>
+</ol>
+<ul>
+<li>接收端首先接收来自发送端的信号。</li>
+<li>前端的增益控制（Gain）确保当前信号位与所需矫正的码间干扰（ISI）保持一致关系。</li>
+</ul>
+<ol>
+<li><strong>决策与反馈</strong>：</li>
+</ol>
+<ul>
+<li>接收端对当前接收到的比特进行决策，判断其是1还是0。</li>
+<li>将决策结果反馈到DFE模块中，用于预测和补偿后续比特可能受到的码间干扰。</li>
+</ul>
+<ol>
+<li><strong>补偿与输出</strong>：</li>
+</ol>
+<ul>
+<li>DFE模块根据反馈的决策结果，对后续比特进行补偿，消除码间干扰的影响。</li>
+<li>经过补偿后的信号被输出到后续的处理模块中，进行进一步的处理和使用。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SSD/" class="category-chain-item">SSD</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSD/">#SSD</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DDR基础知识</div>
+      <div>http://yoursite.com/2026/06/30/DDR/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/30/ARM%E5%BC%80%E5%8F%91/" title="ARM开发">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ARM开发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/06/SSD/" title="SSD basic">
+                        <span class="hidden-mobile">SSD basic</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

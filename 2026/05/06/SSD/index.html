@@ -1,0 +1,1021 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://imgse.com/i/p9yX0tP">
+  <link rel="icon" href="https://imgse.com/i/p9yX0tP">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tspigeon">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="SSD从入门到精通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSD basic">
+<meta property="og:url" content="http://yoursite.com/2026/05/06/SSD/index.html">
+<meta property="og:site_name" content="Tspigeon &#39;s blog">
+<meta property="og:description" content="SSD从入门到精通">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1782186106900-de527ba2-dd3d-4573-80ad-8e572f85e3eb.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783307793031-824ae989-453a-431b-ac0c-14b7ee9154a2.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975628731-9114a78c-cd9b-4f08-a042-21b5144b652e.png">
+<meta property="og:image" content="http://yoursite.com/2026/05/06/SSD/FILES/SSD%20Basic.md/img-20260602181035.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975634003-ab2dfba8-3677-4e20-bfe1-b60ab63252d9.png">
+<meta property="og:image" content="http://yoursite.com/2026/05/06/SSD/FILES/SSD%20Basic.md/img-20260602181457.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/8031ff7d7f62495c4911049029366f27.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/f24879520b4a6b34aaf6dd9dff2b299e.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/__latex/fe59e0d59f208942478562f76adfc71c.svg">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783500473686-629eac5f-9c81-4c3c-a928-d794ad1e8d5c.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780985412011-10fae5a1-39f8-4ee6-9a40-4c020208426a.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783503769505-39c41386-c26c-4505-8d0a-c6f37568c6b3.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783506488826-6eefb400-9966-420c-8020-9544c9f2e66b.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783561519769-b3c383ab-ac7c-4061-894b-ac1b334b85c9.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783562759899-4f26960f-683e-46e4-8918-69dcd777fad9.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783563230570-71469cce-635a-4839-9ba5-2e9d1e5eb211.png">
+<meta property="article:published_time" content="2026-05-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-12T15:09:36.063Z">
+<meta property="article:author" content="Tspigeon">
+<meta property="article:tag" content="SSD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2026/png/35282784/1782186106900-de527ba2-dd3d-4573-80ad-8e572f85e3eb.png">
+  
+  
+  
+  <title>SSD basic - Tspigeon &#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yoursite.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>No pigeon</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s1.ax1x.com/2023/05/12/p9yX20s.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="SSD basic"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-06 00:00" pubdate>
+          2026年5月6日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.1k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">SSD basic</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="SSD-Basic"><a href="#SSD-Basic" class="headerlink" title="SSD Basic"></a>SSD Basic</h1><h2 id="FE前端"><a href="#FE前端" class="headerlink" title="FE前端"></a>FE前端</h2><h3 id="1-VCMD"><a href="#1-VCMD" class="headerlink" title="1 VCMD"></a>1 VCMD</h3><p>全称 Vendor CMD，简称VU命令。指的是<strong>厂商自定义命令</strong>（Vendor Undefined/Specific Command）</p>
+<ol>
+<li><strong>固件写入与保护机制</strong>：SSD主控需要固件来驱动，出厂前厂商必须通过 Vendor CMD 将固件（包含运行温度检测、写入保护等指令）写入主控。例如，当环境温度超出标准范围时，SSD会触发写入保护机制以防止数据丢失。</li>
+<li><strong>出厂质量检测</strong>：它为出厂前的质量检测提供了调试和检测的快速通道。当SSD完成出厂检测后，该接口便功成身退，由于它不具备像 SATA/PCIe 接口那样常规传输数据的功能，因此常被误解为预留的“后门”，但实际上它是量产的必要步骤。</li>
+<li><strong>日常运维与调试</strong>：在系统运行中，主机可以通过发送 VU 命令让 SSD 执行特定操作，例如获取或清除 SSD 的运行日志、读取功耗、获取固件版本号等。在 Linux 环境下，常通过 <code>nvme admin-passthru</code> 等命令向设备发送自定义的 Admin Command 来进行底层调试。</li>
+</ol>
+<h3 id="2-DST模块"><a href="#2-DST模块" class="headerlink" title="2 DST模块"></a>2 DST模块</h3><p>设备自检用来对设备关键功能或状态进行快速或详细检查。在nvme协议中，dst包含dst测试启动命令和dst信息获取命令。 </p>
+<p>Device Self-test command命令 设备自检命令</p>
+<ol>
+<li><p>dst命令仅仅使用sqe中dword 10域位，用来指定当前操作码：启动一个short dst、启动一个ext dst、vendor指定类型、abort dst oper。</p>
+</li>
+<li><p>dst命令对于namespace的要求。</p>
+</li>
+<li><p>0h：dst操作不包含任何命名空间，控制器纳入dst测试空间。</p>
+</li>
+<li><p>1h~fffffffeh：指定一个有效nsid纳入dst测试，如果nsid无效或者未激活返回响应错误。</p>
+</li>
+<li><p>ffffffffh：dst应该涵盖所有控制器可访问的激活的命名空间。</p>
+</li>
+</ol>
+<p>DST command命令执行流程是通过状态机实现的，在通过了命令参数校验之后 创建状态机并开始执行，状态机的参数如下： </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1782186106900-de527ba2-dd3d-4573-80ad-8e572f85e3eb.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>需要注意的是，每次状态机切换的时候都会执行电容巡检（掉电保护的电容），dst执行完成之后，会将信息输出到dst log和smart log(实时监控并记录SSD的运行状态、磨损程度及错误情况)。</p>
+<p>Device Self-test Log命令</p>
+<p>此命令可以获取当前进行中的dst命令的状态和完成进度，也可以获取最近20次dst测试结果。</p>
+<h2 id="硬件模块"><a href="#硬件模块" class="headerlink" title="硬件模块"></a>硬件模块</h2><h3 id="DAC"><a href="#DAC" class="headerlink" title="DAC"></a>DAC</h3><p>DAC实际上就是一个环形缓冲区，软件和硬件各自维护一个头尾指针</p>
+<p>DAC 分为TQ和RQ</p>
+<p>TQ:  固件维护tail， DAC维护head， 用于发送命令到硬件加速模块</p>
+<p>RQ:  固件维护head， DAC维护tail， 用于接收硬件加速模块的处理结果</p>
+<p>(其实相当于head 为out， tail为in)</p>
+<p>主要涉及到一个问题就是APB, 先解释一下什么是APB：</p>
+<p>APB（Advanced Peripheral Bus）是一种广泛应用于集成电路（特别是片上系统SoC）中的低功耗、低带宽总线协议，属于ARM公司提出的AMBA（Advanced Microcontroller Bus Architecture）总线架构的一部分</p>
+<p>APB主要用于以下场景：</p>
+<ul>
+<li><strong>连接低速外设</strong>：如定时器、中断控制器、GPIO等。</li>
+<li><strong>配置IP模块的寄存器</strong>：通过APB总线访问和配置各种IP模块的控制寄存器。</li>
+<li><strong>SoC设计中的系统级通信</strong>：作为低速总线，与高速总线（如AHB或AXI）协同工作，通过桥接器连接。</li>
+</ul>
+<p>所以，我们可以知道APB是一个低速总线， 那么访问APB的时延就比访问AXI等高速总线大多了，这也是为什么DAC，一般会配置成让DAC将其维护的头或者尾指针推送到DTCM的方式，所以软件可以在低延时情况下访问</p>
+<p>DFX_DacTqPrintMgt（qid） 查看TQ 管理信息</p>
+<p>DFX_DacRqPrintMgt（qid）查看RQ管理信息</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783307793031-824ae989-453a-431b-ac0c-14b7ee9154a2.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="CMB"><a href="#CMB" class="headerlink" title="CMB"></a>CMB</h3><p>位于设备端，由 SSD 控制器管理，用于加速 I/O 命令提交和数据缓冲。</p>
+<ul>
+<li><strong>降低延迟</strong>：传统模式下，主机向 SSD 提交 I/O 命令需通过 DMA 将命令写入设备内存，再触发门铃寄存器通知设备。若将 Submission Queue（提交队列）放置在 CMB 中，主机只需一次 PCIe 写操作即可完成命令提交，设备可直接从本地 CMB 读取命令，省去一次 DMA 传输，显著降低 I/O 延迟。</li>
+</ul>
+<p><strong>硬件支持</strong>：SSD 控制器需在 PCIe 配置空间中声明支持 CMB（通过 CAP.CMBS 位），并提供 CMBLOC（位置）和 CMBSZ（大小）寄存器供主机查询和配置。</p>
+<p><strong>主机启用</strong>：操作系统或驱动程序需设置 CMDMSC.CRC 位以启用 CMB，并根据 CMBLOC/CMBSZ 将其映射到虚拟地址空间。</p>
+<p><strong>应用场景</strong>：常用于高性能数据库、实时计算、AI 训练等对 I/O 延迟敏感的场景；也可作为 FTL（闪存转换层）元数据缓存，加速地址翻译和垃圾回收操作。</p>
+<h3 id="HMB"><a href="#HMB" class="headerlink" title="HMB"></a>HMB</h3><p>位于主机端，由主机内存提供，用于无 DRAM 的 SSD 存储 FTL 表等元数据，依赖主机内存带宽。</p>
+<h3 id="eFuse"><a href="#eFuse" class="headerlink" title="eFuse"></a>eFuse</h3><p>eFuse (Electronic Fuse, 电子熔丝) 是芯片内部的一种一次性可编程存储器，通过熔断熔丝的方式永久存储数据。一旦写入（从 0 变为 1），就无法再修改。</p>
+<p>主要用于写入一些出厂就固化的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs plain">typedef union &#123;<br>struct &#123;<br>u32 dieIdVer : 3; // Die 版本<br>u32 foundryId : 4; // 晶圆厂 ID<br>u32 waferId : 5; // 晶圆 ID<br>u32 xAxis : 9; // X 坐标<br>u32 yAxis : 9; // Y 坐标<br>u32 year : 6; // 生产年份<br>u32 month : 4; // 生产月份<br>u32 burnInFlag : 1; // 老化测试标志<br>u32 tsensorOffset : 11;// 温度传感器校值<br>// ... 更多测试和校准参数<br>&#125;;<br>&#125; U_EFUSE_VAL_ATE_MAP;<br></code></pre></td></tr></table></figure>
+
+<p>还有安全信息：RSA公钥，密钥版本</p>
+<p>调试信息：JTAG Boot UART串口锁定</p>
+<p>硬件配置信息：PLL时钟配置</p>
+<p>应用场景：</p>
+<ul>
+<li><p>安全启动：芯片上电时，BootROM 从 eFuse 读取 RSA 公钥哈希，验证 Bootloader 签名</p>
+</li>
+<li><p>防回滚：通过 FW_SEC_VER_ID 防止降级到有漏洞的旧固件</p>
+</li>
+<li><p>生命周期管理：</p>
+</li>
+<li><p>制造阶段：JTAG/UART 开放</p>
+</li>
+<li><p>量产阶段：烧录 JTAG_LOCK / UART_LOCK，关闭调试接口</p>
+</li>
+<li><p>芯片溯源：通过 ATE 字段追踪每颗芯片的生产批次、位置、测试结果</p>
+</li>
+</ul>
+<h2 id="命令解读"><a href="#命令解读" class="headerlink" title="命令解读"></a>命令解读</h2><h3 id="Trim命令"><a href="#Trim命令" class="headerlink" title="Trim命令"></a>Trim命令</h3><p>由于NAND Flash擦后写特性，所以需要及时标记无效数据 方便进行GC，但是数据有效还是无效SSD是不知道的。<br>所以Trim命令诞生，Trim命令是由主机发给SSD，目的是告诉SSD那些LPA已经无效。<br>SSD再接受了Trim命令之后，会更改映射表，如果空闲页面不足，也方便进行GC。</p>
+<h2 id="SSD状态"><a href="#SSD状态" class="headerlink" title="SSD状态"></a>SSD状态</h2><h3 id="只读盘"><a href="#只读盘" class="headerlink" title="只读盘"></a>只读盘</h3><p>代表只允许read操作，不允许write的command执行。</p>
+<p>一般发生在GC的时候，后台GC时会对IO进行限流。第一步IO会降低，带宽会被分给GC操作。第二步，但当剩余空闲块的数量再次下降的时候，此时由于空闲块消耗速度还是大于GC回收速度，就会进入只读盘状态，FTL只会处理Read请求，避免空闲块耗尽。</p>
+<h3 id="控制盘"><a href="#控制盘" class="headerlink" title="控制盘"></a>控制盘</h3><p>SSD控制器是7×24小时不间断运行的，但在以下<strong>特殊或极端情况</strong>下，控制器的底层调度策略和异常恢复机制会被深度触发（即“进入”控制盘）</p>
+<ol>
+<li><strong>异常断电或掉电保护触发时</strong>：<br>当发生突然断电，SSD的掉电保护电容会提供短暂的应急电量。此时，控制器会立即进入紧急状态，主动调整调度策略，将缓存（如DRAM或SLC缓存）中尚未写入的L2P映射表等关键元数据迅速固化到闪存中，保全核心数据。</li>
+<li><strong>垃圾回收（GC）与主机写入发生冲突时</strong>：<br>当后台正在进行繁重的垃圾回收，而主机又突然发来大量写入请求时，控制器会进入复杂的“仲裁与调度状态”。固件调度策略的优劣将直接决定此时SSD是否会出现严重的性能抖动或卡顿。</li>
+<li><strong>出现坏块或物理损伤时</strong>：<br>当闪存颗粒老化产生坏块，或在工业/航天等极端环境下受到辐射损伤时，控制器会触发异常恢复机制，主动隔离受损区域，重新分配备用块，并修正映射表，以维持系统的持续运行。</li>
+<li><strong>集成AI能力的智能调优时（最新趋势）</strong>：<br>在新一代（如PCIe 5.0）SSD中，控制器集成了AI能力。当识别到特定的工作负载（如AI场景、冷热数据交替）时，控制器会进入智能场景识别状态，动态优化数据调度逻辑，减小写放大，从而进一步提升性能和寿命。</li>
+</ol>
+<h2 id="机制学习"><a href="#机制学习" class="headerlink" title="机制学习"></a>机制学习</h2><h3 id="NTFS文件系统"><a href="#NTFS文件系统" class="headerlink" title="NTFS文件系统"></a>NTFS文件系统</h3><p>windows NT家族使用的文件系统，替代了FAT文件系统成为windows主流<br>1.NTFS初始化<br>NTFS文件系统初始化磁盘的三个步骤分别是：初始化分区表，创建文件系统分区表，正常使用（read write del操作）</p>
+<ul>
+<li>NTFS的分区方案有两种： </li>
+<li><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975628731-9114a78c-cd9b-4f08-a042-21b5144b652e.png" srcset="/img/loading.gif" lazyload alt="img"></li>
+</ul>
+<ol>
+<li>MBR主引导记录：结构特点：位于磁盘第一个扇区（512字节），包含446字节引导程序 + 64字节分区表（最多4个主分区）+ 2字节结束标志“55AA”。<br>核心限制：最大支持2TB容量；最多4个主分区（或3主+1扩展分区，扩展分区内可再分逻辑分区）；无冗余备份，一旦损坏可能导致整个磁盘无法访问。<br><img src="./FILES/SSD%20Basic.md/img-20260602181035.png" srcset="/img/loading.gif" lazyload alt="null"></li>
+</ol>
+<ul>
+<li><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780975634003-ab2dfba8-3677-4e20-bfe1-b60ab63252d9.png" srcset="/img/loading.gif" lazyload alt="img"></li>
+</ul>
+<ol>
+<li>GPT（GUID分区表）特点有：容量跃升：采用64位逻辑块地址（LBA），理论支持高达18EB（1EB=100万TB）的存储空间，彻底解决大容量硬盘容量瓶颈；<br>分区灵活性：默认支持128个主分区（Windows系统），无需扩展分区逻辑，每个分区分配唯一GUID标识符，避免冲突；<br>数据可靠性：分区表在磁盘首尾各存一份备份，并通过CRC32校验机制实时检测错误，损坏时可自动恢复；<br>安全增强：与UEFI配合实现安全启动（Secure Boot），抵御Bootkit等底层攻击。<br><img src="./FILES/SSD%20Basic.md/img-20260602181457.png" srcset="/img/loading.gif" lazyload alt="null"><br>如图所示：示例中的分区表占34个LBA 在前34和后34个LPA都存放了一份 这里LBA是一个512字节的扇区，也就是磁盘的前34 * 512字节和末尾的34 * 512字节都是存放的分区表。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>MBR 分区表</th>
+<th>GPT 分区表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最大磁盘容量</td>
+<td>2TB（32 位 LBA 限制）</td>
+<td>8EB（64 位 LBA 限制，无实际硬件瓶颈）</td>
+</tr>
+<tr>
+<td>最大分区数量</td>
+<td>4 个主分区，或 3 主分区 + 1 扩展分区（逻辑分区无上限）</td>
+<td>默认 128 个分区（可扩展），无需扩展分区</td>
+</tr>
+<tr>
+<td>分区标识</td>
+<td>1 字节类型码（如 0x83 为 Linux 分区，0x0B 为 FAT32 分区）</td>
+<td>GUID（全局唯一标识，如 EBD0A0A2-B9E5-4433-87C0-68B6B72699C7 为 Linux 数据分区）</td>
+</tr>
+<tr>
+<td>数据安全性</td>
+<td>无备份，分区表损坏后数据易丢失；无校验机制</td>
+<td>自带备份分区表；分区项含 CRC32 校验，支持自动修复</td>
+</tr>
+<tr>
+<td>兼容性</td>
+<td>支持所有 BIOS/UEFI 固件、所有操作系统（Windows XP 及以上、Linux 全版本）</td>
+<td>仅支持 UEFI 固件（部分主板可开启 Legacy 模式兼容 BIOS）；Windows 7 及以下需特殊驱动，Linux 3.0+ 内核原生支持</td>
+</tr>
+<tr>
+<td>引导方式</td>
+<td>依赖 BIOS 引导，支持 MBR 引导加载程序（GRUB 1、LILO）</td>
+<td>依赖 UEFI 引导，支持 EFI 引导加载程序（GRUB 2、systemd-boot）；支持安全启动</td>
+</tr>
+<tr>
+<td>分区信息存储</td>
+<td>固定在 LBA 0 扇区（512 字节）</td>
+<td>分散存储（头部 + 备份），支持动态调整分区表大小</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>传统 BIOS 主板、小容量磁盘（≤2TB）、旧系统兼容</td>
+<td>UEFI 主板、大容量磁盘（&gt;2TB）、新硬件（如 NVMe 硬盘）、安全启动需求</td>
+</tr>
+</tbody></table>
+<p>2.NTFS文件组织<br>NTFS以cluster为存储单位，一个文件占整数个cluster<br>NTFS分区表信息：</p>
+<p>NTFS文件系统一共由17个“元文件”构成，它们是在分区格式化时写入到硬盘的隐藏文件（以”$”开头），也是NTFS文件系统的系统信息，元文件功能如下表格介绍：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>元文件</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>$MFT</td>
+<td>主文件表本身，是每个文件的索引</td>
+</tr>
+<tr>
+<td>1</td>
+<td>$MFTMirr</td>
+<td>主文件表的部分镜像</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$LogFile</td>
+<td>事务型日志文件</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$Volume</td>
+<td>卷文件，记录卷标等信息</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$AttrDef</td>
+<td>属性定义列表文件</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$Root</td>
+<td>根目录文件，管理根目录</td>
+</tr>
+<tr>
+<td>6</td>
+<td>$Bitmap</td>
+<td>位图文件，记录了分区中簇的使用情况</td>
+</tr>
+<tr>
+<td>7</td>
+<td>$Boot</td>
+<td>引导文件，记录了用于系统引导的数据情况</td>
+</tr>
+<tr>
+<td>8</td>
+<td>$BadClus</td>
+<td>坏簇列表文件</td>
+</tr>
+<tr>
+<td>9</td>
+<td>$Quota</td>
+<td>在早期的Windows NT系统中此文件为磁盘配额信息</td>
+</tr>
+<tr>
+<td>10</td>
+<td>$Secure</td>
+<td>安全文件</td>
+</tr>
+<tr>
+<td>11</td>
+<td>$UpCase</td>
+<td>大小写字符转换表文件</td>
+</tr>
+<tr>
+<td>12</td>
+<td>$Extend metadata directory</td>
+<td>扩展元数据目录</td>
+</tr>
+<tr>
+<td>13</td>
+<td>$Extend$Reparse</td>
+<td>重解析点文件</td>
+</tr>
+<tr>
+<td>14</td>
+<td>$Extend$UsnJrnl</td>
+<td>加密日志文件</td>
+</tr>
+<tr>
+<td>15</td>
+<td>$Extend$Quota</td>
+<td>配额管理文件</td>
+</tr>
+<tr>
+<td>16</td>
+<td>$Extend$ObjId</td>
+<td>对象ID文件</td>
+</tr>
+</tbody></table>
+<h3 id="数据恢复"><a href="#数据恢复" class="headerlink" title="数据恢复"></a>数据恢复</h3><p>文件恢复的数据流程有两个，第一种是基于文件系统 使用 <img src="https://cdn.nlark.com/yuque/__latex/8031ff7d7f62495c4911049029366f27.svg" srcset="/img/loading.gif" lazyload alt="img"><em>LogFile日志文件记录</em>，第二种是不基于文件系统 <em>MFT和LogFile</em>都损坏了的情况下恢复。主要流程如下：<br>🚀 开始文件恢复<br>选择恢复模式<br>分支 A：基于文件系统的恢复流程（左侧蓝色区域）<br>分支 B：基于非文件系统的恢复流程（右侧紫色区域）<br>📂 分支 A：基于文件系统的恢复流程<br>此模式适用于<strong>分区表完好、文件系统结构未严重损坏</strong>的情况。<br>扫描物理磁盘<br>识别分区表 (MBR/GPT)<br>扫描分区引导扇区<br>文件系统类型识别<br>情况 1：NTFS 分区<br>定位 <img src="https://cdn.nlark.com/yuque/__latex/f24879520b4a6b34aaf6dd9dff2b299e.svg" srcset="/img/loading.gif" lazyload alt="img">MFT 记录<br>判断：记录状态检查？<br>正常记录 → 解析文件属性（文件名/簇链/大小/时间）<br>删除记录 → 检查 <img src="https://cdn.nlark.com/yuque/__latex/fe59e0d59f208942478562f76adfc71c.svg" srcset="/img/loading.gif" lazyload alt="img">MFTMirr<br>(以上三路汇合) → 提取簇链信息<br>情况 2：FAT/exFAT 分区<br>定位 FAT 表<br>扫描目录项<br>簇链重建<br>情况 3：其他文件系统<br>(直接进入后续通用步骤)<br>簇到 LBA 转换（计算物理位置）<br>读取文件数据<br>数据完整性校验<br>生成恢复文件（保留原属性和时间戳）<br>🔍 分支 B：基于非文件系统的恢复流程<br>此模式通常用于<strong>分区表丢失、文件系统格式化或严重损坏</strong>的情况（即“Raw 恢复”）。<br>扫描物理磁盘<br>判断：分区表是否可用？<br>是 → 识别分区边界<br>否 → 全盘扫描 LBA<br>在分区内扫描<br>文件特征识别<br>常见文件头扫描 (JPEG/PDF/DOC/MP4 等)<br>特征匹配算法<br>确定文件起始位置<br>判断：需要碎片重组？<br>是 → 碎片检测与重组（基于文件结构特征）<br>否 → 连续文件提取<br>文件边界确定<br>文件重建与校验<br>生成恢复文件（使用系统时间戳）<br>✅ 结束<br>两个分支最终汇合至：恢复完成</p>
+<h3 id="dummy-read"><a href="#dummy-read" class="headerlink" title="dummy read"></a>dummy read</h3><p>Dummy Read（空读/假读） 在固态硬盘和存储系统中，特指一种不将读取数据返回给主机、仅用于内部维护或时序同步的读取操作</p>
+<p>主要作用是降低误码率，延长flash寿命</p>
+<h3 id="discard-read"><a href="#discard-read" class="headerlink" title="discard read"></a>discard read</h3><p>对被 Discard（Trim / Deallocate）过的 LBA 地址范围执行 Read 操作，然后观察 SSD 返回了什么数据。</p>
+<h3 id="Ping-pong"><a href="#Ping-pong" class="headerlink" title="Ping-pong"></a>Ping-pong</h3><p><strong>Ping-Pong Buffer（乒乓缓冲区）</strong>，一种在 SSD 主控中用于<strong>提升数据吞吐效率、实现流水线并行处理</strong>的硬件缓冲机制。</p>
+<p>核心原理</p>
+<ul>
+<li>双缓冲交替工作：系统设置两个大小相等的缓冲区（Buffer A 和 Buffer B）。当一个缓冲区正在被“写入”时，另一个缓冲区可以同时被“读取”或“处理”，两者像打乒乓球一样交替使用，避免数据搬运过程中的空闲等待。</li>
+<li>消除串行瓶颈：在传统单缓冲模式下，数据必须“先写完再读”，存在明显的串行延迟。而 Ping-Pong Buffer 允许“写A的同时读B”，实现数据传输与处理的并行化，显著提升整体吞吐量。</li>
+</ul>
+<p>使用：</p>
+<ul>
+<li><strong>主机数据接收与 NAND 写入之间</strong>：当主机通过 PCIe 发送写命令时，数据首先被 DMA 搬运到 Buffer A；与此同时，FTL 可以将 Buffer B 中已准备好的数据发送给 NAND Flash 进行编程。当 Buffer A 填满后，立即切换为“可读/可写”状态，而 Buffer B 则开始接收下一批主机数据。</li>
+<li><strong>NAND 读取与主机回传之间</strong>：当从 NAND Flash 读取数据时，数据先加载到 Buffer A；此时，Buffer B 中的数据可以立即通过 PCIe 回传给主机。读取完成后，Buffer A 切换为“待回传”，Buffer B 开始接收下一批 NAND 数据。</li>
+<li><strong>垃圾回收（GC）搬移过程</strong>：在 GC 操作中，需要同时“读取旧块数据”和“写入新块”。Ping-Pong Buffer 可以让 GC 引擎在读取源块的同时，将之前读取的数据写入目标块，大幅加速垃圾回收速度，减少对主机 I/O 的影响。</li>
+</ul>
+<h3 id="数据校验："><a href="#数据校验：" class="headerlink" title="数据校验："></a>数据校验：</h3><h4 id="CRC"><a href="#CRC" class="headerlink" title="CRC"></a>CRC</h4><p>CRC是一种数据校验算法，结果是生成校验位</p>
+<p>CRC校验主要用于数据从host传输到DDR的时候，数据会被进行一定处理，比如一开始的数据可能只有User Data+meta。但是经过NPB前端模块之后，数据可能会变成以下格式</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783500473686-629eac5f-9c81-4c3c-a928-d794ad1e8d5c.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>其中最主要添加的数据就是uCRC和mCRC，一个用于保护userdata，一个用于保护FMD数据</p>
+<p>CRC构造：由于CRC构造流程所以CRC一般都是紧贴后data存放</p>
+<p>假设我们要发送的数据是 D ，约定的生成多项式是 G(x) ，其最高次幂为 r (代表CRC有R位)</p>
+<ol>
+<li>数据扩展（补零）</li>
+</ol>
+<p>在原始数据 DD 的二进制序列末尾，追加 r 个 <code>0</code>。</p>
+<p>目的：给即将产生的 r 位余数（即 CRC 码）腾出位置。</p>
+<ol>
+<li>模2除法</li>
+</ol>
+<p>多项式的二进制和D进行XOR运算 （1和0相遇才为1）</p>
+<ol>
+<li>生成校验码</li>
+</ol>
+<p>模2除法最终得到的余数（长度必定为 r位），就是这段数据的 CRC 校验码。</p>
+<p>例子：</p>
+<p>假设我们要发送的数据是 <code>1011</code>，约定的生成多项式是 G(x)=x3+x+1（查表得）</p>
+<ol>
+<li><strong>确定参数</strong>：G(x) 最高次幂为 3，所以 CRC 长度为 3 位。 G(x)对应的二进制除数为 <code>1011</code>。</li>
+<li><strong>数据补零</strong>：在 <code>1011</code> 后面补 3 个 0，变成被除数 <code>1011000</code>。</li>
+<li><strong>模2除法</strong>：1011000和1011进行XOR运算得到000，CRC就是000了</li>
+</ol>
+<h4 id="ECC"><a href="#ECC" class="headerlink" title="ECC"></a>ECC</h4><p>ECC（纠错码）：轻量级修复，追求低延迟</p>
+<p>不仅能检测错误，还能<strong>自动修复少量的比特翻转</strong>（例如 64位数据中坏了 1 个bit，ECC能直接算出并改回来）。如果坏得太严重（如2个bit），它只能报警，无法修复</p>
+<p>SSD 控制器内部通常包含专门的 ECC 电路（ECC circuitry）或 <strong>ECC 引擎</strong>。当数据在主机与 NAND 闪存颗粒之间进行传输时，<strong>控制器负责拦截数据，并利用内置的算法模块进行编码或解码</strong>。此外，ECC 生成的校验码（冗余信息）并不会单独存放，而是与原始数据一起被写入到 NAND Flash 的备用区（Spare area）中。</p>
+<ul>
+<li><strong>写入阶段（编码）</strong>：当主机向 SSD 写入数据时，控制器会自动计算该数据块的 ECC 校验码，并将数据与 ECC 校验码组合后，一并写入 NAND 闪存的存储单元及其备用区。</li>
+<li><strong>读取阶段（解码与修复）</strong>：当读取数据时，控制器会重新计算数据的 ECC 值，并将其与存储在备用区中的原始 ECC 值进行比对</li>
+</ul>
+<h4 id="LDPC"><a href="#LDPC" class="headerlink" title="LDPC"></a>LDPC</h4><p>LDPC是专门的纠错模块，企业级SSD中有专门的LDPC纠错硬件</p>
+<p>主要是用于数据传输过程中的比特翻转问题，</p>
+<p>LDPC（低密度奇偶校验码）的核心作用是<strong>“纠错”</strong></p>
+<ol>
+<li>LPDC编码</li>
+</ol>
+<p>针对一串原始数据，按照生成矩阵(G)定义的校验公式，生成校验数据。</p>
+<p>校验公式的基本逻辑就是奇偶校验。</p>
+<p>最后生成的数据由原始数据+校验数据组成</p>
+<ol>
+<li>LDPC解码</li>
+</ol>
+<p>拿到原始数据以后，会根据校验矩阵，校验数据的正确性，如果都校验通过了，就完成了解码。</p>
+<p>解码一般分hard decode和soft decode。</p>
+<p>如果原始数据发生了部分bit翻转，那相关的校验公式有可能校验失败，这个时候就会通过 bit 翻转算法，和积译码算法等等。</p>
+<h3 id="dfx"><a href="#dfx" class="headerlink" title="dfx"></a>dfx</h3><p>主控芯片中一般会提供的<strong>一系列调试有关工具包</strong>的合集，构成了SSD固件的完整调试工具集</p>
+<p>包含log注入：输出信息到log文件</p>
+<p>内存映射打印：输出内存数据</p>
+<p>寄存器导出：导出寄存器的数据；还有串口调试，SPI控制器调试，URAT调试等</p>
+<h3 id="SPKM"><a href="#SPKM" class="headerlink" title="SPKM"></a>SPKM</h3><p>SBKM (Super Block Key Management，超级块键管理) 是 FTL 层中负责系统关键数据持久化存储的模块，专门管理 SSD 内部元数据、日志和系统信息的读写。</p>
+<p>SBKM 是 FTL 的系统数据存储引擎，为 SSD 固件提供：</p>
+<ol>
+<li><strong>可靠的元数据存储</strong>：日志、配置、固件等系统关键数据</li>
+<li><strong>冗余保护</strong>：主副本 + Backup 副本 + XOR 校验</li>
+<li><strong>性能分级</strong>：Fast/Slow 区域适配不同访问频率</li>
+<li><strong>掉电安全</strong>：关键数据在掉电时保证写入完成</li>
+<li><strong>生命周期管理</strong>：擦除、磨损均衡、坏块处理</li>
+</ol>
+<p>与 FTL 的用户数据路径（处理主机 IO）不同，SBKM 专注于 SSD 内部系统数据的持久化，是 SSD 可靠性和可维护性的基础设施。</p>
+<h2 id="PCIe"><a href="#PCIe" class="headerlink" title="PCIe"></a>PCIe</h2><p>PCIe模块一般由FE端负责，一半分为两个部分：1.是PCIe上电初始化，2.是PCIe任务处理（复位，FLR中断&lt;硬件重置&gt;，linkdown中断&lt;链路故障&gt;）</p>
+<h3 id="1-链路初始化"><a href="#1-链路初始化" class="headerlink" title="1 链路初始化"></a>1 链路初始化</h3><p>初始化发生在复位结束信号和检测信号无误后，PCIe建立链路主要有五个步骤：PCIe phy寄存器的配置、PCIe配置空间寄存器的配置（部分PCIe Header寄存器）、ADP硬件模块、APP硬件模块以及使能LTSSM等</p>
+<h3 id="2-中断处理"><a href="#2-中断处理" class="headerlink" title="2 中断处理"></a>2 中断处理</h3><ul>
+<li>PCIe任务处理：处理任务的时候首先要判断device有没有异常掉电。如果没有掉电，就会触发各种中断，这些中断处理函数中会调用PCIe task的状态机处理函数，从而推进task的执行。</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1780985412011-10fae5a1-39f8-4ee6-9a40-4c020208426a.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ul>
+<li>中断恢复：在启动中断处理task之后，PCIe需要从中断中恢复过来，才能执行第二个task</li>
+</ul>
+<p>中断恢复流程如下：</p>
+<ol>
+<li>切换CPU的频率为1600MHz（SDK_CpuClkDynamicCfg）<br>配置MISC_CRG_CPU_CLK_CFG.fun_cpu_clksel为1</li>
+<li>Disable PCIe ADP Normal中断<br>配置ADP_FATAL_INT_MSK.adp_top_fatal_int_mask为1</li>
+<li>Disable PCIe A Normal中断<br>配置PCIE_A_NORMAL_INT_MSK.pcie_a_top_normal_int_mask为1</li>
+<li>恢复PCIe Task。</li>
+</ol>
+<h2 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h2><h3 id="MCW格式"><a href="#MCW格式" class="headerlink" title="MCW格式"></a>MCW格式</h3><p>memory codeword格式，是存放在DDR中的数据格式，根据不同的sector size有不同的数据组织方式</p>
+<ol>
+<li>Userdata的cache数据格式</li>
+</ol>
+<p>其中PCIe总线给前端的只有Userdata + meta数据</p>
+<p>经过前端处理之后数据会加上FMD和CRC数据，还有reserved字段，但是NVMe前端reserved默认为0</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783503769505-39c41386-c26c-4505-8d0a-c6f37568c6b3.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<ol>
+<li>Sys data的数据格式</li>
+</ol>
+<p>System data因为重要性不使用CRC进行校验，而是使用ECC进行纠错码处理</p>
+<p>System data在memory中<strong>不通过CRC保护，而是通过ECC保护</strong></p>
+<p>Reserverd数据由fw填写任意数值，HW不做硬件检查</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783506488826-6eefb400-9966-420c-8020-9544c9f2e66b.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="FCW格式"><a href="#FCW格式" class="headerlink" title="FCW格式"></a>FCW格式</h3><p>FCW格式是数据存放在flash中的格式，7700H支持的格式如下</p>
+<p>FCW下Data数据和FMD数据由<strong>FCRC</strong>保护，</p>
+<p>后面还会跟上<strong>LDPC编码和对其的补dummy，</strong>dummy数据在LDPC ENC模块填写，是fcrc的重复</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783561519769-b3c383ab-ac7c-4061-894b-ac1b334b85c9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="FMD格式"><a href="#FMD格式" class="headerlink" title="FMD格式"></a>FMD格式</h3><p>FMD是flash metadata，由NPB生成</p>
+<p>格式如下：主要是存放UNC和PLBA</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783562759899-4f26960f-683e-46e4-8918-69dcd777fad9.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>这几个字段的具体解释如下：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2026/png/35282784/1783563230570-71469cce-635a-4839-9ba5-2e9d1e5eb211.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SSD/" class="category-chain-item">SSD</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SSD/">#SSD</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>SSD basic</div>
+      <div>http://yoursite.com/2026/05/06/SSD/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tspigeon</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/30/DDR/" title="DDR基础知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DDR基础知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/06/%E5%AD%98%E5%82%A8%E5%9F%BA%E7%A1%80/" title="存储基础知识">
+                        <span class="hidden-mobile">存储基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>No pigeon</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/yinghua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":300,"height":600},"mobile":{"show":false},"rect":"opacity:0.7","log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

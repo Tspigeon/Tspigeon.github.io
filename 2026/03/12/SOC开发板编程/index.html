@@ -16,15 +16,15 @@
   <meta name="author" content="Tspigeon">
   <meta name="keywords" content="">
   
-    <meta name="description" content="SOC编程第一个程序使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板 连接上开发板 给开发板插网线 之后使用 _ifconfig _查看ip 查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输 我们编写经典程序 hello world，本地进行交叉编译 版本问题：方法1： 如果开发板有配套教程可以进入配套教程中找找有没有符合开发板Linux版">
+    <meta name="description" content="第一个程序使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板 连接上开发板 给开发板插网线 之后使用 ifconfig 查看ip 查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输 我们编写经典程序 hello world，本地进行交叉编译 版本问题：方法1： 如果开发板有配套教程可以进入配套教程中找找有没有符合开发板Linux版本的源代码和交">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SOC编程">
 <meta property="og:url" content="http://yoursite.com/2026/03/12/SOC%E5%BC%80%E5%8F%91%E6%9D%BF%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Tspigeon &#39;s blog">
-<meta property="og:description" content="SOC编程第一个程序使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板 连接上开发板 给开发板插网线 之后使用 _ifconfig _查看ip 查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输 我们编写经典程序 hello world，本地进行交叉编译 版本问题：方法1： 如果开发板有配套教程可以进入配套教程中找找有没有符合开发板Linux版">
+<meta property="og:description" content="第一个程序使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板 连接上开发板 给开发板插网线 之后使用 ifconfig 查看ip 查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输 我们编写经典程序 hello world，本地进行交叉编译 版本问题：方法1： 如果开发板有配套教程可以进入配套教程中找找有没有符合开发板Linux版本的源代码和交">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-03-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-04-15T05:07:45.497Z">
+<meta property="article:modified_time" content="2026-08-12T15:05:02.590Z">
 <meta property="article:author" content="Tspigeon">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          5.4k 字
         
       </span>
     
@@ -271,8 +271,8 @@
             
               <div class="markdown-body">
                 
-                <h1 id="SOC编程"><a href="#SOC编程" class="headerlink" title="SOC编程"></a>SOC编程</h1><h1 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h1><p>使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板</p>
-<p>连接上开发板 给开发板插网线 之后使用 _ifconfig _查看ip</p>
+                <h1 id="第一个程序"><a href="#第一个程序" class="headerlink" title="第一个程序"></a>第一个程序</h1><p>使用mobaxterm连接上开发板，这篇文章使用的是野火的imx6ull开发板</p>
+<p>连接上开发板 给开发板插网线 之后使用 <em>ifconfig</em> 查看ip</p>
 <p>查看ip之后使用mobaxterm的ssh连接开发板，这样就可以实现文件传输</p>
 <p>我们编写经典程序 hello world，本地进行交叉编译</p>
 <h2 id="版本问题："><a href="#版本问题：" class="headerlink" title="版本问题："></a>版本问题：</h2><p><strong>方法1：</strong></p>
@@ -281,7 +281,7 @@
 <p>添加到环境变量</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//编辑系统配置文件</span><br>nano ~/.bashrc<br><span class="hljs-comment">//在最后一行加入</span><br><span class="hljs-keyword">export</span> PATH=/your_path/gcc-linaro<span class="hljs-number">-7.5</span><span class="hljs-number">.0</span><span class="hljs-number">-2019.12</span>-x86_64_arm-linux-gnueabihf/bin:$PATH<br></code></pre></td></tr></table></figure>
 
-<p><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;nano&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);">：按 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;Ctrl + O&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 然后回车保存，再按 </font><code>&lt;font style=&quot;color:rgb(6, 10, 38);&quot;&gt;Ctrl + X&lt;/font&gt;</code><font style="color:rgb(6, 10, 38);"> 退出。</font></p>
+<p><code>nano</code>：按 <code>Ctrl + O</code> 然后回车保存，再按 <code>Ctrl + X</code> 退出。</p>
 <p>然后重新加载该文件</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">source ~/.bashrc<br></code></pre></td></tr></table></figure>
 
@@ -303,16 +303,16 @@
 
 
 
-<h2 id="multiple-definition-of-‘yylloc’"><a href="#multiple-definition-of-‘yylloc’" class="headerlink" title="multiple definition of ‘yylloc’"></a>multiple definition of ‘yylloc’</h2><p><strong><font style="color:rgb(6, 10, 38);">经典的 Flex/Bison 版本兼容性问题</font></strong></p>
-<p><font style="color:rgb(6, 10, 38);">因为我的Linux内核是4.x版本，但是bison是3.8版本导致不兼容</font></p>
-<p><font style="color:rgb(6, 10, 38);">以下是编译源代码的步骤</font></p>
+<h2 id="multiple-definition-of-‘yylloc’"><a href="#multiple-definition-of-‘yylloc’" class="headerlink" title="multiple definition of ‘yylloc’"></a>multiple definition of ‘yylloc’</h2><p><strong>经典的 Flex/Bison 版本兼容性问题</strong></p>
+<p>因为我的Linux内核是4.x版本，但是bison是3.8版本导致不兼容</p>
+<p>以下是编译源代码的步骤</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c"># <span class="hljs-number">1.</span> 进入内核目录<br>cd /home/pigeon/code/linux/kernel/ebf-image-builder/ebf_linux_kernel<br><br># <span class="hljs-number">2.</span> 清理构建环境 (非常重要！)<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- mrproper<br><br># <span class="hljs-number">3.</span> 重新配置 (根据你的板子选择，这里用 versatile 做示例)<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- yourconfig<br><br># <span class="hljs-number">4.</span> 再次尝试准备模块环境<br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_prepare<br></code></pre></td></tr></table></figure>
 
-<p>此时会报错 _multiple definition of `yylloc’，_然后</p>
+<p>此时会报错 <em>multiple definition of `yylloc’，</em>然后</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c">cd ./scripts/dtc<br>vim dtc-parser.tab.c<br><span class="hljs-comment">//将其中1177行，将yylloc注释掉</span><br></code></pre></td></tr></table></figure>
 
 <p>具体操作参考<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/432591735">注释yylloc</a></p>
-<p>然后再执行 **make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_prepare **就可以成功编译了</p>
+<p>然后再执行 <strong>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- modules_prepare</strong> 就可以成功编译了</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//编译指令 生成内存映像</span><br>make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j$(nproc)<br><span class="hljs-comment">//安装指令 然后就可以在 /lib/modules中查看</span><br>sudo make modules_install<br></code></pre></td></tr></table></figure>
 
 <p>生成内存映像的时候如果出现 <em>/bin/sh: 1: lzop: not found</em></p>
@@ -322,28 +322,26 @@
 <li><strong>对bison进行降级的办法行不通 因为高版本的linux内核不支持低版本的bison</strong></li>
 <li><strong>更不能对低版本的内核源码打补丁适应高版本的内核 这样可能出现内核污染 不能再交叉编译代码</strong></li>
 </ul>
-<h2 id="config问题：ARMv6-vs-ARMv7"><a href="#config问题：ARMv6-vs-ARMv7" class="headerlink" title="config问题：ARMv6 vs. ARMv7"></a>config问题：ARMv6 vs. ARMv7</h2><p><font style="color:rgb(15, 17, 21);">ARMv6 与 ARMv7 是 ARM 处理器架构的两个主要版本。它们在指令集、特性、性能等方面有显著差异，但也存在一定的兼容性。</font></p>
-<p><font style="color:rgb(15, 17, 21);"></font></p>
-<p><font style="color:rgb(15, 17, 21);">如果驱动程序是ARMv6但是开发板是ARMv7将会出现insmod的时候报错</font></p>
-<p><font style="color:rgb(15, 17, 21);">所以在安装驱动前检查架构版本：</font></p>
+<h2 id="config问题：ARMv6-vs-ARMv7"><a href="#config问题：ARMv6-vs-ARMv7" class="headerlink" title="config问题：ARMv6 vs. ARMv7"></a>config问题：ARMv6 vs. ARMv7</h2><p>ARMv6 与 ARMv7 是 ARM 处理器架构的两个主要版本。它们在指令集、特性、性能等方面有显著差异，但也存在一定的兼容性。</p>
+<p>如果驱动程序是ARMv6但是开发板是ARMv7将会出现insmod的时候报错</p>
+<p>所以在安装驱动前检查架构版本：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">//开发板上运行 查看arm架构版本</span><br>uname -a<br><br><span class="hljs-comment">//模块目录运行 查看驱动适配的架构版本-其实是内核config的架构版本</span><br>modinfo xxx.ko<br><span class="hljs-comment">// 关注 # vermagic 字段 </span><br></code></pre></td></tr></table></figure>
 
-<p><em><font style="color:rgb(15, 17, 21);">vermagic：</font></em><font style="color:rgb(15, 17, 21);">vermagic 是 Linux 内核模块（.ko 文件）中的一个版本魔数（Version Magic）字符串。</font></p>
-<p><font style="color:rgb(15, 17, 21);"></font></p>
+<p><em>vermagic：</em>vermagic 是 Linux 内核模块（.ko 文件）中的一个版本魔数（Version Magic）字符串。</p>
 <p>如果不一致执行以下代码进行<strong>内核配置修改</strong></p>
 <p>在执行编译配置的时候，其实这个是告诉内核我要用什么配置编译你，启动那些选项</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- yourconfig<br></code></pre></td></tr></table></figure>
 
 <p><strong>yourconfig</strong>这个配置文件不能乱选，一个是参考开发板手册</p>
 <p>手册找不到的话 我是野火imu6 mini的板子，</p>
-<p>_ebf-image-builder/ebf_linux_kernel _目录下会有一个_made_deb.sh _</p>
+<p><em>ebf-image-builder/ebf_linux_kernel</em> 目录下会有一个<em>made_deb.sh</em> </p>
 <p>如果可以执行的话 make mrproper 清空一下之前的安装痕迹 然后 <em>sh made_deb.sh</em></p>
-<p>如果sh不能执行，就查看sh文件里面的 _make ${build_opts}  _<em><strong>npi_v7_defconfig</strong></em></p>
+<p>如果sh不能执行，就查看sh文件里面的 <em>make ${build_opts}</em>  *<strong>npi_v7_defconfig*</strong></p>
 <p>然后我们这样设置配置：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- npi_v7_defconfig<br></code></pre></td></tr></table></figure>
 
-<p>然后会显示 _config write to .config _此时进入内核目录下查看 .config文件</p>
-<p>搜索：_CONFIG_ARCH_MULTI_V6，_如果显示以下配置或者只显示 _ CONFIG_ARCH_MULTI_V7=y _就是正确的</p>
+<p>然后会显示 <em>config write to .config</em> 此时进入内核目录下查看 .config文件</p>
+<p>搜索：<em>CONFIG_ARCH_MULTI_V6，</em>如果显示以下配置或者只显示  <em>CONFIG_ARCH_MULTI_V7=y</em> 就是正确的</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c"># CONFIG_ARCH_MULTI_V6 is <span class="hljs-keyword">not</span> <span class="hljs-built_in">set</span><br>CONFIG_ARCH_MULTI_V7=y<br>CONFIG_ARCH_MULTI_V6_V7=y<br></code></pre></td></tr></table></figure>
 
 <p>然后<strong>makefile</strong>这样写：</p>
@@ -356,6 +354,47 @@
 <li>ARCH：架构是什么架构</li>
 </ul>
 <p>或者<strong>通过设置环境变量的方式</strong>就make自动使用交叉编译arm</p>
+<h1 id="核间通信项目"><a href="#核间通信项目" class="headerlink" title="核间通信项目"></a>核间通信项目</h1><p>核间通信（Inter-Processor Communication, IPC）是在一个多核系统级芯片（SoC）中，不同处理器核心之间进行数据交换与协同工作的机制。</p>
+<p>现代 SoC 通常采用<strong>异构多核架构</strong>，集成了多种类型的处理器核心，各自承担不同的职责。例如：</p>
+<p>应用处理器 (AP)：如 Cortex-A 系列，负责运行 Linux、Android 等复杂操作系统，处理用户界面和高级应用。</p>
+<p>实时处理器 (MCU)：如 Cortex-M/R 系列，负责运行实时操作系统（RTOS）或裸机程序，处理对时序要求极高的任务，如传感器数据采集、电机控制等。</p>
+<p>其他专用核心：如数字信号处理器（DSP）、神经网络处理器（NPU）等，用于加速特定算法。</p>
+<p>项目意义：但由于<strong>Linux的非实时性特性，其任务调度基于公平性而非时间确定性</strong>，无法保证关键任务的严格响应时间，例如在高负载时可能出现延迟波动，影响传感器数据采集、电机控制等实时性要求高的场景。</p>
+<p>本项目实现的是<strong>APU（应用处理单元）运行标准Linux操作系统</strong>和<strong>RPU（实时处理单元）运行RTT（实时操作系统）</strong>之间的核间通信</p>
+<p>主要实现是在<strong>Linux驱动层拦截I/O操作封装为核间通信消息，通过核间组件发送给RPU</strong>，<strong>RTT端解析消息后执行对应的驱动任务，并将结果通过核间通信返回Linux</strong>，最终由驱动层将结果返回给用户程序，整个过程对应用层透明。</p>
+<p>核间通信的步骤：<strong>驱动层的封装和重定向</strong></p>
+<ol>
+<li>应用程序调用标准的Linux I/O接口（如 <code>open</code>, <code>read</code>, <code>write</code>, <code>ioctl</code>）。</li>
+<li>RPU在Linux上的驱动程序在file_operation结构体中拦截这些请求</li>
+<li>驱动将具体的I/O操作（CMD）和参数（Args）封装成一个标准的Request数据包。</li>
+<li>Adapter（适配器）层介入，为此次操作分配资源（如果是多进程/线程环境，会查找或创建adapter_child）。</li>
+<li>APU端的Syslink组件接管数据包。</li>
+<li>Syslink将Request数据包<strong>从内核内存拷贝到共享内存池（实际是通过Vring的descriptor实现零拷贝）</strong>中。</li>
+<li>APU端通过寄存器写入，<strong>触发IPI中断（核间中断）通知RPU端。</strong></li>
+<li>RPU端的Syslink组件检测到中断，从<strong>共享内存中取出数据。</strong></li>
+<li>RPU端的适配器层解析数据包，<strong>提取出路由信息</strong>（Port, Node）。</li>
+<li>数据被放入优先级消息队列。Server（服务器）层的主线程唤醒工作线程（Worker Thread）。工作线程根据数据包中的CMD，调用RPU端注册好的真实驱动回调函数。</li>
+<li>RPU端执行操作，将执行结果封装到reponse数据包，<strong>通过syslink，将数据包拷贝一份到共享缓冲区2，并再次触发IPI通知APU</strong></li>
+<li>APU端Syslink接收到中断，从Buffer2取出Response数据。APU端Adapter层解析Response，获取执行结果。</li>
+<li>通过信号量（Semaphore）或完成量（Completion）机制，唤醒之前阻塞等待的应用进程。</li>
+<li>将结果数据从<strong>内核态拷贝回用户态的应用程序缓冲区。</strong></li>
+</ol>
+<h2 id="共享内存池："><a href="#共享内存池：" class="headerlink" title="共享内存池："></a>共享内存池：</h2><p>核间通信组件会为每个驱动维护独立的发送与接收内存池,并配备独立的核间中断，发送与接收内存池为核间通信组件在注册驱动时向系统申请的内存空间,其物理地址由设备树给出。</p>
+<p>环形队列：</p>
+<p>为了保证高效且不需要复杂的锁（Lock-free），这种队列通常设计为单写者、单读者模式。Buffer1 APU只能写，Buffer2 APU只能read</p>
+<p>具体的环形队列实现是通过VirtIO的VRing机制实现的，VRing运行的步骤如下</p>
+<ol>
+<li>写者把descriptor放入 available ring</li>
+<li>读者读取并处理</li>
+<li>处理完成之后把descriptor放入 used ring 通知写者</li>
+</ol>
+<h2 id="VirtIO的VRing机制："><a href="#VirtIO的VRing机制：" class="headerlink" title="VirtIO的VRing机制："></a>VirtIO的VRing机制：</h2><p>实现了核间通信只需要传递指针，<strong>数据本身并没有被“复制”到专门划分的共享内存区域中，而是留在了应用程序原本分配的内存里。但前提是必须把“用户态的虚拟地址”转换成“物理地址”给到 RPU。</strong></p>
+<p>Vring的三个主要特点：</p>
+<ul>
+<li>Descriptor Table（描述符表）<strong>这是一个数组，每个元素描述一段内存（地址 + 长度）</strong>。优势：支持分散-聚集（Scatter-Gather）。比如你要发一个 4KB 的数据，不需要在内存里找一块连续的 4KB 空间，你可以申请 4 个 1KB 的碎片，用 4 个描述符连起来即可。</li>
+<li>Available Ring（可用环）：写者把描述符的索引（Index）放进这个环。含义：“嘿，我准备好了这几个描述符，里面有数据，你拿去处理吧。”</li>
+<li>Used Ring（已用环）：读者处理完后，把描述符的索引放进这个环。含义：“这几个描述符里的数据我处理完了，你可以回收或重用了。”</li>
+</ul>
 
                 
               </div>
